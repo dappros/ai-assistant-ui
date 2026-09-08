@@ -63,10 +63,25 @@ function resolveUiLocale(explicit?: string): string {
 }
 
 /**
- * Keyframes for the launcher glow and the teaser's fade/bounce. These have to
+ * Keyframes for the launcher glow and the teaser's bounce. These have to
  * be real CSS (inline styles cannot express keyframes) and are injected into
  * the widget's Shadow DOM, so they cannot leak into the host page.
  * `--ethora-glow-*` is set per-instance from the resolved gradient.
+ *
+ * `ethora-fade-bounce` only animates `transform` - NOT `opacity`. A CSS
+ * animation's computed value is driven by its own timeline, which only
+ * advances when the browser actually produces render frames for the
+ * document. In any context where frames are throttled or never start (a
+ * backgrounded tab, an inactive/non-visible preview iframe such as the SDK
+ * playground's, a low-power device), `currentTime` stays pinned at 0 and the
+ * element is rendered forever at the animation's first keyframe. When that
+ * keyframe set `opacity: 0` (a fade-IN), the teaser was permanently invisible
+ * in exactly those conditions - present in the DOM, correctly positioned and
+ * sized, but never visible, which is indistinguishable from "never renders".
+ * Keeping opacity out of the animation and setting it statically on
+ * `ctaStyle` instead means the teaser is visible immediately regardless of
+ * whether the animation's timeline ever ticks; the bounce is then a pure
+ * enhancement layered on top when it does.
  */
 const CHROME_KEYFRAMES = `
 @keyframes ethora-pulse-glow {
@@ -75,15 +90,15 @@ const CHROME_KEYFRAMES = `
   100% { box-shadow: 0 0 12px var(--ethora-glow-soft); }
 }
 @keyframes ethora-fade-bounce {
-  0%   { opacity: 0; transform: translateY(-3px); }
-  10%  { opacity: 1; transform: translateY(-1px); }
-  50%  { opacity: 1; transform: translateY(1px); }
-  90%  { opacity: 1; transform: translateY(3px); }
-  100% { opacity: 1; transform: translateY(1px); }
+  0%   { transform: translateY(-3px); }
+  10%  { transform: translateY(-1px); }
+  50%  { transform: translateY(1px); }
+  90%  { transform: translateY(3px); }
+  100% { transform: translateY(1px); }
 }
 @media (prefers-reduced-motion: reduce) {
   @keyframes ethora-pulse-glow { 0%,100% { box-shadow: 0 0 12px var(--ethora-glow-soft); } }
-  @keyframes ethora-fade-bounce { 0%,100% { opacity: 1; transform: none; } }
+  @keyframes ethora-fade-bounce { 0%,100% { transform: none; } }
 }
 `;
 
@@ -648,6 +663,9 @@ const ctaStyle: React.CSSProperties = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   cursor: 'pointer',
+  // Static, NOT animated: see the CHROME_KEYFRAMES comment above. Visibility
+  // must not depend on the animation timeline ever advancing.
+  opacity: 1,
   animation: 'ethora-fade-bounce 5s ease forwards',
 };
 
