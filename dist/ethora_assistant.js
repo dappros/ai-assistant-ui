@@ -815,7 +815,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
             return element2;
           };
-          function createElement(type, config, children) {
+          function createElement(type, config, children2) {
             var propName;
             var props = {};
             var key = null;
@@ -845,7 +845,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
             var childrenLength = arguments.length - 2;
             if (childrenLength === 1) {
-              props.children = children;
+              props.children = children2;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
               for (var i2 = 0; i2 < childrenLength; i2++) {
@@ -883,7 +883,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
             return newElement;
           }
-          function cloneElement(element2, config, children) {
+          function cloneElement(element2, config, children2) {
             if (element2 === null || element2 === void 0) {
               throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element2 + ".");
             }
@@ -921,7 +921,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
             var childrenLength = arguments.length - 2;
             if (childrenLength === 1) {
-              props.children = children;
+              props.children = children2;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
               for (var i2 = 0; i2 < childrenLength; i2++) {
@@ -961,13 +961,13 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
             return index2.toString(36);
           }
-          function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
-            var type = typeof children;
+          function mapIntoArray(children2, array, escapedPrefix, nameSoFar, callback) {
+            var type = typeof children2;
             if (type === "undefined" || type === "boolean") {
-              children = null;
+              children2 = null;
             }
             var invokeCallback = false;
-            if (children === null) {
+            if (children2 === null) {
               invokeCallback = true;
             } else {
               switch (type) {
@@ -976,7 +976,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                   invokeCallback = true;
                   break;
                 case "object":
-                  switch (children.$$typeof) {
+                  switch (children2.$$typeof) {
                     case REACT_ELEMENT_TYPE:
                     case REACT_PORTAL_TYPE:
                       invokeCallback = true;
@@ -984,7 +984,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               }
             }
             if (invokeCallback) {
-              var _child = children;
+              var _child = children2;
               var mappedChild = callback(_child);
               var childKey = nameSoFar === "" ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
               if (isArray2(mappedChild)) {
@@ -1022,16 +1022,16 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             var nextName;
             var subtreeCount = 0;
             var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
-            if (isArray2(children)) {
-              for (var i2 = 0; i2 < children.length; i2++) {
-                child = children[i2];
+            if (isArray2(children2)) {
+              for (var i2 = 0; i2 < children2.length; i2++) {
+                child = children2[i2];
                 nextName = nextNamePrefix + getElementKey(child, i2);
                 subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
               }
             } else {
-              var iteratorFn = getIteratorFn(children);
+              var iteratorFn = getIteratorFn(children2);
               if (typeof iteratorFn === "function") {
-                var iterableChildren = children;
+                var iterableChildren = children2;
                 {
                   if (iteratorFn === iterableChildren.entries) {
                     if (!didWarnAboutMaps) {
@@ -1049,45 +1049,45 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                   subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
                 }
               } else if (type === "object") {
-                var childrenString = String(children);
-                throw new Error("Objects are not valid as a React child (found: " + (childrenString === "[object Object]" ? "object with keys {" + Object.keys(children).join(", ") + "}" : childrenString) + "). If you meant to render a collection of children, use an array instead.");
+                var childrenString = String(children2);
+                throw new Error("Objects are not valid as a React child (found: " + (childrenString === "[object Object]" ? "object with keys {" + Object.keys(children2).join(", ") + "}" : childrenString) + "). If you meant to render a collection of children, use an array instead.");
               }
             }
             return subtreeCount;
           }
-          function mapChildren(children, func, context) {
-            if (children == null) {
-              return children;
+          function mapChildren(children2, func, context) {
+            if (children2 == null) {
+              return children2;
             }
             var result = [];
             var count = 0;
-            mapIntoArray(children, result, "", "", function(child) {
+            mapIntoArray(children2, result, "", "", function(child) {
               return func.call(context, child, count++);
             });
             return result;
           }
-          function countChildren(children) {
+          function countChildren(children2) {
             var n2 = 0;
-            mapChildren(children, function() {
+            mapChildren(children2, function() {
               n2++;
             });
             return n2;
           }
-          function forEachChildren(children, forEachFunc, forEachContext) {
-            mapChildren(children, function() {
+          function forEachChildren(children2, forEachFunc, forEachContext) {
+            mapChildren(children2, function() {
               forEachFunc.apply(this, arguments);
             }, forEachContext);
           }
-          function toArray2(children) {
-            return mapChildren(children, function(child) {
+          function toArray2(children2) {
+            return mapChildren(children2, function(child) {
               return child;
             }) || [];
           }
-          function onlyChild(children) {
-            if (!isValidElement(children)) {
+          function onlyChild(children2) {
+            if (!isValidElement(children2)) {
               throw new Error("React.Children.only expected to receive a single React element child.");
             }
-            return children;
+            return children2;
           }
           function createContext(defaultValue) {
             var context = {
@@ -1886,7 +1886,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               }
             }
           }
-          function createElementWithValidation(type, props, children) {
+          function createElementWithValidation(type, props, children2) {
             var validType = isValidElementType(type);
             if (!validType) {
               var info2 = "";
@@ -1952,7 +1952,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
             return validatedFactory;
           }
-          function cloneElementWithValidation(element2, props, children) {
+          function cloneElementWithValidation(element2, props, children2) {
             var newElement = cloneElement.apply(this, arguments);
             for (var i2 = 2; i2 < arguments.length; i2++) {
               validateChildKeys(arguments[i2], newElement.type);
@@ -3072,21 +3072,21 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               return element2;
             }
             if (validType) {
-              var children = props.children;
-              if (children !== void 0) {
+              var children2 = props.children;
+              if (children2 !== void 0) {
                 if (isStaticChildren) {
-                  if (isArray2(children)) {
-                    for (var i2 = 0; i2 < children.length; i2++) {
-                      validateChildKeys(children[i2], type);
+                  if (isArray2(children2)) {
+                    for (var i2 = 0; i2 < children2.length; i2++) {
+                      validateChildKeys(children2[i2], type);
                     }
                     if (Object.freeze) {
-                      Object.freeze(children);
+                      Object.freeze(children2);
                     }
                   } else {
                     error2("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
                   }
                 } else {
-                  validateChildKeys(children, type);
+                  validateChildKeys(children2, type);
                 }
               }
             }
@@ -10551,7 +10551,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           return false;
         }
         function getPropertyInfo(name2) {
-          return properties.hasOwnProperty(name2) ? properties[name2] : null;
+          return properties2.hasOwnProperty(name2) ? properties2[name2] : null;
         }
         function PropertyInfoRecord(name2, type, mustUseProperty, attributeName, attributeNamespace, sanitizeURL2, removeEmptyString) {
           this.acceptsBooleans = type === BOOLEANISH_STRING || type === BOOLEAN || type === OVERLOADED_BOOLEAN;
@@ -10563,7 +10563,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           this.sanitizeURL = sanitizeURL2;
           this.removeEmptyString = removeEmptyString;
         }
-        var properties = {};
+        var properties2 = {};
         var reservedProps = [
           "children",
           "dangerouslySetInnerHTML",
@@ -10578,7 +10578,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           "style"
         ];
         reservedProps.forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             RESERVED,
             false,
@@ -10594,7 +10594,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
         });
         [["acceptCharset", "accept-charset"], ["className", "class"], ["htmlFor", "for"], ["httpEquiv", "http-equiv"]].forEach(function(_ref) {
           var name2 = _ref[0], attributeName = _ref[1];
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             STRING,
             false,
@@ -10609,7 +10609,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           );
         });
         ["contentEditable", "draggable", "spellCheck", "value"].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             BOOLEANISH_STRING,
             false,
@@ -10624,7 +10624,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           );
         });
         ["autoReverse", "externalResourcesRequired", "focusable", "preserveAlpha"].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             BOOLEANISH_STRING,
             false,
@@ -10666,7 +10666,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // Microdata
           "itemScope"
         ].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             BOOLEAN,
             false,
@@ -10691,7 +10691,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // you'll need to set attributeName to name.toLowerCase()
           // instead in the assignment below.
         ].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             BOOLEAN,
             true,
@@ -10712,7 +10712,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // you'll need to set attributeName to name.toLowerCase()
           // instead in the assignment below.
         ].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             OVERLOADED_BOOLEAN,
             false,
@@ -10735,7 +10735,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // you'll need to set attributeName to name.toLowerCase()
           // instead in the assignment below.
         ].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             POSITIVE_NUMERIC,
             false,
@@ -10750,7 +10750,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           );
         });
         ["rowSpan", "start"].forEach(function(name2) {
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             NUMERIC,
             false,
@@ -10847,7 +10847,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // instead in the assignment below.
         ].forEach(function(attributeName) {
           var name2 = attributeName.replace(CAMELIZE, capitalize);
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             STRING,
             false,
@@ -10872,7 +10872,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // instead in the assignment below.
         ].forEach(function(attributeName) {
           var name2 = attributeName.replace(CAMELIZE, capitalize);
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             STRING,
             false,
@@ -10893,7 +10893,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           // instead in the assignment below.
         ].forEach(function(attributeName) {
           var name2 = attributeName.replace(CAMELIZE, capitalize);
-          properties[name2] = new PropertyInfoRecord(
+          properties2[name2] = new PropertyInfoRecord(
             name2,
             STRING,
             false,
@@ -10906,7 +10906,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           );
         });
         ["tabIndex", "crossOrigin"].forEach(function(attributeName) {
-          properties[attributeName] = new PropertyInfoRecord(
+          properties2[attributeName] = new PropertyInfoRecord(
             attributeName,
             STRING,
             false,
@@ -10921,7 +10921,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           );
         });
         var xlinkHref = "xlinkHref";
-        properties[xlinkHref] = new PropertyInfoRecord(
+        properties2[xlinkHref] = new PropertyInfoRecord(
           "xlinkHref",
           STRING,
           false,
@@ -10933,7 +10933,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           false
         );
         ["src", "href", "action", "formAction"].forEach(function(attributeName) {
-          properties[attributeName] = new PropertyInfoRecord(
+          properties2[attributeName] = new PropertyInfoRecord(
             attributeName,
             STRING,
             false,
@@ -12071,8 +12071,8 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           }
           var initialValue = props.value;
           if (initialValue == null) {
-            var children = props.children, defaultValue = props.defaultValue;
-            if (children != null) {
+            var children2 = props.children, defaultValue = props.defaultValue;
+            if (children2 != null) {
               {
                 error2("Use the `defaultValue` or `value` props instead of setting children on <textarea>.");
               }
@@ -12080,13 +12080,13 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                 if (defaultValue != null) {
                   throw new Error("If you supply `defaultValue` on a <textarea>, do not pass children.");
                 }
-                if (isArray2(children)) {
-                  if (children.length > 1) {
+                if (isArray2(children2)) {
+                  if (children2.length > 1) {
                     throw new Error("<textarea> can only have at most one child.");
                   }
-                  children = children[0];
+                  children2 = children2[0];
                 }
-                defaultValue = children;
+                defaultValue = children2;
               }
             }
             if (defaultValue == null) {
@@ -13951,11 +13951,11 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             return false;
           }
         }
-        function onScheduleRoot(root22, children) {
+        function onScheduleRoot(root22, children2) {
           {
             if (injectedHook && typeof injectedHook.onScheduleFiberRoot === "function") {
               try {
-                injectedHook.onScheduleFiberRoot(rendererID, root22, children);
+                injectedHook.onScheduleFiberRoot(rendererID, root22, children2);
               } catch (err) {
                 if (!hasLoggedError) {
                   hasLoggedError = true;
@@ -21411,7 +21411,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
             }
           }
-          var children = Component(props, secondArg);
+          var children2 = Component(props, secondArg);
           if (didScheduleRenderPhaseUpdateDuringThisPass) {
             var numberOfReRenders = 0;
             do {
@@ -21431,7 +21431,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                 hookTypesUpdateIndexDev = -1;
               }
               ReactCurrentDispatcher$1.current = HooksDispatcherOnRerenderInDEV;
-              children = Component(props, secondArg);
+              children2 = Component(props, secondArg);
             } while (didScheduleRenderPhaseUpdateDuringThisPass);
           }
           ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
@@ -21460,7 +21460,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           if (didRenderTooFewHooks) {
             throw new Error("Rendered fewer hooks than expected. This may be caused by an accidental early return statement.");
           }
-          return children;
+          return children2;
         }
         function checkDidRenderIdHook() {
           var didRenderIdHook = localIdCounter !== 0;
@@ -25341,19 +25341,19 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           }
           return true;
         }
-        function validateSuspenseListChildren(children, revealOrder) {
+        function validateSuspenseListChildren(children2, revealOrder) {
           {
-            if ((revealOrder === "forwards" || revealOrder === "backwards") && children !== void 0 && children !== null && children !== false) {
-              if (isArray2(children)) {
-                for (var i2 = 0; i2 < children.length; i2++) {
-                  if (!validateSuspenseListNestedChild(children[i2], i2)) {
+            if ((revealOrder === "forwards" || revealOrder === "backwards") && children2 !== void 0 && children2 !== null && children2 !== false) {
+              if (isArray2(children2)) {
+                for (var i2 = 0; i2 < children2.length; i2++) {
+                  if (!validateSuspenseListNestedChild(children2[i2], i2)) {
                     return;
                   }
                 }
               } else {
-                var iteratorFn = getIteratorFn(children);
+                var iteratorFn = getIteratorFn(children2);
                 if (typeof iteratorFn === "function") {
-                  var childrenIterator = iteratorFn.call(children);
+                  var childrenIterator = iteratorFn.call(children2);
                   if (childrenIterator) {
                     var step = childrenIterator.next();
                     var _i2 = 0;
@@ -30510,7 +30510,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           return root22;
         }
         var ReactVersion = "18.3.1";
-        function createPortal(children, containerInfo, implementation) {
+        function createPortal(children2, containerInfo, implementation) {
           var key = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : null;
           {
             checkKeyStringCoercion(key);
@@ -30519,7 +30519,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             // This tag allow us to uniquely identify this as a React Portal
             $$typeof: REACT_PORTAL_TYPE,
             key: key == null ? null : "" + key,
-            children,
+            children: children2,
             containerInfo,
             implementation
           };
@@ -30955,7 +30955,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
         function ReactDOMRoot(internalRoot) {
           this._internalRoot = internalRoot;
         }
-        ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function(children) {
+        ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function(children2) {
           var root22 = this._internalRoot;
           if (root22 === null) {
             throw new Error("Cannot update an unmounted root.");
@@ -30978,7 +30978,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               }
             }
           }
-          updateContainer(children, root22, null, null);
+          updateContainer(children2, root22, null, null);
         };
         ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function() {
           {
@@ -31213,7 +31213,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
             }
           }
         }
-        function legacyRenderSubtreeIntoContainer(parentComponent, children, container, forceHydrate, callback) {
+        function legacyRenderSubtreeIntoContainer(parentComponent, children2, container, forceHydrate, callback) {
           {
             topLevelUpdateWarnings(container);
             warnOnInvalidCallback$1(callback === void 0 ? null : callback, "render");
@@ -31221,7 +31221,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           var maybeRoot = container._reactRootContainer;
           var root22;
           if (!maybeRoot) {
-            root22 = legacyCreateRootFromDOMContainer(container, children, parentComponent, callback, forceHydrate);
+            root22 = legacyCreateRootFromDOMContainer(container, children2, parentComponent, callback, forceHydrate);
           } else {
             root22 = maybeRoot;
             if (typeof callback === "function") {
@@ -31231,7 +31231,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                 originalCallback.call(instance);
               };
             }
-            updateContainer(children, root22, parentComponent, callback);
+            updateContainer(children2, root22, parentComponent, callback);
           }
           return getPublicRootInstance(root22);
         }
@@ -31361,12 +31361,12 @@ var __privateWrapper = (obj, member, setter, getter) => ({
         }
         setRestoreImplementation(restoreControlledState$3);
         setBatchingImplementation(batchedUpdates$1, discreteUpdates, flushSync);
-        function createPortal$1(children, container) {
+        function createPortal$1(children2, container) {
           var key = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : null;
           if (!isValidContainer(container)) {
             throw new Error("Target container is not a DOM element.");
           }
-          return createPortal(children, container, null, key);
+          return createPortal(children2, container, null, key);
         }
         function renderSubtreeIntoContainer(parentComponent, element2, containerNode, callback) {
           return unstable_renderSubtreeIntoContainer(parentComponent, element2, containerNode, callback);
@@ -31567,8 +31567,8 @@ var __privateWrapper = (obj, member, setter, getter) => ({
   var position$2 = 0;
   var character = 0;
   var characters = "";
-  function node$1(value, root2, parent, type, props, children, length2, siblings) {
-    return { value, root: root2, parent, type, props, children, line, column, length: length2, return: "", siblings };
+  function node$1(value, root2, parent, type, props, children2, length2, siblings) {
+    return { value, root: root2, parent, type, props, children: children2, line, column, length: length2, return: "", siblings };
   }
   function copy(root2, props) {
     return assign(node$1("", null, null, "", null, null, 0, root2.siblings), root2, { length: -root2.length }, props);
@@ -31716,7 +31716,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
     var character2 = 0;
     var type = "";
     var props = rules;
-    var children = rulesets;
+    var children2 = rulesets;
     var reference = rule;
     var characters2 = type;
     while (scanning)
@@ -31750,7 +31750,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
           switch (peek$1()) {
             case 42:
             case 47:
-              append(comment(commenter(next(), caret()), root2, parent, declarations), declarations);
+              append(comment$1(commenter(next(), caret()), root2, parent, declarations), declarations);
               if ((token(previous2 || 1) == 5 || token(peek$1() || 1) == 5) && strlen(characters2) && substr(characters2, -1, void 0) !== " ") characters2 += " ";
               break;
             default:
@@ -31780,10 +31780,10 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               characters2 += ";";
             // { rule/at-rule
             default:
-              append(reference = ruleset(characters2, root2, parent, index2, offset, rules, points, type, props = [], children = [], length2, rulesets), rulesets);
+              append(reference = ruleset(characters2, root2, parent, index2, offset, rules, points, type, props = [], children2 = [], length2, rulesets), rulesets);
               if (character2 === 123)
                 if (offset === 0)
-                  parse$3(characters2, root2, reference, reference, props, rulesets, length2, points, children);
+                  parse$3(characters2, root2, reference, reference, props, rulesets, length2, points, children2);
                 else {
                   switch (atrule) {
                     // c(ontainer)
@@ -31799,8 +31799,8 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                     case 109:
                     case 115:
                   }
-                  if (offset) parse$3(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2, children), children), rules, children, length2, points, rule ? props : children);
-                  else parse$3(characters2, reference, reference, reference, [""], children, 0, points, children);
+                  if (offset) parse$3(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2, children2), children2), rules, children2, length2, points, rule ? props : children2);
+                  else parse$3(characters2, reference, reference, reference, [""], children2, 0, points, children2);
                 }
           }
           index2 = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
@@ -31838,7 +31838,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
       }
     return rulesets;
   }
-  function ruleset(value, root2, parent, index2, offset, rules, points, type, props, children, length2, siblings) {
+  function ruleset(value, root2, parent, index2, offset, rules, points, type, props, children2, length2, siblings) {
     var post2 = offset - 1;
     var rule = offset === 0 ? rules : [""];
     var size = sizeof(rule);
@@ -31846,15 +31846,15 @@ var __privateWrapper = (obj, member, setter, getter) => ({
       for (var x2 = 0, y2 = substr(value, post2 + 1, post2 = abs(j2 = points[i2])), z2 = value; x2 < size; ++x2)
         if (z2 = trim$1(j2 > 0 ? rule[x2] + " " + y2 : replace$1(y2, /&\f/g, rule[x2])))
           props[k2++] = z2;
-    return node$1(value, root2, parent, offset === 0 ? RULESET : type, props, children, length2, siblings);
+    return node$1(value, root2, parent, offset === 0 ? RULESET : type, props, children2, length2, siblings);
   }
-  function comment(value, root2, parent, siblings) {
+  function comment$1(value, root2, parent, siblings) {
     return node$1(value, root2, parent, COMMENT, from(char()), substr(value, 2, -2), 0, siblings);
   }
   function declaration(value, root2, parent, length2, siblings) {
     return node$1(value, root2, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2, siblings);
   }
-  function prefix(value, length2, children) {
+  function prefix(value, length2, children2) {
     switch (hash(value, length2)) {
       // color-adjust
       case 5103:
@@ -31964,16 +31964,16 @@ var __privateWrapper = (obj, member, setter, getter) => ({
       // grid-(row|column)-start
       case 4384:
       case 3616:
-        if (children && children.some(function(element2, index2) {
+        if (children2 && children2.some(function(element2, index2) {
           return length2 = index2, match(element2.props, /grid-\w+-end/);
         })) {
-          return ~indexof(value + (children = children[length2].value), "span", 0) ? value : MS + replace$1(value, "-start", "") + value + MS + "grid-row-span:" + (~indexof(children, "span", 0) ? match(children, /\d+/) : +match(children, /\d+/) - +match(value, /\d+/)) + ";";
+          return ~indexof(value + (children2 = children2[length2].value), "span", 0) ? value : MS + replace$1(value, "-start", "") + value + MS + "grid-row-span:" + (~indexof(children2, "span", 0) ? match(children2, /\d+/) : +match(children2, /\d+/) - +match(value, /\d+/)) + ";";
         }
         return MS + replace$1(value, "-start", "") + value;
       // grid-(row|column)-end
       case 4896:
       case 4128:
-        return children && children.some(function(element2) {
+        return children2 && children2.some(function(element2) {
           return match(element2.props, /grid-\w+-start/);
         }) ? value : MS + replace$1(replace$1(value, "-end", "-span"), "span ", "") + value;
       // (margin|padding)-inline-(start|end)
@@ -32006,7 +32006,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
               return replace$1(value, /(.+:)(.+)-([^]+)/, "$1" + WEBKIT + "$2-$3$1" + MOZ + (charat(value, length2 + 3) == 108 ? "$3" : "$2-$3")) + value;
             // (s)tretch
             case 115:
-              return ~indexof(value, "stretch", 0) ? prefix(replace$1(value, "stretch", "fill-available"), length2, children) + value : value;
+              return ~indexof(value, "stretch", 0) ? prefix(replace$1(value, "stretch", "fill-available"), length2, children2) + value : value;
           }
         break;
       // grid-(column|row)
@@ -32041,13 +32041,13 @@ var __privateWrapper = (obj, member, setter, getter) => ({
     }
     return value;
   }
-  function serialize$2(children, callback) {
+  function serialize$2(children2, callback) {
     var output = "";
-    for (var i2 = 0; i2 < children.length; i2++)
-      output += callback(children[i2], i2, children, callback) || "";
+    for (var i2 = 0; i2 < children2.length; i2++)
+      output += callback(children2[i2], i2, children2, callback) || "";
     return output;
   }
-  function stringify$4(element2, index2, children, callback) {
+  function stringify$4(element2, index2, children2, callback) {
     switch (element2.type) {
       case LAYER:
         if (element2.children.length) break;
@@ -32062,14 +32062,14 @@ var __privateWrapper = (obj, member, setter, getter) => ({
       case RULESET:
         if (!strlen(element2.value = element2.props.join(","))) return "";
     }
-    return strlen(children = serialize$2(element2.children, callback)) ? element2.return = element2.value + "{" + children + "}" : "";
+    return strlen(children2 = serialize$2(element2.children, callback)) ? element2.return = element2.value + "{" + children2 + "}" : "";
   }
   function middleware$1(collection) {
     var length2 = sizeof(collection);
-    return function(element2, index2, children, callback) {
+    return function(element2, index2, children2, callback) {
       var output = "";
       for (var i2 = 0; i2 < length2; i2++)
-        output += collection[i2](element2, index2, children, callback) || "";
+        output += collection[i2](element2, index2, children2, callback) || "";
       return output;
     };
   }
@@ -32081,25 +32081,25 @@ var __privateWrapper = (obj, member, setter, getter) => ({
       }
     };
   }
-  function prefixer(element2, index2, children, callback) {
+  function prefixer(element2, index2, children2, callback) {
     if (element2.length > -1) {
       if (!element2.return)
         switch (element2.type) {
           case DECLARATION:
-            element2.return = prefix(element2.value, element2.length, children);
+            element2.return = prefix(element2.value, element2.length, children2);
             return;
           case KEYFRAMES:
             return serialize$2([copy(element2, { value: replace$1(element2.value, "@", "@" + WEBKIT) })], callback);
           case RULESET:
             if (element2.length)
-              return combine(children = element2.props, function(value) {
+              return combine(children2 = element2.props, function(value) {
                 switch (match(value, callback = /(::plac\w+|:read-\w+)/)) {
                   // :read-(only|write)
                   case ":read-only":
                   case ":read-write":
                     lift(copy(element2, { props: [replace$1(value, /:(read-\w+)/, ":" + MOZ + "$1")] }));
                     lift(copy(element2, { props: [value] }));
-                    assign(element2, { props: filter(children, callback) });
+                    assign(element2, { props: filter(children2, callback) });
                     break;
                   // :placeholder
                   case "::placeholder":
@@ -32107,7 +32107,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
                     lift(copy(element2, { props: [replace$1(value, /:(plac\w+)/, ":" + MOZ + "$1")] }));
                     lift(copy(element2, { props: [replace$1(value, /:(plac\w+)/, MS + "input-$1")] }));
                     lift(copy(element2, { props: [value] }));
-                    assign(element2, { props: filter(children, callback) });
+                    assign(element2, { props: filter(children2, callback) });
                     break;
                 }
                 return "";
@@ -32762,7 +32762,7 @@ Example:
   "production" !== define_process_env_default$c.NODE_ENV && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://styled-components.com/docs/basics#react-native");
   const It$1 = `__sc-${c$2}__`;
   "production" !== define_process_env_default$c.NODE_ENV && "test" !== define_process_env_default$c.NODE_ENV && "undefined" != typeof window && (window[It$1] || (window[It$1] = 0), 1 === window[It$1] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://styled-components.com/docs/faqs#why-am-i-getting-a-warning-about-several-instances-of-module-on-the-page for more info."), window[It$1] += 1);
-  const chatComponentCss = "body {\n  margin: 0;\n  /* `--ethora-font-family` is published at runtime by the host-provided\n     `config.typography` (see helpers/applyTypography). When unset, the\n     default system stack below is used, so existing apps are unaffected. */\n  font-family: var(\n    --ethora-font-family,\n    -apple-system,\n    BlinkMacSystemFont,\n    'Segoe UI',\n    'Roboto',\n    'Oxygen',\n    'Ubuntu',\n    'Cantarell',\n    'Fira Sans',\n    'Droid Sans',\n    'Helvetica Neue',\n    sans-serif\n  );\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n    monospace;\n}\n\nhtml,\nbody,\n#root {\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n/* Target the scrollbar */\n::-webkit-scrollbar {\n  width: 4px; /* Width of the scrollbar */\n}\n\n/* Style the scrollbar thumb */\n::-webkit-scrollbar-thumb {\n  background-color: #5e3fde; /* Color of the thumb */\n  border-radius: 6px; /* Rounded corners for the thumb */\n}\n\n/* Optional: Style the scrollbar track */\n::-webkit-scrollbar-track {\n  background-color: #f0f0f0; /* Background color of the track */\n}\n\n/* Target the scrollbar thumb */\n* {\n  scrollbar-width: thin; /* Make the scrollbar thinner */\n  scrollbar-color: #5e3fde #f0f0f0; /* Color of the thumb and track */\n}\n\n.apple-emoji {\n  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;\n}\n\n.emoji-mart {\n  max-width: 320px;\n  max-height: 360px;\n  overflow-y: auto;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n/* Message highlight animation for notifications */\n.message-highlight {\n  animation: messageHighlight 2s ease-out;\n  transition: background-color 0.3s ease;\n}\n\n@keyframes messageHighlight {\n  0% {\n    background-color: rgba(33, 150, 243, 0.4);\n    transform: scale(1.02);\n    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);\n  }\n  30% {\n    background-color: rgba(33, 150, 243, 0.3);\n    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);\n  }\n  60% {\n    background-color: rgba(33, 150, 243, 0.2);\n    box-shadow: 0 0 0 1px rgba(33, 150, 243, 0.1);\n  }\n  100% {\n    background-color: transparent;\n    transform: scale(1);\n    box-shadow: none;\n  }\n}\n\n/* Responsive notification container */\n@media (max-width: 768px) {\n  .message-notification-container {\n    left: 50% !important;\n    right: auto !important;\n    transform: translateX(-50%) !important;\n    align-items: center !important;\n  }\n  \n  .message-notification-container[data-position-horizontal=\"left\"],\n  .message-notification-container[data-position-horizontal=\"right\"] {\n    left: 50% !important;\n    right: auto !important;\n    transform: translateX(-50%) !important;\n  }\n}";
+  const chatComponentCss = "/*\n * Chat component stylesheet.\n *\n * This file ships inside an embeddable library, so it is NOT allowed to style\n * the host page. Two rules follow from that and must be kept:\n *\n *   1. No selector may match `html`, `body`, `#root` or any bare element /\n *      pseudo-element (`*`, `::-webkit-scrollbar`, ...). Everything is nested\n *      under `.ethora-chat-root`, the marker class `<Chat>` puts on the\n *      invisible wrapper around its whole tree (see styles/classNames.ts).\n *      SDK UI that renders outside that tree (the notification container, the\n *      portalled language modal) carries the same class so it stays themed.\n *   2. Every class name is `ethora-`-prefixed so it cannot collide with a\n *      class of the same name in the host application.\n *\n * Page-level layout the dev harness needs (`html, body, #root { height: 100% }`)\n * lives in `dev.css`, which only the dev entry points import.\n */\n\n/* Base typography for the chat subtree. `--ethora-font-family` /\n   `--ethora-font-size` are published at runtime from the host-provided\n   `config.typography` (see helpers/applyTypography). When unset, the default\n   system stack below is used, so existing apps are unaffected. */\n.ethora-chat-root {\n  font-family: var(\n    --ethora-font-family,\n    -apple-system,\n    BlinkMacSystemFont,\n    'Segoe UI',\n    'Roboto',\n    'Oxygen',\n    'Ubuntu',\n    'Cantarell',\n    'Fira Sans',\n    'Droid Sans',\n    'Helvetica Neue',\n    sans-serif\n  );\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.ethora-chat-root code {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n    monospace;\n}\n\n/*\n * Scrollbars, chat subtree only.\n *\n * The colour follows the host theme: `--ethora-icon-color` is published by\n * helpers/resolveIconColor from `config.colors.icons ?? config.colors.primary`,\n * so a themed app gets a matching scrollbar for free. `--ethora-scrollbar-thumb`\n * / `--ethora-scrollbar-track` are escape hatches for hosts that want the\n * scrollbar decoupled from the icon colour. The literal fallbacks match the\n * resolver's own defaults (#0052CD is Ethora brand blue).\n */\n.ethora-chat-root,\n.ethora-chat-root * {\n  scrollbar-width: thin;\n  scrollbar-color: var(--ethora-scrollbar-thumb, var(--ethora-icon-color, #0052cd))\n    var(--ethora-scrollbar-track, #f0f0f0);\n}\n\n.ethora-chat-root::-webkit-scrollbar,\n.ethora-chat-root ::-webkit-scrollbar {\n  width: 4px;\n}\n\n.ethora-chat-root::-webkit-scrollbar-thumb,\n.ethora-chat-root ::-webkit-scrollbar-thumb {\n  background-color: var(\n    --ethora-scrollbar-thumb,\n    var(--ethora-icon-color, #0052cd)\n  );\n  border-radius: 6px;\n}\n\n.ethora-chat-root::-webkit-scrollbar-track,\n.ethora-chat-root ::-webkit-scrollbar-track {\n  background-color: var(--ethora-scrollbar-track, #f0f0f0);\n}\n\n.ethora-apple-emoji {\n  font-family:\n    'Apple Color Emoji',\n    'Segoe UI Emoji',\n    'Noto Color Emoji',\n    sans-serif;\n}\n\n/* emoji-mart picker, rendered inside the chat (message reactions / input). */\n.ethora-chat-root .emoji-mart {\n  max-width: 320px;\n  max-height: 360px;\n  overflow-y: auto;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n/* Message highlight animation, flashed when a notification is opened. */\n.ethora-message-highlight {\n  animation: ethoraMessageHighlight 2s ease-out;\n  transition: background-color 0.3s ease;\n}\n\n@keyframes ethoraMessageHighlight {\n  0% {\n    background-color: rgba(33, 150, 243, 0.4);\n    transform: scale(1.02);\n    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);\n  }\n  30% {\n    background-color: rgba(33, 150, 243, 0.3);\n    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);\n  }\n  60% {\n    background-color: rgba(33, 150, 243, 0.2);\n    box-shadow: 0 0 0 1px rgba(33, 150, 243, 0.1);\n  }\n  100% {\n    background-color: transparent;\n    transform: scale(1);\n    box-shadow: none;\n  }\n}\n\n/* Responsive notification container. `!important` is required: the container's\n   position is set through inline styles from `config.inAppNotifications`. */\n@media (max-width: 768px) {\n  .ethora-message-notification-container {\n    left: 50% !important;\n    right: auto !important;\n    transform: translateX(-50%) !important;\n    align-items: center !important;\n  }\n\n  .ethora-message-notification-container[data-position-horizontal='left'],\n  .ethora-message-notification-container[data-position-horizontal='right'] {\n    left: 50% !important;\n    right: auto !important;\n    transform: translateX(-50%) !important;\n  }\n}\n";
   var withSelector = { exports: {} };
   var useSyncExternalStoreWithSelector_production = {};
   /**
@@ -33085,7 +33085,7 @@ Example:
   }
   var ReactReduxContext = /* @__PURE__ */ getContext();
   function Provider(providerProps) {
-    const { children, context, serverState, store: store2 } = providerProps;
+    const { children: children2, context, serverState, store: store2 } = providerProps;
     const contextValue = reactExports.useMemo(() => {
       const subscription = createSubscription(store2);
       const baseContextValue = {
@@ -33117,7 +33117,7 @@ Example:
       };
     }, [contextValue, previousState]);
     const Context = context || ReactReduxContext;
-    return /* @__PURE__ */ reactExports.createElement(Context.Provider, { value: contextValue }, children);
+    return /* @__PURE__ */ reactExports.createElement(Context.Provider, { value: contextValue }, children2);
   }
   var Provider_default = Provider;
   function createReduxContextHook(context = ReactReduxContext) {
@@ -34296,7 +34296,7 @@ Example:
       }
       el.cnode(child);
     }
-    function createElement(name2, attrs, ...children) {
+    function createElement(name2, attrs, ...children2) {
       if (typeof attrs === "object" && attrs !== null) {
         delete attrs.__source;
         delete attrs.__self;
@@ -34306,7 +34306,7 @@ Example:
         }
       }
       const el = new Element2(name2, attrs);
-      for (const child of children) {
+      for (const child of children2) {
         append2(el, child);
       }
       return el;
@@ -34758,12 +34758,12 @@ Example:
         this._detachSocket();
         this._detachParser();
       }
-      async _streamError(condition, children) {
+      async _streamError(condition, children2) {
         try {
           await this.send(
             // prettier-ignore
             xml2("stream:error", {}, [
-              xml2(condition, { xmlns: NS_STREAM }, children)
+              xml2(condition, { xmlns: NS_STREAM }, children2)
             ])
           );
         } catch {
@@ -35646,9 +35646,9 @@ Example:
       if (type === "error" || type === "result") return false;
       return true;
     }
-    function isValidQuery({ type }, children, child) {
+    function isValidQuery({ type }, children2, child) {
       if (type !== "get" && type !== "set") return false;
-      if (children.length !== 1) return false;
+      if (children2.length !== 1) return false;
       if (!child) return false;
       return true;
     }
@@ -35683,9 +35683,9 @@ Example:
       return async function iqHandler2(ctx, next2) {
         if (!isQuery(ctx)) return next2();
         const { stanza } = ctx;
-        const children = stanza.getChildElements();
-        const [child] = children;
-        if (!isValidQuery(ctx, children, child)) {
+        const children2 = stanza.getChildElements();
+        const [child] = children2;
+        if (!isValidQuery(ctx, children2, child)) {
           return buildReplyError(ctx, buildError("modify", "bad-request"), child);
         }
         ctx.element = child;
@@ -36726,7 +36726,7 @@ Example:
   const VITE_APP_XMPP_BASEDOMAIN = VITE_APP_XMPP_BASEDOMAIN_OLD;
   const VITE_APP_XMPP_CONFERENCE = runtimeHostConfig.xmppConference;
   const SERVICE = runtimeHostConfig.service;
-  const sendTextMessage = (client2, roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, devServer, customId) => {
+  const sendTextMessage = (client2, roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, devServer, customId, mentions) => {
     const id2 = customId ? customId : isReply ? `send-reply-message-${Date.now().toString()}` : `send-text-message-${Date.now().toString()}`;
     try {
       const message = browserExports.xml(
@@ -36760,6 +36760,10 @@ Example:
           showInChannel: showInChannel || false,
           isReply: isReply || false,
           mainMessage: mainMessage || "",
+          // Side-channel metadata for @-mentions in `userMessage`: a JSON array
+          // of {jid, name, offset, length}. Only stamped when non-empty so old
+          // messages/clients never see a stray empty attribute.
+          ...mentions && mentions.length > 0 ? { mentions: JSON.stringify(mentions) } : {},
           push: "true"
         }),
         browserExports.xml("body", {}, userMessage)
@@ -40284,6 +40288,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       setActiveModal: (state, action) => {
         state.activeModal = action.payload;
       },
+      // Nullable on purpose: closing the file preview clears the active file
+      // with `setActiveFile(undefined)`, which the old signature disallowed
+      // while `state.activeFile` was already optional.
       setActiveFile: (state, action) => {
         state.activeFile = action.payload;
       },
@@ -40554,6 +40561,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return callId ? byCallId.get(callId) || message : message;
     });
   };
+  const MAX_DRAFT_LENGTH = 2e3;
+  const MAX_PERSISTED_DRAFTS = 30;
   const initialState$3 = {
     rooms: {},
     activeRoomJID: null,
@@ -40572,7 +40581,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     },
     subscribedRooms: [],
     pushSubscriptionStatus: {},
-    loadingText: void 0
+    loadingText: void 0,
+    drafts: {}
   };
   const firstPositiveTimestamp = (...values) => {
     for (const value of values) {
@@ -40774,6 +40784,37 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         if (state.rooms[jid2]) {
           delete state.rooms[jid2];
         }
+        if (state.drafts?.[jid2] !== void 0) {
+          delete state.drafts[jid2];
+        }
+      },
+      /**
+       * Stores (or clears, when `text` is empty) one room's unsent composer
+       * text. The composer debounces these, so this runs on a pause in typing
+       * rather than per keystroke.
+       */
+      setRoomDraft(state, action) {
+        const jid2 = action.payload?.jid;
+        if (!isValidRoomJid(jid2)) return;
+        if (!state.drafts) state.drafts = {};
+        const text2 = String(action.payload?.text ?? "").slice(0, MAX_DRAFT_LENGTH);
+        if (!text2) {
+          if (state.drafts[jid2] !== void 0) delete state.drafts[jid2];
+          return;
+        }
+        if (state.drafts[jid2] === text2) return;
+        delete state.drafts[jid2];
+        state.drafts[jid2] = text2;
+        const keys2 = Object.keys(state.drafts);
+        if (keys2.length > MAX_PERSISTED_DRAFTS) {
+          keys2.slice(0, keys2.length - MAX_PERSISTED_DRAFTS).forEach((stale) => delete state.drafts[stale]);
+        }
+      },
+      /** Drops one room's draft: what sending a message does. */
+      clearRoomDraft(state, action) {
+        const jid2 = action.payload?.jid;
+        if (!jid2 || !state.drafts) return;
+        if (state.drafts[jid2] !== void 0) delete state.drafts[jid2];
       },
       updateRoom(state, action) {
         const { jid: jid2, updates } = action.payload;
@@ -40874,6 +40915,30 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           });
         }
       },
+      // The send-failure watchdog gave up waiting for the MUC echo. This only
+      // flips a DISPLAY flag - the message keeps its id and stays `pending`,
+      // so a late echo still reconciles onto the same entry (addRoomMessage
+      // clears `failed` there) instead of arriving as a second message.
+      setMessageSendFailed(state, action) {
+        const { roomJID, messageId } = action.payload;
+        const message = state.rooms[roomJID]?.messages?.find(
+          (msg) => msg.id === messageId || msg.xmppId === messageId
+        );
+        if (!message || message.pending === false) return;
+        message.failed = true;
+      },
+      // Retry: put the message back into the sending state under its ORIGINAL
+      // id, so the retry send and any late echo of the first attempt land on
+      // the same entry.
+      setMessageSendRetrying(state, action) {
+        const { roomJID, messageId } = action.payload;
+        const message = state.rooms[roomJID]?.messages?.find(
+          (msg) => msg.id === messageId || msg.xmppId === messageId
+        );
+        if (!message) return;
+        message.failed = false;
+        message.pending = true;
+      },
       setEditAction: (state, action) => {
         const { isEdit } = action.payload;
         if (isEdit) {
@@ -40932,7 +40997,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         if (existingIndex !== -1) {
           roomMessages[existingIndex] = deepMerge(
             { ...roomMessages[existingIndex] },
-            { ...message, pending: false }
+            { ...message, pending: false, failed: false }
           );
           return;
         }
@@ -40956,7 +41021,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             roomMessages[index2] = {
               ...updMessage,
               id: updMessage.id,
-              pending: false
+              pending: false,
+              failed: false
             };
           } else {
             roomMessages.unshift(updMessage);
@@ -40978,6 +41044,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       },
       deleteAllRooms(state) {
         state.rooms = {};
+        state.drafts = {};
       },
       insertUsers(state, action) {
         const { newUsers } = action.payload;
@@ -41101,6 +41168,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         state.isLoading = false;
         state.usersSet = {};
         state.presenceByRoom = {};
+        state.drafts = {};
       },
       setActiveMessage: (state, action) => {
         const { id: id2, chatJID } = action.payload;
@@ -41233,6 +41301,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     deleteRoomMessage,
     removeRoomMessage,
     setEditAction,
+    setMessageSendFailed,
+    setMessageSendRetrying,
     editRoomMessage,
     setComposing,
     setIsLoading,
@@ -41255,7 +41325,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     insertUsers,
     setPushSubscriptionStatus,
     clearPushSubscriptions,
-    applyRoomsPreloadBatch
+    applyRoomsPreloadBatch,
+    setRoomDraft,
+    clearRoomDraft
   } = roomsStore.actions;
   const roomsSlice = roomsStore.reducer;
   const initialState$2 = {
@@ -42343,6 +42415,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     initLocks.set(key, createdPromise);
     return createdPromise;
   }
+  function requireXmppClient() {
+    if (!currentClient) {
+      throw new Error("XMPP client is not initialized");
+    }
+    return currentClient;
+  }
   const logoutMiddleware = (storeAPI) => (next2) => (action) => {
     if (!action || !action.type) {
       console.error("Invalid action in logoutMiddleware:", action);
@@ -42515,14 +42593,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                *         field: 'value'
                *     });
                */
-              mixIn: function(properties) {
-                for (var propertyName in properties) {
-                  if (properties.hasOwnProperty(propertyName)) {
-                    this[propertyName] = properties[propertyName];
+              mixIn: function(properties2) {
+                for (var propertyName in properties2) {
+                  if (properties2.hasOwnProperty(propertyName)) {
+                    this[propertyName] = properties2[propertyName];
                   }
                 }
-                if (properties.hasOwnProperty("toString")) {
-                  this.toString = properties.toString;
+                if (properties2.hasOwnProperty("toString")) {
+                  this.toString = properties2.toString;
                 }
               },
               /**
@@ -44420,6 +44498,113 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
     }, transformConfig);
   };
+  const appToken$1 = "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlzVXNlckRhdGFFbmNyeXB0ZWQiOmZhbHNlLCJwYXJlbnRBcHBJZCI6bnVsbCwiaXNBbGxvd2VkTmV3QXBwQ3JlYXRlIjp0cnVlLCJpc0Jhc2VBcHAiOnRydWUsIl9pZCI6IjY0NmNjOGRjOTZkNGE0ZGM4ZjdiMmYyZCIsImRpc3BsYXlOYW1lIjoiRXRob3JhIiwiZG9tYWluTmFtZSI6ImV0aG9yYSIsImNyZWF0b3JJZCI6IjY0NmNjOGQzOTZkNGE0ZGM4ZjdiMmYyNSIsInVzZXJzQ2FuRnJlZSI6dHJ1ZSwiZGVmYXVsdEFjY2Vzc0Fzc2V0c09wZW4iOnRydWUsImRlZmF1bHRBY2Nlc3NQcm9maWxlT3BlbiI6dHJ1ZSwiYnVuZGxlSWQiOiJjb20uZXRob3JhIiwicHJpbWFyeUNvbG9yIjoiIzAwM0U5QyIsInNlY29uZGFyeUNvbG9yIjoiIzI3NzVFQSIsImNvaW5TeW1ib2wiOiJFVE8iLCJjb2luTmFtZSI6IkV0aG9yYSBDb2luIiwiUkVBQ1RfQVBQX0ZJUkVCQVNFX0FQSV9LRVkiOiJBSXphU3lEUWRrdnZ4S0t4NC1XcmpMUW9ZZjA4R0ZBUmdpX3FPNGciLCJSRUFDVF9BUFBfRklSRUJBU0VfQVVUSF9ET01BSU4iOiJldGhvcmEtNjY4ZTkuZmlyZWJhc2VhcHAuY29tIiwiUkVBQ1RfQVBQX0ZJUkVCQVNFX1BST0pFQ1RfSUQiOiJldGhvcmEtNjY4ZTkiLCJSRUFDVF9BUFBfRklSRUJBU0VfU1RPUkFHRV9CVUNLRVQiOiJldGhvcmEtNjY4ZTkuYXBwc3BvdC5jb20iLCJSRUFDVF9BUFBfRklSRUJBU0VfTUVTU0FHSU5HX1NFTkRFUl9JRCI6Ijk3MjkzMzQ3MDA1NCIsIlJFQUNUX0FQUF9GSVJFQkFTRV9BUFBfSUQiOiIxOjk3MjkzMzQ3MDA1NDp3ZWI6ZDQ2ODJlNzZlZjAyZmQ5YjljZGFhNyIsIlJFQUNUX0FQUF9GSVJFQkFTRV9NRUFTVVJNRU5UX0lEIjoiRy1XSE03WFJaNEM4IiwiUkVBQ1RfQVBQX1NUUklQRV9QVUJMSVNIQUJMRV9LRVkiOiIiLCJSRUFDVF9BUFBfU1RSSVBFX1NFQ1JFVF9LRVkiOiIiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTIzVDE0OjA4OjI4LjEzNloiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTIzVDE0OjA4OjI4LjEzNloiLCJfX3YiOjB9LCJpYXQiOjE2ODQ4NTA5MjV9.-IqNVMsf8GyS9Z-_yuNW7hpSmejajjAy-W0J8TadRIM";
+  const KEY_NAMESPACE = "ethora-chat-persist/v1";
+  const ANONYMOUS_PERSIST_SECRET_KEY = sha256Exports.sha256(
+    [KEY_NAMESPACE, "anonymous", appToken$1].join("|")
+  );
+  const decodeJwtPayload$1 = (token2) => {
+    if (!token2 || typeof token2 !== "string") return null;
+    const raw = token2.trim().replace(/^JWT\s+/i, "");
+    const parts = raw.split(".");
+    if (parts.length < 2) return null;
+    try {
+      const b64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+      const padded = b64 + "=".repeat((4 - b64.length % 4) % 4);
+      const decoded = typeof atob === "function" ? atob(padded) : Buffer.from(padded, "base64").toString("binary");
+      const parsed = JSON.parse(decoded);
+      return parsed && typeof parsed === "object" ? parsed : null;
+    } catch {
+      return null;
+    }
+  };
+  const readStableIdentity = (user) => {
+    const payload = decodeJwtPayload$1(user?.token);
+    const claims = payload?.data && typeof payload.data === "object" ? payload.data : payload;
+    const userId = String(
+      claims?.userId ?? claims?._id ?? user?._id ?? ""
+    ).trim();
+    const appId = String(claims?.appId ?? user?.appId ?? "").trim();
+    if (!userId && !appId) return null;
+    return { userId, appId };
+  };
+  const derivePersistSecretKey = (identity) => {
+    if (!identity) return ANONYMOUS_PERSIST_SECRET_KEY;
+    return sha256Exports.sha256(
+      [KEY_NAMESPACE, identity.userId, identity.appId, appToken$1].join("|")
+    );
+  };
+  const readRawStoredSession = () => {
+    if (typeof window === "undefined") return null;
+    try {
+      return window.localStorage.getItem(
+        localStorageConstants.ETHORA_USER_SESSION
+      );
+    } catch {
+      return null;
+    }
+  };
+  let cachedSessionRaw;
+  let cachedSecretKey = ANONYMOUS_PERSIST_SECRET_KEY;
+  const getPersistSecretKey = () => {
+    const raw = readRawStoredSession();
+    if (raw === cachedSessionRaw) return cachedSecretKey;
+    cachedSessionRaw = raw;
+    cachedSecretKey = derivePersistSecretKey(
+      raw ? readStableIdentity(getStoredUser()) : null
+    );
+    return cachedSecretKey;
+  };
+  let decryptFailureReported = false;
+  let activeSecretKey = null;
+  let activeEncryptor = null;
+  const getEncryptor = () => {
+    const secretKey = getPersistSecretKey();
+    if (!activeEncryptor || activeSecretKey !== secretKey) {
+      activeSecretKey = secretKey;
+      activeEncryptor = encryptTransform({
+        secretKey,
+        // THE DISCARD PATH. `encryptTransform`'s default onError only
+        // console.warns and returns undefined, which is the dangerous
+        // answer: redux-persist would then hand `undefined` to
+        // autoMergeLevel1, which hard-sets it over the reducer's initial
+        // state, and the next selector to touch `state.rooms.rooms`
+        // white-screens the app.
+        //
+        // Throwing instead is what redux-persist actually wants here.
+        // `getStoredState` rethrows out of its own try/catch, and
+        // `persistReducer` turns that rejection into
+        // `rehydrate(undefined, err)`: the whole slice is skipped, the
+        // reducer's initial state stands, and the REHYDRATE action's
+        // `conditionalUpdate` immediately rewrites storage under the
+        // CURRENT key. The user stays logged in (the session record lives
+        // in its own localStorage key and is untouched by any of this),
+        // they just start with a cold message cache that MAM refills.
+        //
+        // This is the path taken by: a blob written with the old
+        // hardcoded key, a blob belonging to a different account, and a
+        // corrupted or truncated value.
+        onError: (error2) => {
+          if (!decryptFailureReported) {
+            decryptFailureReported = true;
+            console.warn(
+              "[ethora] persisted state could not be decrypted with the current session key - discarding the cached slice and starting clean.",
+              error2?.message
+            );
+          }
+          throw error2;
+        }
+      });
+    }
+    return activeEncryptor;
+  };
+  const sessionEncryptTransform = createTransform(
+    (inboundState, key, fullState) => getEncryptor().in(inboundState, key, fullState),
+    (outboundState, key, fullState) => {
+      decryptFailureReported = false;
+      return getEncryptor().out(outboundState, key, fullState);
+    }
+  );
   const nanoToMs = (number2) => {
     return +number2.slice(0, 13) || null;
   };
@@ -44523,6 +44708,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     switch (key) {
       case "rooms":
         return sanitizeRoomsMap(value);
+      case "drafts":
+        return compactDraftsForPersist(value);
       case "usersSet":
       case "pushSubscriptionStatus":
         return value && typeof value === "object" ? value : {};
@@ -44534,6 +44721,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   };
   const MAX_MESSAGES_PER_ROOM = 100;
   const MAX_PERSISTED_ROOMS = 100;
+  const compactDraftsForPersist = (drafts) => {
+    if (!drafts || typeof drafts !== "object" || Array.isArray(drafts)) return {};
+    const entries = Object.entries(drafts).filter(
+      ([jid2, text2]) => typeof jid2 === "string" && jid2.includes("@") && typeof text2 === "string" && text2.length > 0
+    ).map(([jid2, text2]) => [jid2, text2.slice(0, MAX_DRAFT_LENGTH)]);
+    return Object.fromEntries(entries.slice(-MAX_PERSISTED_DRAFTS));
+  };
   const PERSISTED_ROOMS_CHAR_BUDGET = 1e6;
   const getRoomActivityTimestamp$1 = (room) => room?.lastMessageTimestamp || room?.messageStats?.lastMessageTimestamp || room?.lastViewedTimestamp || 0;
   const REFETCHED_ROOM_FIELDS = ["members", "composing", "composingList"];
@@ -44563,7 +44757,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     // multi-file message would repaint as a single-file one.
     "attachments",
     "langSource",
-    "callLog"
+    "callLog",
+    "mentions"
   ];
   const PERSISTED_MESSAGE_USER_FIELDS = ["id", "name"];
   const pickDefined = (source, fields) => {
@@ -44643,6 +44838,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     (inboundState, key) => {
       if (key === "rooms") return optimizePersistedRooms(inboundState);
       if (key === "usersSet") return compactUsersSetForPersist(inboundState);
+      if (key === "drafts") return compactDraftsForPersist(inboundState);
       return inboundState;
     },
     (outboundState, key) => {
@@ -44651,12 +44847,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return outboundState;
     }
   );
-  const encryptor = encryptTransform({
-    secretKey: "hey-this-is-dappros",
-    onError: (error2) => {
-      console.error("Encryption error:", error2);
-    }
-  });
+  const encryptor = sessionEncryptTransform;
   const scrubSensitiveChatStateTransform = createTransform(
     (inboundState, key) => key === "user" && inboundState ? sanitizeUserForPersistentStorage(inboundState) ?? inboundState : inboundState,
     (outboundState) => outboundState
@@ -44807,6 +44998,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     },
     always: (...args) => {
       console.log(...args);
+    },
+    /**
+     * For failures that must never be silent, whatever the verbose-console
+     * setting is: today, an uncaught render error caught by the SDK's error
+     * boundary. `error` above stays gated so routine debug noise remains
+     * opt-in; this one does not, because a swallowed crash leaves the host
+     * with a replaced chat pane and no explanation anywhere.
+     */
+    criticalError: (...args) => {
+      console.error(...args);
     }
   };
   function createRoomPresence(roomId, client2) {
@@ -45882,7 +46083,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       profileImage: photoURL
     };
     const rawDataAttrs = data?.attrs || {};
-    const dataAttrs = "attachments" in rawDataAttrs ? { ...rawDataAttrs, attachments: parseAttachments(rawDataAttrs.attachments) } : rawDataAttrs;
+    const dataAttrs = "attachments" in rawDataAttrs ? { ...rawDataAttrs, attachments: parseAttachments(rawDataAttrs.attachments) } : { ...rawDataAttrs };
+    if (typeof dataAttrs.mentions === "string") {
+      const parsedMentions = safeJsonParse(dataAttrs.mentions, []);
+      dataAttrs.mentions = Array.isArray(parsedMentions) ? parsedMentions : [];
+    }
     return {
       data: dataAttrs,
       id: id2,
@@ -47139,7 +47344,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const context = response || config;
     const headers = AxiosHeaders$1.from(context.headers);
     let data = context.data;
-    utils$1.forEach(fns, function transform(fn2) {
+    utils$1.forEach(fns, function transform2(fn2) {
       data = fn2.call(config, data, headers.normalize(), response ? response.status : void 0);
     });
     headers.normalize();
@@ -48524,7 +48729,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     getAdapter,
     mergeConfig
   } = axios;
-  const appToken$1 = "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlzVXNlckRhdGFFbmNyeXB0ZWQiOmZhbHNlLCJwYXJlbnRBcHBJZCI6bnVsbCwiaXNBbGxvd2VkTmV3QXBwQ3JlYXRlIjp0cnVlLCJpc0Jhc2VBcHAiOnRydWUsIl9pZCI6IjY0NmNjOGRjOTZkNGE0ZGM4ZjdiMmYyZCIsImRpc3BsYXlOYW1lIjoiRXRob3JhIiwiZG9tYWluTmFtZSI6ImV0aG9yYSIsImNyZWF0b3JJZCI6IjY0NmNjOGQzOTZkNGE0ZGM4ZjdiMmYyNSIsInVzZXJzQ2FuRnJlZSI6dHJ1ZSwiZGVmYXVsdEFjY2Vzc0Fzc2V0c09wZW4iOnRydWUsImRlZmF1bHRBY2Nlc3NQcm9maWxlT3BlbiI6dHJ1ZSwiYnVuZGxlSWQiOiJjb20uZXRob3JhIiwicHJpbWFyeUNvbG9yIjoiIzAwM0U5QyIsInNlY29uZGFyeUNvbG9yIjoiIzI3NzVFQSIsImNvaW5TeW1ib2wiOiJFVE8iLCJjb2luTmFtZSI6IkV0aG9yYSBDb2luIiwiUkVBQ1RfQVBQX0ZJUkVCQVNFX0FQSV9LRVkiOiJBSXphU3lEUWRrdnZ4S0t4NC1XcmpMUW9ZZjA4R0ZBUmdpX3FPNGciLCJSRUFDVF9BUFBfRklSRUJBU0VfQVVUSF9ET01BSU4iOiJldGhvcmEtNjY4ZTkuZmlyZWJhc2VhcHAuY29tIiwiUkVBQ1RfQVBQX0ZJUkVCQVNFX1BST0pFQ1RfSUQiOiJldGhvcmEtNjY4ZTkiLCJSRUFDVF9BUFBfRklSRUJBU0VfU1RPUkFHRV9CVUNLRVQiOiJldGhvcmEtNjY4ZTkuYXBwc3BvdC5jb20iLCJSRUFDVF9BUFBfRklSRUJBU0VfTUVTU0FHSU5HX1NFTkRFUl9JRCI6Ijk3MjkzMzQ3MDA1NCIsIlJFQUNUX0FQUF9GSVJFQkFTRV9BUFBfSUQiOiIxOjk3MjkzMzQ3MDA1NDp3ZWI6ZDQ2ODJlNzZlZjAyZmQ5YjljZGFhNyIsIlJFQUNUX0FQUF9GSVJFQkFTRV9NRUFTVVJNRU5UX0lEIjoiRy1XSE03WFJaNEM4IiwiUkVBQ1RfQVBQX1NUUklQRV9QVUJMSVNIQUJMRV9LRVkiOiIiLCJSRUFDVF9BUFBfU1RSSVBFX1NFQ1JFVF9LRVkiOiIiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTIzVDE0OjA4OjI4LjEzNloiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTIzVDE0OjA4OjI4LjEzNloiLCJfX3YiOjB9LCJpYXQiOjE2ODQ4NTA5MjV9.-IqNVMsf8GyS9Z-_yuNW7hpSmejajjAy-W0J8TadRIM";
   class RefreshFatalError extends Error {
     code;
     constructor(code2, message) {
@@ -49223,6 +49427,88 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     );
     return fixedUser;
   };
+  const ACK_CATCHUP_DELAY_MS = 2500;
+  const hasEchoLanded = (roomJID, messageId) => {
+    const msg = store.getState().rooms.rooms?.[roomJID]?.messages?.find(
+      (m2) => m2.id === messageId || m2.xmppId === messageId
+    );
+    return Boolean(msg && msg.pending === false);
+  };
+  const scheduleAckCatchup = (client2, roomJID, messageId, onSettled) => setTimeout(() => {
+    onSettled?.();
+    if (hasEchoLanded(roomJID, messageId)) return;
+    client2.presenceInRoomStanza(roomJID, 0, 1200, true).catch(() => {
+    }).finally(() => {
+      if (hasEchoLanded(roomJID, messageId)) return;
+      client2.getHistoryStanza(roomJID, 20, void 0, void 0, {
+        source: "send_ack"
+      }).catch(() => {
+      });
+    });
+  }, ACK_CATCHUP_DELAY_MS);
+  const SEND_FAILURE_TIMEOUT_MS = 12e3;
+  const SEND_FAILURE_MIN_TIMEOUT_MS = ACK_CATCHUP_DELAY_MS * 2;
+  const watchdogs = /* @__PURE__ */ new Map();
+  const retriesInFlight = /* @__PURE__ */ new Set();
+  const isSendRetryInFlight = (messageId) => retriesInFlight.has(messageId);
+  const beginSendRetry = (messageId) => {
+    if (!messageId || retriesInFlight.has(messageId)) return false;
+    retriesInFlight.add(messageId);
+    return true;
+  };
+  const endSendRetry = (messageId) => {
+    retriesInFlight.delete(messageId);
+  };
+  const clearSendFailureWatchdog = (messageId) => {
+    if (!messageId) return;
+    const timer = watchdogs.get(messageId);
+    if (timer) {
+      clearTimeout(timer);
+      watchdogs.delete(messageId);
+    }
+  };
+  const isMessageMarkedFailed = (roomJID, messageId) => {
+    const msg = store.getState().rooms.rooms?.[roomJID]?.messages?.find(
+      (m2) => m2.id === messageId || m2.xmppId === messageId
+    );
+    return Boolean(msg?.failed);
+  };
+  const armSendFailureWatchdog = (params) => {
+    const { roomJID, messageId, body } = params;
+    if (!roomJID || !messageId) return;
+    clearSendFailureWatchdog(messageId);
+    const timeoutMs = Math.max(
+      params.timeoutMs ?? SEND_FAILURE_TIMEOUT_MS,
+      SEND_FAILURE_MIN_TIMEOUT_MS
+    );
+    const timer = setTimeout(() => {
+      watchdogs.delete(messageId);
+      if (hasEchoLanded(roomJID, messageId)) {
+        endSendRetry(messageId);
+        return;
+      }
+      endSendRetry(messageId);
+      store.dispatch(setMessageSendFailed({ roomJID, messageId }));
+      if (!isMessageMarkedFailed(roomJID, messageId)) return;
+      ethoraLogger.log(
+        `[Send] send_unacknowledged id=${messageId} room=${roomJID} after=${timeoutMs}ms`
+      );
+      try {
+        const onMessageFailed = store.getState().chatSettingStore.config?.eventHandlers?.onMessageFailed;
+        onMessageFailed?.({
+          message: body,
+          roomJID,
+          error: new Error(
+            `Message ${messageId} was not acknowledged within ${timeoutMs}ms`
+          ),
+          messageType: "text"
+        });
+      } catch (error2) {
+        console.error("Error in message failed handler:", error2);
+      }
+    }, timeoutMs);
+    watchdogs.set(messageId, timer);
+  };
   class MessageNotificationManager {
     callbacks = /* @__PURE__ */ new Set();
     pending = [];
@@ -49454,6 +49740,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       if (removeId) {
         store.dispatch(removeMessageFromHeapById(removeId));
         xmppClient?.acknowledgeSentMessage(roomJID, removeId);
+        clearSendFailureWatchdog(removeId);
+        endSendRetry(removeId);
       }
       const state = store.getState();
       const room = state.rooms.rooms[roomJID];
@@ -49877,9 +50165,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     );
     if (!x2 || x2.getChild("invite")) return;
     const item = x2.getChild("item");
-    const memberJid = String(item?.attrs?.jid || "");
-    if (!memberJid) return;
-    const xmppUsername = memberJid.split("@")[0];
+    const memberJid2 = String(item?.attrs?.jid || "");
+    if (!memberJid2) return;
+    const xmppUsername = memberJid2.split("@")[0];
     const affiliation = String(item?.attrs?.affiliation || "");
     const room = store.getState().rooms.rooms[roomJid];
     const members = Array.isArray(room.members) ? room.members : [];
@@ -49892,7 +50180,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       if (idx >= 0) return;
       next2 = [
         ...members,
-        { _id: "", firstName: "", lastName: "", xmppUsername, jid: memberJid }
+        { _id: "", firstName: "", lastName: "", xmppUsername, jid: memberJid2 }
       ];
     }
     store.dispatch(
@@ -49975,8 +50263,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     if (stanza.is("message") && stanza.attrs.type === "error") {
       const errorEl = stanza.getChild("error");
       if (!errorEl) return null;
-      const children = errorEl.children;
-      const conditionEl = children.find(
+      const children2 = errorEl.children;
+      const conditionEl = children2.find(
         (el) => el instanceof Element && el.name !== "text" && el.attrs.xmlns === "urn:ietf:params:xml:ns:xmpp-stanzas"
       );
       const textEl = errorEl.getChild(
@@ -50530,6 +50818,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const sendTextMessageWithTranslateTag = (client2, stanzaMessage, source, customId) => {
     const id2 = customId || `get-translate-messsage:${Date.now().toString()}`;
     try {
+      const { mentions, ...restStanzaMessage } = stanzaMessage;
       const message = browserExports.xml(
         "message",
         {
@@ -50538,7 +50827,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           id: id2
         },
         browserExports.xml("data", {
-          ...stanzaMessage,
+          ...restStanzaMessage,
+          // Same side-channel encoding as sendTextMessage.xmpp.ts: a JSON
+          // array of {jid, name, offset, length} spans into `userMessage`.
+          ...mentions && mentions.length > 0 ? { mentions: JSON.stringify(mentions) } : {},
           push: "true"
         }),
         browserExports.xml("body", {}, stanzaMessage.userMessage),
@@ -52454,7 +52746,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         return false;
       }
     }
-    sendMessage = (roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, customId) => {
+    sendMessage = (roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, customId, mentions) => {
       this.onCriticalSend(roomJID, customId);
       const lane = this.getSendLane(roomJID);
       return this.enqueue(async () => {
@@ -52487,7 +52779,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                 showInChannel,
                 mainMessage,
                 this.devServer || SERVICE,
-                customId
+                customId,
+                mentions
               );
             });
           });
@@ -52504,7 +52797,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     // messages they actually look at (see useMessageTranslation). The stanza
     // still carries `<translate source="xx"/>` so readers know what language
     // to translate FROM.
-    sendTextMessageWithTranslateTagStanza = (roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, langSource, customId) => {
+    sendTextMessageWithTranslateTagStanza = (roomJID, firstName, lastName, photo, walletAddress, userMessage, notDisplayedValue, isReply, showInChannel, mainMessage, langSource, customId, mentions) => {
       this.onCriticalSend(roomJID, customId);
       const lane = this.getSendLane(roomJID);
       return this.enqueue(async () => {
@@ -52537,7 +52830,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   isReply,
                   showInChannel,
                   mainMessage,
-                  devServer: this.devServer || SERVICE
+                  devServer: this.devServer || SERVICE,
+                  mentions
                 },
                 langSource,
                 customId
@@ -52715,6 +53009,18 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       console.warn("No pong received, forcing reconnect...");
       this.scheduleReconnect("ping-timeout");
     }
+    /**
+     * Is this message id already owned by another outbound path?
+     *
+     * The reconnect drain, the send queue and the manual retry can all reach
+     * for the same message. Only one of them may put it on the wire, or the
+     * ROOM (not just our local list) ends up with two copies - the duplicate
+     * half of React Native defect #31.
+     */
+    isSendPending(messageId) {
+      if (!messageId) return false;
+      return this.pendingSendById.has(messageId) || this.inFlightIds.has(messageId);
+    }
     async drainHeap() {
       try {
         const state = store.getState();
@@ -52724,6 +53030,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         if (!heap || heap.length === 0) return;
         const start = Date.now();
         for (const msg of heap) {
+          if (!msg?.id || !msg?.roomJid) continue;
+          if (hasEchoLanded(msg.roomJid, msg.id)) continue;
+          if (this.isSendPending(msg.id)) continue;
+          if (isSendRetryInFlight(msg.id)) continue;
+          if (isMessageMarkedFailed(msg.roomJid, msg.id)) continue;
           const isTranslate = !!msg.langSource;
           const firstName = msg.user?.firstName || "";
           const lastName = msg.user?.lastName || "";
@@ -52741,7 +53052,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
               msg.showInChannel === "true",
               msg.mainMessage,
               msg.langSource,
-              msg.id
+              msg.id,
+              msg.mentions
             );
             if (ok2 === false) break;
           } else {
@@ -52756,12 +53068,18 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
               !!msg.isReply,
               msg.showInChannel === "true",
               msg.mainMessage,
-              msg.id
+              msg.id,
+              msg.mentions
             );
             if (ok2 === false) break;
           }
+          armSendFailureWatchdog({
+            roomJID: msg.roomJid,
+            messageId: msg.id,
+            body: msg.body
+          });
+          store.dispatch(removeMessageFromHeapById(msg.id));
         }
-        store.dispatch({ type: "roomHeapStore/clearHeap" });
         ethoraLogger.log(`[InitTiming] xmpp:drainHeap ${Date.now() - start}ms`);
       } catch {
       }
@@ -53356,6 +53674,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       callerXmppUsername: pick(d2, ["callerXmppUsername", "callerUsername", "userJid", "senderJid"]).split("@")[0] || null
     };
   };
+  const CHAT_ROOT_CLASS = "ethora-chat-root";
+  const MESSAGE_HIGHLIGHT_CLASS = "ethora-message-highlight";
+  const NOTIFICATION_CONTAINER_CLASS = "ethora-message-notification-container";
+  const APPLE_EMOJI_CLASS = "ethora-apple-emoji";
   const __vite_import_meta_env__ = {};
   let _subscriptionRegistered = false;
   let _subscriptionRegistrationPromise = null;
@@ -53396,8 +53718,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       );
       if (messageElement) {
         messageElement.scrollIntoView({ behavior: "smooth", block: "center" });
-        messageElement.classList.add("message-highlight");
-        setTimeout(() => messageElement.classList.remove("message-highlight"), 2e3);
+        messageElement.classList.add(MESSAGE_HIGHLIGHT_CLASS);
+        setTimeout(() => messageElement.classList.remove(MESSAGE_HIGHLIGHT_CLASS), 2e3);
       }
     }, []);
     const fetchRecentHistory = reactExports.useCallback(
@@ -54083,6 +54405,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         responseType: "arraybuffer"
       }
     });
+  }
+  function deleteMe() {
+    return http.delete("/v1/users");
   }
   function updateMe(data) {
     return http.put("/v1/users", data);
@@ -54888,7 +55213,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const MessageNotificationContext = reactExports.createContext(void 0);
   const DEFAULT_MAX_NOTIFICATIONS = 3;
   const DEFAULT_NOTIFICATION_DURATION = 3e4;
-  const MessageNotificationProvider = ({ children, config: propConfig }) => {
+  const MessageNotificationProvider = ({ children: children2, config: propConfig }) => {
     const [notifications, setNotifications] = reactExports.useState(
       []
     );
@@ -54944,7 +55269,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       containerStyles.transform = "translateX(-50%)";
       containerStyles.alignItems = "center";
     }
-    const containerClassName = "message-notification-container";
+    const containerClassName = `${CHAT_ROOT_CLASS} ${NOTIFICATION_CONTAINER_CLASS}`;
     const containerProps = {
       className: containerClassName,
       "data-position-horizontal": horizontal,
@@ -55012,8 +55337,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
           if (messageElement) {
             messageElement.scrollIntoView({ behavior: "smooth", block: "center" });
-            messageElement.classList.add("message-highlight");
-            setTimeout(() => messageElement.classList.remove("message-highlight"), 2e3);
+            messageElement.classList.add(MESSAGE_HIGHLIGHT_CLASS);
+            setTimeout(() => messageElement.classList.remove(MESSAGE_HIGHLIGHT_CLASS), 2e3);
           }
         }, 100);
       },
@@ -55106,7 +55431,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       [showMessageNotification]
     );
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(MessageNotificationContext.Provider, { value: contextValue, children: [
-      children,
+      children2,
       shouldRender && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: containerStyles, ...containerProps, children: [
         notifications.map((notification) => {
           const NotificationComponent = notificationConfig?.customComponent || MessageNotificationToast;
@@ -55143,6 +55468,1772 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ] })
     ] });
   };
+  const FallbackScreen = ({ content: content2, style }) => {
+    if (typeof content2 === "string" || typeof content2 === "number") {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "var(--ethora-space-6, 24px)",
+            boxSizing: "border-box",
+            color: "var(--ethora-color-text, #141414)",
+            fontSize: "var(--ethora-font-size, 16px)",
+            ...style
+          },
+          children: content2
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: content2 });
+  };
+  const useChatSettingState = () => {
+    const user = useSelector((state) => state.chatSettingStore.user);
+    const activeFile = useSelector(
+      (state) => state.chatSettingStore.activeFile
+    );
+    const activeModal = useSelector(
+      (state) => state.chatSettingStore.activeModal
+    );
+    const config = useSelector(
+      (state) => state.chatSettingStore.config
+    );
+    const deleteModal = useSelector(
+      (state) => state.chatSettingStore.deleteModal
+    );
+    const selectedUser = useSelector(
+      (state) => state.chatSettingStore.selectedUser
+    );
+    const langSource = useSelector(
+      (state) => state.chatSettingStore.langSource
+    );
+    const translateSendEnabled = useSelector(
+      (state) => state.chatSettingStore.translateSendEnabled
+    );
+    const translateMode = useSelector(
+      (state) => state.chatSettingStore.translateMode
+    );
+    return {
+      user,
+      activeFile,
+      activeModal,
+      config,
+      deleteModal,
+      selectedUser,
+      langSource,
+      translateSendEnabled,
+      translateMode
+    };
+  };
+  const en$1 = {
+    "tabs.chats": "Chats",
+    "tabs.files": "Files",
+    "files.empty": "No files yet",
+    "search.placeholder": "Search...",
+    "select.noOptions": "No options found",
+    "input.placeholder": "Type message",
+    "room.created": "Room created",
+    "room.empty": "This chat is empty",
+    "room.empty.hint": "Be the first one to start it.",
+    "media.unsupported": "Unsupported media type",
+    "common.or": "Or",
+    "tabs.label": "Sidebar sections",
+    "call.disabled.roomType": "Calls are available only in 1:1 chats",
+    "call.disabled.noLivekit": "Calls are unavailable: video service is not configured",
+    "call.disabled.busy": "Another call is already in progress",
+    "date.today": "Today",
+    "date.yesterday": "Yesterday",
+    "message.deleted": "Message deleted",
+    "message.edited": "edited",
+    "message.notDelivered": "Not delivered",
+    "message.retry": "Retry",
+    "message.retryAriaLabel": "Retry sending this message",
+    "presence.online": "online",
+    "presence.offline": "offline",
+    "presence.onlineCount": "{count} online",
+    "header.userCountSingular": "{count} user",
+    "header.userCountPlural": "{count} users",
+    "header.action.back": "Back",
+    "header.action.startAudioCall": "Start audio call",
+    "header.action.startVideoCall": "Start video call",
+    "header.logoAlt": "Logo",
+    "header.menu": "Menu",
+    "header.chatMenu": "Chat menu",
+    "call.outgoing": "Outgoing call",
+    "call.incoming": "Incoming call",
+    "call.noAnswer": "No answer",
+    "call.missed": "Missed call",
+    "call.durationSec": "{n} sec",
+    "call.durationMin": "{n} min",
+    "call.durationMinSec": "{m} min {s} sec",
+    "action.send": "Send",
+    "action.cancel": "Cancel",
+    "action.close": "Close",
+    "action.back": "Go back",
+    "action.save": "Save",
+    "action.delete": "Delete",
+    "action.leave": "Leave",
+    "action.create": "Create",
+    "action.submit": "Submit",
+    "action.translate": "Translate",
+    "action.showOriginal": "Show original",
+    "action.scrollToBottom": "Scroll to bottom",
+    "action.newChat": "New chat",
+    "action.addUsers": "Add users",
+    "action.addUsersCount": "Add users ({count} selected)",
+    "action.addMoreUsers": "Add more Users",
+    "action.add": "Add",
+    "action.backToCreation": "Back to creation",
+    "action.report": "Report",
+    "status.connecting": "Connecting…",
+    "status.noInternet": "No internet connection",
+    "translation.translating": "Translating…",
+    "translation.failed": "Could not translate",
+    "translation.enableToggleLabel": "Translate my messages",
+    "translation.enableToggleDisclaimer": "If translations were not enabled, only new messages sent from now on will be translated.",
+    "translation.modeLabel": "Translation display",
+    "translation.modeAuto": "Auto",
+    "translation.modeManual": "Manual",
+    "language.select": "Select language",
+    "modal.newChat.title": "Create New Chat",
+    "modal.newChat.roomNamePlaceholder": "Enter Room Name",
+    "modal.newChat.chatTypePlaceholder": "Select chat type",
+    "modal.newChat.typePublic": "Public",
+    "modal.newChat.typePrivate": "Private",
+    "modal.newChat.selectUsersTitle": "Select users to add to Chat",
+    "modal.selectUsers.title": "Select Users (max 20)",
+    "modal.selectUsers.searchPlaceholder": "Search users...",
+    "mention.pickerTitle": "Mention someone",
+    "mention.showAll": "Show all {count}...",
+    "modal.selectUsers.empty": "No users found",
+    "thread.title": "Thread",
+    "toast.roomCreationTitle": "Room creation",
+    "toast.roomCreating": "Room is being created...",
+    "toast.success": "Success!",
+    "toast.roomCreatedSuccess": "Room created successfully!",
+    "modal.filePreview.unsupported": "Unable to open the uploaded document. The file format is not supported by the system. Please upload a file in a compatible format. You still can download this file.",
+    "toast.usersAddedSuccess": "Users added successfully!",
+    "settings.menu.title": "Settings",
+    "modal.filePreview.title": "File preview",
+    "modal.filePreview.previousPage": "Previous page",
+    "modal.filePreview.nextPage": "Next page",
+    "modal.filePreview.previousImage": "Previous image",
+    "modal.filePreview.nextImage": "Next image",
+    "modal.filePreview.position": "{current} of {total}",
+    "modal.filePreview.zoomIn": "Zoom in",
+    "modal.filePreview.zoomOut": "Zoom out",
+    "modal.filePreview.resetZoom": "Reset zoom",
+    "modal.filePreview.imageAlt": "Shared image",
+    "attachment.pages": "{count} p.",
+    "attachment.remove": "Remove attachment",
+    "attachment.limit": "You can attach up to {count} files per message.",
+    "attachment.tooLarge": "Skipped {files}: over {size} MB.",
+    "action.attachFile": "Attach file",
+    "action.startRecording": "Record voice message",
+    "action.stopRecording": "Cancel recording",
+    "action.sendRecording": "Send voice message",
+    "action.emoji": "Insert emoji",
+    "attachment.dropHint": "Drop files here to attach",
+    "modal.filePreview.openExternally": "Open in a new tab",
+    "modal.filePreview.pdfUnavailable": "This PDF cannot be displayed here. You can still open or download it.",
+    "toast.error": "Error",
+    "toast.couldNotOpenPrivateChat": "Could not open the new private chat",
+    "toast.couldNotResolveRecipient": "Could not resolve recipient",
+    "toast.failedToCreatePrivateChat": "Failed to create private chat",
+    "toast.failedToCreateCall": "Failed to create call",
+    "toast.failedToDeleteUser": "Failed to delete user.",
+    "toast.userRemovedFromRoom": "{userId} has been removed from the room.",
+    "toast.failedToAddUser": "Failed to add user.",
+    "toast.userAddedToRoom": "{userName} has been added to the room.",
+    "toast.loginFailedTitle": "Login Failed",
+    "toast.invalidCredentials": "Invalid credentials",
+    "toast.loginSuccessfulTitle": "Login Successful",
+    "toast.welcomeBack": "Welcome back!",
+    "toast.loginErrorTitle": "Login Error",
+    "toast.loginErrorMessage": "An error occurred during login",
+    "validation.invalidEmail": "Invalid email format",
+    "validation.passwordTooShort": "Password must be at least 6 characters long",
+    "validation.wrongCredentials": "You entered wrong data. Try again",
+    "field.email": "Email",
+    "field.password": "Password",
+    "field.firstName": "First Name",
+    "field.lastName": "Last Name",
+    "field.additionalDetails": "Additional Details",
+    "action.logOut": "Log Out",
+    "action.message": "Message",
+    "action.videoCall": "Video call",
+    "action.call": "Call",
+    "action.audioCall": "Audio call",
+    "action.copyUserId": "Copy User Id",
+    "action.deleteChat": "Delete chat",
+    "action.moreOptions": "More Options",
+    "action.openChatList": "Open chat list",
+    "action.showQr": "Show QR code",
+    "action.addMembers": "Add members",
+    "action.no": "No",
+    "action.yes": "Yes",
+    "action.deleteMyAccount": "Delete My Account",
+    "auth.loginButton": "Login to Ethora Chat",
+    "auth.loginWithGoogle": "Login with Google",
+    "auth.orDelimiter": "or",
+    "auth.noAccount": "Don't have an account?",
+    "auth.signUp": "Sign Up to Ethora",
+    "auth.loginAnonymously": "Login anonymously",
+    "auth.anonymousTextOnly": "Only could send text messages",
+    "auth.anonymousLoginMessage": "You are logged in anonymously!",
+    "modal.profile.title": "Profile",
+    "action.editProfile": "Edit profile",
+    "modal.profile.about": "About",
+    "modal.profile.noDescription": "No description",
+    "modal.chatProfile.title": "Chat Profile",
+    "modal.chatProfile.description": "Description",
+    "modal.chatProfile.chatType": "Chat type",
+    "modal.chatProfile.memberCountSingular": "{count} member",
+    "modal.chatProfile.memberCountPlural": "{count} members",
+    "modal.chatProfile.membersShowMore": "Show {count} more",
+    "modal.chatProfile.searchMembers": "Search members",
+    "modal.deleteChat.title": "Delete this chat ?",
+    "modal.addMembers.title": "Add New Member",
+    "modal.addMembers.userIdPlaceholder": "Enter User Id",
+    "modal.leaveChat.title": "Leave Chat",
+    "modal.leaveChat.description": "Are you sure you want to leave this chat?",
+    "modal.report.chatTitle": "Report Chat",
+    "modal.report.messageTitle": "Report Message",
+    "modal.report.otherDetails": "Please enter additional details relevant to your report.",
+    "report.category.spam": "Spam",
+    "report.category.violence": "Violence",
+    "report.category.childAbuse": "Child Abuse",
+    "report.category.pornography": "Pornography",
+    "report.category.personalDetails": "Personal Details",
+    "report.category.illegalDrugs": "Illegal Drugs",
+    "report.category.other": "Other",
+    "notification.saved": "Saved",
+    "settings.visibility.title": "Visibility",
+    "settings.visibility.profileLabel": "Profile Visibility",
+    "settings.visibility.open": "Open (default)",
+    "settings.visibility.openDescription": "Your profile can be viewed by anyone who follows your profile link or QR code.",
+    "settings.visibility.restricted": "Restricted",
+    "settings.visibility.restrictedDescription": "Only users with your permission or temporary secure link can see your profile.",
+    "settings.visibility.documentsLabel": "Documents Visibility",
+    "settings.visibility.full": "Full (default)",
+    "settings.visibility.fullDescription": "Show all Documents to those who can see your profile.",
+    "settings.visibility.individual": "Individual",
+    "settings.visibility.individualDescription": "You need to share each document individually before others can see them.",
+    "settings.visibility.individualDescription": "You need to share each document individually before others can see them.",
+    "settings.manageData.title": "Manage Data",
+    "settings.manageData.downloadLabel": "Download your data",
+    "settings.manageData.downloadDescription": "You own your data. Tap the button below to download a copy of your data",
+    "settings.manageData.deleteLabel": "Delete your account",
+    "settings.manageData.deleteDescription": "Use this only if you want to permanently delete your account & data from our system.",
+    "settings.manageData.deleteDisclosure": "Due to the immutable nature of distributed ledger technology, network nodes operated by the community may still retain historical transactions generated by your account, however your personally identifiable information such as your name, e-mail, your key-value storage etc will be removed. Any of your digital assets will be lost.",
+    "settings.manageData.deleteDescription": "Use this only if you want to permanently delete your account & data from our system.",
+    "settings.manageData.deleteDisclosure": "Due to the immutable nature of distributed ledger technology, network nodes operated by the community may still retain historical transactions generated by your account, however your personally identifiable information such as your name, e-mail, your key-value storage etc will be removed. Any of your digital assets will be lost.",
+    "settings.section.privacy": "Privacy and data",
+    "settings.manageData.rowHint": "Download a copy of your data, or delete your account",
+    "settings.visibility.rowHint": "Choose who can see your profile and documents",
+    "settings.manageData.section.export": "Your data",
+    "settings.manageData.deleteConfirmTitle": "Delete your account?",
+    "settings.manageData.deleteConfirmDescription": "This permanently deletes your account and signs you out. It cannot be undone.",
+    "settings.manageData.deleting": "Deleting...",
+    "settings.manageData.deleteFailed": "We could not delete your account. Please try again.",
+    "files.panel.title": "Files",
+    "files.filter.all": "All",
+    "files.filter.media": "Media",
+    "files.filter.documents": "Documents",
+    "files.filter.audio": "Audio",
+    "files.search.placeholder": "Search files...",
+    "files.empty.title": "No files yet",
+    "files.empty.subtitle": "Files you upload will show up here.",
+    "files.noResults": "No files match your search",
+    "files.noResults.moreAvailable": "Not every file is loaded yet, load more to keep searching",
+    "files.loading": "Loading files...",
+    "files.error.title": "Could not load files",
+    "files.action.retry": "Retry",
+    "files.action.loadMore": "Load more",
+    "files.action.preview": "Preview",
+    "files.action.download": "Download",
+    "files.action.delete": "Delete",
+    "files.delete.confirmTitle": "Delete file?",
+    "files.delete.confirmMessage": "This file will be permanently deleted. This cannot be undone.",
+    "files.delete.failed": "Failed to delete file",
+    "modal.chatProfile.filesTitle": "Files",
+    "modal.chatProfile.filesShowAll": "Show all",
+    "modal.chatProfile.filesEmpty": "No files in this chat yet",
+    "error.boundary.title": "Something went wrong",
+    "error.boundary.description": "The chat ran into an unexpected problem. Your messages are safe.",
+    "error.boundary.retry": "Try again",
+    "modal.profile.preferences": "Preferences",
+    "modal.profile.languageHint": "Language used for captions and message translation",
+    "modal.profile.actions": "Actions",
+    "modal.chatProfile.aboutSection": "About",
+    "modal.chatProfile.membersSection": "Members",
+    "modal.chatProfile.filesShowLess": "Show less"
+  };
+  const fr$1 = {
+    "tabs.chats": "Discussions",
+    "tabs.files": "Fichiers",
+    "files.empty": "Aucun fichier pour le moment",
+    "search.placeholder": "Rechercher...",
+    "select.noOptions": "Aucune option trouvee",
+    "input.placeholder": "Écrire un message",
+    "room.created": "Salon créé",
+    "room.empty": "Ce salon est vide",
+    "room.empty.hint": "Soyez le premier à écrire.",
+    "media.unsupported": "Type de média non pris en charge",
+    "common.or": "Ou",
+    "tabs.label": "Sections de la barre latérale",
+    "call.disabled.roomType": "Les appels ne sont disponibles que dans les discussions 1:1",
+    "call.disabled.noLivekit": "Appels indisponibles : service vidéo non configuré",
+    "call.disabled.busy": "Un autre appel est déjà en cours",
+    "date.today": "Aujourd'hui",
+    "date.yesterday": "Hier",
+    "message.deleted": "Message supprimé",
+    "message.edited": "modifié",
+    "message.notDelivered": "Non envoyé",
+    "message.retry": "Réessayer",
+    "message.retryAriaLabel": "Réessayer d’envoyer ce message",
+    "presence.online": "en ligne",
+    "presence.offline": "hors ligne",
+    "presence.onlineCount": "{count} en ligne",
+    "header.userCountSingular": "{count} utilisateur",
+    "header.userCountPlural": "{count} utilisateurs",
+    "header.action.back": "Retour",
+    "header.action.startAudioCall": "Démarrer un appel audio",
+    "header.action.startVideoCall": "Démarrer un appel vidéo",
+    "header.logoAlt": "Logo",
+    "header.menu": "Menu",
+    "header.chatMenu": "Menu du chat",
+    "call.outgoing": "Appel sortant",
+    "call.incoming": "Appel entrant",
+    "call.noAnswer": "Pas de réponse",
+    "call.missed": "Appel manqué",
+    "call.durationSec": "{n} s",
+    "call.durationMin": "{n} min",
+    "call.durationMinSec": "{m} min {s} s",
+    "action.send": "Envoyer",
+    "action.cancel": "Annuler",
+    "action.close": "Fermer",
+    "action.back": "Retour",
+    "action.save": "Enregistrer",
+    "action.delete": "Supprimer",
+    "action.leave": "Quitter",
+    "action.create": "Créer",
+    "action.submit": "Soumettre",
+    "action.translate": "Traduire",
+    "action.showOriginal": "Afficher l'original",
+    "action.scrollToBottom": "Défiler vers le bas",
+    "action.newChat": "Nouvelle discussion",
+    "action.addUsers": "Ajouter des utilisateurs",
+    "action.addUsersCount": "Ajouter des utilisateurs ({count} selectionnes)",
+    "action.addMoreUsers": "Ajouter d'autres utilisateurs",
+    "action.add": "Ajouter",
+    "action.backToCreation": "Retour à la création",
+    "action.report": "Signaler",
+    "status.connecting": "Connexion…",
+    "status.noInternet": "Pas de connexion internet",
+    "translation.translating": "Traduction…",
+    "translation.failed": "Traduction impossible",
+    "translation.enableToggleLabel": "Traduire mes messages",
+    "translation.enableToggleDisclaimer": "Si les traductions n'étaient pas activées, seuls les nouveaux messages envoyés à partir de maintenant seront traduits.",
+    "translation.modeLabel": "Affichage des traductions",
+    "translation.modeAuto": "Automatique",
+    "translation.modeManual": "Manuel",
+    "language.select": "Choisir la langue",
+    "modal.newChat.title": "Créer une discussion",
+    "modal.newChat.roomNamePlaceholder": "Nom du salon",
+    "modal.newChat.chatTypePlaceholder": "Choisir le type de discussion",
+    "modal.newChat.typePublic": "Public",
+    "modal.newChat.typePrivate": "Privé",
+    "modal.newChat.selectUsersTitle": "Sélectionner des utilisateurs à ajouter",
+    "modal.selectUsers.title": "Sélectionner des utilisateurs (max 20)",
+    "modal.selectUsers.searchPlaceholder": "Rechercher des utilisateurs...",
+    "mention.pickerTitle": "Mentionner quelqu’un",
+    "mention.showAll": "Afficher les {count}...",
+    "modal.selectUsers.empty": "Aucun utilisateur trouve",
+    "thread.title": "Fil de discussion",
+    "toast.roomCreationTitle": "Création du salon",
+    "modal.filePreview.unsupported": "Impossible d'ouvrir le document téléchargé. Le format du fichier n'est pas pris en charge par le système. Veuillez téléverser un fichier dans un format compatible. Vous pouvez toujours télécharger ce fichier.",
+    "toast.roomCreating": "Le salon est en cours de création...",
+    "toast.success": "Succès !",
+    "toast.roomCreatedSuccess": "Salon créé avec succès !",
+    "toast.usersAddedSuccess": "Utilisateurs ajoutés avec succès !",
+    "settings.menu.title": "Paramètres",
+    "modal.filePreview.title": "Aperçu du fichier",
+    "modal.filePreview.previousPage": "Page précédente",
+    "modal.filePreview.nextPage": "Page suivante",
+    "modal.filePreview.previousImage": "Image précédente",
+    "modal.filePreview.nextImage": "Image suivante",
+    "modal.filePreview.position": "{current} sur {total}",
+    "modal.filePreview.zoomIn": "Zoom avant",
+    "modal.filePreview.zoomOut": "Zoom arrière",
+    "modal.filePreview.resetZoom": "Réinitialiser le zoom",
+    "modal.filePreview.imageAlt": "Image partagée",
+    "attachment.pages": "{count} p.",
+    "attachment.remove": "Supprimer la pièce jointe",
+    "attachment.limit": "Vous pouvez joindre jusqu’à {count} fichiers par message.",
+    "attachment.tooLarge": "Ignoré {files} : plus de {size} Mo.",
+    "action.attachFile": "Joindre un fichier",
+    "action.startRecording": "Enregistrer un message vocal",
+    "action.stopRecording": "Annuler l'enregistrement",
+    "action.sendRecording": "Envoyer le message vocal",
+    "action.emoji": "Insérer un émoji",
+    "attachment.dropHint": "Déposez les fichiers ici pour les joindre",
+    "modal.filePreview.openExternally": "Ouvrir dans un nouvel onglet",
+    "modal.filePreview.pdfUnavailable": "Ce PDF ne peut pas être affiché ici. Vous pouvez toujours l’ouvrir ou le télécharger.",
+    "toast.error": "Erreur",
+    "toast.couldNotOpenPrivateChat": "Impossible d'ouvrir la nouvelle discussion privée",
+    "toast.couldNotResolveRecipient": "Impossible de résoudre le destinataire",
+    "toast.failedToCreatePrivateChat": "Échec de la création de la discussion privée",
+    "toast.failedToCreateCall": "Échec de la création de l'appel",
+    "toast.failedToDeleteUser": "Échec de la suppression de l'utilisateur.",
+    "toast.userRemovedFromRoom": "{userId} a été retiré du salon.",
+    "toast.failedToAddUser": "Échec de l'ajout de l'utilisateur.",
+    "toast.userAddedToRoom": "{userName} a été ajouté au salon.",
+    "toast.loginFailedTitle": "Échec de la connexion",
+    "toast.invalidCredentials": "Identifiants invalides",
+    "toast.loginSuccessfulTitle": "Connexion réussie",
+    "toast.welcomeBack": "Content de vous revoir !",
+    "toast.loginErrorTitle": "Erreur de connexion",
+    "toast.loginErrorMessage": "Une erreur s'est produite lors de la connexion",
+    "validation.invalidEmail": "Format d'e-mail invalide",
+    "validation.passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères",
+    "validation.wrongCredentials": "Données incorrectes. Réessayez",
+    "field.email": "E-mail",
+    "field.password": "Mot de passe",
+    "field.firstName": "Prénom",
+    "field.lastName": "Nom",
+    "field.additionalDetails": "Détails supplémentaires",
+    "action.logOut": "Déconnexion",
+    "action.message": "Message",
+    "action.videoCall": "Appel vidéo",
+    "action.call": "Appeler",
+    "action.audioCall": "Appel audio",
+    "action.copyUserId": "Copier l'ID utilisateur",
+    "action.deleteChat": "Supprimer la discussion",
+    "action.moreOptions": "Plus d'options",
+    "action.openChatList": "Ouvrir la liste des discussions",
+    "action.showQr": "Afficher le QR",
+    "action.addMembers": "Ajouter des membres",
+    "action.no": "Non",
+    "action.yes": "Oui",
+    "action.deleteMyAccount": "Supprimer mon compte",
+    "auth.loginButton": "Se connecter à Ethora Chat",
+    "auth.loginWithGoogle": "Se connecter avec Google",
+    "auth.orDelimiter": "ou",
+    "auth.noAccount": "Vous n'avez pas de compte ?",
+    "auth.signUp": "S'inscrire sur Ethora",
+    "auth.loginAnonymously": "Se connecter anonymement",
+    "auth.anonymousTextOnly": "Peut seulement envoyer des messages texte",
+    "auth.anonymousLoginMessage": "Vous êtes connecté anonymement !",
+    "modal.profile.title": "Profil",
+    "action.editProfile": "Modifier le profil",
+    "modal.profile.about": "À propos",
+    "modal.profile.noDescription": "Aucune description",
+    "modal.chatProfile.title": "Profil de la discussion",
+    "modal.chatProfile.description": "Description",
+    "modal.chatProfile.chatType": "Type de discussion",
+    "modal.chatProfile.memberCountSingular": "{count} membre",
+    "modal.chatProfile.memberCountPlural": "{count} membres",
+    "modal.chatProfile.membersShowMore": "Afficher {count} de plus",
+    "modal.chatProfile.searchMembers": "Rechercher des membres",
+    "modal.deleteChat.title": "Supprimer cette discussion ?",
+    "modal.addMembers.title": "Ajouter un nouveau membre",
+    "modal.addMembers.userIdPlaceholder": "Entrez l'ID utilisateur",
+    "modal.leaveChat.title": "Quitter la discussion",
+    "modal.leaveChat.description": "Voulez-vous vraiment quitter cette discussion ?",
+    "modal.report.chatTitle": "Signaler la discussion",
+    "modal.report.messageTitle": "Signaler le message",
+    "modal.report.otherDetails": "Veuillez indiquer des détails supplémentaires concernant votre signalement.",
+    "report.category.spam": "Spam",
+    "report.category.violence": "Violence",
+    "report.category.childAbuse": "Maltraitance d'enfants",
+    "report.category.pornography": "Pornographie",
+    "report.category.personalDetails": "Informations personnelles",
+    "report.category.illegalDrugs": "Drogues illégales",
+    "report.category.other": "Autre",
+    "notification.saved": "Enregistré",
+    "settings.visibility.title": "Visibilité",
+    "settings.visibility.profileLabel": "Visibilité du profil",
+    "settings.visibility.open": "Ouvert (par défaut)",
+    "settings.visibility.openDescription": "Votre profil peut être consulté par quiconque suit votre lien de profil ou votre code QR.",
+    "settings.visibility.restricted": "Restreint",
+    "settings.visibility.restrictedDescription": "Seuls les utilisateurs autorisés ou disposant d'un lien sécurisé temporaire peuvent voir votre profil.",
+    "settings.visibility.documentsLabel": "Visibilité des documents",
+    "settings.visibility.full": "Complète (par défaut)",
+    "settings.visibility.fullDescription": "Montrer tous les documents à ceux qui peuvent voir votre profil.",
+    "settings.visibility.individual": "Individuelle",
+    "settings.visibility.individualDescription": "Vous devez partager chaque document individuellement avant que d'autres puissent le voir.",
+    "settings.visibility.individualDescription": "Vous devez partager chaque document individuellement avant que d'autres puissent le voir.",
+    "settings.manageData.title": "Gérer les données",
+    "settings.manageData.downloadLabel": "Télécharger vos données",
+    "settings.manageData.downloadDescription": "Vos données vous appartiennent. Appuyez sur le bouton ci-dessous pour en télécharger une copie",
+    "settings.manageData.deleteLabel": "Supprimer votre compte",
+    "settings.manageData.deleteDescription": "À utiliser uniquement si vous souhaitez supprimer définitivement votre compte et vos données de notre système.",
+    "settings.manageData.deleteDisclosure": "En raison de la nature immuable de la technologie des registres distribués, les nœuds du réseau exploités par la communauté peuvent conserver des transactions historiques générées par votre compte ; toutefois, vos informations personnelles identifiables telles que votre nom, e-mail, stockage clé-valeur, etc. seront supprimées. Tous vos actifs numériques seront perdus.",
+    "settings.manageData.deleteDescription": "À utiliser uniquement si vous souhaitez supprimer définitivement votre compte et vos données de notre système.",
+    "settings.manageData.deleteDisclosure": "En raison de la nature immuable de la technologie des registres distribués, les nœuds du réseau exploités par la communauté peuvent conserver des transactions historiques générées par votre compte ; toutefois, vos informations personnelles identifiables telles que votre nom, e-mail, stockage clé-valeur, etc. seront supprimées. Tous vos actifs numériques seront perdus.",
+    "settings.section.privacy": "Confidentialité et données",
+    "settings.manageData.rowHint": "Téléchargez une copie de vos données ou supprimez votre compte",
+    "settings.visibility.rowHint": "Choisissez qui peut voir votre profil et vos documents",
+    "settings.manageData.section.export": "Vos données",
+    "settings.manageData.deleteConfirmTitle": "Supprimer votre compte ?",
+    "settings.manageData.deleteConfirmDescription": "Cette action supprime définitivement votre compte et vous déconnecte. Elle est irréversible.",
+    "settings.manageData.deleting": "Suppression...",
+    "settings.manageData.deleteFailed": "Nous n'avons pas pu supprimer votre compte. Veuillez réessayer.",
+    "files.panel.title": "Fichiers",
+    "files.filter.all": "Tous",
+    "files.filter.media": "Médias",
+    "files.filter.documents": "Documents",
+    "files.filter.audio": "Audio",
+    "files.search.placeholder": "Rechercher des fichiers...",
+    "files.empty.title": "Aucun fichier",
+    "files.empty.subtitle": "Les fichiers que vous envoyez apparaîtront ici.",
+    "files.noResults": "Aucun fichier ne correspond à votre recherche",
+    "files.noResults.moreAvailable": "Tous les fichiers ne sont pas encore chargés, chargez-en plus pour continuer la recherche",
+    "files.loading": "Chargement des fichiers...",
+    "files.error.title": "Impossible de charger les fichiers",
+    "files.action.retry": "Réessayer",
+    "files.action.loadMore": "Charger plus",
+    "files.action.preview": "Aperçu",
+    "files.action.download": "Télécharger",
+    "files.action.delete": "Supprimer",
+    "files.delete.confirmTitle": "Supprimer ce fichier ?",
+    "files.delete.confirmMessage": "Ce fichier sera définitivement supprimé. Cette action est irréversible.",
+    "files.delete.failed": "Échec de la suppression du fichier",
+    "modal.chatProfile.filesTitle": "Fichiers",
+    "modal.chatProfile.filesShowAll": "Tout afficher",
+    "modal.chatProfile.filesEmpty": "Aucun fichier dans ce salon pour le moment",
+    "error.boundary.title": "Une erreur est survenue",
+    "error.boundary.description": "Le chat a rencontré un problème inattendu. Vos messages sont intacts.",
+    "error.boundary.retry": "Réessayer",
+    "modal.profile.preferences": "Préférences",
+    "modal.profile.languageHint": "Langue utilisée pour les libellés et la traduction des messages",
+    "modal.profile.actions": "Actions",
+    "modal.chatProfile.aboutSection": "À propos",
+    "modal.chatProfile.membersSection": "Membres",
+    "modal.chatProfile.filesShowLess": "Afficher moins"
+  };
+  const es$1 = {
+    "tabs.chats": "Chats",
+    "tabs.files": "Archivos",
+    "files.empty": "Aun no hay archivos",
+    "search.placeholder": "Buscar...",
+    "select.noOptions": "No se encontraron opciones",
+    "input.placeholder": "Escribe un mensaje",
+    "room.created": "Sala creada",
+    "room.empty": "Este chat está vacío",
+    "room.empty.hint": "Sé el primero en escribir.",
+    "media.unsupported": "Tipo de archivo no compatible",
+    "common.or": "O",
+    "tabs.label": "Secciones de la barra lateral",
+    "call.disabled.roomType": "Las llamadas solo están disponibles en chats 1:1",
+    "call.disabled.noLivekit": "Llamadas no disponibles: el servicio de video no está configurado",
+    "call.disabled.busy": "Ya hay otra llamada en curso",
+    "date.today": "Hoy",
+    "date.yesterday": "Ayer",
+    "message.deleted": "Mensaje eliminado",
+    "message.edited": "editado",
+    "message.notDelivered": "No enviado",
+    "message.retry": "Reintentar",
+    "message.retryAriaLabel": "Reintentar el envío de este mensaje",
+    "presence.online": "en línea",
+    "presence.offline": "desconectado",
+    "presence.onlineCount": "{count} en línea",
+    "header.userCountSingular": "{count} usuario",
+    "header.userCountPlural": "{count} usuarios",
+    "header.action.back": "Atrás",
+    "header.action.startAudioCall": "Iniciar llamada de audio",
+    "header.action.startVideoCall": "Iniciar videollamada",
+    "header.logoAlt": "Logo",
+    "header.menu": "Menú",
+    "header.chatMenu": "Menú del chat",
+    "call.outgoing": "Llamada saliente",
+    "call.incoming": "Llamada entrante",
+    "call.noAnswer": "Sin respuesta",
+    "call.missed": "Llamada perdida",
+    "call.durationSec": "{n} s",
+    "call.durationMin": "{n} min",
+    "call.durationMinSec": "{m} min {s} s",
+    "action.send": "Enviar",
+    "action.cancel": "Cancelar",
+    "action.close": "Cerrar",
+    "action.back": "Volver",
+    "action.save": "Guardar",
+    "action.delete": "Eliminar",
+    "action.leave": "Salir",
+    "action.create": "Crear",
+    "action.submit": "Enviar",
+    "action.translate": "Traducir",
+    "action.showOriginal": "Ver original",
+    "action.scrollToBottom": "Desplazarse al final",
+    "action.newChat": "Nuevo chat",
+    "action.addUsers": "Añadir usuarios",
+    "action.addUsersCount": "Añadir usuarios ({count} seleccionados)",
+    "action.addMoreUsers": "Añadir más usuarios",
+    "action.add": "Añadir",
+    "action.backToCreation": "Volver a la creación",
+    "action.report": "Reportar",
+    "status.connecting": "Conectando…",
+    "status.noInternet": "Sin conexión a internet",
+    "translation.translating": "Traduciendo…",
+    "translation.failed": "No se pudo traducir",
+    "translation.enableToggleLabel": "Traducir mis mensajes",
+    "translation.enableToggleDisclaimer": "Si las traducciones no estaban activadas, solo se traducirán los mensajes nuevos enviados a partir de ahora.",
+    "translation.modeLabel": "Visualización de traducciones",
+    "translation.modeAuto": "Automático",
+    "translation.modeManual": "Manual",
+    "language.select": "Seleccionar idioma",
+    "modal.newChat.title": "Crear nuevo chat",
+    "modal.newChat.roomNamePlaceholder": "Nombre de la sala",
+    "modal.newChat.chatTypePlaceholder": "Selecciona el tipo de chat",
+    "modal.newChat.typePublic": "Público",
+    "modal.newChat.typePrivate": "Privado",
+    "modal.newChat.selectUsersTitle": "Selecciona usuarios para añadir al chat",
+    "modal.filePreview.unsupported": "No se puede abrir el documento cargado. El formato del archivo no es compatible con el sistema. Cargue un archivo en un formato compatible. Aún puede descargar este archivo.",
+    "modal.selectUsers.title": "Seleccionar usuarios (máx. 20)",
+    "modal.selectUsers.searchPlaceholder": "Buscar usuarios...",
+    "mention.pickerTitle": "Mencionar a alguien",
+    "mention.showAll": "Mostrar los {count}...",
+    "modal.selectUsers.empty": "No se encontraron usuarios",
+    "thread.title": "Hilo de conversación",
+    "toast.roomCreationTitle": "Creación de sala",
+    "toast.roomCreating": "La sala se está creando...",
+    "toast.success": "¡Éxito!",
+    "toast.roomCreatedSuccess": "¡Sala creada correctamente!",
+    "toast.usersAddedSuccess": "¡Usuarios añadidos correctamente!",
+    "settings.menu.title": "Configuración",
+    "modal.filePreview.title": "Vista previa del archivo",
+    "modal.filePreview.previousPage": "Página anterior",
+    "modal.filePreview.nextPage": "Página siguiente",
+    "modal.filePreview.previousImage": "Imagen anterior",
+    "modal.filePreview.nextImage": "Imagen siguiente",
+    "modal.filePreview.position": "{current} de {total}",
+    "modal.filePreview.zoomIn": "Acercar",
+    "modal.filePreview.zoomOut": "Alejar",
+    "modal.filePreview.resetZoom": "Restablecer el zoom",
+    "modal.filePreview.imageAlt": "Imagen compartida",
+    "attachment.pages": "{count} p.",
+    "attachment.remove": "Quitar el archivo adjunto",
+    "attachment.limit": "Puedes adjuntar hasta {count} archivos por mensaje.",
+    "attachment.tooLarge": "Se omitió {files}: supera {size} MB.",
+    "action.attachFile": "Adjuntar archivo",
+    "action.startRecording": "Grabar mensaje de voz",
+    "action.stopRecording": "Cancelar grabación",
+    "action.sendRecording": "Enviar mensaje de voz",
+    "action.emoji": "Insertar emoji",
+    "attachment.dropHint": "Suelta los archivos aquí para adjuntarlos",
+    "modal.filePreview.openExternally": "Abrir en una pestaña nueva",
+    "modal.filePreview.pdfUnavailable": "Este PDF no se puede mostrar aquí. Aún puedes abrirlo o descargarlo.",
+    "toast.error": "Error",
+    "toast.couldNotOpenPrivateChat": "No se pudo abrir el nuevo chat privado",
+    "toast.couldNotResolveRecipient": "No se pudo resolver el destinatario",
+    "toast.failedToCreatePrivateChat": "No se pudo crear el chat privado",
+    "toast.failedToCreateCall": "No se pudo crear la llamada",
+    "toast.failedToDeleteUser": "No se pudo eliminar el usuario.",
+    "toast.userRemovedFromRoom": "{userId} ha sido eliminado de la sala.",
+    "toast.failedToAddUser": "No se pudo añadir al usuario.",
+    "toast.userAddedToRoom": "{userName} ha sido añadido a la sala.",
+    "toast.loginFailedTitle": "Error al iniciar sesión",
+    "toast.invalidCredentials": "Credenciales inválidas",
+    "toast.loginSuccessfulTitle": "Inicio de sesión exitoso",
+    "toast.welcomeBack": "¡Bienvenido de nuevo!",
+    "toast.loginErrorTitle": "Error de inicio de sesión",
+    "toast.loginErrorMessage": "Ocurrió un error durante el inicio de sesión",
+    "validation.invalidEmail": "Formato de correo inválido",
+    "validation.passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+    "validation.wrongCredentials": "Datos incorrectos. Inténtalo de nuevo",
+    "field.email": "Correo electrónico",
+    "field.password": "Contraseña",
+    "field.firstName": "Nombre",
+    "field.lastName": "Apellido",
+    "field.additionalDetails": "Detalles adicionales",
+    "action.logOut": "Cerrar sesión",
+    "action.message": "Mensaje",
+    "action.videoCall": "Videollamada",
+    "action.call": "Llamar",
+    "action.audioCall": "Llamada de audio",
+    "action.copyUserId": "Copiar ID de usuario",
+    "action.deleteChat": "Eliminar chat",
+    "action.moreOptions": "Más opciones",
+    "action.openChatList": "Abrir la lista de chats",
+    "action.showQr": "Mostrar QR",
+    "action.addMembers": "Añadir miembros",
+    "action.no": "No",
+    "action.yes": "Sí",
+    "action.deleteMyAccount": "Eliminar mi cuenta",
+    "auth.loginButton": "Iniciar sesión en Ethora Chat",
+    "auth.loginWithGoogle": "Iniciar sesión con Google",
+    "auth.orDelimiter": "o",
+    "auth.noAccount": "¿No tienes una cuenta?",
+    "auth.signUp": "Regístrate en Ethora",
+    "auth.loginAnonymously": "Iniciar sesión de forma anónima",
+    "auth.anonymousTextOnly": "Solo se pueden enviar mensajes de texto",
+    "auth.anonymousLoginMessage": "¡Has iniciado sesión de forma anónima!",
+    "modal.profile.title": "Perfil",
+    "action.editProfile": "Editar perfil",
+    "modal.profile.about": "Acerca de",
+    "modal.profile.noDescription": "Sin descripción",
+    "modal.chatProfile.title": "Perfil del chat",
+    "modal.chatProfile.description": "Descripción",
+    "modal.chatProfile.chatType": "Tipo de chat",
+    "modal.chatProfile.memberCountSingular": "{count} miembro",
+    "modal.chatProfile.memberCountPlural": "{count} miembros",
+    "modal.chatProfile.membersShowMore": "Mostrar {count} más",
+    "modal.chatProfile.searchMembers": "Buscar miembros",
+    "modal.deleteChat.title": "¿Eliminar este chat?",
+    "modal.addMembers.title": "Añadir nuevo miembro",
+    "modal.addMembers.userIdPlaceholder": "Introduce el ID de usuario",
+    "modal.leaveChat.title": "Salir del chat",
+    "modal.leaveChat.description": "¿Seguro que quieres salir de este chat?",
+    "modal.report.chatTitle": "Reportar chat",
+    "modal.report.messageTitle": "Reportar mensaje",
+    "modal.report.otherDetails": "Introduce detalles adicionales relevantes para tu reporte.",
+    "report.category.spam": "Spam",
+    "report.category.violence": "Violencia",
+    "report.category.childAbuse": "Abuso infantil",
+    "report.category.pornography": "Pornografía",
+    "report.category.personalDetails": "Datos personales",
+    "report.category.illegalDrugs": "Drogas ilegales",
+    "report.category.other": "Otro",
+    "notification.saved": "Guardado",
+    "settings.visibility.title": "Visibilidad",
+    "settings.visibility.profileLabel": "Visibilidad del perfil",
+    "settings.visibility.open": "Abierto (predeterminado)",
+    "settings.visibility.openDescription": "Cualquiera que siga el enlace de tu perfil o tu código QR puede ver tu perfil.",
+    "settings.visibility.restricted": "Restringido",
+    "settings.visibility.restrictedDescription": "Solo los usuarios con tu permiso o un enlace seguro temporal pueden ver tu perfil.",
+    "settings.visibility.documentsLabel": "Visibilidad de documentos",
+    "settings.visibility.full": "Completa (predeterminada)",
+    "settings.visibility.fullDescription": "Mostrar todos los documentos a quienes puedan ver tu perfil.",
+    "settings.visibility.individual": "Individual",
+    "settings.visibility.individualDescription": "Debes compartir cada documento individualmente antes de que otros puedan verlo.",
+    "settings.visibility.individualDescription": "Debes compartir cada documento individualmente antes de que otros puedan verlo.",
+    "settings.manageData.title": "Gestionar datos",
+    "settings.manageData.downloadLabel": "Descarga tus datos",
+    "settings.manageData.downloadDescription": "Tus datos te pertenecen. Toca el botón de abajo para descargar una copia de tus datos",
+    "settings.manageData.deleteLabel": "Elimina tu cuenta",
+    "settings.manageData.deleteDescription": "Utiliza esto solo si deseas eliminar permanentemente tu cuenta y tus datos de nuestro sistema.",
+    "settings.manageData.deleteDisclosure": "Debido a la naturaleza inmutable de la tecnología de registro distribuido, los nodos de red operados por la comunidad pueden seguir conservando transacciones históricas generadas por tu cuenta; sin embargo, tu información personal identificable, como tu nombre, correo electrónico y almacenamiento clave-valor, será eliminada. Se perderán todos tus activos digitales.",
+    "settings.manageData.deleteDescription": "Utiliza esto solo si deseas eliminar permanentemente tu cuenta y tus datos de nuestro sistema.",
+    "settings.manageData.deleteDisclosure": "Debido a la naturaleza inmutable de la tecnología de registro distribuido, los nodos de red operados por la comunidad pueden seguir conservando transacciones históricas generadas por tu cuenta; sin embargo, tu información personal identificable, como tu nombre, correo electrónico y almacenamiento clave-valor, será eliminada. Se perderán todos tus activos digitales.",
+    "settings.section.privacy": "Privacidad y datos",
+    "settings.manageData.rowHint": "Descarga una copia de tus datos o elimina tu cuenta",
+    "settings.visibility.rowHint": "Elige quién puede ver tu perfil y tus documentos",
+    "settings.manageData.section.export": "Tus datos",
+    "settings.manageData.deleteConfirmTitle": "¿Eliminar tu cuenta?",
+    "settings.manageData.deleteConfirmDescription": "Esto elimina tu cuenta de forma permanente y cierra tu sesión. No se puede deshacer.",
+    "settings.manageData.deleting": "Eliminando...",
+    "settings.manageData.deleteFailed": "No pudimos eliminar tu cuenta. Inténtalo de nuevo.",
+    "files.panel.title": "Archivos",
+    "files.filter.all": "Todos",
+    "files.filter.media": "Multimedia",
+    "files.filter.documents": "Documentos",
+    "files.filter.audio": "Audio",
+    "files.search.placeholder": "Buscar archivos...",
+    "files.empty.title": "Aún no hay archivos",
+    "files.empty.subtitle": "Los archivos que subas aparecerán aquí.",
+    "files.noResults": "Ningún archivo coincide con tu búsqueda",
+    "files.noResults.moreAvailable": "Aún no se han cargado todos los archivos, carga más para seguir buscando",
+    "files.loading": "Cargando archivos...",
+    "files.error.title": "No se pudieron cargar los archivos",
+    "files.action.retry": "Reintentar",
+    "files.action.loadMore": "Cargar más",
+    "files.action.preview": "Vista previa",
+    "files.action.download": "Descargar",
+    "files.action.delete": "Eliminar",
+    "files.delete.confirmTitle": "¿Eliminar este archivo?",
+    "files.delete.confirmMessage": "Este archivo se eliminará permanentemente. Esta acción no se puede deshacer.",
+    "files.delete.failed": "No se pudo eliminar el archivo",
+    "modal.chatProfile.filesTitle": "Archivos",
+    "modal.chatProfile.filesShowAll": "Ver todos",
+    "modal.chatProfile.filesEmpty": "Aún no hay archivos en este chat",
+    "error.boundary.title": "Algo salió mal",
+    "error.boundary.description": "El chat encontró un problema inesperado. Tus mensajes están a salvo.",
+    "error.boundary.retry": "Intentar de nuevo",
+    "modal.profile.preferences": "Preferencias",
+    "modal.profile.languageHint": "Idioma usado para los textos y la traducción de mensajes",
+    "modal.profile.actions": "Acciones",
+    "modal.chatProfile.aboutSection": "Acerca de",
+    "modal.chatProfile.membersSection": "Miembros",
+    "modal.chatProfile.filesShowLess": "Mostrar menos"
+  };
+  const pt$1 = {
+    "tabs.chats": "Conversas",
+    "tabs.files": "Arquivos",
+    "files.empty": "Ainda sem arquivos",
+    "search.placeholder": "Pesquisar...",
+    "select.noOptions": "Nenhuma opcao encontrada",
+    "input.placeholder": "Escreva uma mensagem",
+    "room.created": "Sala criada",
+    "room.empty": "Este chat está vazio",
+    "room.empty.hint": "Seja o primeiro a escrever.",
+    "media.unsupported": "Tipo de mídia não suportado",
+    "common.or": "Ou",
+    "tabs.label": "Seções da barra lateral",
+    "call.disabled.roomType": "Chamadas disponíveis apenas em conversas 1:1",
+    "call.disabled.noLivekit": "Chamadas indisponíveis: serviço de vídeo não configurado",
+    "call.disabled.busy": "Outra chamada já está em andamento",
+    "date.today": "Hoje",
+    "date.yesterday": "Ontem",
+    "message.deleted": "Mensagem eliminada",
+    "message.edited": "editado",
+    "message.notDelivered": "Não enviado",
+    "message.retry": "Tentar novamente",
+    "message.retryAriaLabel": "Tentar enviar esta mensagem novamente",
+    "presence.online": "online",
+    "presence.offline": "offline",
+    "presence.onlineCount": "{count} online",
+    "header.userCountSingular": "{count} usuário",
+    "header.userCountPlural": "{count} usuários",
+    "header.action.back": "Voltar",
+    "header.action.startAudioCall": "Iniciar chamada de áudio",
+    "header.action.startVideoCall": "Iniciar videochamada",
+    "header.logoAlt": "Logo",
+    "header.menu": "Menu",
+    "header.chatMenu": "Menu do chat",
+    "call.outgoing": "Chamada efetuada",
+    "call.incoming": "Chamada recebida",
+    "call.noAnswer": "Sem resposta",
+    "call.missed": "Chamada perdida",
+    "call.durationSec": "{n} s",
+    "call.durationMin": "{n} min",
+    "call.durationMinSec": "{m} min {s} s",
+    "action.send": "Enviar",
+    "action.cancel": "Cancelar",
+    "action.close": "Fechar",
+    "action.back": "Voltar",
+    "action.save": "Guardar",
+    "action.delete": "Eliminar",
+    "action.leave": "Sair",
+    "action.create": "Criar",
+    "action.submit": "Enviar",
+    "action.translate": "Traduzir",
+    "action.showOriginal": "Ver original",
+    "action.scrollToBottom": "Rolar para o final",
+    "action.newChat": "Novo chat",
+    "action.addUsers": "Adicionar utilizadores",
+    "action.addUsersCount": "Adicionar utilizadores ({count} selecionados)",
+    "action.addMoreUsers": "Adicionar mais utilizadores",
+    "action.add": "Adicionar",
+    "action.backToCreation": "Voltar à criação",
+    "action.report": "Denunciar",
+    "status.connecting": "A ligar…",
+    "status.noInternet": "Sem ligação à internet",
+    "translation.translating": "A traduzir…",
+    "translation.failed": "Não foi possível traduzir",
+    "translation.enableToggleLabel": "Traduzir minhas mensagens",
+    "translation.enableToggleDisclaimer": "Se as traduções não estavam ativadas, apenas as novas mensagens enviadas a partir de agora serão traduzidas.",
+    "translation.modeLabel": "Exibição de traduções",
+    "translation.modeAuto": "Automático",
+    "translation.modeManual": "Manual",
+    "language.select": "Selecionar idioma",
+    "modal.newChat.title": "Criar novo chat",
+    "modal.filePreview.unsupported": "Não é possível abrir o documento carregado. O formato do ficheiro não é suportado pelo sistema. Carregue um ficheiro num formato compatível. Ainda pode transferir este ficheiro.",
+    "modal.newChat.roomNamePlaceholder": "Nome da sala",
+    "modal.newChat.chatTypePlaceholder": "Selecione o tipo de chat",
+    "modal.newChat.typePublic": "Público",
+    "modal.newChat.typePrivate": "Privado",
+    "modal.newChat.selectUsersTitle": "Selecione utilizadores para adicionar ao chat",
+    "modal.selectUsers.title": "Selecionar utilizadores (máx. 20)",
+    "modal.selectUsers.searchPlaceholder": "Pesquisar utilizadores...",
+    "mention.pickerTitle": "Mencionar alguém",
+    "mention.showAll": "Mostrar todos os {count}...",
+    "modal.selectUsers.empty": "Nenhum utilizador encontrado",
+    "thread.title": "Tópico",
+    "toast.roomCreationTitle": "Criação de sala",
+    "toast.roomCreating": "A sala está a ser criada...",
+    "toast.success": "Sucesso!",
+    "toast.roomCreatedSuccess": "Sala criada com sucesso!",
+    "toast.usersAddedSuccess": "Utilizadores adicionados com sucesso!",
+    "settings.menu.title": "Definições",
+    "modal.filePreview.title": "Pré-visualização do ficheiro",
+    "modal.filePreview.previousPage": "Página anterior",
+    "modal.filePreview.nextPage": "Próxima página",
+    "modal.filePreview.previousImage": "Imagem anterior",
+    "modal.filePreview.nextImage": "Imagem seguinte",
+    "modal.filePreview.position": "{current} de {total}",
+    "modal.filePreview.zoomIn": "Ampliar",
+    "modal.filePreview.zoomOut": "Reduzir",
+    "modal.filePreview.resetZoom": "Repor o zoom",
+    "modal.filePreview.imageAlt": "Imagem partilhada",
+    "attachment.pages": "{count} p.",
+    "attachment.remove": "Remover anexo",
+    "attachment.limit": "Pode anexar até {count} ficheiros por mensagem.",
+    "attachment.tooLarge": "Ignorado {files}: acima de {size} MB.",
+    "action.attachFile": "Anexar arquivo",
+    "action.startRecording": "Gravar mensagem de voz",
+    "action.stopRecording": "Cancelar gravação",
+    "action.sendRecording": "Enviar mensagem de voz",
+    "action.emoji": "Inserir emoji",
+    "attachment.dropHint": "Solte os arquivos aqui para anexar",
+    "modal.filePreview.openExternally": "Abrir num novo separador",
+    "modal.filePreview.pdfUnavailable": "Este PDF não pode ser apresentado aqui. Ainda pode abri-lo ou transferi-lo.",
+    "toast.error": "Erro",
+    "toast.couldNotOpenPrivateChat": "Não foi possível abrir o novo chat privado",
+    "toast.couldNotResolveRecipient": "Não foi possível identificar o destinatário",
+    "toast.failedToCreatePrivateChat": "Falha ao criar o chat privado",
+    "toast.failedToCreateCall": "Falha ao criar a chamada",
+    "toast.failedToDeleteUser": "Falha ao eliminar o utilizador.",
+    "toast.userRemovedFromRoom": "{userId} foi removido da sala.",
+    "toast.failedToAddUser": "Falha ao adicionar o utilizador.",
+    "toast.userAddedToRoom": "{userName} foi adicionado à sala.",
+    "toast.loginFailedTitle": "Falha ao iniciar sessão",
+    "toast.invalidCredentials": "Credenciais inválidas",
+    "toast.loginSuccessfulTitle": "Sessão iniciada",
+    "toast.welcomeBack": "Bem-vindo de volta!",
+    "toast.loginErrorTitle": "Erro ao iniciar sessão",
+    "toast.loginErrorMessage": "Ocorreu um erro ao iniciar sessão",
+    "validation.invalidEmail": "Formato de email inválido",
+    "validation.passwordTooShort": "A palavra-passe deve ter pelo menos 6 caracteres",
+    "validation.wrongCredentials": "Dados incorretos. Tente novamente",
+    "field.email": "Email",
+    "field.password": "Palavra-passe",
+    "field.firstName": "Nome",
+    "field.lastName": "Apelido",
+    "field.additionalDetails": "Detalhes adicionais",
+    "action.logOut": "Terminar sessão",
+    "action.message": "Mensagem",
+    "action.videoCall": "Videochamada",
+    "action.call": "Ligar",
+    "action.audioCall": "Chamada de áudio",
+    "action.copyUserId": "Copiar ID do utilizador",
+    "action.deleteChat": "Eliminar chat",
+    "action.moreOptions": "Mais opções",
+    "action.openChatList": "Abrir a lista de conversas",
+    "action.showQr": "Mostrar QR",
+    "action.addMembers": "Adicionar membros",
+    "action.no": "Não",
+    "action.yes": "Sim",
+    "action.deleteMyAccount": "Eliminar a minha conta",
+    "auth.loginButton": "Entrar no Ethora Chat",
+    "auth.loginWithGoogle": "Entrar com o Google",
+    "auth.orDelimiter": "ou",
+    "auth.noAccount": "Ainda não tem conta?",
+    "auth.signUp": "Registar-se no Ethora",
+    "auth.loginAnonymously": "Entrar anonimamente",
+    "auth.anonymousTextOnly": "Só é possível enviar mensagens de texto",
+    "auth.anonymousLoginMessage": "Iniciou sessão anonimamente!",
+    "modal.profile.title": "Perfil",
+    "action.editProfile": "Editar perfil",
+    "modal.profile.about": "Sobre",
+    "modal.profile.noDescription": "Sem descrição",
+    "modal.chatProfile.title": "Perfil do chat",
+    "modal.chatProfile.description": "Descrição",
+    "modal.chatProfile.chatType": "Tipo de chat",
+    "modal.chatProfile.memberCountSingular": "{count} membro",
+    "modal.chatProfile.memberCountPlural": "{count} membros",
+    "modal.chatProfile.membersShowMore": "Mostrar mais {count}",
+    "modal.chatProfile.searchMembers": "Pesquisar membros",
+    "modal.deleteChat.title": "Eliminar este chat?",
+    "modal.addMembers.title": "Adicionar novo membro",
+    "modal.addMembers.userIdPlaceholder": "Introduza o ID do utilizador",
+    "modal.leaveChat.title": "Sair do chat",
+    "modal.leaveChat.description": "Tem a certeza de que quer sair deste chat?",
+    "modal.report.chatTitle": "Denunciar chat",
+    "modal.report.messageTitle": "Denunciar mensagem",
+    "modal.report.otherDetails": "Indique detalhes adicionais relevantes para a sua denúncia.",
+    "report.category.spam": "Spam",
+    "report.category.violence": "Violência",
+    "report.category.childAbuse": "Abuso infantil",
+    "report.category.pornography": "Pornografia",
+    "report.category.personalDetails": "Dados pessoais",
+    "report.category.illegalDrugs": "Drogas ilegais",
+    "report.category.other": "Outro",
+    "notification.saved": "Guardado",
+    "settings.visibility.title": "Visibilidade",
+    "settings.visibility.profileLabel": "Visibilidade do perfil",
+    "settings.visibility.open": "Aberto (predefinição)",
+    "settings.visibility.openDescription": "O seu perfil pode ser visto por qualquer pessoa que siga a ligação do seu perfil ou o código QR.",
+    "settings.visibility.restricted": "Restrito",
+    "settings.visibility.restrictedDescription": "Só os utilizadores com a sua permissão ou com uma ligação segura temporária podem ver o seu perfil.",
+    "settings.visibility.documentsLabel": "Visibilidade dos documentos",
+    "settings.visibility.full": "Total (predefinição)",
+    "settings.visibility.fullDescription": "Mostrar todos os documentos a quem pode ver o seu perfil.",
+    "settings.visibility.individual": "Individual",
+    "settings.visibility.individualDescription": "Tem de partilhar cada documento individualmente antes que outros o possam ver.",
+    "settings.visibility.individualDescription": "Tem de partilhar cada documento individualmente antes que outros o possam ver.",
+    "settings.manageData.title": "Gerir dados",
+    "settings.manageData.downloadLabel": "Transferir os seus dados",
+    "settings.manageData.downloadDescription": "Os dados são seus. Toque no botão abaixo para transferir uma cópia dos seus dados",
+    "settings.manageData.deleteLabel": "Eliminar a sua conta",
+    "settings.manageData.deleteDescription": "Use isto apenas se quiser eliminar permanentemente a sua conta e os seus dados do nosso sistema.",
+    "settings.manageData.deleteDisclosure": "Devido à natureza imutável da tecnologia de registo distribuído, os nós da rede operados pela comunidade podem manter transações históricas geradas pela sua conta; no entanto, as suas informações de identificação pessoal, como nome, email e armazenamento chave-valor, serão removidas. Todos os seus ativos digitais serão perdidos.",
+    "settings.manageData.deleteDescription": "Use isto apenas se quiser eliminar permanentemente a sua conta e os seus dados do nosso sistema.",
+    "settings.manageData.deleteDisclosure": "Devido à natureza imutável da tecnologia de registo distribuído, os nós da rede operados pela comunidade podem manter transações históricas geradas pela sua conta; no entanto, as suas informações de identificação pessoal, como nome, email e armazenamento chave-valor, serão removidas. Todos os seus ativos digitais serão perdidos.",
+    "settings.section.privacy": "Privacidade e dados",
+    "settings.manageData.rowHint": "Baixe uma cópia dos seus dados ou exclua sua conta",
+    "settings.visibility.rowHint": "Escolha quem pode ver seu perfil e seus documentos",
+    "settings.manageData.section.export": "Seus dados",
+    "settings.manageData.deleteConfirmTitle": "Excluir sua conta?",
+    "settings.manageData.deleteConfirmDescription": "Isso exclui sua conta permanentemente e encerra sua sessão. Não é possível desfazer.",
+    "settings.manageData.deleting": "Excluindo...",
+    "settings.manageData.deleteFailed": "Não foi possível excluir sua conta. Tente novamente.",
+    "files.panel.title": "Arquivos",
+    "files.filter.all": "Todos",
+    "files.filter.media": "Mídia",
+    "files.filter.documents": "Documentos",
+    "files.filter.audio": "Áudio",
+    "files.search.placeholder": "Pesquisar arquivos...",
+    "files.empty.title": "Ainda não há arquivos",
+    "files.empty.subtitle": "Os arquivos que você enviar aparecerão aqui.",
+    "files.noResults": "Nenhum arquivo corresponde à sua pesquisa",
+    "files.noResults.moreAvailable": "Nem todos os arquivos foram carregados, carregue mais para continuar a busca",
+    "files.loading": "Carregando arquivos...",
+    "files.error.title": "Não foi possível carregar os arquivos",
+    "files.action.retry": "Tentar novamente",
+    "files.action.loadMore": "Carregar mais",
+    "files.action.preview": "Pré-visualizar",
+    "files.action.download": "Baixar",
+    "files.action.delete": "Excluir",
+    "files.delete.confirmTitle": "Excluir este arquivo?",
+    "files.delete.confirmMessage": "Este arquivo será excluído permanentemente. Esta ação não pode ser desfeita.",
+    "files.delete.failed": "Falha ao excluir o arquivo",
+    "modal.chatProfile.filesTitle": "Arquivos",
+    "modal.chatProfile.filesShowAll": "Ver todos",
+    "modal.chatProfile.filesEmpty": "Ainda não há arquivos neste chat",
+    "error.boundary.title": "Algo correu mal",
+    "error.boundary.description": "O chat encontrou um problema inesperado. As suas mensagens estão seguras.",
+    "error.boundary.retry": "Tentar novamente",
+    "modal.profile.preferences": "Preferências",
+    "modal.profile.languageHint": "Idioma usado nos textos e na tradução das mensagens",
+    "modal.profile.actions": "Ações",
+    "modal.chatProfile.aboutSection": "Sobre",
+    "modal.chatProfile.membersSection": "Membros",
+    "modal.chatProfile.filesShowLess": "Mostrar menos"
+  };
+  const ht$1 = {
+    "tabs.chats": "Chat",
+    "tabs.files": "Fichye",
+    "files.empty": "Poko gen fichye",
+    "search.placeholder": "Chèche...",
+    "select.noOptions": "Pa gen okenn opsyon jwenn",
+    "input.placeholder": "Ekri yon mesaj",
+    "room.created": "Sal la kreye",
+    "room.empty": "Chat sa a vid",
+    "room.empty.hint": "Se ou menm premye pou kòmanse li.",
+    "media.unsupported": "Kalite medya sa a pa sipòte",
+    "common.or": "Oswa",
+    "tabs.label": "Seksyon bò kote",
+    "call.disabled.roomType": "Apèl yo disponib sèlman nan chat 1:1",
+    "call.disabled.noLivekit": "Apèl pa disponib: sèvis videyo a pa konfigire",
+    "call.disabled.busy": "Gen yon lòt apèl k ap fèt deja",
+    "date.today": "Jodi a",
+    "date.yesterday": "Yè",
+    "message.deleted": "Mesaj efase",
+    "message.edited": "modifye",
+    "message.notDelivered": "Pa voye",
+    "message.retry": "Reeseye",
+    "message.retryAriaLabel": "Reeseye voye mesaj sa a",
+    "presence.online": "an liy",
+    "presence.offline": "pa an liy",
+    "presence.onlineCount": "{count} an liy",
+    "header.userCountSingular": "{count} itilizatè",
+    "header.userCountPlural": "{count} itilizatè",
+    "header.action.back": "Retounen",
+    "header.action.startAudioCall": "Kòmanse yon apèl odyo",
+    "header.action.startVideoCall": "Kòmanse yon apèl videyo",
+    "header.logoAlt": "Logo",
+    "header.menu": "Meni",
+    "header.chatMenu": "Meni chat la",
+    "call.outgoing": "Apèl sòtan",
+    "call.incoming": "Apèl antran",
+    "call.noAnswer": "Pa gen repons",
+    "call.missed": "Apèl ou rate",
+    "call.durationSec": "{n} segond",
+    "call.durationMin": "{n} minit",
+    "call.durationMinSec": "{m} minit {s} segond",
+    "action.send": "Voye",
+    "action.cancel": "Anile",
+    "action.close": "Fèmen",
+    "action.back": "Tounen",
+    "action.save": "Anrejistre",
+    "action.delete": "Efase",
+    "action.leave": "Kite",
+    "action.create": "Kreye",
+    "action.submit": "Soumèt",
+    "action.translate": "Tradui",
+    "action.showOriginal": "Montre orijinal la",
+    "action.scrollToBottom": "Desann nan ba a",
+    "action.newChat": "Nouvo chat",
+    "action.addUsers": "Ajoute itilizatè",
+    "action.addUsersCount": "Ajoute itilizatè ({count} chwazi)",
+    "action.addMoreUsers": "Ajoute plis itilizatè",
+    "action.add": "Ajoute",
+    "action.backToCreation": "Retounen nan kreyasyon",
+    "action.report": "Rapòte",
+    "status.connecting": "Koneksyon…",
+    "status.noInternet": "Pa gen koneksyon entènèt",
+    "translation.translating": "Ap tradui…",
+    "translation.failed": "Pa t kapab tradui",
+    "translation.enableToggleLabel": "Tradui mesaj mwen yo",
+    "translation.enableToggleDisclaimer": "Si tradiksyon yo pa t aktive, se sèlman nouvo mesaj ou voye apati kounye a ki pral tradui.",
+    "translation.modeLabel": "Afichaj tradiksyon",
+    "translation.modeAuto": "Otomatik",
+    "modal.filePreview.unsupported": "Nou pa ka louvri dokiman telechaje a. Fòma fichye a pa sipòte pa sistèm nan. Tanpri telechaje yon fichye nan yon fòma konpatib. Ou toujou ka telechaje fichye sa a.",
+    "translation.modeManual": "Manyèl",
+    "language.select": "Chwazi lang",
+    "modal.newChat.title": "Kreye yon nouvo chat",
+    "modal.newChat.roomNamePlaceholder": "Antre non sal la",
+    "modal.newChat.chatTypePlaceholder": "Chwazi tip chat la",
+    "modal.newChat.typePublic": "Piblik",
+    "modal.newChat.typePrivate": "Prive",
+    "modal.newChat.selectUsersTitle": "Chwazi itilizatè pou ajoute nan chat la",
+    "modal.selectUsers.title": "Chwazi itilizatè (maksimòm 20)",
+    "modal.selectUsers.searchPlaceholder": "Chèche itilizatè...",
+    "mention.pickerTitle": "Mansyone yon moun",
+    "mention.showAll": "Montre tout {count}...",
+    "modal.selectUsers.empty": "Pa gen itilizatè yo jwenn",
+    "thread.title": "Fil diskisyon",
+    "toast.roomCreationTitle": "Kreyasyon sal",
+    "toast.roomCreating": "Sal la ap kreye...",
+    "toast.success": "Siksè!",
+    "toast.roomCreatedSuccess": "Sal la kreye avèk siksè!",
+    "toast.usersAddedSuccess": "Itilizatè yo ajoute avèk siksè!",
+    "settings.menu.title": "Paramèt",
+    "modal.filePreview.title": "Apèsi fichye",
+    "modal.filePreview.previousPage": "Paj anvan",
+    "modal.filePreview.nextPage": "Pwochen paj",
+    "modal.filePreview.previousImage": "Imaj anvan",
+    "modal.filePreview.nextImage": "Imaj apre",
+    "modal.filePreview.position": "{current} sou {total}",
+    "modal.filePreview.zoomIn": "Zoume pi pre",
+    "modal.filePreview.zoomOut": "Zoume pi lwen",
+    "modal.filePreview.resetZoom": "Remete zoum lan",
+    "modal.filePreview.imageAlt": "Imaj pataje",
+    "attachment.pages": "{count} p.",
+    "attachment.remove": "Retire pyès jwent",
+    "attachment.limit": "Ou ka mete jiska {count} fichye nan yon mesaj.",
+    "attachment.tooLarge": "Nou sote {files}: li depase {size} MB.",
+    "action.attachFile": "Tache yon fichye",
+    "action.startRecording": "Anrejistre yon mesaj vokal",
+    "action.stopRecording": "Anile anrejistreman an",
+    "action.sendRecording": "Voye mesaj vokal la",
+    "action.emoji": "Mete yon emoji",
+    "attachment.dropHint": "Lage fichye yo isit la pou tache yo",
+    "modal.filePreview.openExternally": "Louvri nan yon nouvo onglè",
+    "modal.filePreview.pdfUnavailable": "Nou pa ka montre PDF sa a isit la. Ou toujou ka louvri l oswa telechaje l.",
+    "toast.error": "Erè",
+    "toast.couldNotOpenPrivateChat": "Pa t kapab louvri nouvo chat prive a",
+    "toast.couldNotResolveRecipient": "Pa t kapab jwenn destinatè a",
+    "toast.failedToCreatePrivateChat": "Echèk pou kreye chat prive a",
+    "toast.failedToCreateCall": "Echèk pou kreye apèl la",
+    "toast.failedToDeleteUser": "Echèk pou efase itilizatè a.",
+    "toast.userRemovedFromRoom": "{userId} retire nan sal la.",
+    "toast.failedToAddUser": "Echèk pou ajoute itilizatè a.",
+    "toast.userAddedToRoom": "{userName} ajoute nan sal la.",
+    "toast.loginFailedTitle": "Koneksyon echwe",
+    "toast.invalidCredentials": "Enfòmasyon koneksyon yo pa valab",
+    "toast.loginSuccessfulTitle": "Koneksyon reyisi",
+    "toast.welcomeBack": "Byenveni ankò!",
+    "toast.loginErrorTitle": "Erè koneksyon",
+    "toast.loginErrorMessage": "Yon erè rive pandan koneksyon an",
+    "validation.invalidEmail": "Fòma imèl la pa valab",
+    "validation.passwordTooShort": "Modpas la dwe gen omwen 6 karaktè",
+    "validation.wrongCredentials": "Ou antre move enfòmasyon. Eseye ankò",
+    "field.email": "Imèl",
+    "field.password": "Modpas",
+    "field.firstName": "Prenon",
+    "field.lastName": "Siyati",
+    "field.additionalDetails": "Detay anplis",
+    "action.logOut": "Dekonekte",
+    "action.message": "Mesaj",
+    "action.videoCall": "Apèl videyo",
+    "action.call": "Rele",
+    "action.audioCall": "Apèl odyo",
+    "action.copyUserId": "Kopye ID itilizatè a",
+    "action.deleteChat": "Efase chat la",
+    "action.moreOptions": "Plis opsyon",
+    "action.openChatList": "Louvri lis chat yo",
+    "action.showQr": "Montre kòd QR",
+    "action.addMembers": "Ajoute manm",
+    "action.no": "Non",
+    "action.yes": "Wi",
+    "action.deleteMyAccount": "Efase kont mwen",
+    "auth.loginButton": "Konekte nan Ethora Chat",
+    "auth.loginWithGoogle": "Konekte ak Google",
+    "auth.orDelimiter": "oswa",
+    "auth.noAccount": "Ou pa gen yon kont?",
+    "auth.signUp": "Enskri nan Ethora",
+    "auth.loginAnonymously": "Konekte anonim",
+    "auth.anonymousTextOnly": "Ou ka voye sèlman mesaj tèks",
+    "auth.anonymousLoginMessage": "Ou konekte anonim!",
+    "modal.profile.title": "Pwofil",
+    "action.editProfile": "Modifye pwofil",
+    "modal.profile.about": "Konsènan",
+    "modal.profile.noDescription": "Pa gen deskripsyon",
+    "modal.chatProfile.title": "Pwofil chat la",
+    "modal.chatProfile.description": "Deskripsyon",
+    "modal.chatProfile.chatType": "Tip chat",
+    "modal.chatProfile.memberCountSingular": "{count} manm",
+    "modal.chatProfile.memberCountPlural": "{count} manm",
+    "modal.chatProfile.membersShowMore": "Montre {count} anplis",
+    "modal.chatProfile.searchMembers": "Chèche manm",
+    "modal.deleteChat.title": "Efase chat sa a?",
+    "modal.addMembers.title": "Ajoute yon nouvo manm",
+    "modal.addMembers.userIdPlaceholder": "Antre ID itilizatè a",
+    "modal.leaveChat.title": "Kite chat la",
+    "modal.leaveChat.description": "Èske ou sèten ou vle kite chat sa a?",
+    "modal.report.chatTitle": "Rapòte chat la",
+    "modal.report.messageTitle": "Rapòte mesaj la",
+    "modal.report.otherDetails": "Tanpri antre detay anplis ki gen rapò ak rapò ou a.",
+    "report.category.spam": "Spam",
+    "report.category.violence": "Vyolans",
+    "report.category.childAbuse": "Abi sou timoun",
+    "report.category.pornography": "Pònografi",
+    "report.category.personalDetails": "Enfòmasyon pèsonèl",
+    "report.category.illegalDrugs": "Dwòg ilegal",
+    "report.category.other": "Lòt",
+    "notification.saved": "Anrejistre",
+    "settings.visibility.title": "Vizibilite",
+    "settings.visibility.profileLabel": "Vizibilite pwofil la",
+    "settings.visibility.open": "Louvri (default)",
+    "settings.visibility.openDescription": "Nenpòt moun ki swiv lyen pwofil ou a oswa kòd QR ou a ka wè pwofil ou.",
+    "settings.visibility.restricted": "Limite",
+    "settings.visibility.restrictedDescription": "Sèlman itilizatè ki gen pèmisyon ou oswa yon lyen sekirize tanporè ka wè pwofil ou.",
+    "settings.visibility.documentsLabel": "Vizibilite dokiman yo",
+    "settings.visibility.full": "Konplè (default)",
+    "settings.visibility.fullDescription": "Montre tout dokiman yo bay moun ki ka wè pwofil ou.",
+    "settings.visibility.individual": "Endividyèl",
+    "settings.visibility.individualDescription": "Ou dwe pataje chak dokiman endividyèlman anvan lòt moun ka wè yo.",
+    "settings.visibility.individualDescription": "Ou dwe pataje chak dokiman endividyèlman anvan lòt moun ka wè yo.",
+    "settings.manageData.title": "Jere done",
+    "settings.manageData.downloadLabel": "Telechaje done ou yo",
+    "settings.manageData.downloadDescription": "Done yo se pa ou. Peze bouton anba a pou telechaje yon kopi done ou yo",
+    "settings.manageData.deleteLabel": "Efase kont ou",
+    "settings.manageData.deleteDescription": "Sèvi ak sa a sèlman si ou vle efase kont ou ak done ou yo nèt nan sistèm nou an.",
+    "settings.manageData.deleteDisclosure": "Akoz nati imityab teknoloji rejis distribiye a, nœud rezo kominote a opere yo ka toujou kenbe tranzaksyon istorik kont ou an te jenere; sepandan, enfòmasyon idantifyab pèsonèl ou yo tankou non ou, imèl ou ak depo kle-valè ou yo ap retire. Tout byen dijital ou yo ap pèdi.",
+    "settings.manageData.deleteDescription": "Sèvi ak sa a sèlman si ou vle efase kont ou ak done ou yo nèt nan sistèm nou an.",
+    "settings.manageData.deleteDisclosure": "Akoz nati imityab teknoloji rejis distribiye a, nœud rezo kominote a opere yo ka toujou kenbe tranzaksyon istorik kont ou an te jenere; sepandan, enfòmasyon idantifyab pèsonèl ou yo tankou non ou, imèl ou ak depo kle-valè ou yo ap retire. Tout byen dijital ou yo ap pèdi.",
+    "settings.section.privacy": "Konfidansyalite ak done",
+    "settings.manageData.rowHint": "Telechaje yon kopi done ou yo, oswa efase kont ou",
+    "settings.visibility.rowHint": "Chwazi kiyès ki ka wè pwofil ou ak dokiman ou yo",
+    "settings.manageData.section.export": "Done ou yo",
+    "settings.manageData.deleteConfirmTitle": "Efase kont ou?",
+    "settings.manageData.deleteConfirmDescription": "Sa efase kont ou nèt epi dekonekte ou. Ou pa ka defè l.",
+    "settings.manageData.deleting": "N ap efase...",
+    "settings.manageData.deleteFailed": "Nou pa t kapab efase kont ou. Tanpri eseye ankò.",
+    "files.panel.title": "Fichye",
+    "files.filter.all": "Tout",
+    "files.filter.media": "Medya",
+    "files.filter.documents": "Dokiman",
+    "files.filter.audio": "Odyo",
+    "files.search.placeholder": "Chèche fichye...",
+    "files.empty.title": "Poko gen fichye",
+    "files.empty.subtitle": "Fichye ou telechaje yo ap parèt isit la.",
+    "files.noResults": "Pa gen fichye ki matche ak rechèch ou",
+    "files.noResults.moreAvailable": "Tout fichye yo poko chaje, chaje plis pou kontinye chèche",
+    "files.loading": "K ap chaje fichye...",
+    "files.error.title": "Pa t kapab chaje fichye yo",
+    "files.action.retry": "Eseye ankò",
+    "files.action.loadMore": "Chaje plis",
+    "files.action.preview": "Apèsi",
+    "files.action.download": "Telechaje",
+    "files.action.delete": "Efase",
+    "files.delete.confirmTitle": "Efase fichye sa a?",
+    "files.delete.confirmMessage": "Fichye sa a ap efase pou tout tan. Ou pa ka defèt sa.",
+    "files.delete.failed": "Echèk nan efase fichye a",
+    "modal.chatProfile.filesTitle": "Fichye",
+    "modal.chatProfile.filesShowAll": "Wè tout",
+    "modal.chatProfile.filesEmpty": "Poko gen fichye nan chat sa a",
+    "error.boundary.title": "Gen yon bagay ki pa mache",
+    "error.boundary.description": "Chat la jwenn yon pwoblèm inatandi. Mesaj ou yo an sekirite.",
+    "error.boundary.retry": "Eseye ankò",
+    "modal.profile.preferences": "Preferans",
+    "modal.profile.languageHint": "Lang yo itilize pou tèks yo ak tradiksyon mesaj yo",
+    "modal.profile.actions": "Aksyon",
+    "modal.chatProfile.aboutSection": "Konsènan",
+    "modal.chatProfile.membersSection": "Manm",
+    "modal.chatProfile.filesShowLess": "Montre mwens"
+  };
+  const zh = {
+    "tabs.chats": "聊天",
+    "tabs.files": "文件",
+    "files.empty": "暂无文件",
+    "search.placeholder": "搜索...",
+    "select.noOptions": "未找到选项",
+    "input.placeholder": "输入消息",
+    "room.created": "聊天室已创建",
+    "room.empty": "此聊天为空",
+    "room.empty.hint": "快来发送第一条消息吧。",
+    "media.unsupported": "不支持的媒体类型",
+    "common.or": "或",
+    "tabs.label": "侧边栏分区",
+    "call.disabled.roomType": "通话仅在一对一聊天中可用",
+    "call.disabled.noLivekit": "通话不可用：未配置视频服务",
+    "call.disabled.busy": "已有另一通话正在进行",
+    "date.today": "今天",
+    "date.yesterday": "昨天",
+    "message.deleted": "消息已删除",
+    "message.edited": "已编辑",
+    "message.notDelivered": "未发送",
+    "message.retry": "重试",
+    "message.retryAriaLabel": "重新发送这条消息",
+    "presence.online": "在线",
+    "presence.offline": "离线",
+    "presence.onlineCount": "{count} 人在线",
+    "header.userCountSingular": "{count} 位用户",
+    "header.userCountPlural": "{count} 位用户",
+    "header.action.back": "返回",
+    "header.action.startAudioCall": "开始语音通话",
+    "header.action.startVideoCall": "开始视频通话",
+    "header.logoAlt": "标志",
+    "header.menu": "菜单",
+    "header.chatMenu": "聊天菜单",
+    "call.outgoing": "拨出通话",
+    "call.incoming": "来电",
+    "call.noAnswer": "无人接听",
+    "call.missed": "未接来电",
+    "call.durationSec": "{n} 秒",
+    "call.durationMin": "{n} 分钟",
+    "call.durationMinSec": "{m} 分 {s} 秒",
+    "action.send": "发送",
+    "action.cancel": "取消",
+    "action.close": "关闭",
+    "action.back": "返回",
+    "action.save": "保存",
+    "action.delete": "删除",
+    "action.leave": "退出",
+    "action.create": "创建",
+    "action.submit": "提交",
+    "action.translate": "翻译",
+    "action.showOriginal": "显示原文",
+    "action.scrollToBottom": "滚动到底部",
+    "action.newChat": "新建聊天",
+    "action.addUsers": "添加用户",
+    "action.addUsersCount": "添加用户（已选 {count} 人）",
+    "action.addMoreUsers": "添加更多用户",
+    "action.add": "添加",
+    "action.backToCreation": "返回创建",
+    "action.report": "举报",
+    "status.connecting": "连接中…",
+    "status.noInternet": "无网络连接",
+    "translation.translating": "翻译中…",
+    "translation.failed": "无法翻译",
+    "translation.enableToggleLabel": "翻译我的消息",
+    "translation.enableToggleDisclaimer": "如果之前未启用翻译，只有从现在开始发送的新消息才会被翻译。",
+    "translation.modeLabel": "翻译显示方式",
+    "translation.modeAuto": "自动",
+    "modal.filePreview.unsupported": "无法打开上传的文档。系统不支持该文件格式,请上传兼容格式的文件。您仍可以下载此文件。",
+    "translation.modeManual": "手动",
+    "language.select": "选择语言",
+    "modal.newChat.title": "创建新聊天",
+    "modal.newChat.roomNamePlaceholder": "输入聊天室名称",
+    "modal.newChat.chatTypePlaceholder": "选择聊天类型",
+    "modal.newChat.typePublic": "公开",
+    "modal.newChat.typePrivate": "私密",
+    "modal.newChat.selectUsersTitle": "选择要添加到聊天的用户",
+    "modal.selectUsers.title": "选择用户（最多 20 个）",
+    "modal.selectUsers.searchPlaceholder": "搜索用户...",
+    "mention.pickerTitle": "提及某人",
+    "mention.showAll": "显示全部 {count} 个...",
+    "modal.selectUsers.empty": "未找到用户",
+    "thread.title": "话题",
+    "toast.roomCreationTitle": "创建聊天室",
+    "toast.roomCreating": "正在创建聊天室...",
+    "toast.success": "成功！",
+    "toast.roomCreatedSuccess": "聊天室创建成功！",
+    "toast.usersAddedSuccess": "用户添加成功！",
+    "settings.menu.title": "设置",
+    "modal.filePreview.title": "文件预览",
+    "modal.filePreview.previousPage": "上一页",
+    "modal.filePreview.nextPage": "下一页",
+    "modal.filePreview.previousImage": "上一张图片",
+    "modal.filePreview.nextImage": "下一张图片",
+    "modal.filePreview.position": "第 {current} 张，共 {total} 张",
+    "modal.filePreview.zoomIn": "放大",
+    "modal.filePreview.zoomOut": "缩小",
+    "modal.filePreview.resetZoom": "重置缩放",
+    "modal.filePreview.imageAlt": "共享的图片",
+    "attachment.pages": "{count} 页",
+    "attachment.remove": "移除附件",
+    "attachment.limit": "每条消息最多可添加 {count} 个文件。",
+    "attachment.tooLarge": "已跳过 {files}：超过 {size} MB。",
+    "action.attachFile": "添加附件",
+    "action.startRecording": "录制语音消息",
+    "action.stopRecording": "取消录音",
+    "action.sendRecording": "发送语音消息",
+    "action.emoji": "插入表情",
+    "attachment.dropHint": "将文件拖放到此处以添加附件",
+    "modal.filePreview.openExternally": "在新标签页中打开",
+    "modal.filePreview.pdfUnavailable": "此 PDF 无法在此显示，但仍可打开或下载。",
+    "toast.error": "错误",
+    "toast.couldNotOpenPrivateChat": "无法打开新的私聊",
+    "toast.couldNotResolveRecipient": "无法识别收件人",
+    "toast.failedToCreatePrivateChat": "创建私聊失败",
+    "toast.failedToCreateCall": "创建通话失败",
+    "toast.failedToDeleteUser": "删除用户失败。",
+    "toast.userRemovedFromRoom": "{userId} 已被移出聊天室。",
+    "toast.failedToAddUser": "添加用户失败。",
+    "toast.userAddedToRoom": "{userName} 已被添加到聊天室。",
+    "toast.loginFailedTitle": "登录失败",
+    "toast.invalidCredentials": "凭据无效",
+    "toast.loginSuccessfulTitle": "登录成功",
+    "toast.welcomeBack": "欢迎回来！",
+    "toast.loginErrorTitle": "登录错误",
+    "toast.loginErrorMessage": "登录过程中发生错误",
+    "validation.invalidEmail": "邮箱格式无效",
+    "validation.passwordTooShort": "密码至少需要 6 个字符",
+    "validation.wrongCredentials": "您输入的信息有误。请重试",
+    "field.email": "邮箱",
+    "field.password": "密码",
+    "field.firstName": "名字",
+    "field.lastName": "姓氏",
+    "field.additionalDetails": "补充信息",
+    "action.logOut": "退出登录",
+    "action.message": "发消息",
+    "action.videoCall": "视频通话",
+    "action.call": "通话",
+    "action.audioCall": "语音通话",
+    "action.copyUserId": "复制用户 ID",
+    "action.deleteChat": "删除聊天",
+    "action.moreOptions": "更多选项",
+    "action.openChatList": "打开聊天列表",
+    "action.showQr": "显示二维码",
+    "action.addMembers": "添加成员",
+    "action.no": "否",
+    "action.yes": "是",
+    "action.deleteMyAccount": "删除我的账户",
+    "auth.loginButton": "登录 Ethora Chat",
+    "auth.loginWithGoogle": "使用 Google 登录",
+    "auth.orDelimiter": "或",
+    "auth.noAccount": "还没有账户？",
+    "auth.signUp": "注册 Ethora",
+    "auth.loginAnonymously": "匿名登录",
+    "auth.anonymousTextOnly": "仅能发送文字消息",
+    "auth.anonymousLoginMessage": "您已匿名登录！",
+    "modal.profile.title": "个人资料",
+    "action.editProfile": "编辑资料",
+    "modal.profile.about": "简介",
+    "modal.profile.noDescription": "暂无简介",
+    "modal.chatProfile.title": "聊天资料",
+    "modal.chatProfile.description": "描述",
+    "modal.chatProfile.chatType": "聊天类型",
+    "modal.chatProfile.memberCountSingular": "{count} 位成员",
+    "modal.chatProfile.memberCountPlural": "{count} 位成员",
+    "modal.chatProfile.membersShowMore": "显示另外 {count} 位",
+    "modal.chatProfile.searchMembers": "搜索成员",
+    "modal.deleteChat.title": "删除此聊天？",
+    "modal.addMembers.title": "添加新成员",
+    "modal.addMembers.userIdPlaceholder": "输入用户 ID",
+    "modal.leaveChat.title": "退出聊天",
+    "modal.leaveChat.description": "确定要退出此聊天吗？",
+    "modal.report.chatTitle": "举报聊天",
+    "modal.report.messageTitle": "举报消息",
+    "modal.report.otherDetails": "请填写与您举报相关的补充信息。",
+    "report.category.spam": "垃圾信息",
+    "report.category.violence": "暴力",
+    "report.category.childAbuse": "虐待儿童",
+    "report.category.pornography": "色情内容",
+    "report.category.personalDetails": "个人信息",
+    "report.category.illegalDrugs": "违禁药物",
+    "report.category.other": "其他",
+    "notification.saved": "已保存",
+    "settings.visibility.title": "可见性",
+    "settings.visibility.profileLabel": "资料可见性",
+    "settings.visibility.open": "公开（默认）",
+    "settings.visibility.openDescription": "任何打开您资料链接或扫描您二维码的人都可以查看您的资料。",
+    "settings.visibility.restricted": "受限",
+    "settings.visibility.restrictedDescription": "只有获得您许可或持有临时安全链接的用户才能查看您的资料。",
+    "settings.visibility.documentsLabel": "文档可见性",
+    "settings.visibility.full": "全部（默认）",
+    "settings.visibility.fullDescription": "向所有能查看您资料的人显示全部文档。",
+    "settings.visibility.individual": "单独",
+    "settings.visibility.individualDescription": "您需要单独分享每个文档，其他人才能查看。",
+    "settings.visibility.individualDescription": "您需要单独分享每个文档，其他人才能查看。",
+    "settings.manageData.title": "管理数据",
+    "settings.manageData.downloadLabel": "下载您的数据",
+    "settings.manageData.downloadDescription": "您的数据归您所有。点击下方按钮下载您的数据副本",
+    "settings.manageData.deleteLabel": "删除您的账户",
+    "settings.manageData.deleteDescription": "仅当您希望从我们的系统中永久删除您的账户及数据时才使用此功能。",
+    "settings.manageData.deleteDisclosure": "由于分布式账本技术的不可篡改特性，社区运营的网络节点可能仍会保留您账户生成的历史交易记录；但您的个人身份信息，如姓名、电子邮箱、键值存储等将被移除。您的所有数字资产都将丢失。",
+    "settings.manageData.deleteDescription": "仅当您希望从我们的系统中永久删除您的账户及数据时才使用此功能。",
+    "settings.manageData.deleteDisclosure": "由于分布式账本技术的不可篡改特性，社区运营的网络节点可能仍会保留您账户生成的历史交易记录；但您的个人身份信息，如姓名、电子邮箱、键值存储等将被移除。您的所有数字资产都将丢失。",
+    "settings.section.privacy": "隐私与数据",
+    "settings.manageData.rowHint": "下载数据副本，或删除您的账户",
+    "settings.visibility.rowHint": "选择谁可以查看您的资料和文档",
+    "settings.manageData.section.export": "您的数据",
+    "settings.manageData.deleteConfirmTitle": "删除您的账户？",
+    "settings.manageData.deleteConfirmDescription": "此操作将永久删除您的账户并退出登录，且无法撤销。",
+    "settings.manageData.deleting": "正在删除...",
+    "settings.manageData.deleteFailed": "无法删除您的账户，请重试。",
+    "files.panel.title": "文件",
+    "files.filter.all": "全部",
+    "files.filter.media": "媒体",
+    "files.filter.documents": "文档",
+    "files.filter.audio": "音频",
+    "files.search.placeholder": "搜索文件...",
+    "files.empty.title": "暂无文件",
+    "files.empty.subtitle": "您上传的文件将显示在这里。",
+    "files.noResults": "没有匹配的文件",
+    "files.noResults.moreAvailable": "尚未加载全部文件，加载更多以继续搜索",
+    "files.loading": "正在加载文件...",
+    "files.error.title": "无法加载文件",
+    "files.action.retry": "重试",
+    "files.action.loadMore": "加载更多",
+    "files.action.preview": "预览",
+    "files.action.download": "下载",
+    "files.action.delete": "删除",
+    "files.delete.confirmTitle": "删除此文件？",
+    "files.delete.confirmMessage": "此文件将被永久删除，且无法恢复。",
+    "files.delete.failed": "删除文件失败",
+    "modal.chatProfile.filesTitle": "文件",
+    "modal.chatProfile.filesShowAll": "查看全部",
+    "modal.chatProfile.filesEmpty": "此聊天中还没有文件",
+    "error.boundary.title": "出了点问题",
+    "error.boundary.description": "聊天遇到了意外问题。您的消息是安全的。",
+    "error.boundary.retry": "重试",
+    "modal.profile.preferences": "偏好设置",
+    "modal.profile.languageHint": "用于界面文字和消息翻译的语言",
+    "modal.profile.actions": "操作",
+    "modal.chatProfile.aboutSection": "关于",
+    "modal.chatProfile.membersSection": "成员",
+    "modal.chatProfile.filesShowLess": "收起"
+  };
+  const BUILTIN_STRINGS = {
+    en: en$1,
+    fr: fr$1,
+    es: es$1,
+    pt: pt$1,
+    ht: ht$1,
+    zh
+  };
+  const DEFAULT_UI_LANGUAGE = "en";
+  const toBaseLanguage$1 = (locale) => String(locale || DEFAULT_UI_LANGUAGE).split("-")[0].trim().toLowerCase() || DEFAULT_UI_LANGUAGE;
+  const resolveStringTable = (locale, overrides) => {
+    const base = toBaseLanguage$1(locale);
+    const table2 = BUILTIN_STRINGS[base] || BUILTIN_STRINGS[DEFAULT_UI_LANGUAGE];
+    return {
+      ...BUILTIN_STRINGS[DEFAULT_UI_LANGUAGE],
+      ...table2,
+      ...overrides || {}
+    };
+  };
+  const interpolate = (template, vars) => {
+    if (!vars) return template;
+    return template.replace(
+      /\{(\w+)\}/g,
+      (_2, k2) => k2 in vars ? String(vars[k2]) : `{${k2}}`
+    );
+  };
+  const useUiLocale = () => {
+    const { config, langSource } = useChatSettingState();
+    return config?.i18n?.locale || langSource || void 0;
+  };
+  const useT = () => {
+    const { config, langSource } = useChatSettingState();
+    const locale = config?.i18n?.locale || langSource;
+    const overrides = config?.i18n?.strings;
+    const table2 = reactExports.useMemo(
+      () => resolveStringTable(locale, overrides),
+      [locale, overrides]
+    );
+    return reactExports.useCallback(
+      (key, vars) => interpolate(table2[key] ?? key, vars),
+      [table2]
+    );
+  };
+  const DEFAULT_ICON_COLOR = "#0052CD";
+  const resolveIconColor = (config) => config?.colors?.icons || config?.colors?.primary || DEFAULT_ICON_COLOR;
+  const DEFAULT_ICON_BG_COLOR = "#F0F3F7";
+  const resolveIconBgColor = (config) => config?.colors?.iconsBg || DEFAULT_ICON_BG_COLOR;
+  const ICON_COLOR_VAR = "--ethora-icon-color";
+  const OWN_MSG_BG_VAR = "--ethora-own-message-bg";
+  const OTHER_MSG_BG_VAR = "--ethora-other-message-bg";
+  const INPUT_BG_VAR = "--ethora-input-bg";
+  const CHAT_BG_VAR = "--ethora-chat-bg";
+  const CHAT_BG_IMAGE_VAR = "--ethora-chat-bg-image";
+  const setVar = (name2, value) => {
+    if (value) {
+      document.documentElement.style.setProperty(name2, value);
+    } else {
+      document.documentElement.style.removeProperty(name2);
+    }
+  };
+  const ICON_TINT_STYLE_ID = "ethora-icon-tint";
+  const applyIconTint = (color2) => {
+    let style = document.getElementById(
+      ICON_TINT_STYLE_ID
+    );
+    if (!color2) {
+      style?.remove();
+      return;
+    }
+    if (!style) {
+      style = document.createElement("style");
+      style.id = ICON_TINT_STYLE_ID;
+      document.head.appendChild(style);
+    }
+    const css = `[fill^="var(${ICON_COLOR_VAR}"]{fill:${color2} !important;}[stroke^="var(${ICON_COLOR_VAR}"]{stroke:${color2} !important;}`;
+    if (style.textContent !== css) style.textContent = css;
+  };
+  const applyThemeColors = (config) => {
+    if (typeof document === "undefined") return;
+    const iconColor = config?.colors?.icons || config?.colors?.primary;
+    setVar(ICON_COLOR_VAR, iconColor);
+    applyIconTint(iconColor);
+    setVar(OWN_MSG_BG_VAR, config?.colors?.ownMessageBackground);
+    setVar(OTHER_MSG_BG_VAR, config?.colors?.otherMessageBackground);
+    setVar(INPUT_BG_VAR, config?.colors?.inputBackground);
+    setVar(CHAT_BG_VAR, config?.backgroundChat?.color);
+    const image2 = config?.backgroundChat?.image;
+    setVar(
+      CHAT_BG_IMAGE_VAR,
+      typeof image2 === "string" && image2 ? `url("${image2}")` : void 0
+    );
+  };
+  const ChatErrorScreenTestIds = {
+    screen: "chat_error_screen",
+    retryButton: "chat_error_retry_button"
+  };
+  const ChatErrorScreen = ({
+    onRetry,
+    style
+  }) => {
+    const t2 = useT();
+    const { config } = useChatSettingState();
+    const accent = resolveIconColor(config);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        role: "alert",
+        "data-testid": ChatErrorScreenTestIds.screen,
+        style: {
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          gap: "12px",
+          padding: "24px",
+          boxSizing: "border-box",
+          color: "var(--ethora-color-text, #141414)",
+          fontFamily: "var(--ethora-font-family, Inter, Arial, sans-serif)",
+          fontSize: "var(--ethora-font-size, 16px)",
+          ...style
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: "var(--ethora-font-size-lg, 18px)",
+                fontWeight: 600
+              },
+              children: t2("error.boundary.title")
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: "var(--ethora-font-size-sm, 14px)",
+                color: "var(--ethora-color-text-secondary, #5A5F66)",
+                maxWidth: "360px"
+              },
+              children: t2("error.boundary.description")
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: onRetry,
+              "data-testid": ChatErrorScreenTestIds.retryButton,
+              style: {
+                marginTop: "4px",
+                border: `1px solid ${accent}`,
+                borderRadius: "16px",
+                background: "transparent",
+                color: accent,
+                cursor: "pointer",
+                padding: "8px 20px",
+                fontFamily: "inherit",
+                fontSize: "var(--ethora-font-size-sm, 14px)"
+              },
+              children: t2("error.boundary.retry")
+            }
+          )
+        ]
+      }
+    );
+  };
+  const EnsureStore = ({ children: children2 }) => {
+    const existing = React.useContext(ReactReduxContext);
+    if (existing) return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: children2 });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Provider_default, { store, children: children2 });
+  };
+  class ChatErrorBoundary extends React.Component {
+    state = {
+      error: null,
+      componentStack: void 0,
+      resetCount: 0
+    };
+    static getDerivedStateFromError(error2) {
+      return { error: error2 };
+    }
+    componentDidCatch(error2, errorInfo) {
+      const scope = this.props.scope ?? "chat";
+      const componentStack = errorInfo?.componentStack ?? void 0;
+      this.setState({ componentStack });
+      ethoraLogger.criticalError(
+        `[ethora-chat] uncaught render error in "${scope}":`,
+        error2,
+        componentStack
+      );
+      const onError = this.props.config?.eventHandlers?.onError;
+      if (!onError) return;
+      try {
+        onError({ error: error2, componentStack, scope });
+      } catch (handlerError) {
+        ethoraLogger.criticalError(
+          "[ethora-chat] config.eventHandlers.onError threw:",
+          handlerError
+        );
+      }
+    }
+    reset = () => {
+      this.setState((prev2) => ({
+        error: null,
+        componentStack: void 0,
+        resetCount: prev2.resetCount + 1
+      }));
+    };
+    renderFallback(error2) {
+      const { config, silent, scope } = this.props;
+      const hostFallback = config?.fallbackScreens?.error;
+      if (typeof hostFallback === "function") {
+        try {
+          return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: hostFallback({
+            error: error2,
+            componentStack: this.state.componentStack,
+            scope: scope ?? "chat",
+            reset: this.reset
+          }) });
+        } catch (renderError) {
+          ethoraLogger.criticalError(
+            "[ethora-chat] config.fallbackScreens.error renderer threw:",
+            renderError
+          );
+        }
+      } else if (hostFallback != null && !silent) {
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(FallbackScreen, { content: hostFallback });
+      }
+      if (silent) return null;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(EnsureStore, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChatErrorScreen, { onRetry: this.reset }) });
+    }
+    render() {
+      const { error: error2, resetCount } = this.state;
+      if (error2) return this.renderFallback(error2);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: this.props.children }, resetCount);
+    }
+  }
   const VideoCallOverlay$1 = React.lazy(
     () => Promise.resolve().then(() => videoCallOverlay).then((module) => ({
       default: module.VideoCallOverlay
@@ -55164,7 +57255,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     return null;
   };
   const XmppProvider = ({
-    children,
+    children: children2,
     config,
     pushNotifications
   }) => {
@@ -55517,8 +57608,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(MessageNotificationProvider, { config, children: [
-            children,
-            /* @__PURE__ */ jsxRuntimeExports.jsx(React.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VideoCallOverlay$1, {}) })
+            children2,
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ChatErrorBoundary, { config, scope: "call-overlay", silent: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(React.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VideoCallOverlay$1, {}) }) })
           ] })
         ] })
       }
@@ -55531,33 +57622,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
     return context;
   };
-  const useStoreConsole = () => {
-    const state = store.getState();
-    return state;
-  };
-  const initializeStoreConsole = () => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    try {
-      const state = store.getState();
-      const config = state.chatSettingStore?.config;
-      if (config?.useStoreConsoleEnabled === true) {
-        window.useStoreConsole = useStoreConsole;
-      } else {
-        if (window.useStoreConsole) {
-          delete window.useStoreConsole;
-        }
-      }
-    } catch (error2) {
-    }
-  };
-  if (typeof window !== "undefined") {
-    initializeStoreConsole();
-    store.subscribe(() => {
-      initializeStoreConsole();
-    });
-  }
   const MOTION_FAST = "150ms";
   const MOTION_BASE = "220ms";
   const MOTION_EASE = "cubic-bezier(.2,.8,.2,1)";
@@ -55589,6 +57653,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   from { background-position: -200% 0; }
   to { background-position: 200% 0; }
 `;
+  const slideInRight = Et$1`
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
   const reducedMotion = ft$1`
   @media (prefers-reduced-motion: reduce) {
     animation: none !important;
@@ -55605,6 +57679,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
 `;
   const scaleInAnimation = ft$1`
   animation: ${scaleIn} ${MOTION_FAST} ${MOTION_EASE} both;
+  ${reducedMotion}
+`;
+  const slideInRightAnimation = ft$1`
+  animation: ${slideInRight} ${MOTION_BASE} ${MOTION_EASE} both;
   ${reducedMotion}
 `;
   const shimmerBackground = ft$1`
@@ -55733,7 +57811,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const MessageText = gt$1.p`
   margin: 0;
 `;
-  const UserName$1 = gt$1.span`
+  const UserName = gt$1.span`
   font-weight: bold;
 `;
   gt$1.div`
@@ -56291,1461 +58369,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       /* @__PURE__ */ jsxRuntimeExports.jsx(Line$1, {})
     ] });
   };
-  const useChatSettingState = () => {
-    const user = useSelector((state) => state.chatSettingStore.user);
-    const activeFile = useSelector(
-      (state) => state.chatSettingStore.activeFile
-    );
-    const activeModal = useSelector(
-      (state) => state.chatSettingStore.activeModal
-    );
-    const config = useSelector(
-      (state) => state.chatSettingStore.config
-    );
-    const deleteModal = useSelector(
-      (state) => state.chatSettingStore.deleteModal
-    );
-    const selectedUser = useSelector(
-      (state) => state.chatSettingStore.selectedUser
-    );
-    const langSource = useSelector(
-      (state) => state.chatSettingStore.langSource
-    );
-    const translateSendEnabled = useSelector(
-      (state) => state.chatSettingStore.translateSendEnabled
-    );
-    const translateMode = useSelector(
-      (state) => state.chatSettingStore.translateMode
-    );
-    return {
-      user,
-      activeFile,
-      activeModal,
-      config,
-      deleteModal,
-      selectedUser,
-      langSource,
-      translateSendEnabled,
-      translateMode
-    };
-  };
-  const en$1 = {
-    "tabs.chats": "Chats",
-    "tabs.files": "Files",
-    "files.empty": "No files yet",
-    "search.placeholder": "Search...",
-    "select.noOptions": "No options found",
-    "input.placeholder": "Type message",
-    "room.created": "Room created",
-    "room.empty": "This chat is empty",
-    "room.empty.hint": "Be the first one to start it.",
-    "media.unsupported": "Unsupported media type",
-    "common.or": "Or",
-    "tabs.label": "Sidebar sections",
-    "call.disabled.roomType": "Calls are available only in 1:1 chats",
-    "call.disabled.noLivekit": "Calls are unavailable: video service is not configured",
-    "call.disabled.busy": "Another call is already in progress",
-    "date.today": "Today",
-    "date.yesterday": "Yesterday",
-    "message.deleted": "Message deleted",
-    "message.edited": "edited",
-    "presence.online": "online",
-    "presence.offline": "offline",
-    "presence.onlineCount": "{count} online",
-    "header.userCountSingular": "{count} user",
-    "header.userCountPlural": "{count} users",
-    "header.action.back": "Back",
-    "header.action.startAudioCall": "Start audio call",
-    "header.action.startVideoCall": "Start video call",
-    "call.outgoing": "Outgoing call",
-    "call.incoming": "Incoming call",
-    "call.noAnswer": "No answer",
-    "call.missed": "Missed call",
-    "call.durationSec": "{n} sec",
-    "call.durationMin": "{n} min",
-    "call.durationMinSec": "{m} min {s} sec",
-    "action.send": "Send",
-    "action.cancel": "Cancel",
-    "action.close": "Close",
-    "action.back": "Go back",
-    "action.save": "Save",
-    "action.delete": "Delete",
-    "action.leave": "Leave",
-    "action.create": "Create",
-    "action.submit": "Submit",
-    "action.translate": "Translate",
-    "action.showOriginal": "Show original",
-    "action.scrollToBottom": "Scroll to bottom",
-    "action.newChat": "New chat",
-    "action.addUsers": "Add users",
-    "action.addUsersCount": "Add users ({count} selected)",
-    "action.addMoreUsers": "Add more Users",
-    "action.add": "Add",
-    "action.backToCreation": "Back to creation",
-    "action.report": "Report",
-    "status.connecting": "Connecting…",
-    "status.noInternet": "No internet connection",
-    "translation.translating": "Translating…",
-    "translation.failed": "Could not translate",
-    "translation.enableToggleLabel": "Translate my messages",
-    "translation.enableToggleDisclaimer": "If translations were not enabled, only new messages sent from now on will be translated.",
-    "translation.modeLabel": "Translation display",
-    "translation.modeAuto": "Auto",
-    "translation.modeManual": "Manual",
-    "language.select": "Select language",
-    "modal.newChat.title": "Create New Chat",
-    "modal.newChat.roomNamePlaceholder": "Enter Room Name",
-    "modal.newChat.chatTypePlaceholder": "Select chat type",
-    "modal.newChat.typePublic": "Public",
-    "modal.newChat.typePrivate": "Private",
-    "modal.newChat.selectUsersTitle": "Select users to add to Chat",
-    "modal.selectUsers.title": "Select Users (max 20)",
-    "modal.selectUsers.searchPlaceholder": "Search users...",
-    "modal.selectUsers.empty": "No users found",
-    "thread.title": "Thread",
-    "toast.roomCreationTitle": "Room creation",
-    "toast.roomCreating": "Room is being created...",
-    "toast.success": "Success!",
-    "toast.roomCreatedSuccess": "Room created successfully!",
-    "modal.filePreview.unsupported": "Unable to open the uploaded document. The file format is not supported by the system. Please upload a file in a compatible format. You still can download this file.",
-    "toast.usersAddedSuccess": "Users added successfully!",
-    "settings.menu.title": "Settings",
-    "modal.filePreview.title": "File preview",
-    "modal.filePreview.previousPage": "Previous page",
-    "modal.filePreview.nextPage": "Next page",
-    "attachment.pages": "{count} p.",
-    "attachment.remove": "Remove attachment",
-    "attachment.limit": "You can attach up to {count} files per message.",
-    "attachment.tooLarge": "Skipped {files}: over {size} MB.",
-    "action.attachFile": "Attach file",
-    "action.startRecording": "Record voice message",
-    "action.stopRecording": "Cancel recording",
-    "action.sendRecording": "Send voice message",
-    "modal.filePreview.openExternally": "Open in a new tab",
-    "modal.filePreview.pdfUnavailable": "This PDF cannot be displayed here. You can still open or download it.",
-    "toast.error": "Error",
-    "toast.couldNotOpenPrivateChat": "Could not open the new private chat",
-    "toast.couldNotResolveRecipient": "Could not resolve recipient",
-    "toast.failedToCreatePrivateChat": "Failed to create private chat",
-    "toast.failedToCreateCall": "Failed to create call",
-    "toast.failedToDeleteUser": "Failed to delete user.",
-    "toast.userRemovedFromRoom": "{userId} has been removed from the room.",
-    "toast.failedToAddUser": "Failed to add user.",
-    "toast.userAddedToRoom": "{userName} has been added to the room.",
-    "toast.loginFailedTitle": "Login Failed",
-    "toast.invalidCredentials": "Invalid credentials",
-    "toast.loginSuccessfulTitle": "Login Successful",
-    "toast.welcomeBack": "Welcome back!",
-    "toast.loginErrorTitle": "Login Error",
-    "toast.loginErrorMessage": "An error occurred during login",
-    "validation.invalidEmail": "Invalid email format",
-    "validation.passwordTooShort": "Password must be at least 6 characters long",
-    "validation.wrongCredentials": "You entered wrong data. Try again",
-    "field.email": "Email",
-    "field.password": "Password",
-    "field.firstName": "First Name",
-    "field.lastName": "Last Name",
-    "field.additionalDetails": "Additional Details",
-    "field.referralCode": "Your referral code",
-    "action.logOut": "Log Out",
-    "action.message": "Message",
-    "action.videoCall": "Video call",
-    "action.call": "Call",
-    "action.audioCall": "Audio call",
-    "action.copyUserId": "Copy User Id",
-    "action.deleteChat": "Delete chat",
-    "action.appointAsAdmin": "Appoint as an admin",
-    "action.moreOptions": "More Options",
-    "action.showQr": "Show QR code",
-    "action.addMembers": "Add members",
-    "action.no": "No",
-    "action.yes": "Yes",
-    "action.addNewShare": "Add New Share",
-    "action.deleteMyAccount": "Delete My Account",
-    "auth.loginButton": "Login to Ethora Chat",
-    "auth.loginWithGoogle": "Login with Google",
-    "auth.orDelimiter": "or",
-    "auth.noAccount": "Don't have an account?",
-    "auth.signUp": "Sign Up to Ethora",
-    "auth.loginAnonymously": "Login anonymously",
-    "auth.anonymousTextOnly": "Only could send text messages",
-    "auth.anonymousLoginMessage": "You are logged in anonymously!",
-    "modal.profile.title": "Profile",
-    "action.editProfile": "Edit profile",
-    "modal.profile.about": "About",
-    "modal.profile.noDescription": "No description",
-    "modal.chatProfile.title": "Chat Profile",
-    "modal.chatProfile.description": "Description",
-    "modal.chatProfile.chatType": "Chat type",
-    "modal.chatProfile.memberCountSingular": "{count} member",
-    "modal.chatProfile.memberCountPlural": "{count} members",
-    "modal.chatProfile.membersShowMore": "Show {count} more",
-    "modal.chatProfile.searchMembers": "Search members",
-    "modal.deleteChat.title": "Delete this chat ?",
-    "modal.addMembers.title": "Add New Member",
-    "modal.addMembers.userIdPlaceholder": "Enter User Id",
-    "modal.leaveChat.title": "Leave Chat",
-    "modal.leaveChat.description": "Are you sure you want to leave this chat?",
-    "modal.report.chatTitle": "Report Chat",
-    "modal.report.messageTitle": "Report Message",
-    "modal.report.otherDetails": "Please enter additional details relevant to your report.",
-    "report.category.spam": "Spam",
-    "report.category.violence": "Violence",
-    "report.category.childAbuse": "Child Abuse",
-    "report.category.pornography": "Pornography",
-    "report.category.personalDetails": "Personal Details",
-    "report.category.illegalDrugs": "Illegal Drugs",
-    "report.category.other": "Other",
-    "notification.saved": "Saved",
-    "sort.name": "Name",
-    "sort.surname": "Surname",
-    "settings.shares.listOfShares": "List of shares",
-    "settings.documentShares.title": "Document Shares",
-    "settings.documentShares.currentShares": "Current Document Shares",
-    "settings.documentShares.description": "Listed below are your currently active document sharing links. You can share or delete them.",
-    "settings.documentShares.emptyState": 'There are no shares yet, or you can add them by clicking the "Add New Share" button',
-    "settings.profileShares.title": "Profile Shares",
-    "settings.profileShares.currentShares": "Current Profile Shares",
-    "settings.profileShares.description": "Listed below are your currently active profile sharing links. You can share or delete them.",
-    "settings.blockedUsers.title": "Blocked Users",
-    "settings.blockedUsers.label": "Blocked Users",
-    "settings.blockedUsers.description": "Users you have blocked cannot send you messages or see when you are online.",
-    "settings.blockedUsers.emptyState": "You haven't blocked anyone yet.",
-    "settings.visibility.title": "Visibility",
-    "settings.visibility.profileLabel": "Profile Visibility",
-    "settings.visibility.open": "Open (default)",
-    "settings.visibility.openDescription": "Your profile can be viewed by anyone who follows your profile link or QR code.",
-    "settings.visibility.restricted": "Restricted",
-    "settings.visibility.restrictedDescription": "Only users with your permission or temporary secure link can see your profile.",
-    "settings.visibility.documentsLabel": "Documents Visibility",
-    "settings.visibility.full": "Full (default)",
-    "settings.visibility.fullDescription": "Show all Documents to those who can see your profile.",
-    "settings.visibility.individual": "Individual",
-    "settings.visibility.individualDescription": "You need to share each document individually before others can see them.",
-    "settings.referrals.title": "Referrals",
-    "settings.referrals.giftPart1": "Gift friends 25",
-    "settings.referrals.giftPart2": "and receive 25",
-    "settings.referrals.giftPart3": "Send friends invite with your personal invitation code.",
-    "settings.referrals.yourCode": "Your invitation code",
-    "settings.referrals.enterReferralCode": "Or enter your referral code to earn coins",
-    "settings.manageData.title": "Manage Data",
-    "settings.manageData.downloadLabel": "Download your data",
-    "settings.manageData.downloadDescription": "You own your data. Tap the button below to download a copy of your data",
-    "settings.manageData.deleteLabel": "Delete your account",
-    "settings.manageData.deleteDescription": "Use this only if you want to permanently delete your account & data from our system.",
-    "settings.manageData.deleteDisclosure": "Due to the immutable nature of distributed ledger technology, network nodes operated by the community may still retain historical transactions generated by your account, however your personally identifiable information such as your name, e-mail, your key-value storage etc will be removed. Any of your digital assets will be lost.",
-    "files.panel.title": "Files",
-    "files.filter.all": "All",
-    "files.filter.media": "Media",
-    "files.filter.documents": "Documents",
-    "files.filter.audio": "Audio",
-    "files.search.placeholder": "Search files...",
-    "files.empty.title": "No files yet",
-    "files.empty.subtitle": "Files you upload will show up here.",
-    "files.noResults": "No files match your search",
-    "files.noResults.moreAvailable": "Not every file is loaded yet, load more to keep searching",
-    "files.loading": "Loading files...",
-    "files.error.title": "Could not load files",
-    "files.action.retry": "Retry",
-    "files.action.loadMore": "Load more",
-    "files.action.preview": "Preview",
-    "files.action.download": "Download",
-    "files.action.delete": "Delete",
-    "files.delete.confirmTitle": "Delete file?",
-    "files.delete.confirmMessage": "This file will be permanently deleted. This cannot be undone.",
-    "files.delete.failed": "Failed to delete file",
-    "modal.chatProfile.filesTitle": "Files",
-    "modal.chatProfile.filesShowAll": "Show all",
-    "modal.chatProfile.filesEmpty": "No files in this chat yet"
-  };
-  const fr$1 = {
-    "tabs.chats": "Discussions",
-    "tabs.files": "Fichiers",
-    "files.empty": "Aucun fichier pour le moment",
-    "search.placeholder": "Rechercher...",
-    "select.noOptions": "Aucune option trouvee",
-    "input.placeholder": "Écrire un message",
-    "room.created": "Salon créé",
-    "room.empty": "Ce salon est vide",
-    "room.empty.hint": "Soyez le premier à écrire.",
-    "media.unsupported": "Type de média non pris en charge",
-    "common.or": "Ou",
-    "tabs.label": "Sections de la barre latérale",
-    "call.disabled.roomType": "Les appels ne sont disponibles que dans les discussions 1:1",
-    "call.disabled.noLivekit": "Appels indisponibles : service vidéo non configuré",
-    "call.disabled.busy": "Un autre appel est déjà en cours",
-    "date.today": "Aujourd'hui",
-    "date.yesterday": "Hier",
-    "message.deleted": "Message supprimé",
-    "message.edited": "modifié",
-    "presence.online": "en ligne",
-    "presence.offline": "hors ligne",
-    "presence.onlineCount": "{count} en ligne",
-    "header.userCountSingular": "{count} utilisateur",
-    "header.userCountPlural": "{count} utilisateurs",
-    "header.action.back": "Retour",
-    "header.action.startAudioCall": "Démarrer un appel audio",
-    "header.action.startVideoCall": "Démarrer un appel vidéo",
-    "call.outgoing": "Appel sortant",
-    "call.incoming": "Appel entrant",
-    "call.noAnswer": "Pas de réponse",
-    "call.missed": "Appel manqué",
-    "call.durationSec": "{n} s",
-    "call.durationMin": "{n} min",
-    "call.durationMinSec": "{m} min {s} s",
-    "action.send": "Envoyer",
-    "action.cancel": "Annuler",
-    "action.close": "Fermer",
-    "action.back": "Retour",
-    "action.save": "Enregistrer",
-    "action.delete": "Supprimer",
-    "action.leave": "Quitter",
-    "action.create": "Créer",
-    "action.submit": "Soumettre",
-    "action.translate": "Traduire",
-    "action.showOriginal": "Afficher l'original",
-    "action.scrollToBottom": "Défiler vers le bas",
-    "action.newChat": "Nouvelle discussion",
-    "action.addUsers": "Ajouter des utilisateurs",
-    "action.addUsersCount": "Ajouter des utilisateurs ({count} selectionnes)",
-    "action.addMoreUsers": "Ajouter d'autres utilisateurs",
-    "action.add": "Ajouter",
-    "action.backToCreation": "Retour à la création",
-    "action.report": "Signaler",
-    "status.connecting": "Connexion…",
-    "status.noInternet": "Pas de connexion internet",
-    "translation.translating": "Traduction…",
-    "translation.failed": "Traduction impossible",
-    "translation.enableToggleLabel": "Traduire mes messages",
-    "translation.enableToggleDisclaimer": "Si les traductions n'étaient pas activées, seuls les nouveaux messages envoyés à partir de maintenant seront traduits.",
-    "translation.modeLabel": "Affichage des traductions",
-    "translation.modeAuto": "Automatique",
-    "translation.modeManual": "Manuel",
-    "language.select": "Choisir la langue",
-    "modal.newChat.title": "Créer une discussion",
-    "modal.newChat.roomNamePlaceholder": "Nom du salon",
-    "modal.newChat.chatTypePlaceholder": "Choisir le type de discussion",
-    "modal.newChat.typePublic": "Public",
-    "modal.newChat.typePrivate": "Privé",
-    "modal.newChat.selectUsersTitle": "Sélectionner des utilisateurs à ajouter",
-    "modal.selectUsers.title": "Sélectionner des utilisateurs (max 20)",
-    "modal.selectUsers.searchPlaceholder": "Rechercher des utilisateurs...",
-    "modal.selectUsers.empty": "Aucun utilisateur trouve",
-    "thread.title": "Fil de discussion",
-    "toast.roomCreationTitle": "Création du salon",
-    "modal.filePreview.unsupported": "Impossible d'ouvrir le document téléchargé. Le format du fichier n'est pas pris en charge par le système. Veuillez téléverser un fichier dans un format compatible. Vous pouvez toujours télécharger ce fichier.",
-    "toast.roomCreating": "Le salon est en cours de création...",
-    "toast.success": "Succès !",
-    "toast.roomCreatedSuccess": "Salon créé avec succès !",
-    "toast.usersAddedSuccess": "Utilisateurs ajoutés avec succès !",
-    "settings.menu.title": "Paramètres",
-    "modal.filePreview.title": "Aperçu du fichier",
-    "modal.filePreview.previousPage": "Page précédente",
-    "modal.filePreview.nextPage": "Page suivante",
-    "attachment.pages": "{count} p.",
-    "attachment.remove": "Supprimer la pièce jointe",
-    "attachment.limit": "Vous pouvez joindre jusqu’à {count} fichiers par message.",
-    "attachment.tooLarge": "Ignoré {files} : plus de {size} Mo.",
-    "action.attachFile": "Joindre un fichier",
-    "action.startRecording": "Enregistrer un message vocal",
-    "action.stopRecording": "Annuler l'enregistrement",
-    "action.sendRecording": "Envoyer le message vocal",
-    "modal.filePreview.openExternally": "Ouvrir dans un nouvel onglet",
-    "modal.filePreview.pdfUnavailable": "Ce PDF ne peut pas être affiché ici. Vous pouvez toujours l’ouvrir ou le télécharger.",
-    "toast.error": "Erreur",
-    "toast.couldNotOpenPrivateChat": "Impossible d'ouvrir la nouvelle discussion privée",
-    "toast.couldNotResolveRecipient": "Impossible de résoudre le destinataire",
-    "toast.failedToCreatePrivateChat": "Échec de la création de la discussion privée",
-    "toast.failedToCreateCall": "Échec de la création de l'appel",
-    "toast.failedToDeleteUser": "Échec de la suppression de l'utilisateur.",
-    "toast.userRemovedFromRoom": "{userId} a été retiré du salon.",
-    "toast.failedToAddUser": "Échec de l'ajout de l'utilisateur.",
-    "toast.userAddedToRoom": "{userName} a été ajouté au salon.",
-    "toast.loginFailedTitle": "Échec de la connexion",
-    "toast.invalidCredentials": "Identifiants invalides",
-    "toast.loginSuccessfulTitle": "Connexion réussie",
-    "toast.welcomeBack": "Content de vous revoir !",
-    "toast.loginErrorTitle": "Erreur de connexion",
-    "toast.loginErrorMessage": "Une erreur s'est produite lors de la connexion",
-    "validation.invalidEmail": "Format d'e-mail invalide",
-    "validation.passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères",
-    "validation.wrongCredentials": "Données incorrectes. Réessayez",
-    "field.email": "E-mail",
-    "field.password": "Mot de passe",
-    "field.firstName": "Prénom",
-    "field.lastName": "Nom",
-    "field.additionalDetails": "Détails supplémentaires",
-    "field.referralCode": "Votre code de parrainage",
-    "action.logOut": "Déconnexion",
-    "action.message": "Message",
-    "action.videoCall": "Appel vidéo",
-    "action.call": "Appeler",
-    "action.audioCall": "Appel audio",
-    "action.copyUserId": "Copier l'ID utilisateur",
-    "action.deleteChat": "Supprimer la discussion",
-    "action.appointAsAdmin": "Nommer administrateur",
-    "action.moreOptions": "Plus d'options",
-    "action.showQr": "Afficher le QR",
-    "action.addMembers": "Ajouter des membres",
-    "action.no": "Non",
-    "action.yes": "Oui",
-    "action.addNewShare": "Ajouter un nouveau partage",
-    "action.deleteMyAccount": "Supprimer mon compte",
-    "auth.loginButton": "Se connecter à Ethora Chat",
-    "auth.loginWithGoogle": "Se connecter avec Google",
-    "auth.orDelimiter": "ou",
-    "auth.noAccount": "Vous n'avez pas de compte ?",
-    "auth.signUp": "S'inscrire sur Ethora",
-    "auth.loginAnonymously": "Se connecter anonymement",
-    "auth.anonymousTextOnly": "Peut seulement envoyer des messages texte",
-    "auth.anonymousLoginMessage": "Vous êtes connecté anonymement !",
-    "modal.profile.title": "Profil",
-    "action.editProfile": "Modifier le profil",
-    "modal.profile.about": "À propos",
-    "modal.profile.noDescription": "Aucune description",
-    "modal.chatProfile.title": "Profil de la discussion",
-    "modal.chatProfile.description": "Description",
-    "modal.chatProfile.chatType": "Type de discussion",
-    "modal.chatProfile.memberCountSingular": "{count} membre",
-    "modal.chatProfile.memberCountPlural": "{count} membres",
-    "modal.chatProfile.membersShowMore": "Afficher {count} de plus",
-    "modal.chatProfile.searchMembers": "Rechercher des membres",
-    "modal.deleteChat.title": "Supprimer cette discussion ?",
-    "modal.addMembers.title": "Ajouter un nouveau membre",
-    "modal.addMembers.userIdPlaceholder": "Entrez l'ID utilisateur",
-    "modal.leaveChat.title": "Quitter la discussion",
-    "modal.leaveChat.description": "Voulez-vous vraiment quitter cette discussion ?",
-    "modal.report.chatTitle": "Signaler la discussion",
-    "modal.report.messageTitle": "Signaler le message",
-    "modal.report.otherDetails": "Veuillez indiquer des détails supplémentaires concernant votre signalement.",
-    "report.category.spam": "Spam",
-    "report.category.violence": "Violence",
-    "report.category.childAbuse": "Maltraitance d'enfants",
-    "report.category.pornography": "Pornographie",
-    "report.category.personalDetails": "Informations personnelles",
-    "report.category.illegalDrugs": "Drogues illégales",
-    "report.category.other": "Autre",
-    "notification.saved": "Enregistré",
-    "sort.name": "Prénom",
-    "sort.surname": "Nom",
-    "settings.shares.listOfShares": "Liste des partages",
-    "settings.documentShares.title": "Partages de documents",
-    "settings.documentShares.currentShares": "Partages de documents actuels",
-    "settings.documentShares.description": "Voici la liste de vos liens de partage de documents actifs. Vous pouvez les partager ou les supprimer.",
-    "settings.documentShares.emptyState": 'Aucun partage pour le moment - vous pouvez en ajouter en cliquant sur le bouton "Ajouter un nouveau partage"',
-    "settings.profileShares.title": "Partages de profil",
-    "settings.profileShares.currentShares": "Partages de profil actuels",
-    "settings.profileShares.description": "Voici la liste de vos liens de partage de profil actifs. Vous pouvez les partager ou les supprimer.",
-    "settings.blockedUsers.title": "Utilisateurs bloqués",
-    "settings.blockedUsers.label": "Utilisateurs bloqués",
-    "settings.blockedUsers.description": "Les utilisateurs que vous avez bloqués ne peuvent pas vous envoyer de messages ni voir quand vous êtes en ligne.",
-    "settings.blockedUsers.emptyState": "Vous n'avez encore bloqué personne.",
-    "settings.visibility.title": "Visibilité",
-    "settings.visibility.profileLabel": "Visibilité du profil",
-    "settings.visibility.open": "Ouvert (par défaut)",
-    "settings.visibility.openDescription": "Votre profil peut être consulté par quiconque suit votre lien de profil ou votre code QR.",
-    "settings.visibility.restricted": "Restreint",
-    "settings.visibility.restrictedDescription": "Seuls les utilisateurs autorisés ou disposant d'un lien sécurisé temporaire peuvent voir votre profil.",
-    "settings.visibility.documentsLabel": "Visibilité des documents",
-    "settings.visibility.full": "Complète (par défaut)",
-    "settings.visibility.fullDescription": "Montrer tous les documents à ceux qui peuvent voir votre profil.",
-    "settings.visibility.individual": "Individuelle",
-    "settings.visibility.individualDescription": "Vous devez partager chaque document individuellement avant que d'autres puissent le voir.",
-    "settings.referrals.title": "Parrainages",
-    "settings.referrals.giftPart1": "Offrez 25 à vos amis",
-    "settings.referrals.giftPart2": "et recevez 25",
-    "settings.referrals.giftPart3": "Envoyez une invitation à vos amis avec votre code d'invitation personnel.",
-    "settings.referrals.yourCode": "Votre code d'invitation",
-    "settings.referrals.enterReferralCode": "Ou entrez votre code de parrainage pour gagner des pièces",
-    "settings.manageData.title": "Gérer les données",
-    "settings.manageData.downloadLabel": "Télécharger vos données",
-    "settings.manageData.downloadDescription": "Vos données vous appartiennent. Appuyez sur le bouton ci-dessous pour en télécharger une copie",
-    "settings.manageData.deleteLabel": "Supprimer votre compte",
-    "settings.manageData.deleteDescription": "À utiliser uniquement si vous souhaitez supprimer définitivement votre compte et vos données de notre système.",
-    "settings.manageData.deleteDisclosure": "En raison de la nature immuable de la technologie des registres distribués, les nœuds du réseau exploités par la communauté peuvent conserver des transactions historiques générées par votre compte ; toutefois, vos informations personnelles identifiables telles que votre nom, e-mail, stockage clé-valeur, etc. seront supprimées. Tous vos actifs numériques seront perdus.",
-    "files.panel.title": "Fichiers",
-    "files.filter.all": "Tous",
-    "files.filter.media": "Médias",
-    "files.filter.documents": "Documents",
-    "files.filter.audio": "Audio",
-    "files.search.placeholder": "Rechercher des fichiers...",
-    "files.empty.title": "Aucun fichier",
-    "files.empty.subtitle": "Les fichiers que vous envoyez apparaîtront ici.",
-    "files.noResults": "Aucun fichier ne correspond à votre recherche",
-    "files.noResults.moreAvailable": "Tous les fichiers ne sont pas encore chargés, chargez-en plus pour continuer la recherche",
-    "files.loading": "Chargement des fichiers...",
-    "files.error.title": "Impossible de charger les fichiers",
-    "files.action.retry": "Réessayer",
-    "files.action.loadMore": "Charger plus",
-    "files.action.preview": "Aperçu",
-    "files.action.download": "Télécharger",
-    "files.action.delete": "Supprimer",
-    "files.delete.confirmTitle": "Supprimer ce fichier ?",
-    "files.delete.confirmMessage": "Ce fichier sera définitivement supprimé. Cette action est irréversible.",
-    "files.delete.failed": "Échec de la suppression du fichier",
-    "modal.chatProfile.filesTitle": "Fichiers",
-    "modal.chatProfile.filesShowAll": "Tout afficher",
-    "modal.chatProfile.filesEmpty": "Aucun fichier dans ce salon pour le moment"
-  };
-  const es$1 = {
-    "tabs.chats": "Chats",
-    "tabs.files": "Archivos",
-    "files.empty": "Aun no hay archivos",
-    "search.placeholder": "Buscar...",
-    "select.noOptions": "No se encontraron opciones",
-    "input.placeholder": "Escribe un mensaje",
-    "room.created": "Sala creada",
-    "room.empty": "Este chat está vacío",
-    "room.empty.hint": "Sé el primero en escribir.",
-    "media.unsupported": "Tipo de archivo no compatible",
-    "common.or": "O",
-    "tabs.label": "Secciones de la barra lateral",
-    "call.disabled.roomType": "Las llamadas solo están disponibles en chats 1:1",
-    "call.disabled.noLivekit": "Llamadas no disponibles: el servicio de video no está configurado",
-    "call.disabled.busy": "Ya hay otra llamada en curso",
-    "date.today": "Hoy",
-    "date.yesterday": "Ayer",
-    "message.deleted": "Mensaje eliminado",
-    "message.edited": "editado",
-    "presence.online": "en línea",
-    "presence.offline": "desconectado",
-    "presence.onlineCount": "{count} en línea",
-    "header.userCountSingular": "{count} usuario",
-    "header.userCountPlural": "{count} usuarios",
-    "header.action.back": "Atrás",
-    "header.action.startAudioCall": "Iniciar llamada de audio",
-    "header.action.startVideoCall": "Iniciar videollamada",
-    "call.outgoing": "Llamada saliente",
-    "call.incoming": "Llamada entrante",
-    "call.noAnswer": "Sin respuesta",
-    "call.missed": "Llamada perdida",
-    "call.durationSec": "{n} s",
-    "call.durationMin": "{n} min",
-    "call.durationMinSec": "{m} min {s} s",
-    "action.send": "Enviar",
-    "action.cancel": "Cancelar",
-    "action.close": "Cerrar",
-    "action.back": "Volver",
-    "action.save": "Guardar",
-    "action.delete": "Eliminar",
-    "action.leave": "Salir",
-    "action.create": "Crear",
-    "action.submit": "Enviar",
-    "action.translate": "Traducir",
-    "action.showOriginal": "Ver original",
-    "action.scrollToBottom": "Desplazarse al final",
-    "action.newChat": "Nuevo chat",
-    "action.addUsers": "Añadir usuarios",
-    "action.addUsersCount": "Añadir usuarios ({count} seleccionados)",
-    "action.addMoreUsers": "Añadir más usuarios",
-    "action.add": "Añadir",
-    "action.backToCreation": "Volver a la creación",
-    "action.report": "Reportar",
-    "status.connecting": "Conectando…",
-    "status.noInternet": "Sin conexión a internet",
-    "translation.translating": "Traduciendo…",
-    "translation.failed": "No se pudo traducir",
-    "translation.enableToggleLabel": "Traducir mis mensajes",
-    "translation.enableToggleDisclaimer": "Si las traducciones no estaban activadas, solo se traducirán los mensajes nuevos enviados a partir de ahora.",
-    "translation.modeLabel": "Visualización de traducciones",
-    "translation.modeAuto": "Automático",
-    "translation.modeManual": "Manual",
-    "language.select": "Seleccionar idioma",
-    "modal.newChat.title": "Crear nuevo chat",
-    "modal.newChat.roomNamePlaceholder": "Nombre de la sala",
-    "modal.newChat.chatTypePlaceholder": "Selecciona el tipo de chat",
-    "modal.newChat.typePublic": "Público",
-    "modal.newChat.typePrivate": "Privado",
-    "modal.newChat.selectUsersTitle": "Selecciona usuarios para añadir al chat",
-    "modal.filePreview.unsupported": "No se puede abrir el documento cargado. El formato del archivo no es compatible con el sistema. Cargue un archivo en un formato compatible. Aún puede descargar este archivo.",
-    "modal.selectUsers.title": "Seleccionar usuarios (máx. 20)",
-    "modal.selectUsers.searchPlaceholder": "Buscar usuarios...",
-    "modal.selectUsers.empty": "No se encontraron usuarios",
-    "thread.title": "Hilo de conversación",
-    "toast.roomCreationTitle": "Creación de sala",
-    "toast.roomCreating": "La sala se está creando...",
-    "toast.success": "¡Éxito!",
-    "toast.roomCreatedSuccess": "¡Sala creada correctamente!",
-    "toast.usersAddedSuccess": "¡Usuarios añadidos correctamente!",
-    "settings.menu.title": "Configuración",
-    "modal.filePreview.title": "Vista previa del archivo",
-    "modal.filePreview.previousPage": "Página anterior",
-    "modal.filePreview.nextPage": "Página siguiente",
-    "attachment.pages": "{count} p.",
-    "attachment.remove": "Quitar el archivo adjunto",
-    "attachment.limit": "Puedes adjuntar hasta {count} archivos por mensaje.",
-    "attachment.tooLarge": "Se omitió {files}: supera {size} MB.",
-    "action.attachFile": "Adjuntar archivo",
-    "action.startRecording": "Grabar mensaje de voz",
-    "action.stopRecording": "Cancelar grabación",
-    "action.sendRecording": "Enviar mensaje de voz",
-    "modal.filePreview.openExternally": "Abrir en una pestaña nueva",
-    "modal.filePreview.pdfUnavailable": "Este PDF no se puede mostrar aquí. Aún puedes abrirlo o descargarlo.",
-    "toast.error": "Error",
-    "toast.couldNotOpenPrivateChat": "No se pudo abrir el nuevo chat privado",
-    "toast.couldNotResolveRecipient": "No se pudo resolver el destinatario",
-    "toast.failedToCreatePrivateChat": "No se pudo crear el chat privado",
-    "toast.failedToCreateCall": "No se pudo crear la llamada",
-    "toast.failedToDeleteUser": "No se pudo eliminar el usuario.",
-    "toast.userRemovedFromRoom": "{userId} ha sido eliminado de la sala.",
-    "toast.failedToAddUser": "No se pudo añadir al usuario.",
-    "toast.userAddedToRoom": "{userName} ha sido añadido a la sala.",
-    "toast.loginFailedTitle": "Error al iniciar sesión",
-    "toast.invalidCredentials": "Credenciales inválidas",
-    "toast.loginSuccessfulTitle": "Inicio de sesión exitoso",
-    "toast.welcomeBack": "¡Bienvenido de nuevo!",
-    "toast.loginErrorTitle": "Error de inicio de sesión",
-    "toast.loginErrorMessage": "Ocurrió un error durante el inicio de sesión",
-    "validation.invalidEmail": "Formato de correo inválido",
-    "validation.passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
-    "validation.wrongCredentials": "Datos incorrectos. Inténtalo de nuevo",
-    "field.email": "Correo electrónico",
-    "field.password": "Contraseña",
-    "field.firstName": "Nombre",
-    "field.lastName": "Apellido",
-    "field.additionalDetails": "Detalles adicionales",
-    "field.referralCode": "Tu código de referido",
-    "action.logOut": "Cerrar sesión",
-    "action.message": "Mensaje",
-    "action.videoCall": "Videollamada",
-    "action.call": "Llamar",
-    "action.audioCall": "Llamada de audio",
-    "action.copyUserId": "Copiar ID de usuario",
-    "action.deleteChat": "Eliminar chat",
-    "action.appointAsAdmin": "Nombrar administrador",
-    "action.moreOptions": "Más opciones",
-    "action.showQr": "Mostrar QR",
-    "action.addMembers": "Añadir miembros",
-    "action.no": "No",
-    "action.yes": "Sí",
-    "action.addNewShare": "Añadir nuevo recurso compartido",
-    "action.deleteMyAccount": "Eliminar mi cuenta",
-    "auth.loginButton": "Iniciar sesión en Ethora Chat",
-    "auth.loginWithGoogle": "Iniciar sesión con Google",
-    "auth.orDelimiter": "o",
-    "auth.noAccount": "¿No tienes una cuenta?",
-    "auth.signUp": "Regístrate en Ethora",
-    "auth.loginAnonymously": "Iniciar sesión de forma anónima",
-    "auth.anonymousTextOnly": "Solo se pueden enviar mensajes de texto",
-    "auth.anonymousLoginMessage": "¡Has iniciado sesión de forma anónima!",
-    "modal.profile.title": "Perfil",
-    "action.editProfile": "Editar perfil",
-    "modal.profile.about": "Acerca de",
-    "modal.profile.noDescription": "Sin descripción",
-    "modal.chatProfile.title": "Perfil del chat",
-    "modal.chatProfile.description": "Descripción",
-    "modal.chatProfile.chatType": "Tipo de chat",
-    "modal.chatProfile.memberCountSingular": "{count} miembro",
-    "modal.chatProfile.memberCountPlural": "{count} miembros",
-    "modal.chatProfile.membersShowMore": "Mostrar {count} más",
-    "modal.chatProfile.searchMembers": "Buscar miembros",
-    "modal.deleteChat.title": "¿Eliminar este chat?",
-    "modal.addMembers.title": "Añadir nuevo miembro",
-    "modal.addMembers.userIdPlaceholder": "Introduce el ID de usuario",
-    "modal.leaveChat.title": "Salir del chat",
-    "modal.leaveChat.description": "¿Seguro que quieres salir de este chat?",
-    "modal.report.chatTitle": "Reportar chat",
-    "modal.report.messageTitle": "Reportar mensaje",
-    "modal.report.otherDetails": "Introduce detalles adicionales relevantes para tu reporte.",
-    "report.category.spam": "Spam",
-    "report.category.violence": "Violencia",
-    "report.category.childAbuse": "Abuso infantil",
-    "report.category.pornography": "Pornografía",
-    "report.category.personalDetails": "Datos personales",
-    "report.category.illegalDrugs": "Drogas ilegales",
-    "report.category.other": "Otro",
-    "notification.saved": "Guardado",
-    "sort.name": "Nombre",
-    "sort.surname": "Apellido",
-    "settings.shares.listOfShares": "Lista de recursos compartidos",
-    "settings.documentShares.title": "Documentos compartidos",
-    "settings.documentShares.currentShares": "Documentos compartidos actuales",
-    "settings.documentShares.description": "A continuación se muestran tus enlaces de documentos compartidos activos. Puedes compartirlos o eliminarlos.",
-    "settings.documentShares.emptyState": 'Todavía no hay recursos compartidos, o puedes añadirlos haciendo clic en el botón "Añadir nuevo recurso compartido"',
-    "settings.profileShares.title": "Perfil compartido",
-    "settings.profileShares.currentShares": "Perfiles compartidos actuales",
-    "settings.profileShares.description": "A continuación se muestran tus enlaces de perfil compartido activos. Puedes compartirlos o eliminarlos.",
-    "settings.blockedUsers.title": "Usuarios bloqueados",
-    "settings.blockedUsers.label": "Usuarios bloqueados",
-    "settings.blockedUsers.description": "Los usuarios que hayas bloqueado no podrán enviarte mensajes ni ver cuándo estás en línea.",
-    "settings.blockedUsers.emptyState": "Todavía no has bloqueado a nadie.",
-    "settings.visibility.title": "Visibilidad",
-    "settings.visibility.profileLabel": "Visibilidad del perfil",
-    "settings.visibility.open": "Abierto (predeterminado)",
-    "settings.visibility.openDescription": "Cualquiera que siga el enlace de tu perfil o tu código QR puede ver tu perfil.",
-    "settings.visibility.restricted": "Restringido",
-    "settings.visibility.restrictedDescription": "Solo los usuarios con tu permiso o un enlace seguro temporal pueden ver tu perfil.",
-    "settings.visibility.documentsLabel": "Visibilidad de documentos",
-    "settings.visibility.full": "Completa (predeterminada)",
-    "settings.visibility.fullDescription": "Mostrar todos los documentos a quienes puedan ver tu perfil.",
-    "settings.visibility.individual": "Individual",
-    "settings.visibility.individualDescription": "Debes compartir cada documento individualmente antes de que otros puedan verlo.",
-    "settings.referrals.title": "Referidos",
-    "settings.referrals.giftPart1": "Regala 25 a tus amigos",
-    "settings.referrals.giftPart2": "y recibe 25",
-    "settings.referrals.giftPart3": "Envía una invitación a tus amigos con tu código de invitación personal.",
-    "settings.referrals.yourCode": "Tu código de invitación",
-    "settings.referrals.enterReferralCode": "O introduce tu código de referido para ganar monedas",
-    "settings.manageData.title": "Gestionar datos",
-    "settings.manageData.downloadLabel": "Descarga tus datos",
-    "settings.manageData.downloadDescription": "Tus datos te pertenecen. Toca el botón de abajo para descargar una copia de tus datos",
-    "settings.manageData.deleteLabel": "Elimina tu cuenta",
-    "settings.manageData.deleteDescription": "Utiliza esto solo si deseas eliminar permanentemente tu cuenta y tus datos de nuestro sistema.",
-    "settings.manageData.deleteDisclosure": "Debido a la naturaleza inmutable de la tecnología de registro distribuido, los nodos de red operados por la comunidad pueden seguir conservando transacciones históricas generadas por tu cuenta; sin embargo, tu información personal identificable, como tu nombre, correo electrónico y almacenamiento clave-valor, será eliminada. Se perderán todos tus activos digitales.",
-    "files.panel.title": "Archivos",
-    "files.filter.all": "Todos",
-    "files.filter.media": "Multimedia",
-    "files.filter.documents": "Documentos",
-    "files.filter.audio": "Audio",
-    "files.search.placeholder": "Buscar archivos...",
-    "files.empty.title": "Aún no hay archivos",
-    "files.empty.subtitle": "Los archivos que subas aparecerán aquí.",
-    "files.noResults": "Ningún archivo coincide con tu búsqueda",
-    "files.noResults.moreAvailable": "Aún no se han cargado todos los archivos, carga más para seguir buscando",
-    "files.loading": "Cargando archivos...",
-    "files.error.title": "No se pudieron cargar los archivos",
-    "files.action.retry": "Reintentar",
-    "files.action.loadMore": "Cargar más",
-    "files.action.preview": "Vista previa",
-    "files.action.download": "Descargar",
-    "files.action.delete": "Eliminar",
-    "files.delete.confirmTitle": "¿Eliminar este archivo?",
-    "files.delete.confirmMessage": "Este archivo se eliminará permanentemente. Esta acción no se puede deshacer.",
-    "files.delete.failed": "No se pudo eliminar el archivo",
-    "modal.chatProfile.filesTitle": "Archivos",
-    "modal.chatProfile.filesShowAll": "Ver todos",
-    "modal.chatProfile.filesEmpty": "Aún no hay archivos en este chat"
-  };
-  const pt$1 = {
-    "tabs.chats": "Conversas",
-    "tabs.files": "Arquivos",
-    "files.empty": "Ainda sem arquivos",
-    "search.placeholder": "Pesquisar...",
-    "select.noOptions": "Nenhuma opcao encontrada",
-    "input.placeholder": "Escreva uma mensagem",
-    "room.created": "Sala criada",
-    "room.empty": "Este chat está vazio",
-    "room.empty.hint": "Seja o primeiro a escrever.",
-    "media.unsupported": "Tipo de mídia não suportado",
-    "common.or": "Ou",
-    "tabs.label": "Seções da barra lateral",
-    "call.disabled.roomType": "Chamadas disponíveis apenas em conversas 1:1",
-    "call.disabled.noLivekit": "Chamadas indisponíveis: serviço de vídeo não configurado",
-    "call.disabled.busy": "Outra chamada já está em andamento",
-    "date.today": "Hoje",
-    "date.yesterday": "Ontem",
-    "message.deleted": "Mensagem eliminada",
-    "message.edited": "editado",
-    "presence.online": "online",
-    "presence.offline": "offline",
-    "presence.onlineCount": "{count} online",
-    "header.userCountSingular": "{count} usuário",
-    "header.userCountPlural": "{count} usuários",
-    "header.action.back": "Voltar",
-    "header.action.startAudioCall": "Iniciar chamada de áudio",
-    "header.action.startVideoCall": "Iniciar videochamada",
-    "call.outgoing": "Chamada efetuada",
-    "call.incoming": "Chamada recebida",
-    "call.noAnswer": "Sem resposta",
-    "call.missed": "Chamada perdida",
-    "call.durationSec": "{n} s",
-    "call.durationMin": "{n} min",
-    "call.durationMinSec": "{m} min {s} s",
-    "action.send": "Enviar",
-    "action.cancel": "Cancelar",
-    "action.close": "Fechar",
-    "action.back": "Voltar",
-    "action.save": "Guardar",
-    "action.delete": "Eliminar",
-    "action.leave": "Sair",
-    "action.create": "Criar",
-    "action.submit": "Enviar",
-    "action.translate": "Traduzir",
-    "action.showOriginal": "Ver original",
-    "action.scrollToBottom": "Rolar para o final",
-    "action.newChat": "Novo chat",
-    "action.addUsers": "Adicionar utilizadores",
-    "action.addUsersCount": "Adicionar utilizadores ({count} selecionados)",
-    "action.addMoreUsers": "Adicionar mais utilizadores",
-    "action.add": "Adicionar",
-    "action.backToCreation": "Voltar à criação",
-    "action.report": "Denunciar",
-    "status.connecting": "A ligar…",
-    "status.noInternet": "Sem ligação à internet",
-    "translation.translating": "A traduzir…",
-    "translation.failed": "Não foi possível traduzir",
-    "translation.enableToggleLabel": "Traduzir minhas mensagens",
-    "translation.enableToggleDisclaimer": "Se as traduções não estavam ativadas, apenas as novas mensagens enviadas a partir de agora serão traduzidas.",
-    "translation.modeLabel": "Exibição de traduções",
-    "translation.modeAuto": "Automático",
-    "translation.modeManual": "Manual",
-    "language.select": "Selecionar idioma",
-    "modal.newChat.title": "Criar novo chat",
-    "modal.filePreview.unsupported": "Não é possível abrir o documento carregado. O formato do ficheiro não é suportado pelo sistema. Carregue um ficheiro num formato compatível. Ainda pode transferir este ficheiro.",
-    "modal.newChat.roomNamePlaceholder": "Nome da sala",
-    "modal.newChat.chatTypePlaceholder": "Selecione o tipo de chat",
-    "modal.newChat.typePublic": "Público",
-    "modal.newChat.typePrivate": "Privado",
-    "modal.newChat.selectUsersTitle": "Selecione utilizadores para adicionar ao chat",
-    "modal.selectUsers.title": "Selecionar utilizadores (máx. 20)",
-    "modal.selectUsers.searchPlaceholder": "Pesquisar utilizadores...",
-    "modal.selectUsers.empty": "Nenhum utilizador encontrado",
-    "thread.title": "Tópico",
-    "toast.roomCreationTitle": "Criação de sala",
-    "toast.roomCreating": "A sala está a ser criada...",
-    "toast.success": "Sucesso!",
-    "toast.roomCreatedSuccess": "Sala criada com sucesso!",
-    "toast.usersAddedSuccess": "Utilizadores adicionados com sucesso!",
-    "settings.menu.title": "Definições",
-    "modal.filePreview.title": "Pré-visualização do ficheiro",
-    "modal.filePreview.previousPage": "Página anterior",
-    "modal.filePreview.nextPage": "Próxima página",
-    "attachment.pages": "{count} p.",
-    "attachment.remove": "Remover anexo",
-    "attachment.limit": "Pode anexar até {count} ficheiros por mensagem.",
-    "attachment.tooLarge": "Ignorado {files}: acima de {size} MB.",
-    "action.attachFile": "Anexar arquivo",
-    "action.startRecording": "Gravar mensagem de voz",
-    "action.stopRecording": "Cancelar gravação",
-    "action.sendRecording": "Enviar mensagem de voz",
-    "modal.filePreview.openExternally": "Abrir num novo separador",
-    "modal.filePreview.pdfUnavailable": "Este PDF não pode ser apresentado aqui. Ainda pode abri-lo ou transferi-lo.",
-    "toast.error": "Erro",
-    "toast.couldNotOpenPrivateChat": "Não foi possível abrir o novo chat privado",
-    "toast.couldNotResolveRecipient": "Não foi possível identificar o destinatário",
-    "toast.failedToCreatePrivateChat": "Falha ao criar o chat privado",
-    "toast.failedToCreateCall": "Falha ao criar a chamada",
-    "toast.failedToDeleteUser": "Falha ao eliminar o utilizador.",
-    "toast.userRemovedFromRoom": "{userId} foi removido da sala.",
-    "toast.failedToAddUser": "Falha ao adicionar o utilizador.",
-    "toast.userAddedToRoom": "{userName} foi adicionado à sala.",
-    "toast.loginFailedTitle": "Falha ao iniciar sessão",
-    "toast.invalidCredentials": "Credenciais inválidas",
-    "toast.loginSuccessfulTitle": "Sessão iniciada",
-    "toast.welcomeBack": "Bem-vindo de volta!",
-    "toast.loginErrorTitle": "Erro ao iniciar sessão",
-    "toast.loginErrorMessage": "Ocorreu um erro ao iniciar sessão",
-    "validation.invalidEmail": "Formato de email inválido",
-    "validation.passwordTooShort": "A palavra-passe deve ter pelo menos 6 caracteres",
-    "validation.wrongCredentials": "Dados incorretos. Tente novamente",
-    "field.email": "Email",
-    "field.password": "Palavra-passe",
-    "field.firstName": "Nome",
-    "field.lastName": "Apelido",
-    "field.additionalDetails": "Detalhes adicionais",
-    "field.referralCode": "O seu código de referência",
-    "action.logOut": "Terminar sessão",
-    "action.message": "Mensagem",
-    "action.videoCall": "Videochamada",
-    "action.call": "Ligar",
-    "action.audioCall": "Chamada de áudio",
-    "action.copyUserId": "Copiar ID do utilizador",
-    "action.deleteChat": "Eliminar chat",
-    "action.appointAsAdmin": "Nomear administrador",
-    "action.moreOptions": "Mais opções",
-    "action.showQr": "Mostrar QR",
-    "action.addMembers": "Adicionar membros",
-    "action.no": "Não",
-    "action.yes": "Sim",
-    "action.addNewShare": "Adicionar nova partilha",
-    "action.deleteMyAccount": "Eliminar a minha conta",
-    "auth.loginButton": "Entrar no Ethora Chat",
-    "auth.loginWithGoogle": "Entrar com o Google",
-    "auth.orDelimiter": "ou",
-    "auth.noAccount": "Ainda não tem conta?",
-    "auth.signUp": "Registar-se no Ethora",
-    "auth.loginAnonymously": "Entrar anonimamente",
-    "auth.anonymousTextOnly": "Só é possível enviar mensagens de texto",
-    "auth.anonymousLoginMessage": "Iniciou sessão anonimamente!",
-    "modal.profile.title": "Perfil",
-    "action.editProfile": "Editar perfil",
-    "modal.profile.about": "Sobre",
-    "modal.profile.noDescription": "Sem descrição",
-    "modal.chatProfile.title": "Perfil do chat",
-    "modal.chatProfile.description": "Descrição",
-    "modal.chatProfile.chatType": "Tipo de chat",
-    "modal.chatProfile.memberCountSingular": "{count} membro",
-    "modal.chatProfile.memberCountPlural": "{count} membros",
-    "modal.chatProfile.membersShowMore": "Mostrar mais {count}",
-    "modal.chatProfile.searchMembers": "Pesquisar membros",
-    "modal.deleteChat.title": "Eliminar este chat?",
-    "modal.addMembers.title": "Adicionar novo membro",
-    "modal.addMembers.userIdPlaceholder": "Introduza o ID do utilizador",
-    "modal.leaveChat.title": "Sair do chat",
-    "modal.leaveChat.description": "Tem a certeza de que quer sair deste chat?",
-    "modal.report.chatTitle": "Denunciar chat",
-    "modal.report.messageTitle": "Denunciar mensagem",
-    "modal.report.otherDetails": "Indique detalhes adicionais relevantes para a sua denúncia.",
-    "report.category.spam": "Spam",
-    "report.category.violence": "Violência",
-    "report.category.childAbuse": "Abuso infantil",
-    "report.category.pornography": "Pornografia",
-    "report.category.personalDetails": "Dados pessoais",
-    "report.category.illegalDrugs": "Drogas ilegais",
-    "report.category.other": "Outro",
-    "notification.saved": "Guardado",
-    "sort.name": "Nome",
-    "sort.surname": "Apelido",
-    "settings.shares.listOfShares": "Lista de partilhas",
-    "settings.documentShares.title": "Partilhas de documentos",
-    "settings.documentShares.currentShares": "Partilhas de documentos atuais",
-    "settings.documentShares.description": "Abaixo estão as suas ligações de partilha de documentos ativas. Pode partilhá-las ou eliminá-las.",
-    "settings.documentShares.emptyState": 'Ainda não há partilhas, ou pode adicioná-las clicando no botão "Adicionar nova partilha"',
-    "settings.profileShares.title": "Partilhas de perfil",
-    "settings.profileShares.currentShares": "Partilhas de perfil atuais",
-    "settings.profileShares.description": "Abaixo estão as suas ligações de partilha de perfil ativas. Pode partilhá-las ou eliminá-las.",
-    "settings.blockedUsers.title": "Utilizadores bloqueados",
-    "settings.blockedUsers.label": "Utilizadores bloqueados",
-    "settings.blockedUsers.description": "Os utilizadores que bloqueou não lhe podem enviar mensagens nem ver quando está online.",
-    "settings.blockedUsers.emptyState": "Ainda não bloqueou ninguém.",
-    "settings.visibility.title": "Visibilidade",
-    "settings.visibility.profileLabel": "Visibilidade do perfil",
-    "settings.visibility.open": "Aberto (predefinição)",
-    "settings.visibility.openDescription": "O seu perfil pode ser visto por qualquer pessoa que siga a ligação do seu perfil ou o código QR.",
-    "settings.visibility.restricted": "Restrito",
-    "settings.visibility.restrictedDescription": "Só os utilizadores com a sua permissão ou com uma ligação segura temporária podem ver o seu perfil.",
-    "settings.visibility.documentsLabel": "Visibilidade dos documentos",
-    "settings.visibility.full": "Total (predefinição)",
-    "settings.visibility.fullDescription": "Mostrar todos os documentos a quem pode ver o seu perfil.",
-    "settings.visibility.individual": "Individual",
-    "settings.visibility.individualDescription": "Tem de partilhar cada documento individualmente antes que outros o possam ver.",
-    "settings.referrals.title": "Referências",
-    "settings.referrals.giftPart1": "Ofereça 25 aos amigos",
-    "settings.referrals.giftPart2": "e receba 25",
-    "settings.referrals.giftPart3": "Envie um convite aos amigos com o seu código de convite pessoal.",
-    "settings.referrals.yourCode": "O seu código de convite",
-    "settings.referrals.enterReferralCode": "Ou introduza o seu código de referência para ganhar moedas",
-    "settings.manageData.title": "Gerir dados",
-    "settings.manageData.downloadLabel": "Transferir os seus dados",
-    "settings.manageData.downloadDescription": "Os dados são seus. Toque no botão abaixo para transferir uma cópia dos seus dados",
-    "settings.manageData.deleteLabel": "Eliminar a sua conta",
-    "settings.manageData.deleteDescription": "Use isto apenas se quiser eliminar permanentemente a sua conta e os seus dados do nosso sistema.",
-    "settings.manageData.deleteDisclosure": "Devido à natureza imutável da tecnologia de registo distribuído, os nós da rede operados pela comunidade podem manter transações históricas geradas pela sua conta; no entanto, as suas informações de identificação pessoal, como nome, email e armazenamento chave-valor, serão removidas. Todos os seus ativos digitais serão perdidos.",
-    "files.panel.title": "Arquivos",
-    "files.filter.all": "Todos",
-    "files.filter.media": "Mídia",
-    "files.filter.documents": "Documentos",
-    "files.filter.audio": "Áudio",
-    "files.search.placeholder": "Pesquisar arquivos...",
-    "files.empty.title": "Ainda não há arquivos",
-    "files.empty.subtitle": "Os arquivos que você enviar aparecerão aqui.",
-    "files.noResults": "Nenhum arquivo corresponde à sua pesquisa",
-    "files.noResults.moreAvailable": "Nem todos os arquivos foram carregados, carregue mais para continuar a busca",
-    "files.loading": "Carregando arquivos...",
-    "files.error.title": "Não foi possível carregar os arquivos",
-    "files.action.retry": "Tentar novamente",
-    "files.action.loadMore": "Carregar mais",
-    "files.action.preview": "Pré-visualizar",
-    "files.action.download": "Baixar",
-    "files.action.delete": "Excluir",
-    "files.delete.confirmTitle": "Excluir este arquivo?",
-    "files.delete.confirmMessage": "Este arquivo será excluído permanentemente. Esta ação não pode ser desfeita.",
-    "files.delete.failed": "Falha ao excluir o arquivo",
-    "modal.chatProfile.filesTitle": "Arquivos",
-    "modal.chatProfile.filesShowAll": "Ver todos",
-    "modal.chatProfile.filesEmpty": "Ainda não há arquivos neste chat"
-  };
-  const ht$1 = {
-    "tabs.chats": "Chat",
-    "tabs.files": "Fichye",
-    "files.empty": "Poko gen fichye",
-    "search.placeholder": "Chèche...",
-    "select.noOptions": "Pa gen okenn opsyon jwenn",
-    "input.placeholder": "Ekri yon mesaj",
-    "room.created": "Sal la kreye",
-    "room.empty": "Chat sa a vid",
-    "room.empty.hint": "Se ou menm premye pou kòmanse li.",
-    "media.unsupported": "Kalite medya sa a pa sipòte",
-    "common.or": "Oswa",
-    "tabs.label": "Seksyon bò kote",
-    "call.disabled.roomType": "Apèl yo disponib sèlman nan chat 1:1",
-    "call.disabled.noLivekit": "Apèl pa disponib: sèvis videyo a pa konfigire",
-    "call.disabled.busy": "Gen yon lòt apèl k ap fèt deja",
-    "date.today": "Jodi a",
-    "date.yesterday": "Yè",
-    "message.deleted": "Mesaj efase",
-    "message.edited": "modifye",
-    "presence.online": "an liy",
-    "presence.offline": "pa an liy",
-    "presence.onlineCount": "{count} an liy",
-    "header.userCountSingular": "{count} itilizatè",
-    "header.userCountPlural": "{count} itilizatè",
-    "header.action.back": "Retounen",
-    "header.action.startAudioCall": "Kòmanse yon apèl odyo",
-    "header.action.startVideoCall": "Kòmanse yon apèl videyo",
-    "call.outgoing": "Apèl sòtan",
-    "call.incoming": "Apèl antran",
-    "call.noAnswer": "Pa gen repons",
-    "call.missed": "Apèl ou rate",
-    "call.durationSec": "{n} segond",
-    "call.durationMin": "{n} minit",
-    "call.durationMinSec": "{m} minit {s} segond",
-    "action.send": "Voye",
-    "action.cancel": "Anile",
-    "action.close": "Fèmen",
-    "action.back": "Tounen",
-    "action.save": "Anrejistre",
-    "action.delete": "Efase",
-    "action.leave": "Kite",
-    "action.create": "Kreye",
-    "action.submit": "Soumèt",
-    "action.translate": "Tradui",
-    "action.showOriginal": "Montre orijinal la",
-    "action.scrollToBottom": "Desann nan ba a",
-    "action.newChat": "Nouvo chat",
-    "action.addUsers": "Ajoute itilizatè",
-    "action.addUsersCount": "Ajoute itilizatè ({count} chwazi)",
-    "action.addMoreUsers": "Ajoute plis itilizatè",
-    "action.add": "Ajoute",
-    "action.backToCreation": "Retounen nan kreyasyon",
-    "action.report": "Rapòte",
-    "status.connecting": "Koneksyon…",
-    "status.noInternet": "Pa gen koneksyon entènèt",
-    "translation.translating": "Ap tradui…",
-    "translation.failed": "Pa t kapab tradui",
-    "translation.enableToggleLabel": "Tradui mesaj mwen yo",
-    "translation.enableToggleDisclaimer": "Si tradiksyon yo pa t aktive, se sèlman nouvo mesaj ou voye apati kounye a ki pral tradui.",
-    "translation.modeLabel": "Afichaj tradiksyon",
-    "translation.modeAuto": "Otomatik",
-    "modal.filePreview.unsupported": "Nou pa ka louvri dokiman telechaje a. Fòma fichye a pa sipòte pa sistèm nan. Tanpri telechaje yon fichye nan yon fòma konpatib. Ou toujou ka telechaje fichye sa a.",
-    "translation.modeManual": "Manyèl",
-    "language.select": "Chwazi lang",
-    "modal.newChat.title": "Kreye yon nouvo chat",
-    "modal.newChat.roomNamePlaceholder": "Antre non sal la",
-    "modal.newChat.chatTypePlaceholder": "Chwazi tip chat la",
-    "modal.newChat.typePublic": "Piblik",
-    "modal.newChat.typePrivate": "Prive",
-    "modal.newChat.selectUsersTitle": "Chwazi itilizatè pou ajoute nan chat la",
-    "modal.selectUsers.title": "Chwazi itilizatè (maksimòm 20)",
-    "modal.selectUsers.searchPlaceholder": "Chèche itilizatè...",
-    "modal.selectUsers.empty": "Pa gen itilizatè yo jwenn",
-    "thread.title": "Fil diskisyon",
-    "toast.roomCreationTitle": "Kreyasyon sal",
-    "toast.roomCreating": "Sal la ap kreye...",
-    "toast.success": "Siksè!",
-    "toast.roomCreatedSuccess": "Sal la kreye avèk siksè!",
-    "toast.usersAddedSuccess": "Itilizatè yo ajoute avèk siksè!",
-    "settings.menu.title": "Paramèt",
-    "modal.filePreview.title": "Apèsi fichye",
-    "modal.filePreview.previousPage": "Paj anvan",
-    "modal.filePreview.nextPage": "Pwochen paj",
-    "attachment.pages": "{count} p.",
-    "attachment.remove": "Retire pyès jwent",
-    "attachment.limit": "Ou ka mete jiska {count} fichye nan yon mesaj.",
-    "attachment.tooLarge": "Nou sote {files}: li depase {size} MB.",
-    "action.attachFile": "Tache yon fichye",
-    "action.startRecording": "Anrejistre yon mesaj vokal",
-    "action.stopRecording": "Anile anrejistreman an",
-    "action.sendRecording": "Voye mesaj vokal la",
-    "modal.filePreview.openExternally": "Louvri nan yon nouvo onglè",
-    "modal.filePreview.pdfUnavailable": "Nou pa ka montre PDF sa a isit la. Ou toujou ka louvri l oswa telechaje l.",
-    "toast.error": "Erè",
-    "toast.couldNotOpenPrivateChat": "Pa t kapab louvri nouvo chat prive a",
-    "toast.couldNotResolveRecipient": "Pa t kapab jwenn destinatè a",
-    "toast.failedToCreatePrivateChat": "Echèk pou kreye chat prive a",
-    "toast.failedToCreateCall": "Echèk pou kreye apèl la",
-    "toast.failedToDeleteUser": "Echèk pou efase itilizatè a.",
-    "toast.userRemovedFromRoom": "{userId} retire nan sal la.",
-    "toast.failedToAddUser": "Echèk pou ajoute itilizatè a.",
-    "toast.userAddedToRoom": "{userName} ajoute nan sal la.",
-    "toast.loginFailedTitle": "Koneksyon echwe",
-    "toast.invalidCredentials": "Enfòmasyon koneksyon yo pa valab",
-    "toast.loginSuccessfulTitle": "Koneksyon reyisi",
-    "toast.welcomeBack": "Byenveni ankò!",
-    "toast.loginErrorTitle": "Erè koneksyon",
-    "toast.loginErrorMessage": "Yon erè rive pandan koneksyon an",
-    "validation.invalidEmail": "Fòma imèl la pa valab",
-    "validation.passwordTooShort": "Modpas la dwe gen omwen 6 karaktè",
-    "validation.wrongCredentials": "Ou antre move enfòmasyon. Eseye ankò",
-    "field.email": "Imèl",
-    "field.password": "Modpas",
-    "field.firstName": "Prenon",
-    "field.lastName": "Siyati",
-    "field.additionalDetails": "Detay anplis",
-    "field.referralCode": "Kòd referans ou",
-    "action.logOut": "Dekonekte",
-    "action.message": "Mesaj",
-    "action.videoCall": "Apèl videyo",
-    "action.call": "Rele",
-    "action.audioCall": "Apèl odyo",
-    "action.copyUserId": "Kopye ID itilizatè a",
-    "action.deleteChat": "Efase chat la",
-    "action.appointAsAdmin": "Nonmen kòm administratè",
-    "action.moreOptions": "Plis opsyon",
-    "action.showQr": "Montre kòd QR",
-    "action.addMembers": "Ajoute manm",
-    "action.no": "Non",
-    "action.yes": "Wi",
-    "action.addNewShare": "Ajoute yon nouvo pataj",
-    "action.deleteMyAccount": "Efase kont mwen",
-    "auth.loginButton": "Konekte nan Ethora Chat",
-    "auth.loginWithGoogle": "Konekte ak Google",
-    "auth.orDelimiter": "oswa",
-    "auth.noAccount": "Ou pa gen yon kont?",
-    "auth.signUp": "Enskri nan Ethora",
-    "auth.loginAnonymously": "Konekte anonim",
-    "auth.anonymousTextOnly": "Ou ka voye sèlman mesaj tèks",
-    "auth.anonymousLoginMessage": "Ou konekte anonim!",
-    "modal.profile.title": "Pwofil",
-    "action.editProfile": "Modifye pwofil",
-    "modal.profile.about": "Konsènan",
-    "modal.profile.noDescription": "Pa gen deskripsyon",
-    "modal.chatProfile.title": "Pwofil chat la",
-    "modal.chatProfile.description": "Deskripsyon",
-    "modal.chatProfile.chatType": "Tip chat",
-    "modal.chatProfile.memberCountSingular": "{count} manm",
-    "modal.chatProfile.memberCountPlural": "{count} manm",
-    "modal.chatProfile.membersShowMore": "Montre {count} anplis",
-    "modal.chatProfile.searchMembers": "Chèche manm",
-    "modal.deleteChat.title": "Efase chat sa a?",
-    "modal.addMembers.title": "Ajoute yon nouvo manm",
-    "modal.addMembers.userIdPlaceholder": "Antre ID itilizatè a",
-    "modal.leaveChat.title": "Kite chat la",
-    "modal.leaveChat.description": "Èske ou sèten ou vle kite chat sa a?",
-    "modal.report.chatTitle": "Rapòte chat la",
-    "modal.report.messageTitle": "Rapòte mesaj la",
-    "modal.report.otherDetails": "Tanpri antre detay anplis ki gen rapò ak rapò ou a.",
-    "report.category.spam": "Spam",
-    "report.category.violence": "Vyolans",
-    "report.category.childAbuse": "Abi sou timoun",
-    "report.category.pornography": "Pònografi",
-    "report.category.personalDetails": "Enfòmasyon pèsonèl",
-    "report.category.illegalDrugs": "Dwòg ilegal",
-    "report.category.other": "Lòt",
-    "notification.saved": "Anrejistre",
-    "sort.name": "Prenon",
-    "sort.surname": "Siyati",
-    "settings.shares.listOfShares": "Lis pataj yo",
-    "settings.documentShares.title": "Pataj dokiman",
-    "settings.documentShares.currentShares": "Pataj dokiman aktyèl yo",
-    "settings.documentShares.description": "Anba a se lyen pataj dokiman ou yo ki aktif. Ou ka pataje yo oswa efase yo.",
-    "settings.documentShares.emptyState": 'Pa gen pataj pou kounye a, oswa ou ka ajoute yo lè ou klike sou bouton "Ajoute yon nouvo pataj"',
-    "settings.profileShares.title": "Pataj pwofil",
-    "settings.profileShares.currentShares": "Pataj pwofil aktyèl yo",
-    "settings.profileShares.description": "Anba a se lyen pataj pwofil ou yo ki aktif. Ou ka pataje yo oswa efase yo.",
-    "settings.blockedUsers.title": "Itilizatè bloke",
-    "settings.blockedUsers.label": "Itilizatè bloke",
-    "settings.blockedUsers.description": "Itilizatè ou bloke yo pa ka voye mesaj ba ou ni wè lè ou an liy.",
-    "settings.blockedUsers.emptyState": "Ou poko bloke pèsonn.",
-    "settings.visibility.title": "Vizibilite",
-    "settings.visibility.profileLabel": "Vizibilite pwofil la",
-    "settings.visibility.open": "Louvri (default)",
-    "settings.visibility.openDescription": "Nenpòt moun ki swiv lyen pwofil ou a oswa kòd QR ou a ka wè pwofil ou.",
-    "settings.visibility.restricted": "Limite",
-    "settings.visibility.restrictedDescription": "Sèlman itilizatè ki gen pèmisyon ou oswa yon lyen sekirize tanporè ka wè pwofil ou.",
-    "settings.visibility.documentsLabel": "Vizibilite dokiman yo",
-    "settings.visibility.full": "Konplè (default)",
-    "settings.visibility.fullDescription": "Montre tout dokiman yo bay moun ki ka wè pwofil ou.",
-    "settings.visibility.individual": "Endividyèl",
-    "settings.visibility.individualDescription": "Ou dwe pataje chak dokiman endividyèlman anvan lòt moun ka wè yo.",
-    "settings.referrals.title": "Referans",
-    "settings.referrals.giftPart1": "Bay zanmi 25",
-    "settings.referrals.giftPart2": "epi resevwa 25",
-    "settings.referrals.giftPart3": "Voye yon envitasyon bay zanmi ou ak kòd envitasyon pèsonèl ou.",
-    "settings.referrals.yourCode": "Kòd envitasyon ou",
-    "settings.referrals.enterReferralCode": "Oswa antre kòd referans ou pou touche pyès monnen",
-    "settings.manageData.title": "Jere done",
-    "settings.manageData.downloadLabel": "Telechaje done ou yo",
-    "settings.manageData.downloadDescription": "Done yo se pa ou. Peze bouton anba a pou telechaje yon kopi done ou yo",
-    "settings.manageData.deleteLabel": "Efase kont ou",
-    "settings.manageData.deleteDescription": "Sèvi ak sa a sèlman si ou vle efase kont ou ak done ou yo nèt nan sistèm nou an.",
-    "settings.manageData.deleteDisclosure": "Akoz nati imityab teknoloji rejis distribiye a, nœud rezo kominote a opere yo ka toujou kenbe tranzaksyon istorik kont ou an te jenere; sepandan, enfòmasyon idantifyab pèsonèl ou yo tankou non ou, imèl ou ak depo kle-valè ou yo ap retire. Tout byen dijital ou yo ap pèdi.",
-    "files.panel.title": "Fichye",
-    "files.filter.all": "Tout",
-    "files.filter.media": "Medya",
-    "files.filter.documents": "Dokiman",
-    "files.filter.audio": "Odyo",
-    "files.search.placeholder": "Chèche fichye...",
-    "files.empty.title": "Poko gen fichye",
-    "files.empty.subtitle": "Fichye ou telechaje yo ap parèt isit la.",
-    "files.noResults": "Pa gen fichye ki matche ak rechèch ou",
-    "files.noResults.moreAvailable": "Tout fichye yo poko chaje, chaje plis pou kontinye chèche",
-    "files.loading": "K ap chaje fichye...",
-    "files.error.title": "Pa t kapab chaje fichye yo",
-    "files.action.retry": "Eseye ankò",
-    "files.action.loadMore": "Chaje plis",
-    "files.action.preview": "Apèsi",
-    "files.action.download": "Telechaje",
-    "files.action.delete": "Efase",
-    "files.delete.confirmTitle": "Efase fichye sa a?",
-    "files.delete.confirmMessage": "Fichye sa a ap efase pou tout tan. Ou pa ka defèt sa.",
-    "files.delete.failed": "Echèk nan efase fichye a",
-    "modal.chatProfile.filesTitle": "Fichye",
-    "modal.chatProfile.filesShowAll": "Wè tout",
-    "modal.chatProfile.filesEmpty": "Poko gen fichye nan chat sa a"
-  };
-  const zh = {
-    "tabs.chats": "聊天",
-    "tabs.files": "文件",
-    "files.empty": "暂无文件",
-    "search.placeholder": "搜索...",
-    "select.noOptions": "未找到选项",
-    "input.placeholder": "输入消息",
-    "room.created": "聊天室已创建",
-    "room.empty": "此聊天为空",
-    "room.empty.hint": "快来发送第一条消息吧。",
-    "media.unsupported": "不支持的媒体类型",
-    "common.or": "或",
-    "tabs.label": "侧边栏分区",
-    "call.disabled.roomType": "通话仅在一对一聊天中可用",
-    "call.disabled.noLivekit": "通话不可用：未配置视频服务",
-    "call.disabled.busy": "已有另一通话正在进行",
-    "date.today": "今天",
-    "date.yesterday": "昨天",
-    "message.deleted": "消息已删除",
-    "message.edited": "已编辑",
-    "presence.online": "在线",
-    "presence.offline": "离线",
-    "presence.onlineCount": "{count} 人在线",
-    "header.userCountSingular": "{count} 位用户",
-    "header.userCountPlural": "{count} 位用户",
-    "header.action.back": "返回",
-    "header.action.startAudioCall": "开始语音通话",
-    "header.action.startVideoCall": "开始视频通话",
-    "call.outgoing": "拨出通话",
-    "call.incoming": "来电",
-    "call.noAnswer": "无人接听",
-    "call.missed": "未接来电",
-    "call.durationSec": "{n} 秒",
-    "call.durationMin": "{n} 分钟",
-    "call.durationMinSec": "{m} 分 {s} 秒",
-    "action.send": "发送",
-    "action.cancel": "取消",
-    "action.close": "关闭",
-    "action.back": "返回",
-    "action.save": "保存",
-    "action.delete": "删除",
-    "action.leave": "退出",
-    "action.create": "创建",
-    "action.submit": "提交",
-    "action.translate": "翻译",
-    "action.showOriginal": "显示原文",
-    "action.scrollToBottom": "滚动到底部",
-    "action.newChat": "新建聊天",
-    "action.addUsers": "添加用户",
-    "action.addUsersCount": "添加用户（已选 {count} 人）",
-    "action.addMoreUsers": "添加更多用户",
-    "action.add": "添加",
-    "action.backToCreation": "返回创建",
-    "action.report": "举报",
-    "status.connecting": "连接中…",
-    "status.noInternet": "无网络连接",
-    "translation.translating": "翻译中…",
-    "translation.failed": "无法翻译",
-    "translation.enableToggleLabel": "翻译我的消息",
-    "translation.enableToggleDisclaimer": "如果之前未启用翻译，只有从现在开始发送的新消息才会被翻译。",
-    "translation.modeLabel": "翻译显示方式",
-    "translation.modeAuto": "自动",
-    "modal.filePreview.unsupported": "无法打开上传的文档。系统不支持该文件格式,请上传兼容格式的文件。您仍可以下载此文件。",
-    "translation.modeManual": "手动",
-    "language.select": "选择语言",
-    "modal.newChat.title": "创建新聊天",
-    "modal.newChat.roomNamePlaceholder": "输入聊天室名称",
-    "modal.newChat.chatTypePlaceholder": "选择聊天类型",
-    "modal.newChat.typePublic": "公开",
-    "modal.newChat.typePrivate": "私密",
-    "modal.newChat.selectUsersTitle": "选择要添加到聊天的用户",
-    "modal.selectUsers.title": "选择用户（最多 20 个）",
-    "modal.selectUsers.searchPlaceholder": "搜索用户...",
-    "modal.selectUsers.empty": "未找到用户",
-    "thread.title": "话题",
-    "toast.roomCreationTitle": "创建聊天室",
-    "toast.roomCreating": "正在创建聊天室...",
-    "toast.success": "成功！",
-    "toast.roomCreatedSuccess": "聊天室创建成功！",
-    "toast.usersAddedSuccess": "用户添加成功！",
-    "settings.menu.title": "设置",
-    "modal.filePreview.title": "文件预览",
-    "modal.filePreview.previousPage": "上一页",
-    "modal.filePreview.nextPage": "下一页",
-    "attachment.pages": "{count} 页",
-    "attachment.remove": "移除附件",
-    "attachment.limit": "每条消息最多可添加 {count} 个文件。",
-    "attachment.tooLarge": "已跳过 {files}：超过 {size} MB。",
-    "action.attachFile": "添加附件",
-    "action.startRecording": "录制语音消息",
-    "action.stopRecording": "取消录音",
-    "action.sendRecording": "发送语音消息",
-    "modal.filePreview.openExternally": "在新标签页中打开",
-    "modal.filePreview.pdfUnavailable": "此 PDF 无法在此显示，但仍可打开或下载。",
-    "toast.error": "错误",
-    "toast.couldNotOpenPrivateChat": "无法打开新的私聊",
-    "toast.couldNotResolveRecipient": "无法识别收件人",
-    "toast.failedToCreatePrivateChat": "创建私聊失败",
-    "toast.failedToCreateCall": "创建通话失败",
-    "toast.failedToDeleteUser": "删除用户失败。",
-    "toast.userRemovedFromRoom": "{userId} 已被移出聊天室。",
-    "toast.failedToAddUser": "添加用户失败。",
-    "toast.userAddedToRoom": "{userName} 已被添加到聊天室。",
-    "toast.loginFailedTitle": "登录失败",
-    "toast.invalidCredentials": "凭据无效",
-    "toast.loginSuccessfulTitle": "登录成功",
-    "toast.welcomeBack": "欢迎回来！",
-    "toast.loginErrorTitle": "登录错误",
-    "toast.loginErrorMessage": "登录过程中发生错误",
-    "validation.invalidEmail": "邮箱格式无效",
-    "validation.passwordTooShort": "密码至少需要 6 个字符",
-    "validation.wrongCredentials": "您输入的信息有误。请重试",
-    "field.email": "邮箱",
-    "field.password": "密码",
-    "field.firstName": "名字",
-    "field.lastName": "姓氏",
-    "field.additionalDetails": "补充信息",
-    "field.referralCode": "您的推荐码",
-    "action.logOut": "退出登录",
-    "action.message": "发消息",
-    "action.videoCall": "视频通话",
-    "action.call": "通话",
-    "action.audioCall": "语音通话",
-    "action.copyUserId": "复制用户 ID",
-    "action.deleteChat": "删除聊天",
-    "action.appointAsAdmin": "设为管理员",
-    "action.moreOptions": "更多选项",
-    "action.showQr": "显示二维码",
-    "action.addMembers": "添加成员",
-    "action.no": "否",
-    "action.yes": "是",
-    "action.addNewShare": "添加新分享",
-    "action.deleteMyAccount": "删除我的账户",
-    "auth.loginButton": "登录 Ethora Chat",
-    "auth.loginWithGoogle": "使用 Google 登录",
-    "auth.orDelimiter": "或",
-    "auth.noAccount": "还没有账户？",
-    "auth.signUp": "注册 Ethora",
-    "auth.loginAnonymously": "匿名登录",
-    "auth.anonymousTextOnly": "仅能发送文字消息",
-    "auth.anonymousLoginMessage": "您已匿名登录！",
-    "modal.profile.title": "个人资料",
-    "action.editProfile": "编辑资料",
-    "modal.profile.about": "简介",
-    "modal.profile.noDescription": "暂无简介",
-    "modal.chatProfile.title": "聊天资料",
-    "modal.chatProfile.description": "描述",
-    "modal.chatProfile.chatType": "聊天类型",
-    "modal.chatProfile.memberCountSingular": "{count} 位成员",
-    "modal.chatProfile.memberCountPlural": "{count} 位成员",
-    "modal.chatProfile.membersShowMore": "显示另外 {count} 位",
-    "modal.chatProfile.searchMembers": "搜索成员",
-    "modal.deleteChat.title": "删除此聊天？",
-    "modal.addMembers.title": "添加新成员",
-    "modal.addMembers.userIdPlaceholder": "输入用户 ID",
-    "modal.leaveChat.title": "退出聊天",
-    "modal.leaveChat.description": "确定要退出此聊天吗？",
-    "modal.report.chatTitle": "举报聊天",
-    "modal.report.messageTitle": "举报消息",
-    "modal.report.otherDetails": "请填写与您举报相关的补充信息。",
-    "report.category.spam": "垃圾信息",
-    "report.category.violence": "暴力",
-    "report.category.childAbuse": "虐待儿童",
-    "report.category.pornography": "色情内容",
-    "report.category.personalDetails": "个人信息",
-    "report.category.illegalDrugs": "违禁药物",
-    "report.category.other": "其他",
-    "notification.saved": "已保存",
-    "sort.name": "名字",
-    "sort.surname": "姓氏",
-    "settings.shares.listOfShares": "分享列表",
-    "settings.documentShares.title": "文档分享",
-    "settings.documentShares.currentShares": "当前文档分享",
-    "settings.documentShares.description": "以下是您当前有效的文档分享链接。您可以分享或删除它们。",
-    "settings.documentShares.emptyState": "暂无分享，您可以点击“添加新分享”按钮来添加",
-    "settings.profileShares.title": "资料分享",
-    "settings.profileShares.currentShares": "当前资料分享",
-    "settings.profileShares.description": "以下是您当前有效的资料分享链接。您可以分享或删除它们。",
-    "settings.blockedUsers.title": "已屏蔽用户",
-    "settings.blockedUsers.label": "已屏蔽用户",
-    "settings.blockedUsers.description": "被您屏蔽的用户无法向您发送消息，也无法看到您何时在线。",
-    "settings.blockedUsers.emptyState": "您还没有屏蔽任何人。",
-    "settings.visibility.title": "可见性",
-    "settings.visibility.profileLabel": "资料可见性",
-    "settings.visibility.open": "公开（默认）",
-    "settings.visibility.openDescription": "任何打开您资料链接或扫描您二维码的人都可以查看您的资料。",
-    "settings.visibility.restricted": "受限",
-    "settings.visibility.restrictedDescription": "只有获得您许可或持有临时安全链接的用户才能查看您的资料。",
-    "settings.visibility.documentsLabel": "文档可见性",
-    "settings.visibility.full": "全部（默认）",
-    "settings.visibility.fullDescription": "向所有能查看您资料的人显示全部文档。",
-    "settings.visibility.individual": "单独",
-    "settings.visibility.individualDescription": "您需要单独分享每个文档，其他人才能查看。",
-    "settings.referrals.title": "推荐",
-    "settings.referrals.giftPart1": "赠送好友 25",
-    "settings.referrals.giftPart2": "并获得 25",
-    "settings.referrals.giftPart3": "用您的专属邀请码向好友发送邀请。",
-    "settings.referrals.yourCode": "您的邀请码",
-    "settings.referrals.enterReferralCode": "或输入您的推荐码以赚取代币",
-    "settings.manageData.title": "管理数据",
-    "settings.manageData.downloadLabel": "下载您的数据",
-    "settings.manageData.downloadDescription": "您的数据归您所有。点击下方按钮下载您的数据副本",
-    "settings.manageData.deleteLabel": "删除您的账户",
-    "settings.manageData.deleteDescription": "仅当您希望从我们的系统中永久删除您的账户及数据时才使用此功能。",
-    "settings.manageData.deleteDisclosure": "由于分布式账本技术的不可篡改特性，社区运营的网络节点可能仍会保留您账户生成的历史交易记录；但您的个人身份信息，如姓名、电子邮箱、键值存储等将被移除。您的所有数字资产都将丢失。",
-    "files.panel.title": "文件",
-    "files.filter.all": "全部",
-    "files.filter.media": "媒体",
-    "files.filter.documents": "文档",
-    "files.filter.audio": "音频",
-    "files.search.placeholder": "搜索文件...",
-    "files.empty.title": "暂无文件",
-    "files.empty.subtitle": "您上传的文件将显示在这里。",
-    "files.noResults": "没有匹配的文件",
-    "files.noResults.moreAvailable": "尚未加载全部文件，加载更多以继续搜索",
-    "files.loading": "正在加载文件...",
-    "files.error.title": "无法加载文件",
-    "files.action.retry": "重试",
-    "files.action.loadMore": "加载更多",
-    "files.action.preview": "预览",
-    "files.action.download": "下载",
-    "files.action.delete": "删除",
-    "files.delete.confirmTitle": "删除此文件？",
-    "files.delete.confirmMessage": "此文件将被永久删除，且无法恢复。",
-    "files.delete.failed": "删除文件失败",
-    "modal.chatProfile.filesTitle": "文件",
-    "modal.chatProfile.filesShowAll": "查看全部",
-    "modal.chatProfile.filesEmpty": "此聊天中还没有文件"
-  };
-  const BUILTIN_STRINGS = {
-    en: en$1,
-    fr: fr$1,
-    es: es$1,
-    pt: pt$1,
-    ht: ht$1,
-    zh
-  };
-  const DEFAULT_UI_LANGUAGE = "en";
-  const toBaseLanguage$1 = (locale) => String(locale || DEFAULT_UI_LANGUAGE).split("-")[0].trim().toLowerCase() || DEFAULT_UI_LANGUAGE;
-  const resolveStringTable = (locale, overrides) => {
-    const base = toBaseLanguage$1(locale);
-    const table2 = BUILTIN_STRINGS[base] || BUILTIN_STRINGS[DEFAULT_UI_LANGUAGE];
-    return {
-      ...BUILTIN_STRINGS[DEFAULT_UI_LANGUAGE],
-      ...table2,
-      ...overrides || {}
-    };
-  };
-  const interpolate = (template, vars) => {
-    if (!vars) return template;
-    return template.replace(
-      /\{(\w+)\}/g,
-      (_2, k2) => k2 in vars ? String(vars[k2]) : `{${k2}}`
-    );
-  };
-  const useUiLocale = () => {
-    const { config, langSource } = useChatSettingState();
-    return config?.i18n?.locale || langSource || void 0;
-  };
-  const useT = () => {
-    const { config, langSource } = useChatSettingState();
-    const locale = config?.i18n?.locale || langSource;
-    const overrides = config?.i18n?.strings;
-    const table2 = reactExports.useMemo(
-      () => resolveStringTable(locale, overrides),
-      [locale, overrides]
-    );
-    return reactExports.useCallback(
-      (key, vars) => interpolate(table2[key] ?? key, vars),
-      [table2]
-    );
-  };
   const Container$8 = gt$1.div`
   display: flex;
   align-items: center;
@@ -57857,12 +58480,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       (key) => a2[key] === b2[key]
     );
   };
-  const CustomComponentsProvider = ({ children, ...value }) => {
+  const CustomComponentsProvider = ({ children: children2, ...value }) => {
     const stableRef = reactExports.useRef(value);
     if (!shallowEqual(stableRef.current, value)) {
       stableRef.current = value;
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(CustomComponentsContext.Provider, { value: stableRef.current, children });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(CustomComponentsContext.Provider, { value: stableRef.current, children: children2 });
   };
   const useCustomComponents = () => reactExports.useContext(CustomComponentsContext);
   const MessageContainerBase = ({
@@ -57938,7 +58561,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           className,
           children: !CustomMessage ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(MessageTimestamp, { children: messageDate.toLocaleTimeString() }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(UserName$1, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(UserName, { children: [
               message.user.name,
               ": "
             ] }),
@@ -58076,6 +58699,36 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             d: "M49.48 41.6157C49.8652 47.0571 44.6303 51.2108 39.3185 49.6786L38.7356 49.5105C37.4141 49.1293 36.2085 48.4328 35.2255 47.4827L20.6837 33.4269C20.4421 33.1934 20.4383 32.8111 20.6753 32.573C20.9122 32.3349 21.3001 32.3312 21.5417 32.5647L36.0835 46.6205C36.9226 47.4316 37.9518 48.0261 39.0798 48.3515L39.6627 48.5197C44.1556 49.8156 48.5834 46.3022 48.2576 41.6998C48.1476 40.1465 47.486 38.6809 46.389 37.5604L32.0772 22.9428C31.673 22.53 31.2005 22.1881 30.68 21.9315L30.2462 21.7178C27.0351 20.1355 23.257 22.4367 23.257 25.9748C23.257 27.2208 23.7528 28.4171 24.6379 29.3068L37.7977 42.5356C38.1172 42.8568 38.5165 43.0908 38.9555 43.2145C40.457 43.6372 42.0009 42.6866 42.2721 41.1721C42.4213 40.3387 42.1485 39.486 41.5414 38.8876L29.2569 26.7809C29.0176 26.5451 29.0176 26.1628 29.2569 25.927C29.4962 25.6912 29.8841 25.6912 30.1233 25.927L42.4078 38.0336C43.2977 38.9107 43.6975 40.1605 43.4788 41.382C43.0811 43.603 40.8182 44.9949 38.6189 44.3756C37.9759 44.1946 37.391 43.8518 36.9227 43.381L23.7629 30.1522C22.6532 29.0368 22.0317 27.5369 22.0317 25.9748C22.0317 21.539 26.7684 18.6539 30.7942 20.6377L31.228 20.8514C31.8729 21.1692 32.4583 21.5929 32.9589 22.1043L47.2707 36.7218C48.5678 38.0466 49.35 39.7793 49.48 41.6157Z",
             fill: color2,
             stroke: color2
+          }
+        )
+      ]
+    }
+  );
+  const EmojiIcon = ({
+    color: color2 = "var(--ethora-icon-color, #0052CD)",
+    bgcolor = "white",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "70",
+      height: "70",
+      viewBox: "0 0 70 70",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { width: "70", height: "70", rx: "15", fill: bgcolor }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "35", cy: "35", r: "14", stroke: color2, strokeWidth: "1.6" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "30", cy: "31", r: "1.7", fill: color2 }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "40", cy: "31", r: "1.7", fill: color2 }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "path",
+          {
+            d: "M28.5 39C29.9 41.6 32.2 43 35 43C37.8 43 40.1 41.6 41.5 39",
+            stroke: color2,
+            strokeWidth: "1.6",
+            strokeLinecap: "round"
           }
         )
       ]
@@ -58376,48 +59029,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       )
     }
   );
-  const ReferalsIcon = ({ color: color2 = "var(--ethora-icon-color, #8C8C8C)", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "svg",
-    {
-      width: "400",
-      height: "240",
-      viewBox: "0 0 400 240",
-      fill: "none",
-      xmlns: "http://www.w3.org/2000/svg",
-      xmlnsXlink: "http://www.w3.org/1999/xlink",
-      ...props,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { width: "400", height: "240", fill: "url(#pattern0_1446_107942)" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("defs", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "pattern",
-            {
-              id: "pattern0_1446_107942",
-              patternContentUnits: "objectBoundingBox",
-              width: "1",
-              height: "1",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "use",
-                {
-                  xlinkHref: "#image0_1446_107942",
-                  transform: "matrix(0.000403272 0 0 0.000674933 -0.000259249 -0.0209205)"
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "image",
-            {
-              id: "image0_1446_107942",
-              width: "2481",
-              height: "1578",
-              xlinkHref: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-            }
-          )
-        ] })
-      ]
-    }
-  );
   const ReportIcon = ({ color: color2 = "var(--ethora-icon-color, #8C8C8C)", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "svg",
     {
@@ -58524,55 +59135,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           fill: color2
         }
       )
-    }
-  );
-  const SendCoinIcon = ({ color: color2 = "var(--ethora-icon-color, #8C8C8C)", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "svg",
-    {
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      xmlns: "http://www.w3.org/2000/svg",
-      ...props,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "circle",
-          {
-            cx: "12",
-            cy: "12",
-            r: "8.7",
-            fill: "url(#paint0_linear_846_13863)",
-            stroke: "#DB8828",
-            strokeWidth: "0.6"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "path",
-          {
-            d: "M14.9181 8.98771H15.0681V8.83771V7.37825V7.22825H14.9181H13.2438V6.40527V6.25527H13.0938H11.391H11.241V6.40527V7.22825H8.59375H8.23162L8.48768 7.48431L12.8816 11.8782L8.48768 16.2722L8.23162 16.5282H8.59375H11.241V17.5945V17.7445H11.391H13.0938H13.2438V17.5945V16.5282H14.9181H15.0681V16.3782V14.9188V14.7688H14.9181H12.5943L15.2695 11.9821L15.3693 11.8782L15.2695 11.7744L12.5943 8.98771H14.9181Z",
-            fill: "white",
-            stroke: "#DB8828",
-            strokeWidth: "0.3"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("defs", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "linearGradient",
-          {
-            id: "paint0_linear_846_13863",
-            x1: "19",
-            y1: "6.5",
-            x2: "4.5",
-            y2: "17.5",
-            gradientUnits: "userSpaceOnUse",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { "stop-color": "#FFD100" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0.505208", "stop-color": "#FB8E3A" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "1", "stop-color": "#FFD100" })
-            ]
-          }
-        ) })
-      ]
     }
   );
   const PlayIcon = ({ color: color2 = "#fff", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -58839,24 +59401,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ]
     }
   );
-  const PlusIcon = ({ color: color2 = "#fff", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "svg",
-    {
-      width: "25",
-      height: "24",
-      viewBox: "0 0 25 24",
-      fill: "none",
-      xmlns: "http://www.w3.org/2000/svg",
-      ...props,
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "path",
-        {
-          d: "M19.5 12C19.5 12.5523 19.0523 13 18.5 13H13.5V18C13.5 18.5523 13.0523 19 12.5 19C11.9477 19 11.5 18.5523 11.5 18V13H6.5C5.94772 13 5.5 12.5523 5.5 12C5.5 11.4477 5.94772 11 6.5 11H11.5V6C11.5 5.44772 11.9477 5 12.5 5C13.0523 5 13.5 5.44772 13.5 6V11H18.5C19.0523 11 19.5 11.4477 19.5 12Z",
-          fill: color2
-        }
-      )
-    }
-  );
   const SaveIcon = ({ color: color2 = "var(--ethora-icon-color, #8C8C8C)", ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
     "svg",
     {
@@ -58945,6 +59489,129 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           strokeWidth: "1.5",
           strokeLinecap: "round",
           strokeLinejoin: "round"
+        }
+      )
+    }
+  );
+  const ChevronLeftIcon = ({
+    color: color2 = "var(--ethora-icon-color, #8C8C8C)",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "path",
+        {
+          d: "M15 5L8 12L15 19",
+          stroke: color2,
+          strokeWidth: "2",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      )
+    }
+  );
+  const ChevronRightIcon = ({
+    color: color2 = "var(--ethora-icon-color, #8C8C8C)",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "path",
+        {
+          d: "M9 5L16 12L9 19",
+          stroke: color2,
+          strokeWidth: "2",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      )
+    }
+  );
+  const ZoomInIcon = ({
+    color: color2 = "var(--ethora-icon-color, #8C8C8C)",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "6.5", stroke: color2, strokeWidth: "1.8" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "path",
+          {
+            d: "M11 8.5V13.5M8.5 11H13.5M16 16L20.5 20.5",
+            stroke: color2,
+            strokeWidth: "1.8",
+            strokeLinecap: "round"
+          }
+        )
+      ]
+    }
+  );
+  const ZoomOutIcon = ({
+    color: color2 = "var(--ethora-icon-color, #8C8C8C)",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "6.5", stroke: color2, strokeWidth: "1.8" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "path",
+          {
+            d: "M8.5 11H13.5M16 16L20.5 20.5",
+            stroke: color2,
+            strokeWidth: "1.8",
+            strokeLinecap: "round"
+          }
+        )
+      ]
+    }
+  );
+  const ZoomResetIcon = ({
+    color: color2 = "var(--ethora-icon-color, #8C8C8C)",
+    ...props
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      ...props,
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "path",
+        {
+          d: "M4 9V5.5C4 4.67157 4.67157 4 5.5 4H9M15 4H18.5C19.3284 4 20 4.67157 20 5.5V9M20 15V18.5C20 19.3284 19.3284 20 18.5 20H15M9 20H5.5C4.67157 20 4 19.3284 4 18.5V15",
+          stroke: color2,
+          strokeWidth: "1.8",
+          strokeLinecap: "round"
         }
       )
     }
@@ -59473,6 +60140,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       )
     ] });
   };
+  var reactDomExports = requireReactDom();
+  const useAppDispatch = useDispatch;
   const InputContainer = gt$1.div`
   display: flex;
   flex-direction: column;
@@ -59482,6 +60151,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   background-color: var(--ethora-input-bg, #fff);
   border-top: 1px solid var(--ethora-color-border, #e6e8ec);
   z-index: 1;
+  /* Anchors the @-mention autocomplete dropdown (position: absolute,
+     bottom: 100%) so it renders directly above the composer. */
+  position: relative;
   box-shadow: var(--ethora-shadow-sm, 0px 0px 24px -4px #12121914);
   max-width: 100%;
   /* Composer sits as a flex sibling after the message list - keep it at
@@ -59495,6 +60167,42 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   width: 100%;
   max-height: 72px;
   gap: 16px;
+`;
+  const EmojiPickerPopover = gt$1.div`
+  position: absolute;
+  bottom: 100%;
+  left: 16px;
+  margin-bottom: 8px;
+  z-index: 6;
+`;
+  const DropOverlay = gt$1.div`
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ethora-space-3, 12px);
+  pointer-events: none;
+  background: var(--ethora-drop-overlay-bg, rgba(255, 255, 255, 0.72));
+  ${fadeInAnimation}
+`;
+  const DropTarget = gt$1.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: var(--ethora-space-4, 16px);
+  text-align: center;
+  border: 2px dashed var(--ethora-color-primary, #0052cd);
+  border-radius: var(--ethora-radius-lg, 16px);
+  background: var(--ethora-color-primary-soft, #e7edf9);
+  color: var(--ethora-color-primary, #0052cd);
+  font-size: var(--ethora-font-size, 16px);
+  font-weight: 600;
+  ${scaleInAnimation}
 `;
   const MessageInput = gt$1.input`
   flex-grow: 1;
@@ -59776,7 +60484,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     unstyled = false,
     variant = "default",
     tone = "default",
-    children,
+    children: children2,
     StartIcon,
     ...props
   }, ref) => {
@@ -59791,7 +60499,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         ...props,
         children: [
           !loading && StartIcon,
-          !loading && children,
+          !loading && children2,
           loading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, { size: 24 }) : text2,
           !loading && EndIcon
         ]
@@ -59839,55 +60547,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       /* @__PURE__ */ jsxRuntimeExports.jsx(OuterCircle, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(InnerCircle, {})
     ] });
-  };
-  const DEFAULT_ICON_COLOR = "#0052CD";
-  const resolveIconColor = (config) => config?.colors?.icons || config?.colors?.primary || DEFAULT_ICON_COLOR;
-  const DEFAULT_ICON_BG_COLOR = "#F0F3F7";
-  const resolveIconBgColor = (config) => config?.colors?.iconsBg || DEFAULT_ICON_BG_COLOR;
-  const ICON_COLOR_VAR = "--ethora-icon-color";
-  const OWN_MSG_BG_VAR = "--ethora-own-message-bg";
-  const OTHER_MSG_BG_VAR = "--ethora-other-message-bg";
-  const INPUT_BG_VAR = "--ethora-input-bg";
-  const CHAT_BG_VAR = "--ethora-chat-bg";
-  const CHAT_BG_IMAGE_VAR = "--ethora-chat-bg-image";
-  const setVar = (name2, value) => {
-    if (value) {
-      document.documentElement.style.setProperty(name2, value);
-    } else {
-      document.documentElement.style.removeProperty(name2);
-    }
-  };
-  const ICON_TINT_STYLE_ID = "ethora-icon-tint";
-  const applyIconTint = (color2) => {
-    let style = document.getElementById(
-      ICON_TINT_STYLE_ID
-    );
-    if (!color2) {
-      style?.remove();
-      return;
-    }
-    if (!style) {
-      style = document.createElement("style");
-      style.id = ICON_TINT_STYLE_ID;
-      document.head.appendChild(style);
-    }
-    const css = `[fill^="var(${ICON_COLOR_VAR}"]{fill:${color2} !important;}[stroke^="var(${ICON_COLOR_VAR}"]{stroke:${color2} !important;}`;
-    if (style.textContent !== css) style.textContent = css;
-  };
-  const applyThemeColors = (config) => {
-    if (typeof document === "undefined") return;
-    const iconColor = config?.colors?.icons || config?.colors?.primary;
-    setVar(ICON_COLOR_VAR, iconColor);
-    applyIconTint(iconColor);
-    setVar(OWN_MSG_BG_VAR, config?.colors?.ownMessageBackground);
-    setVar(OTHER_MSG_BG_VAR, config?.colors?.otherMessageBackground);
-    setVar(INPUT_BG_VAR, config?.colors?.inputBackground);
-    setVar(CHAT_BG_VAR, config?.backgroundChat?.color);
-    const image2 = config?.backgroundChat?.image;
-    setVar(
-      CHAT_BG_IMAGE_VAR,
-      typeof image2 === "string" && image2 ? `url("${image2}")` : void 0
-    );
   };
   const AudioRecorder = ({
     setIsRecording,
@@ -60284,6 +60943,120 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       )
     ] });
   };
+  const PickerWithData = React.lazy(async () => {
+    const [{ default: Picker2 }, { default: data }] = await Promise.all([
+      Promise.resolve().then(() => emojiReact),
+      Promise.resolve().then(() => emojiData$1)
+    ]);
+    const Wrapped = (props) => /* @__PURE__ */ jsxRuntimeExports.jsx(Picker2, { data, ...props });
+    return { default: Wrapped };
+  });
+  const PickerShell = gt$1.div`
+  border-radius: var(--ethora-radius-md, 12px);
+  border: 1px solid var(--ethora-color-border, #e6e8ec);
+  box-shadow: var(--ethora-shadow-lg, 0 8px 24px rgba(16, 24, 40, 0.16));
+  overflow: hidden;
+  ${scaleInAnimation}
+`;
+  const LazyEmojiPicker = (props) => /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PickerShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PickerWithData, { ...props }) }) });
+  const escapeHtml = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const escapeAttr = (value) => escapeHtml(value).replace(/"/g, "&quot;");
+  const memberJid = (member) => member.jid || member.xmppUsername || member._id || "";
+  const memberFullName = (member) => `${member.firstName || ""} ${member.lastName || ""}`.trim() || member.name || member.xmppUsername || "";
+  const rankMentionCandidates = (query, members, selfId) => {
+    const q2 = query.trim().toLowerCase();
+    const selfKey = String(selfId || "").split("@")[0];
+    const scored = [];
+    for (const member of members) {
+      const jid2 = memberJid(member);
+      const localKey = jid2.split("@")[0];
+      if (selfKey && (localKey === selfKey || jid2 === selfId)) continue;
+      const name2 = memberFullName(member);
+      if (!name2) continue;
+      const lowerName = name2.toLowerCase();
+      let rank;
+      if (q2 === "") {
+        rank = 1;
+      } else if (lowerName.startsWith(q2)) {
+        rank = 0;
+      } else if (lowerName.includes(q2)) {
+        rank = 1;
+      } else {
+        continue;
+      }
+      scored.push({ candidate: { jid: jid2, name: name2 }, rank });
+    }
+    scored.sort((a2, b2) => {
+      if (a2.rank !== b2.rank) return a2.rank - b2.rank;
+      return a2.candidate.name.localeCompare(b2.candidate.name);
+    });
+    return scored.map((s2) => s2.candidate);
+  };
+  const findActiveMentionQuery = (text2, caret2) => {
+    const upToCaret = text2.slice(0, caret2);
+    const at2 = upToCaret.lastIndexOf("@");
+    if (at2 === -1) return null;
+    const before = at2 === 0 ? "" : upToCaret[at2 - 1];
+    if (before && !/\s/.test(before)) return null;
+    const query = upToCaret.slice(at2 + 1);
+    if (/\s/.test(query)) return null;
+    return { start: at2, query };
+  };
+  const shiftMentionSpans = (spans, editStart, editEnd, insertedLength) => {
+    const delta = insertedLength - (editEnd - editStart);
+    return spans.reduce((acc, span) => {
+      const spanEnd = span.offset + span.length;
+      if (spanEnd <= editStart) {
+        acc.push(span);
+        return acc;
+      }
+      if (span.offset >= editEnd) {
+        acc.push({ ...span, offset: span.offset + delta });
+        return acc;
+      }
+      return acc;
+    }, []);
+  };
+  const validateMentionSpans = (text2, spans) => spans.filter((span) => {
+    if (span.offset < 0 || span.offset + span.length > text2.length) {
+      return false;
+    }
+    const slice2 = text2.slice(span.offset, span.offset + span.length);
+    return slice2 === `@${span.name}`;
+  });
+  const findMentionEndingAt = (spans, caret2) => spans.find((span) => span.offset + span.length === caret2);
+  const computeEditRange = (oldText, newText) => {
+    let prefix2 = 0;
+    const maxPrefix = Math.min(oldText.length, newText.length);
+    while (prefix2 < maxPrefix && oldText[prefix2] === newText[prefix2]) {
+      prefix2++;
+    }
+    let suffix = 0;
+    const maxSuffix = Math.min(oldText.length, newText.length) - prefix2;
+    while (suffix < maxSuffix && oldText[oldText.length - 1 - suffix] === newText[newText.length - 1 - suffix]) {
+      suffix++;
+    }
+    const start = prefix2;
+    const end = oldText.length - suffix;
+    const insertedLength = newText.length - suffix - prefix2;
+    return { start, end, insertedLength };
+  };
+  const spliceMentionMarkup = (text2, spans) => {
+    if (!spans || spans.length === 0) return text2;
+    const valid2 = validateMentionSpans(text2, spans).sort(
+      (a2, b2) => b2.offset - a2.offset
+    );
+    let result = text2;
+    for (const span of valid2) {
+      const before = result.slice(0, span.offset);
+      const token2 = result.slice(span.offset, span.offset + span.length);
+      const after = result.slice(span.offset + span.length);
+      result = `${before}<mention data-jid="${escapeAttr(span.jid)}" data-name="${escapeAttr(
+        span.name
+      )}">${escapeHtml(token2)}</mention>${after}`;
+    }
+    return result;
+  };
   const MarkdownBody$2 = React.lazy(() => Promise.resolve().then(() => MarkdownBody$1));
   const wrapperStyle = {
     fontFamily: 'var(--ethora-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)',
@@ -60291,670 +61064,208 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     color: "#24292f",
     lineHeight: 1.6
   };
-  const parseMessageBody = ({ text: text2 }) => {
+  const parseMessageBody = ({
+    text: text2,
+    mentions,
+    onMentionClick
+  }) => {
     if (!text2) return null;
+    const bodyWithMentions = spliceMentionMarkup(text2, mentions);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       reactExports.Suspense,
       {
         fallback: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { ...wrapperStyle, whiteSpace: "pre-wrap" }, children: text2 }),
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(MarkdownBody$2, { text: text2 })
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(MarkdownBody$2, { text: bodyWithMentions, onMentionClick })
       }
     );
   };
-  const DEFAULT_MAX_FILES = 5;
-  const fileKey = (file) => `${file.name}:${file.size}:${file.lastModified ?? 0}`;
-  const SendInput = ({
-    sendMessage,
-    sendMedia,
-    onFocus,
-    onBlur,
-    config,
-    editMessage: editMessage2,
-    isLoading,
-    isMessageProcessing,
-    formatMessage,
-    multiline,
-    inputHeight,
-    showPreview,
-    previewParser,
-    onSendMessage,
-    onSendMedia,
-    placeholderText
+  const MENTION_INLINE_LIMIT = 5;
+  const useMentionComposer = ({
+    roomMembers,
+    selfId
   }) => {
-    const t2 = useT();
-    const [message, setMessage] = reactExports.useState("");
-    const [isRecording, setIsRecording] = reactExports.useState(false);
-    const [textareaHeight, setTextareaHeight] = reactExports.useState(40);
-    const [isFocused, setIsFocused] = reactExports.useState(false);
-    const [filePreviews, setFilePreviews] = reactExports.useState([]);
-    const [attachmentNotice, setAttachmentNotice] = reactExports.useState(null);
-    const fileInputRef = reactExports.useRef(null);
-    const textareaRef = reactExports.useRef(null);
-    const maxFiles = Math.min(
-      Math.max(1, config?.attachments?.maxFiles ?? DEFAULT_MAX_FILES),
-      MAX_ATTACHMENTS_PER_MESSAGE
-    );
-    const maxFileSizeMb = config?.attachments?.maxFileSizeMb;
-    const objectUrlsRef = reactExports.useRef(/* @__PURE__ */ new Map());
-    const [objectUrls, setObjectUrls] = reactExports.useState({});
-    reactExports.useEffect(() => {
-      const urls = objectUrlsRef.current;
-      const liveKeys = new Set(filePreviews.map(fileKey));
-      filePreviews.forEach((file) => {
-        const key = fileKey(file);
-        if (urls.has(key)) return;
-        const kind = getFileKind(file.type, file.name);
-        if (kind === "image" || kind === "video" || kind === "pdf") {
-          urls.set(key, URL.createObjectURL(file));
-        }
-      });
-      urls.forEach((url, key) => {
-        if (!liveKeys.has(key)) {
-          URL.revokeObjectURL(url);
-          urls.delete(key);
-        }
-      });
-      setObjectUrls(Object.fromEntries(urls));
-    }, [filePreviews]);
-    reactExports.useEffect(() => {
-      const urls = objectUrlsRef.current;
-      return () => {
-        urls.forEach((url) => URL.revokeObjectURL(url));
-        urls.clear();
-      };
+    const [mentionSpans, setMentionSpans] = reactExports.useState([]);
+    const [dropdown, setDropdown] = reactExports.useState(null);
+    const [highlightedIndex, setHighlightedIndex] = reactExports.useState(0);
+    const [overflowOpen, setOverflowOpen] = reactExports.useState(false);
+    const candidates = reactExports.useMemo(() => {
+      if (!dropdown) return [];
+      return rankMentionCandidates(dropdown.query, roomMembers, selfId);
+    }, [dropdown, roomMembers, selfId]);
+    const visibleCandidates = candidates.slice(0, MENTION_INLINE_LIMIT);
+    const hasOverflow = candidates.length > MENTION_INLINE_LIMIT;
+    const resetMentions = reactExports.useCallback(() => {
+      setMentionSpans([]);
+      setDropdown(null);
+      setHighlightedIndex(0);
+      setOverflowOpen(false);
     }, []);
-    const handleAttachClick = reactExports.useCallback(() => {
-      if (fileInputRef.current) {
-        fileInputRef.current.click();
-      }
+    const closeDropdown = reactExports.useCallback(() => {
+      setDropdown(null);
+      setHighlightedIndex(0);
+      setOverflowOpen(false);
     }, []);
-    const handleFileChange = reactExports.useCallback(
-      (event) => {
-        const picked = Array.from(event.target.files || []);
-        if (fileInputRef.current) {
-          fileInputRef.current.value = "";
-        }
-        if (picked.length === 0) return;
-        const sizeLimit = maxFileSizeMb ? maxFileSizeMb * 1024 * 1024 : null;
-        const seen = new Set(filePreviews.map(fileKey));
-        const accepted = [];
-        const oversized = [];
-        let droppedForCount = 0;
-        picked.forEach((file) => {
-          const key = fileKey(file);
-          if (seen.has(key)) return;
-          if (sizeLimit && file.size > sizeLimit) {
-            oversized.push(file.name);
-            return;
-          }
-          if (filePreviews.length + accepted.length >= maxFiles) {
-            droppedForCount += 1;
-            return;
-          }
-          seen.add(key);
-          accepted.push(file);
-        });
-        if (accepted.length > 0) {
-          setFilePreviews((prevFiles) => [...prevFiles, ...accepted]);
-        }
-        const notices = [];
-        if (oversized.length > 0) {
-          notices.push(
-            t2("attachment.tooLarge", {
-              files: oversized.join(", "),
-              size: String(maxFileSizeMb)
-            })
-          );
-        }
-        if (droppedForCount > 0) {
-          notices.push(t2("attachment.limit", { count: maxFiles }));
-        }
-        setAttachmentNotice(notices.length > 0 ? notices.join(" ") : null);
-      },
-      [filePreviews, maxFiles, maxFileSizeMb, t2]
-    );
-    const handleFocus = () => {
-      setIsFocused(true);
-      onFocus?.();
-    };
-    const handleBlur = () => {
-      setIsFocused(false);
-      onBlur?.();
-    };
-    const handleRemoveFile = reactExports.useCallback((file) => {
-      setFilePreviews((prevFiles) => prevFiles.filter((f2) => f2 !== file));
-      setAttachmentNotice(null);
-    }, []);
-    const calculateTextareaHeight = reactExports.useCallback(
-      (text2) => {
-        if (!multiline) return 40;
-        const lineBreaks = (text2.match(/\n/g) || []).length;
-        const baseHeight = 40;
-        const heightPerLine = 13;
-        const maxHeight = 92;
-        const calculatedHeight = baseHeight + lineBreaks * heightPerLine;
-        return Math.min(Math.max(calculatedHeight, baseHeight), maxHeight);
-      },
-      [multiline]
-    );
-    const updateTextareaHeight = reactExports.useCallback(
-      (text2) => {
-        const newHeight = calculateTextareaHeight(text2);
-        setTextareaHeight(newHeight);
-      },
-      [calculateTextareaHeight]
-    );
-    const handleInputChange = reactExports.useCallback(
-      (event) => {
-        const newValue = event.target.value;
-        setMessage(newValue);
-        updateTextareaHeight(newValue);
-      },
-      [updateTextareaHeight]
-    );
-    reactExports.useEffect(() => {
-      setMessage(editMessage2 ?? "");
-      if (editMessage2) {
-        updateTextareaHeight(editMessage2);
-      }
-    }, [editMessage2, updateTextareaHeight]);
-    const effectiveSendMessage = onSendMessage || sendMessage;
-    const effectiveSendMedia = onSendMedia || sendMedia;
-    const hasTextContent = reactExports.useCallback(
-      (value) => /\S/.test(String(value || "")),
-      []
-    );
-    const handleSendClick = reactExports.useCallback(
-      // AudioRecorder hands over the recorded Blob, not a URL - the old name
-      // stuck around from when it did.
-      async (audioUrl) => {
-        const outgoing = formatMessage ? formatMessage(message) : message;
-        const trailingText = hasTextContent(outgoing) ? outgoing : null;
-        let mediaPromise = void 0;
-        if (filePreviews.length > 0) {
-          mediaPromise = effectiveSendMedia(filePreviews, "media");
-          setIsRecording(false);
-        } else if (audioUrl) {
-          mediaPromise = effectiveSendMedia(audioUrl, "audio/");
-          setIsRecording(false);
+    const handleTextChange = reactExports.useCallback(
+      (oldText, newText, caret2) => {
+        const { start, end, insertedLength } = computeEditRange(oldText, newText);
+        const shifted = shiftMentionSpans(mentionSpans, start, end, insertedLength);
+        const valid2 = validateMentionSpans(newText, shifted);
+        setMentionSpans(valid2);
+        const active = findActiveMentionQuery(newText, caret2);
+        if (active) {
+          setDropdown(active);
+          setHighlightedIndex(0);
         } else {
-          if (!trailingText) {
-            return;
-          }
-          effectiveSendMessage(trailingText);
-          setMessage("");
-          setFilePreviews([]);
-          setAttachmentNotice(null);
-          setTextareaHeight(40);
-          return;
-        }
-        setMessage("");
-        setFilePreviews([]);
-        setAttachmentNotice(null);
-        setTextareaHeight(40);
-        if (trailingText) {
-          try {
-            await mediaPromise;
-          } catch {
-          }
-          effectiveSendMessage(trailingText);
+          setDropdown(null);
+          setOverflowOpen(false);
         }
       },
-      [
-        effectiveSendMedia,
-        effectiveSendMessage,
-        filePreviews,
-        formatMessage,
-        hasTextContent,
-        message
-      ]
+      [mentionSpans]
     );
-    const handleSecondaryClick = reactExports.useCallback(() => {
-      const outgoingBase = config.secondarySendButton.messageEdit + message;
-      const outgoing = formatMessage ? formatMessage(outgoingBase) : outgoingBase;
-      if (!hasTextContent(outgoing)) {
-        return;
-      }
-      effectiveSendMessage(outgoing);
-      setMessage("");
-      setFilePreviews([]);
-      setAttachmentNotice(null);
-      setTextareaHeight(40);
-    }, [
-      effectiveSendMessage,
-      message,
-      config?.secondarySendButton?.messageEdit,
-      formatMessage,
-      hasTextContent
-    ]);
-    const handleKeyDown = reactExports.useCallback(
-      (event) => {
-        if (event.key !== "Enter") return;
-        const hasContent = filePreviews.length > 0 || hasTextContent(message);
-        if (!hasContent) return;
-        if (multiline) {
-          if (event.shiftKey) return;
-          event.preventDefault();
-        }
-        if (config?.secondarySendButton?.overwriteEnterClick) {
-          handleSecondaryClick();
-        } else {
-          handleSendClick();
-        }
+    const selectCandidate = reactExports.useCallback(
+      (candidate, text2, caretAtSelection) => {
+        if (!dropdown) return null;
+        const insertion = `@${candidate.name} `;
+        const newText = text2.slice(0, dropdown.start) + insertion + text2.slice(caretAtSelection);
+        const newSpan = {
+          jid: candidate.jid,
+          name: candidate.name,
+          offset: dropdown.start,
+          length: candidate.name.length + 1
+          // "@Name", not the trailing space
+        };
+        const shifted = shiftMentionSpans(
+          mentionSpans,
+          dropdown.start,
+          caretAtSelection,
+          insertion.length
+        );
+        setMentionSpans(
+          [...shifted, newSpan].sort((a2, b2) => a2.offset - b2.offset)
+        );
+        closeDropdown();
+        return { text: newText, caret: dropdown.start + insertion.length };
       },
-      [
-        config?.secondarySendButton?.overwriteEnterClick,
-        handleSendClick,
-        handleSecondaryClick,
-        filePreviews.length,
-        hasTextContent,
-        message,
-        multiline
-      ]
+      [dropdown, mentionSpans, closeDropdown]
     );
-    const memoizedFilePreviews = reactExports.useMemo(
-      () => filePreviews.map((file) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        AttachmentPreview,
-        {
-          file,
-          objectUrl: objectUrls[fileKey(file)],
-          onRemove: handleRemoveFile,
-          config,
-          removeLabel: t2("attachment.remove")
-        },
-        fileKey(file)
-      )),
-      [filePreviews, objectUrls, handleRemoveFile, config, t2]
+    const handleBackspace = reactExports.useCallback(
+      (text2, selectionStart, selectionEnd) => {
+        if (selectionStart !== selectionEnd) return null;
+        const span = findMentionEndingAt(mentionSpans, selectionStart);
+        if (!span) return null;
+        const newText = text2.slice(0, span.offset) + text2.slice(selectionStart);
+        const remaining = mentionSpans.filter((s2) => s2 !== span);
+        const shifted = shiftMentionSpans(
+          remaining,
+          span.offset,
+          span.offset + span.length,
+          0
+        );
+        setMentionSpans(shifted);
+        return { text: newText, caret: span.offset };
+      },
+      [mentionSpans]
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(InputContainer, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(MessageInputContainer, { children: [
-        !isRecording && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          !config?.disableMedia && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button$1,
-            {
-              onClick: handleAttachClick,
-              disabled: false,
-              "aria-label": t2("action.attachFile"),
-              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(AttachIcon, { color: resolveIconColor(config), bgcolor: resolveIconBgColor(config) })
-            }
-          ),
-          multiline ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            TextareaWrapper,
-            {
-              $dynamicHeight: textareaHeight,
-              $color: config?.colors?.primary,
-              $colorBg: config?.colors?.colorInput,
-              $isFocused: isFocused,
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TextareaInput,
-                {
-                  ref: textareaRef,
-                  placeholder: placeholderText || t2("input.placeholder"),
-                  value: message,
-                  onChange: handleInputChange,
-                  onKeyDown: handleKeyDown,
-                  onFocus: handleFocus,
-                  onBlur: handleBlur,
-                  disabled: isLoading || isMessageProcessing,
-                  $dynamicHeight: textareaHeight,
-                  $color: config?.colors?.primary,
-                  $colorBg: config?.colors?.colorInput
-                }
-              )
-            }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            MessageInput,
-            {
-              $color: config?.colors?.primary,
-              $colorBg: config?.colors?.colorInput,
-              placeholder: placeholderText || t2("input.placeholder"),
-              value: message,
-              onChange: handleInputChange,
-              onKeyDown: handleKeyDown,
-              onFocus: handleFocus,
-              onBlur: handleBlur,
-              disabled: isLoading || isMessageProcessing,
-              style: {
-                height: inputHeight,
-                maxHeight: inputHeight || "40px"
-              }
-            }
-          )
-        ] }),
-        message || filePreviews.length > 0 || config?.disableMedia ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          config?.secondarySendButton?.enabled && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button$1,
-            {
-              onClick: () => handleSecondaryClick(),
-              disabled: isMessageProcessing || !message && filePreviews.length === 0,
-              "aria-label": typeof config?.secondarySendButton?.label === "string" ? config.secondarySendButton.label : t2("action.send"),
-              style: {
-                color: filePreviews.length > 0 ? "var(--ethora-color-text-on-primary, #fff)" : !message || message === "" ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-color-text-on-primary, #fff)",
-                borderRadius: "var(--ethora-radius-full, 100px)",
-                backgroundColor: filePreviews.length > 0 ? resolveIconColor(config) : !message || message === "" ? "transparent" : resolveIconColor(config),
-                ...config?.secondarySendButton.buttonStyles
-              },
-              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                SendIcon,
-                {
-                  bgcolor: resolveIconBgColor(config),
-                  color: filePreviews.length > 0 ? "var(--ethora-color-text-on-primary, #fff)" : !message || message === "" ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-color-text-on-primary, #fff)"
-                }
-              ),
-              children: config?.secondarySendButton?.label
-            }
-          ),
-          config?.secondarySendButton?.hideInputSendButton ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button$1,
-            {
-              onClick: () => handleSendClick(),
-              disabled: message === "" && filePreviews.length === 0 || isMessageProcessing,
-              "aria-label": t2("action.send"),
-              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                SendIcon,
-                {
-                  bgcolor: resolveIconBgColor(config),
-                  color: message === "" && filePreviews.length === 0 ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-icon-color, #0052CD)"
-                }
-              ),
-              style: {
-                borderRadius: "var(--ethora-radius-full, 100px)",
-                backgroundColor: "transparent"
-              }
-            }
-          )
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-          AudioRecorder,
-          {
-            setIsRecording,
-            isRecording,
-            handleSendClick
-          }
-        )
-      ] }),
-      multiline && showPreview && message && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          style: {
-            marginTop: "var(--ethora-space-2, 8px)",
-            padding: "var(--ethora-space-3, 12px)",
-            backgroundColor: "var(--ethora-color-bg-subtle, #fafafa)",
-            border: "1px solid var(--ethora-color-border, #E4E4E7)",
-            borderRadius: "var(--ethora-radius-md, 12px)",
-            color: "var(--ethora-color-text, #141414)"
-          },
-          children: (previewParser || ((text2) => parseMessageBody({ text: text2 })))(
-            message
-          )
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        HiddenFileInput,
-        {
-          ref: fileInputRef,
-          type: "file",
-          multiple: maxFiles > 1,
-          accept: config?.attachments?.accept,
-          onChange: handleFileChange
-        }
-      ),
-      filePreviews.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(FilePreviewContainer, { children: memoizedFilePreviews }),
-      attachmentNotice && /* @__PURE__ */ jsxRuntimeExports.jsx(AttachmentNotice, { role: "status", children: attachmentNotice })
-    ] });
-  };
-  const shouldForwardProp = (prop) => prop !== "animated" && prop !== "expanded" && prop !== "direction";
-  const SearchInputWrapper = gt$1.div.withConfig({ shouldForwardProp })`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "var(--ethora-color-bg-subtle, #f5f7f9)"};
-  border: 1px solid var(--ethora-color-border, #e6e8ec);
-  border-radius: var(--ethora-radius-md, 16px);
-  height: 48px;
-  padding: 0 16px;
-  transition:
-    width 0.7s ease-in-out,
-    border-color var(--ethora-motion-fast, 150ms) var(--ethora-motion-ease, ease);
-  width: 100%;
-
-  &:focus-within {
-    border-color: var(--ethora-color-primary, #0052cd);
-    outline: 2px solid var(--ethora-color-primary, #0052cd);
-    outline-offset: 1px;
-  }
-
-  ${({ animated, expanded }) => animated && ft$1`
-      width: ${expanded ? "300px" : "48px"};
-      justify-content: center;
-      cursor: pointer;
-      padding: 0 ${expanded ? "16px" : "0"};
-    `};
-`;
-  const SearchIcon = gt$1.div.withConfig({ shouldForwardProp })`
-  padding: 3.5px;
-  color: var(--ethora-color-text-muted, #999);
-  cursor: pointer;
-`;
-  const StyledInput$1 = gt$1.input.withConfig({ shouldForwardProp })`
-  background-color: transparent;
-  border: none;
-  outline: none;
-  width: ${({ animated, expanded }) => animated ? expanded ? "100%" : "0px" : "100%"};
-  font-size: var(--ethora-font-size, 16px);
-  height: 48px;
-  color: var(--ethora-color-text, #000);
-  transition:
-    width 0.7s ease-in-out,
-    padding 0.7s ease-in-out;
-  opacity: ${({ animated, expanded }) => animated ? expanded ? 1 : 0 : 1};
-  z-index: 1;
-  display: ${({ animated, expanded }) => animated ? expanded ? "inherit" : "none" : "inherit"};
-
-  &::placeholder {
-    opacity: ${({ animated, expanded }) => animated && !expanded ? 0 : 1};
-    transition: opacity 0.7s ease-in-out;
-  }
-`;
-  const SearchInput$1 = ({
-    icon,
-    animated = false,
-    direction = "left",
-    colorBg,
-    ...props
-  }) => {
-    const [isExpanded, setIsExpanded] = reactExports.useState(false);
-    const [isTyping, setIsTyping] = reactExports.useState(false);
-    const inputRef = reactExports.useRef(null);
-    const handleFocus = () => {
-      setIsExpanded(true);
-    };
-    const handleBlur = () => {
-      if (!isTyping) {
-        setIsExpanded(false);
-      }
-    };
-    const handleInput = (e2) => {
-      setIsTyping(!!e2.target.value);
-    };
-    reactExports.useEffect(() => {
-      if (isExpanded && animated) {
-        const timeout2 = setTimeout(() => {
-          inputRef.current?.focus();
-        }, 250);
-        return () => clearTimeout(timeout2);
-      }
-    }, [isExpanded, animated]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      SearchInputWrapper,
-      {
-        animated,
-        direction,
-        expanded: isExpanded,
-        $colorBg: colorBg,
-        onClick: handleFocus,
-        children: [
-          icon && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            SearchIcon,
-            {
-              animated,
-              expanded: isExpanded,
-              onClick: () => inputRef.current?.focus(),
-              children: icon
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            StyledInput$1,
-            {
-              ref: inputRef,
-              onBlur: handleBlur,
-              animated,
-              expanded: isExpanded,
-              onInput: handleInput,
-              ...props
-            }
-          )
-        ]
-      }
+    const moveHighlight = reactExports.useCallback(
+      (delta) => {
+        const count = visibleCandidates.length + (hasOverflow ? 1 : 0);
+        if (count === 0) return;
+        setHighlightedIndex((prev2) => (prev2 + delta + count) % count);
+      },
+      [visibleCandidates.length, hasOverflow]
     );
-  };
-  const DropdownMenu$1 = ({
-    options,
-    openButton,
-    position: position2 = "right",
-    menuIcon
-  }) => {
-    const t2 = useT();
-    const [isOpen, setIsOpen] = reactExports.useState(false);
-    const menuRef = reactExports.useRef(null);
-    const buttonRef = reactExports.useRef(null);
-    const menuPosition = position2 === "right" ? { top: "60px", right: "-140px" } : { top: "60px", right: "0px" };
-    const toggleMenu = (e2) => {
-      e2.preventDefault();
-      setIsOpen((prev2) => !prev2);
+    return {
+      mentionSpans,
+      setMentionSpans,
+      dropdown,
+      isDropdownOpen: !!dropdown,
+      candidates,
+      visibleCandidates,
+      hasOverflow,
+      highlightedIndex,
+      setHighlightedIndex,
+      moveHighlight,
+      overflowOpen,
+      setOverflowOpen,
+      resetMentions,
+      closeDropdown,
+      handleTextChange,
+      selectCandidate,
+      handleBackspace
     };
-    reactExports.useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (menuRef.current && !menuRef.current.contains(event.target) && buttonRef.current && !buttonRef.current.contains(event.target)) {
-          setIsOpen(false);
-        }
-      };
-      if (isOpen) document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isOpen]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$6, { children: [
-      openButton ? React.cloneElement(openButton, {
-        ref: buttonRef,
-        onClick: toggleMenu
-      }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Button$1,
-        {
-          onClick: toggleMenu,
-          "aria-label": t2("action.moreOptions"),
-          "aria-haspopup": "menu",
-          "aria-expanded": isOpen,
-          children: menuIcon ?? /* @__PURE__ */ jsxRuntimeExports.jsx(BurgerMenuIcon, {})
-        }
-      ),
-      isOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { ref: menuRef, style: menuPosition, children: options.map((option, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          MenuItem$1,
-          {
-            onClick: () => {
-              option.onClick();
-              setIsOpen(false);
-            },
-            children: [
-              option.icon,
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$3, { style: { ...option?.styles }, children: option.label })
-            ]
-          }
-        ),
-        index2 < options?.length - 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$3, {})
-      ] }, `${option.label}-${index2}`)) })
-    ] });
   };
-  const Divider$3 = gt$1.div`
-  height: 1px;
-  width: 100%;
-  background-color: var(--ethora-color-border, #e6e8ec);
-`;
-  const Container$6 = gt$1.div`
-  position: relative;
-  display: inline-block;
-`;
-  const Menu = gt$1.div`
+  const Dropdown$1 = gt$1.div`
   position: absolute;
-  background-color: var(--ethora-color-bg, #fff);
+  bottom: 100%;
+  left: 16px;
+  right: 16px;
+  margin-bottom: 8px;
+  background: var(--ethora-input-bg, #fff);
   border-radius: var(--ethora-radius-md, 12px);
-  padding: var(--ethora-space-2, 8px);
-  min-width: 150px;
-  transform-origin: top right;
-  ${scaleInAnimation}
-  z-index: 1000;
-
-  box-shadow: var(--ethora-shadow-md, 0 4px 12px rgba(16, 24, 40, 0.1));
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 5;
+  ${fadeInUpAnimation}
 `;
-  const MenuItem$1 = gt$1.div`
-  display: flex;
-  align-items: center;
+  const Row$2 = gt$1.div`
+  padding: 10px 14px;
   cursor: pointer;
-  transition: background var(--ethora-motion-fast, 150ms);
-  padding: var(--ethora-space-2, 8px);
-  border-radius: var(--ethora-radius-sm, 8px);
-  gap: 8px;
+  font-size: var(--ethora-font-size, 16px);
+  color: var(--ethora-color-text, #141414);
+  background-color: ${({ $highlighted }) => $highlighted ? "var(--ethora-hover-bg, #f0f3fb)" : "transparent"};
 
   &:hover {
-    background-color: var(--ethora-color-bg-hover, #f0f2f5);
+    background-color: var(--ethora-hover-bg, #f0f3fb);
   }
 `;
-  const Label$3 = gt$1.span`
-  margin-left: 2px;
-  font-size: var(--ethora-font-size, 14px);
-  color: var(--ethora-color-text, #141414);
+  const ShowAllRow = gt$1(Row$2)`
+  color: var(--ethora-color-primary, #0052cd);
+  font-weight: 600;
+  border-top: 1px solid var(--ethora-color-border, #eee);
 `;
-  const openModalStack = [];
-  const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-  const useModalDismiss = ({
-    onClose,
-    enabled = true,
-    containerRef
+  const MentionDropdown = ({
+    candidates,
+    totalCount,
+    hasOverflow,
+    highlightedIndex,
+    onSelect,
+    onShowAll,
+    onHoverIndex
   }) => {
-    const onCloseRef = reactExports.useRef(onClose);
-    onCloseRef.current = onClose;
-    reactExports.useEffect(() => {
-      if (!enabled || typeof document === "undefined") return;
-      const token2 = Symbol("modal");
-      openModalStack.push(token2);
-      const previouslyFocused = document.activeElement;
-      const container = containerRef?.current;
-      if (container) {
-        const first = container.querySelector(FOCUSABLE_SELECTOR);
-        if (first) {
-          first.focus();
-        } else {
-          if (!container.hasAttribute("tabindex")) {
-            container.setAttribute("tabindex", "-1");
-          }
-          container.focus();
+    const t2 = useT();
+    if (candidates.length === 0 && !hasOverflow) return null;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Dropdown$1, { role: "listbox", children: [
+      candidates.map((candidate, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Row$2,
+        {
+          role: "option",
+          "aria-selected": index2 === highlightedIndex,
+          $highlighted: index2 === highlightedIndex,
+          onMouseEnter: () => onHoverIndex(index2),
+          onMouseDown: (event) => {
+            event.preventDefault();
+            onSelect(candidate);
+          },
+          children: candidate.name
+        },
+        candidate.jid
+      )),
+      hasOverflow && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ShowAllRow,
+        {
+          role: "option",
+          "aria-selected": highlightedIndex === candidates.length,
+          $highlighted: highlightedIndex === candidates.length,
+          onMouseEnter: () => onHoverIndex(candidates.length),
+          onMouseDown: (event) => {
+            event.preventDefault();
+            onShowAll();
+          },
+          children: t2("mention.showAll", { count: totalCount })
         }
-      }
-      const onKeyDown = (event) => {
-        if (event.key !== "Escape") return;
-        if (openModalStack[openModalStack.length - 1] !== token2) return;
-        event.stopPropagation();
-        onCloseRef.current?.();
-      };
-      document.addEventListener("keydown", onKeyDown);
-      return () => {
-        document.removeEventListener("keydown", onKeyDown);
-        const index2 = openModalStack.indexOf(token2);
-        if (index2 !== -1) openModalStack.splice(index2, 1);
-        if (previouslyFocused && typeof previouslyFocused.focus === "function") {
-          previouslyFocused.focus();
-        }
-      };
-    }, [enabled]);
+      )
+    ] });
   };
   const ModalBackground = gt$1.div`
   position: fixed;
@@ -60969,6 +61280,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   z-index: 1000;
   ${fadeInAnimation}
 
+  ${({ $drawer }) => $drawer && ft$1`
+      background: transparent;
+      pointer-events: none;
+      justify-content: flex-end;
+      align-items: stretch;
+      animation: none;
+    `}
+
   ${({ $anchorTop }) => $anchorTop && ft$1`
       overflow-y: auto;
       padding-top: max(5vh, 32px);
@@ -60977,9 +61296,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     `}
 
   @media (max-width: 480px) {
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
+    /* A drawer is edge-to-edge at this size, so it must not inherit the
+       card gutters that keep centred modals off the screen edges. */
+    ${({ $drawer }) => !$drawer && ft$1`
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+      `}
     ${({ $anchorTop }) => $anchorTop && ft$1`
         padding-top: 16px;
       `}
@@ -61121,24 +61444,24 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   border-radius: var(--ethora-radius-full, 10000px);
   border: 1px solid var(--ethora-color-border, #f0f0f0);
 `;
-  const UserInfo = gt$1.div`
+  gt$1.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
-  const UserName = gt$1.div`
+  gt$1.div`
   color: var(--ethora-color-text, #141414);
   font-size: 24px;
   font-weight: 400;
 `;
-  const UserStatus = gt$1.div`
+  gt$1.div`
   color: var(--ethora-color-text-muted, #8c8c8c);
   font-size: 16px;
   font-weight: 400;
 `;
-  const BorderedContainer = gt$1.div`
+  gt$1.div`
   width: 100%;
   border-radius: var(--ethora-radius-sm, 8px);
   border: 1px solid var(--ethora-color-border, #f0f0f0);
@@ -61151,7 +61474,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   font-size: 14px;
   font-weight: 400;
 `;
-  const Label$2 = gt$1.span`
+  const Label$3 = gt$1.span`
   color: var(--ethora-color-text, #141414);
   font-size: 16px;
 `;
@@ -61165,64 +61488,82 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   width: 100%;
   display: flex;
 `;
-  const Divider$2 = gt$1.div`
+  const Divider$3 = gt$1.div`
   height: 1px;
   width: 100%;
   background-color: var(--ethora-color-border, #0052cd0d);
 `;
-  const InputWrapper = gt$1.div`
+  const ScrollableContainer = gt$1.div`
+  max-height: 100px;
+  overflow-y: auto;
+  width: 80%;
+  padding: 8px;
+  max-width: 80%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  width: 100%;
-  justify-content: start;
-  align-items: start;
-`;
-  const Label$1 = gt$1.label`
-  font-size: var(--ethora-font-size-sm, 14px);
-  color: #8c8c8c;
-  margin-bottom: 4px;
-  margin-left: 8px;
-`;
-  const StyledInput = gt$1.input`
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 1px solid ${(props) => props.$error ? "red" : "transparent"};
-  color: #141414;
-  background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "#f5f7f9"};
-  font-size: var(--ethora-font-size, 16px);
+  gap: 2px;
+  /* Same reason StyledInput needs it: callers pass width:100% (and a
+     maxHeight) meaning "match my slot", but without border-box the 8px
+     padding is added on top, so this list rendered 16px wider and 16px
+     taller than its slot. NewChatModal's inline picker clips its overflow,
+     which cut off the rows' right edge and hid this list's own scrollbar
+     entirely. */
   box-sizing: border-box;
+`;
+  const UserItem = gt$1.div`
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 8px;
+  border-radius: var(--ethora-radius-sm, 8px);
+  gap: 12px;
+  cursor: pointer;
+  background-color: ${({ $selected }) => $selected ? "var(--ethora-color-primary-soft, #e7edf9)" : "transparent"};
+  transition: background-color var(--ethora-motion-fast, 150ms);
 
-  &:focus {
-    border: 1px solid
-      ${(props) => props.$error ? "red" : props.color || "#0052CD"};
-    outline: none;
-    background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "#f5f7f9"};
+  &:hover {
+    background-color: ${({ $selected }) => $selected ? "var(--ethora-color-primary-soft, #e7edf9)" : "var(--ethora-color-bg-hover, #f0f2f5)"};
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ethora-color-primary, #0052cd);
+    outline-offset: -2px;
   }
 `;
-  const HelperText = gt$1.span`
-  font-size: var(--ethora-font-size-xs, 12px);
-  color: ${(props) => props.$error ? "red" : "#8c8c8c"};
-  margin-top: 4px;
-  margin-left: 8px;
-  position: absolute;
-  top: 42px;
+  const UserItemInfo = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
 `;
-  const InputWithLabel = ({
-    label,
-    color: color2,
-    colorBg,
-    helperText,
-    error: error2,
-    ...rest
-  }) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(InputWrapper, { children: [
-      label && /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: label }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(StyledInput, { color: color2, $colorBg: colorBg, $error: error2, ...rest }),
-      helperText && /* @__PURE__ */ jsxRuntimeExports.jsx(HelperText, { $error: error2, children: helperText })
-    ] });
-  };
+  const Checkbox = gt$1.input`
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--ethora-color-primary, #0052cd);
+  cursor: pointer;
+`;
+  const Label$2 = gt$1.span`
+  font-size: var(--ethora-font-size-sm, 14px);
+  color: var(--ethora-color-text, #141414);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+  const EmptyState = gt$1.div`
+  padding: 24px 8px;
+  text-align: center;
+  color: var(--ethora-color-text-muted, #8c8c8c);
+  font-size: var(--ethora-font-size-sm, 14px);
+`;
+  function debounce(func, delay2) {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay2);
+    };
+  }
   function nameToColor(name2) {
     const avatarColors = [
       "#86d1ee",
@@ -61366,77 +61707,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
     );
   };
-  const ScrollableContainer = gt$1.div`
-  max-height: 100px;
-  overflow-y: auto;
-  width: 80%;
-  padding: 8px;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  /* Same reason StyledInput needs it: callers pass width:100% (and a
-     maxHeight) meaning "match my slot", but without border-box the 8px
-     padding is added on top, so this list rendered 16px wider and 16px
-     taller than its slot. NewChatModal's inline picker clips its overflow,
-     which cut off the rows' right edge and hid this list's own scrollbar
-     entirely. */
-  box-sizing: border-box;
-`;
-  const UserItem = gt$1.div`
-  display: flex;
-  align-items: center;
-  min-height: 56px;
-  padding: 8px;
-  border-radius: var(--ethora-radius-sm, 8px);
-  gap: 12px;
-  cursor: pointer;
-  background-color: ${({ $selected }) => $selected ? "var(--ethora-color-primary-soft, #e7edf9)" : "transparent"};
-  transition: background-color var(--ethora-motion-fast, 150ms);
-
-  &:hover {
-    background-color: ${({ $selected }) => $selected ? "var(--ethora-color-primary-soft, #e7edf9)" : "var(--ethora-color-bg-hover, #f0f2f5)"};
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--ethora-color-primary, #0052cd);
-    outline-offset: -2px;
-  }
-`;
-  const UserItemInfo = gt$1.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-  flex: 1;
-`;
-  const Checkbox = gt$1.input`
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  accent-color: var(--ethora-color-primary, #0052cd);
-  cursor: pointer;
-`;
-  const Label = gt$1.span`
-  font-size: var(--ethora-font-size-sm, 14px);
-  color: var(--ethora-color-text, #141414);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-  const EmptyState = gt$1.div`
-  padding: 24px 8px;
-  text-align: center;
-  color: var(--ethora-color-text-muted, #8c8c8c);
-  font-size: var(--ethora-font-size-sm, 14px);
-`;
-  function debounce(func, delay2) {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func(...args), delay2);
-    };
-  }
   const USERS_RENDER_WINDOW_INITIAL = 150;
   const USERS_RENDER_WINDOW_STEP = 150;
   const UsersList = ({
@@ -61444,7 +61714,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     selectedUsers,
     setSelectedUsers,
     headerElement,
-    filter: filter2
+    filter: filter2,
+    members,
+    excludeUserId,
+    singleSelect,
+    onSingleSelect,
+    titleOverride
   }) => {
     const usersSet = useUsersSet();
     const { config } = useChatSettingState();
@@ -61454,7 +61729,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const [visibleCount, setVisibleCount] = reactExports.useState(
       USERS_RENDER_WINDOW_INITIAL
     );
+    const sourceUsers = reactExports.useMemo(
+      () => members ?? Object.values(usersSet),
+      [members, usersSet]
+    );
+    const excludeKey = excludeUserId ? excludeUserId.split("@")[0] : void 0;
     const handleUserSelect = (user) => {
+      if (singleSelect) {
+        onSingleSelect?.(user);
+        return;
+      }
       setSelectedUsers((prev2) => {
         const isSelected = prev2.some((u2) => u2._id === user._id);
         if (!isSelected && prev2.length >= 20) return prev2;
@@ -61464,20 +61748,28 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const debouncedFilter = reactExports.useMemo(
       () => debounce((term) => {
         const lower = term.toLowerCase();
-        const users = Object.values(usersSet).filter(
-          (user) => `${user.firstName} ${user.lastName}`.toLowerCase().includes(lower)
-        );
+        const users = sourceUsers.filter((user) => {
+          if (excludeKey) {
+            const key = (user.jid || user.xmppUsername || "").split("@")[0];
+            if (key === excludeKey) return false;
+          }
+          return `${user.firstName} ${user.lastName}`.toLowerCase().includes(lower);
+        });
         setFilteredUsers(users);
       }, 100),
-      [usersSet]
+      [sourceUsers, excludeKey]
     );
     reactExports.useEffect(() => {
       debouncedFilter(searchTerm);
       setVisibleCount(USERS_RENDER_WINDOW_INITIAL);
     }, [searchTerm, debouncedFilter]);
     reactExports.useEffect(() => {
-      setFilteredUsers(Object.values(usersSet));
-    }, [usersSet]);
+      const users = excludeKey ? sourceUsers.filter((user) => {
+        const key = (user.jid || user.xmppUsername || "").split("@")[0];
+        return key !== excludeKey;
+      }) : sourceUsers;
+      setFilteredUsers(users);
+    }, [sourceUsers, excludeKey]);
     const visibleUsers = reactExports.useMemo(
       () => filteredUsers.slice(0, visibleCount),
       [filteredUsers, visibleCount]
@@ -61485,7 +61777,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const hasMoreUsers = visibleCount < filteredUsers.length;
     const { width, minWidth } = style || {};
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { width, minWidth }, children: [
-      headerElement ? /* @__PURE__ */ jsxRuntimeExports.jsx(ModalTitle, { children: t2("modal.selectUsers.title") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ModalSectionLabel, { children: t2("modal.selectUsers.title") }),
+      headerElement ? /* @__PURE__ */ jsxRuntimeExports.jsx(ModalTitle, { children: titleOverride ?? t2("modal.selectUsers.title") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ModalSectionLabel, { children: titleOverride ?? t2("modal.selectUsers.title") }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         StyledInput$2,
         {
@@ -61499,7 +61791,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollableContainer, { style: { ...style }, children: filteredUsers.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(EmptyState, { children: t2("modal.selectUsers.empty") }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         visibleUsers.map((user) => {
-          const isSelected = selectedUsers.some((u2) => u2._id === user._id);
+          const isSelected = !singleSelect && selectedUsers.some((u2) => u2._id === user._id);
           const fullName = `${user.firstName} ${user.lastName}`.trim();
           return /* @__PURE__ */ jsxRuntimeExports.jsxs(
             UserItem,
@@ -61524,8 +61816,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     size: 36
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(UserItemInfo, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { children: fullName || user.xmppUsername }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                /* @__PURE__ */ jsxRuntimeExports.jsx(UserItemInfo, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: fullName || user.xmppUsername }) }),
+                !singleSelect && /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Checkbox,
                   {
                     type: "checkbox",
@@ -61562,7 +61854,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             role: "button",
             tabIndex: 0,
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Label,
+              Label$2,
               {
                 style: {
                   color: "var(--ethora-color-primary, #0052CD)",
@@ -61576,6 +61868,1300 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           }
         )
       ] }) })
+    ] });
+  };
+  const openLayerStack = [];
+  const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const useModalDismiss = ({
+    onClose,
+    enabled = true,
+    containerRef,
+    kind = "modal",
+    closeOnOutsidePress = false,
+    insideRefs
+  }) => {
+    const onCloseRef = reactExports.useRef(onClose);
+    onCloseRef.current = onClose;
+    const insideRefsRef = reactExports.useRef(insideRefs);
+    insideRefsRef.current = insideRefs;
+    reactExports.useEffect(() => {
+      if (!enabled || typeof document === "undefined") return;
+      const token2 = Symbol("dismiss-layer");
+      const layer = {
+        token: token2,
+        kind,
+        superseded: false,
+        close: () => {
+          layer.superseded = true;
+          onCloseRef.current?.();
+        }
+      };
+      const supersededMenus = openLayerStack.filter((l2) => l2.kind === "menu");
+      openLayerStack.push(layer);
+      supersededMenus.forEach((l2) => l2.close());
+      const previouslyFocused = document.activeElement;
+      const container = containerRef?.current;
+      if (container) {
+        const first = container.querySelector(FOCUSABLE_SELECTOR);
+        if (first) {
+          first.focus();
+        } else {
+          if (!container.hasAttribute("tabindex")) {
+            container.setAttribute("tabindex", "-1");
+          }
+          container.focus();
+        }
+      }
+      const isInsideLayer = (node2) => {
+        if (!node2) return false;
+        if (containerRef?.current?.contains(node2)) return true;
+        return (insideRefsRef.current ?? []).some(
+          (ref) => ref.current?.contains(node2)
+        );
+      };
+      const onKeyDown = (event) => {
+        if (event.key !== "Escape") return;
+        if (event.defaultPrevented) return;
+        if (openLayerStack[openLayerStack.length - 1] !== layer) return;
+        event.stopPropagation();
+        onCloseRef.current?.();
+      };
+      const onOutsidePress = (event) => {
+        if (isInsideLayer(event.target)) return;
+        onCloseRef.current?.();
+      };
+      document.addEventListener("keydown", onKeyDown);
+      if (closeOnOutsidePress) {
+        document.addEventListener("pointerdown", onOutsidePress, true);
+        document.addEventListener("mousedown", onOutsidePress, true);
+        document.addEventListener("touchstart", onOutsidePress, true);
+      }
+      return () => {
+        document.removeEventListener("keydown", onKeyDown);
+        if (closeOnOutsidePress) {
+          document.removeEventListener("pointerdown", onOutsidePress, true);
+          document.removeEventListener("mousedown", onOutsidePress, true);
+          document.removeEventListener("touchstart", onOutsidePress, true);
+        }
+        const index2 = openLayerStack.indexOf(layer);
+        if (index2 !== -1) openLayerStack.splice(index2, 1);
+        if (layer.superseded) return;
+        if (previouslyFocused && typeof previouslyFocused.focus === "function") {
+          previouslyFocused.focus();
+        }
+      };
+    }, [enabled]);
+  };
+  const MentionPickerModal = ({
+    members,
+    selfId,
+    onSelect,
+    onClose
+  }) => {
+    const t2 = useT();
+    const containerRef = reactExports.useRef(null);
+    const [unusedSelection] = reactExports.useState([]);
+    useModalDismiss({ enabled: true, onClose, containerRef });
+    const handleSingleSelect = (user) => {
+      const jid2 = memberJid(user);
+      const name2 = memberFullName(user);
+      if (!jid2 || !name2) return;
+      onSelect({ jid: jid2, name: name2 });
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ModalBackground,
+      {
+        $anchorTop: true,
+        onClick: (event) => {
+          if (event.target === event.currentTarget) onClose();
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          ModalContainer,
+          {
+            ref: containerRef,
+            "aria-label": t2("mention.pickerTitle"),
+            style: { width: "90%", maxWidth: 420, maxHeight: "70vh" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CloseButton, { onClick: onClose, "aria-label": t2("action.close"), children: "×" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                UsersList,
+                {
+                  selectedUsers: unusedSelection,
+                  setSelectedUsers: () => {
+                  },
+                  members,
+                  excludeUserId: selfId,
+                  singleSelect: true,
+                  onSingleSelect: handleSingleSelect,
+                  titleOverride: t2("mention.pickerTitle"),
+                  style: { minWidth: "100%", width: "100%", maxHeight: "50vh" },
+                  headerElement: false
+                }
+              )
+            ]
+          }
+        )
+      }
+    );
+  };
+  const DEFAULT_MAX_FILES = 5;
+  const DRAFT_SAVE_DEBOUNCE_MS = 400;
+  const DROP_ZONE_ATTRIBUTE = "data-ethora-drop-zone";
+  const dragCarriesFiles = (event) => {
+    const types2 = event.dataTransfer?.types;
+    if (!types2) return false;
+    return Array.from(types2).includes("Files");
+  };
+  const fileKey = (file) => `${file.name}:${file.size}:${file.lastModified ?? 0}`;
+  const SendInput = ({
+    sendMessage,
+    sendMedia,
+    onFocus,
+    onBlur,
+    config,
+    editMessage: editMessage2,
+    isLoading,
+    isMessageProcessing,
+    formatMessage,
+    multiline,
+    inputHeight,
+    showPreview,
+    previewParser,
+    onSendMessage,
+    onSendMedia,
+    placeholderText,
+    disableMentions,
+    disableDrafts
+  }) => {
+    const t2 = useT();
+    const [message, setMessage] = reactExports.useState("");
+    const [isRecording, setIsRecording] = reactExports.useState(false);
+    const [textareaHeight, setTextareaHeight] = reactExports.useState(40);
+    const [isFocused, setIsFocused] = reactExports.useState(false);
+    const [filePreviews, setFilePreviews] = reactExports.useState([]);
+    const [attachmentNotice, setAttachmentNotice] = reactExports.useState(null);
+    const [emojiPickerOpen, setEmojiPickerOpen] = reactExports.useState(false);
+    const fileInputRef = reactExports.useRef(null);
+    const emojiPopoverRef = reactExports.useRef(null);
+    const emojiButtonRef = reactExports.useRef(null);
+    const containerRef = reactExports.useRef(null);
+    const textareaRef = reactExports.useRef(null);
+    const activeElRef = reactExports.useRef(
+      null
+    );
+    const pendingCaretRef = reactExports.useRef(null);
+    const overflowCaretRef = reactExports.useRef(0);
+    const activeRoom = useSelector((state) => getActiveRoom(state));
+    const usersSet = useSelector((state) => state.rooms.usersSet);
+    const selfUser = useSelector(
+      (state) => state.chatSettingStore.user
+    );
+    const roomMembers = reactExports.useMemo(() => {
+      const members = Array.isArray(activeRoom?.members) ? activeRoom.members : [];
+      return members.map((m2) => {
+        const key = String(m2?.xmppUsername || "");
+        const localKey = key.split("@")[0];
+        const enriched = usersSet?.[key] || usersSet?.[localKey];
+        if (!enriched) return m2;
+        return {
+          ...m2,
+          firstName: m2.firstName || enriched.firstName || "",
+          lastName: m2.lastName || enriched.lastName || ""
+        };
+      });
+    }, [activeRoom?.members, usersSet]);
+    const mention = useMentionComposer({
+      roomMembers,
+      selfId: selfUser?.xmppUsername || selfUser?.id
+    });
+    const mentionsEnabled = !disableMentions;
+    const dispatch = useAppDispatch();
+    const fetchedMembersForRoomRef = reactExports.useRef(null);
+    reactExports.useEffect(() => {
+      if (!mentionsEnabled) return;
+      const jid2 = activeRoom?.jid;
+      if (!jid2) return;
+      if (Array.isArray(activeRoom?.members) && activeRoom.members.length > 0) return;
+      if (fetchedMembersForRoomRef.current === jid2) return;
+      fetchedMembersForRoomRef.current = jid2;
+      getRoomByName(jid2.split("@")[0]).then((room) => {
+        if (!room || !Array.isArray(room.members)) return;
+        dispatch(updateRoom({ jid: jid2, updates: { members: room.members } }));
+      }).catch(() => {
+      });
+    }, [mentionsEnabled, activeRoom?.jid, activeRoom?.members, dispatch]);
+    const requestCaret = reactExports.useCallback((position2) => {
+      pendingCaretRef.current = position2;
+    }, []);
+    reactExports.useEffect(() => {
+      if (pendingCaretRef.current == null) return;
+      const el = activeElRef.current;
+      const pos = pendingCaretRef.current;
+      pendingCaretRef.current = null;
+      if (el) {
+        el.focus();
+        el.setSelectionRange(pos, pos);
+      }
+    }, [message]);
+    const maxFiles = Math.min(
+      Math.max(1, config?.attachments?.maxFiles ?? DEFAULT_MAX_FILES),
+      MAX_ATTACHMENTS_PER_MESSAGE
+    );
+    const maxFileSizeMb = config?.attachments?.maxFileSizeMb;
+    const objectUrlsRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const [objectUrls, setObjectUrls] = reactExports.useState({});
+    reactExports.useEffect(() => {
+      const urls = objectUrlsRef.current;
+      const liveKeys = new Set(filePreviews.map(fileKey));
+      filePreviews.forEach((file) => {
+        const key = fileKey(file);
+        if (urls.has(key)) return;
+        const kind = getFileKind(file.type, file.name);
+        if (kind === "image" || kind === "video" || kind === "pdf") {
+          urls.set(key, URL.createObjectURL(file));
+        }
+      });
+      urls.forEach((url, key) => {
+        if (!liveKeys.has(key)) {
+          URL.revokeObjectURL(url);
+          urls.delete(key);
+        }
+      });
+      setObjectUrls(Object.fromEntries(urls));
+    }, [filePreviews]);
+    reactExports.useEffect(() => {
+      const urls = objectUrlsRef.current;
+      return () => {
+        urls.forEach((url) => URL.revokeObjectURL(url));
+        urls.clear();
+      };
+    }, []);
+    const handleAttachClick = reactExports.useCallback(() => {
+      if (fileInputRef.current) {
+        fileInputRef.current.click();
+      }
+    }, []);
+    const addFiles = reactExports.useCallback(
+      (picked) => {
+        if (picked.length === 0) return;
+        const sizeLimit = maxFileSizeMb ? maxFileSizeMb * 1024 * 1024 : null;
+        const seen = new Set(filePreviews.map(fileKey));
+        const accepted = [];
+        const oversized = [];
+        let droppedForCount = 0;
+        picked.forEach((file) => {
+          const key = fileKey(file);
+          if (seen.has(key)) return;
+          if (sizeLimit && file.size > sizeLimit) {
+            oversized.push(file.name);
+            return;
+          }
+          if (filePreviews.length + accepted.length >= maxFiles) {
+            droppedForCount += 1;
+            return;
+          }
+          seen.add(key);
+          accepted.push(file);
+        });
+        if (accepted.length > 0) {
+          setFilePreviews((prevFiles) => [...prevFiles, ...accepted]);
+        }
+        const notices = [];
+        if (oversized.length > 0) {
+          notices.push(
+            t2("attachment.tooLarge", {
+              files: oversized.join(", "),
+              size: String(maxFileSizeMb)
+            })
+          );
+        }
+        if (droppedForCount > 0) {
+          notices.push(t2("attachment.limit", { count: maxFiles }));
+        }
+        setAttachmentNotice(notices.length > 0 ? notices.join(" ") : null);
+      },
+      [filePreviews, maxFiles, maxFileSizeMb, t2]
+    );
+    const handleFileChange = reactExports.useCallback(
+      (event) => {
+        const picked = Array.from(event.target.files || []);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        addFiles(picked);
+      },
+      [addFiles]
+    );
+    const attachmentsEnabled = !config?.disableMedia;
+    const [dropZoneEl, setDropZoneEl] = reactExports.useState(null);
+    const [isDropTargetActive, setIsDropTargetActive] = reactExports.useState(false);
+    const dragDepthRef = reactExports.useRef(0);
+    reactExports.useEffect(() => {
+      const self2 = containerRef.current;
+      if (!self2) return;
+      setDropZoneEl(
+        self2.closest(`[${DROP_ZONE_ATTRIBUTE}]`) ?? self2
+      );
+    }, []);
+    reactExports.useEffect(() => {
+      if (!dropZoneEl || !attachmentsEnabled) return;
+      const endDrag = () => {
+        dragDepthRef.current = 0;
+        setIsDropTargetActive(false);
+      };
+      const onDragEnter = (event) => {
+        if (!dragCarriesFiles(event)) return;
+        event.preventDefault();
+        dragDepthRef.current += 1;
+        setIsDropTargetActive(true);
+      };
+      const onDragOver = (event) => {
+        if (!dragCarriesFiles(event)) return;
+        event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+      };
+      const onDragLeave = (event) => {
+        if (!dragCarriesFiles(event)) return;
+        dragDepthRef.current = Math.max(0, dragDepthRef.current - 1);
+        if (dragDepthRef.current === 0) setIsDropTargetActive(false);
+      };
+      const onDrop = (event) => {
+        if (!dragCarriesFiles(event)) return;
+        event.preventDefault();
+        endDrag();
+        addFiles(Array.from(event.dataTransfer?.files || []));
+      };
+      dropZoneEl.addEventListener("dragenter", onDragEnter);
+      dropZoneEl.addEventListener("dragover", onDragOver);
+      dropZoneEl.addEventListener("dragleave", onDragLeave);
+      dropZoneEl.addEventListener("drop", onDrop);
+      return () => {
+        dropZoneEl.removeEventListener("dragenter", onDragEnter);
+        dropZoneEl.removeEventListener("dragover", onDragOver);
+        dropZoneEl.removeEventListener("dragleave", onDragLeave);
+        dropZoneEl.removeEventListener("drop", onDrop);
+      };
+    }, [dropZoneEl, attachmentsEnabled, addFiles]);
+    reactExports.useEffect(() => {
+      const swallowStrayDrag = (event) => {
+        if (event.defaultPrevented) return;
+        if (!dragCarriesFiles(event)) return;
+        event.preventDefault();
+      };
+      const onWindowDrop = (event) => {
+        swallowStrayDrag(event);
+        dragDepthRef.current = 0;
+        setIsDropTargetActive(false);
+      };
+      const onDragEnd = () => {
+        dragDepthRef.current = 0;
+        setIsDropTargetActive(false);
+      };
+      window.addEventListener("dragover", swallowStrayDrag);
+      window.addEventListener("drop", onWindowDrop);
+      window.addEventListener("dragend", onDragEnd);
+      return () => {
+        window.removeEventListener("dragover", swallowStrayDrag);
+        window.removeEventListener("drop", onWindowDrop);
+        window.removeEventListener("dragend", onDragEnd);
+      };
+    }, []);
+    const handlePaste = reactExports.useCallback(
+      (event) => {
+        if (!attachmentsEnabled) return;
+        const pasted = Array.from(event.clipboardData?.files || []);
+        const images = pasted.filter(
+          (file) => String(file.type || "").startsWith("image/")
+        );
+        if (images.length === 0) return;
+        event.preventDefault();
+        addFiles(images);
+      },
+      [attachmentsEnabled, addFiles]
+    );
+    const handleFocus = () => {
+      setIsFocused(true);
+      onFocus?.();
+    };
+    const handleBlur = () => {
+      setIsFocused(false);
+      onBlur?.();
+    };
+    const handleRemoveFile = reactExports.useCallback((file) => {
+      setFilePreviews((prevFiles) => prevFiles.filter((f2) => f2 !== file));
+      setAttachmentNotice(null);
+    }, []);
+    const calculateTextareaHeight = reactExports.useCallback(
+      (text2) => {
+        if (!multiline) return 40;
+        const lineBreaks = (text2.match(/\n/g) || []).length;
+        const baseHeight = 40;
+        const heightPerLine = 13;
+        const maxHeight = 92;
+        const calculatedHeight = baseHeight + lineBreaks * heightPerLine;
+        return Math.min(Math.max(calculatedHeight, baseHeight), maxHeight);
+      },
+      [multiline]
+    );
+    const updateTextareaHeight = reactExports.useCallback(
+      (text2) => {
+        const newHeight = calculateTextareaHeight(text2);
+        setTextareaHeight(newHeight);
+      },
+      [calculateTextareaHeight]
+    );
+    const handleInputChange = reactExports.useCallback(
+      (event) => {
+        const newValue = event.target.value;
+        const caret2 = event.target.selectionStart ?? newValue.length;
+        if (mentionsEnabled) {
+          mention.handleTextChange(message, newValue, caret2);
+        }
+        setMessage(newValue);
+        updateTextareaHeight(newValue);
+      },
+      [updateTextareaHeight, mentionsEnabled, mention, message]
+    );
+    const applyMentionSelection = reactExports.useCallback(
+      (candidate, caretOverride) => {
+        const el = activeElRef.current;
+        const caret2 = caretOverride ?? el?.selectionStart ?? message.length;
+        const result = mention.selectCandidate(candidate, message, caret2);
+        if (!result) return;
+        setMessage(result.text);
+        updateTextareaHeight(result.text);
+        requestCaret(result.caret);
+      },
+      [mention, message, updateTextareaHeight, requestCaret]
+    );
+    const openMentionOverflow = reactExports.useCallback(() => {
+      overflowCaretRef.current = activeElRef.current?.selectionStart ?? message.length;
+      mention.setOverflowOpen(true);
+    }, [mention, message]);
+    const insertAtCaret = reactExports.useCallback(
+      (insertion) => {
+        if (!insertion) return;
+        const el = activeElRef.current;
+        const start = el?.selectionStart ?? message.length;
+        const end = el?.selectionEnd ?? start;
+        const newValue = message.slice(0, start) + insertion + message.slice(end);
+        const caret2 = start + insertion.length;
+        if (mentionsEnabled) {
+          mention.handleTextChange(message, newValue, caret2);
+          mention.closeDropdown();
+        }
+        setMessage(newValue);
+        updateTextareaHeight(newValue);
+        requestCaret(caret2);
+      },
+      [message, mentionsEnabled, mention, updateTextareaHeight, requestCaret]
+    );
+    const toggleEmojiPicker = reactExports.useCallback(() => {
+      setEmojiPickerOpen((open) => {
+        if (!open && mentionsEnabled) mention.closeDropdown();
+        return !open;
+      });
+    }, [mentionsEnabled, mention]);
+    reactExports.useEffect(() => {
+      if (!emojiPickerOpen) return;
+      const onPointerDown = (event) => {
+        const target = event.target;
+        if (!target) return;
+        if (emojiPopoverRef.current?.contains(target)) return;
+        if (emojiButtonRef.current?.contains(target)) return;
+        setEmojiPickerOpen(false);
+      };
+      const onKeyDown = (event) => {
+        if (event.key !== "Escape") return;
+        setEmojiPickerOpen(false);
+        activeElRef.current?.focus();
+      };
+      document.addEventListener("mousedown", onPointerDown);
+      document.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.removeEventListener("mousedown", onPointerDown);
+        document.removeEventListener("keydown", onKeyDown);
+      };
+    }, [emojiPickerOpen]);
+    reactExports.useEffect(() => {
+      setMessage(editMessage2 ?? "");
+      if (editMessage2) {
+        updateTextareaHeight(editMessage2);
+      }
+    }, [editMessage2, updateTextareaHeight]);
+    const draftsEnabled = !disableDrafts;
+    const activeRoomJid = activeRoom?.jid;
+    const roomDraft = useSelector(
+      (state) => draftsEnabled && activeRoomJid ? state.rooms.drafts?.[activeRoomJid] ?? "" : ""
+    );
+    const roomDraftRef = reactExports.useRef(roomDraft);
+    roomDraftRef.current = roomDraft;
+    const draftTimerRef = reactExports.useRef(null);
+    const pendingDraftRef = reactExports.useRef(null);
+    const skipNextDraftSaveRef = reactExports.useRef(false);
+    const draftRoomRef = reactExports.useRef(null);
+    const wasEditingRef = reactExports.useRef(false);
+    const flushDraft = reactExports.useCallback(() => {
+      if (draftTimerRef.current) {
+        clearTimeout(draftTimerRef.current);
+        draftTimerRef.current = null;
+      }
+      const pending = pendingDraftRef.current;
+      pendingDraftRef.current = null;
+      if (pending) dispatch(setRoomDraft(pending));
+    }, [dispatch]);
+    const restoreDraftIntoComposer = reactExports.useCallback(() => {
+      const restored = roomDraftRef.current || "";
+      skipNextDraftSaveRef.current = true;
+      setMessage(restored);
+      updateTextareaHeight(restored);
+      if (mentionsEnabled) mention.resetMentions();
+      if (restored) requestCaret(restored.length);
+    }, [updateTextareaHeight, mentionsEnabled, mention, requestCaret]);
+    const clearDraftForRoom = reactExports.useCallback(() => {
+      if (draftTimerRef.current) {
+        clearTimeout(draftTimerRef.current);
+        draftTimerRef.current = null;
+      }
+      pendingDraftRef.current = null;
+      if (!draftsEnabled || !activeRoomJid) return;
+      dispatch(clearRoomDraft({ jid: activeRoomJid }));
+    }, [draftsEnabled, activeRoomJid, dispatch]);
+    reactExports.useEffect(() => {
+      if (!draftsEnabled) return;
+      if (draftRoomRef.current === (activeRoomJid ?? null)) return;
+      flushDraft();
+      draftRoomRef.current = activeRoomJid ?? null;
+      if (editMessage2) return;
+      restoreDraftIntoComposer();
+    }, [
+      draftsEnabled,
+      activeRoomJid,
+      editMessage2,
+      flushDraft,
+      restoreDraftIntoComposer
+    ]);
+    reactExports.useEffect(() => {
+      const editing = !!editMessage2;
+      const wasEditing = wasEditingRef.current;
+      wasEditingRef.current = editing;
+      if (!draftsEnabled || !wasEditing || editing) return;
+      restoreDraftIntoComposer();
+    }, [editMessage2, draftsEnabled, restoreDraftIntoComposer]);
+    reactExports.useEffect(() => {
+      if (!draftsEnabled || !activeRoomJid) return;
+      if (skipNextDraftSaveRef.current) {
+        skipNextDraftSaveRef.current = false;
+        return;
+      }
+      if (editMessage2) return;
+      pendingDraftRef.current = { jid: activeRoomJid, text: message };
+      if (draftTimerRef.current) clearTimeout(draftTimerRef.current);
+      draftTimerRef.current = setTimeout(() => {
+        draftTimerRef.current = null;
+        const pending = pendingDraftRef.current;
+        pendingDraftRef.current = null;
+        if (pending) dispatch(setRoomDraft(pending));
+      }, DRAFT_SAVE_DEBOUNCE_MS);
+    }, [message, activeRoomJid, draftsEnabled, editMessage2, dispatch]);
+    const flushDraftRef = reactExports.useRef(flushDraft);
+    flushDraftRef.current = flushDraft;
+    reactExports.useEffect(() => () => flushDraftRef.current(), []);
+    const effectiveSendMessage = onSendMessage || sendMessage;
+    const effectiveSendMedia = onSendMedia || sendMedia;
+    const hasTextContent = reactExports.useCallback(
+      (value) => /\S/.test(String(value || "")),
+      []
+    );
+    const handleSendClick = reactExports.useCallback(
+      // AudioRecorder hands over the recorded Blob, not a URL - the old name
+      // stuck around from when it did.
+      async (audioUrl) => {
+        const outgoing = formatMessage ? formatMessage(message) : message;
+        const trailingText = hasTextContent(outgoing) ? outgoing : null;
+        let mediaPromise = void 0;
+        if (filePreviews.length > 0) {
+          mediaPromise = effectiveSendMedia(filePreviews, "media");
+          setIsRecording(false);
+        } else if (audioUrl) {
+          mediaPromise = effectiveSendMedia(audioUrl, "audio/");
+          setIsRecording(false);
+        } else {
+          if (!trailingText) {
+            return;
+          }
+          effectiveSendMessage(trailingText, mention.mentionSpans);
+          mention.resetMentions();
+          clearDraftForRoom();
+          setMessage("");
+          setFilePreviews([]);
+          setAttachmentNotice(null);
+          setTextareaHeight(40);
+          return;
+        }
+        mention.resetMentions();
+        clearDraftForRoom();
+        setMessage("");
+        setFilePreviews([]);
+        setAttachmentNotice(null);
+        setTextareaHeight(40);
+        if (trailingText) {
+          try {
+            await mediaPromise;
+          } catch {
+          }
+          effectiveSendMessage(trailingText, mention.mentionSpans);
+        }
+      },
+      [
+        effectiveSendMedia,
+        effectiveSendMessage,
+        filePreviews,
+        formatMessage,
+        hasTextContent,
+        message,
+        mention,
+        clearDraftForRoom
+      ]
+    );
+    const handleSecondaryClick = reactExports.useCallback(() => {
+      const outgoingBase = config.secondarySendButton.messageEdit + message;
+      const outgoing = formatMessage ? formatMessage(outgoingBase) : outgoingBase;
+      if (!hasTextContent(outgoing)) {
+        return;
+      }
+      effectiveSendMessage(outgoing, mention.mentionSpans);
+      mention.resetMentions();
+      clearDraftForRoom();
+      setMessage("");
+      setFilePreviews([]);
+      setAttachmentNotice(null);
+      setTextareaHeight(40);
+    }, [
+      effectiveSendMessage,
+      message,
+      config?.secondarySendButton?.messageEdit,
+      formatMessage,
+      hasTextContent,
+      mention,
+      clearDraftForRoom
+    ]);
+    const mentionDropdownVisible = mentionsEnabled && mention.isDropdownOpen && !mention.overflowOpen && (mention.visibleCandidates.length > 0 || mention.hasOverflow);
+    const handleKeyDown = reactExports.useCallback(
+      (event) => {
+        if (mentionDropdownVisible) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            mention.closeDropdown();
+            return;
+          }
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            mention.moveHighlight(1);
+            return;
+          }
+          if (event.key === "ArrowUp") {
+            event.preventDefault();
+            mention.moveHighlight(-1);
+            return;
+          }
+          if (event.key === "Enter" || event.key === "Tab") {
+            const overflowRowIndex = mention.visibleCandidates.length;
+            if (mention.hasOverflow && mention.highlightedIndex === overflowRowIndex) {
+              event.preventDefault();
+              openMentionOverflow();
+              return;
+            }
+            const candidate = mention.visibleCandidates[mention.highlightedIndex];
+            if (candidate) {
+              event.preventDefault();
+              applyMentionSelection(candidate);
+              return;
+            }
+          }
+        }
+        if (mentionsEnabled && event.key === "Backspace" && !mention.isDropdownOpen) {
+          const target = event.target;
+          const selStart = target.selectionStart ?? 0;
+          const selEnd = target.selectionEnd ?? 0;
+          const edit = mention.handleBackspace(message, selStart, selEnd);
+          if (edit) {
+            event.preventDefault();
+            setMessage(edit.text);
+            updateTextareaHeight(edit.text);
+            requestCaret(edit.caret);
+            return;
+          }
+        }
+        if (event.key !== "Enter") return;
+        const hasContent = filePreviews.length > 0 || hasTextContent(message);
+        if (!hasContent) return;
+        if (multiline) {
+          if (event.shiftKey) return;
+          event.preventDefault();
+        }
+        if (config?.secondarySendButton?.overwriteEnterClick) {
+          handleSecondaryClick();
+        } else {
+          handleSendClick();
+        }
+      },
+      [
+        config?.secondarySendButton?.overwriteEnterClick,
+        handleSendClick,
+        handleSecondaryClick,
+        filePreviews.length,
+        hasTextContent,
+        message,
+        multiline,
+        mentionsEnabled,
+        mentionDropdownVisible,
+        mention,
+        applyMentionSelection,
+        openMentionOverflow,
+        updateTextareaHeight,
+        requestCaret
+      ]
+    );
+    const memoizedFilePreviews = reactExports.useMemo(
+      () => filePreviews.map((file) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        AttachmentPreview,
+        {
+          file,
+          objectUrl: objectUrls[fileKey(file)],
+          onRemove: handleRemoveFile,
+          config,
+          removeLabel: t2("attachment.remove")
+        },
+        fileKey(file)
+      )),
+      [filePreviews, objectUrls, handleRemoveFile, config, t2]
+    );
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(InputContainer, { ref: containerRef, children: [
+      isDropTargetActive && dropZoneEl && reactDomExports.createPortal(
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DropOverlay, { role: "status", "aria-live": "polite", children: /* @__PURE__ */ jsxRuntimeExports.jsx(DropTarget, { children: t2("attachment.dropHint") }) }),
+        dropZoneEl
+      ),
+      mentionsEnabled && mention.isDropdownOpen && !mention.overflowOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MentionDropdown,
+        {
+          candidates: mention.visibleCandidates,
+          totalCount: mention.candidates.length,
+          hasOverflow: mention.hasOverflow,
+          highlightedIndex: mention.highlightedIndex,
+          onHoverIndex: mention.setHighlightedIndex,
+          onSelect: applyMentionSelection,
+          onShowAll: openMentionOverflow
+        }
+      ),
+      mentionsEnabled && mention.overflowOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MentionPickerModal,
+        {
+          members: roomMembers,
+          selfId: selfUser?.xmppUsername || selfUser?.id,
+          onSelect: (candidate) => {
+            applyMentionSelection(candidate, overflowCaretRef.current);
+            mention.setOverflowOpen(false);
+          },
+          onClose: () => mention.closeDropdown()
+        }
+      ),
+      emojiPickerOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(EmojiPickerPopover, { ref: emojiPopoverRef, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LazyEmojiPicker,
+        {
+          skinTonePosition: "none",
+          searchPosition: "static",
+          previewPosition: "none",
+          theme: "light",
+          onEmojiSelect: (emoji) => {
+            insertAtCaret(emoji?.native || "");
+            setEmojiPickerOpen(false);
+          },
+          style: {
+            maxWidth: "320px",
+            maxHeight: "360px",
+            overflowY: "auto"
+          }
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(MessageInputContainer, { children: [
+        !isRecording && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          !config?.disableMedia && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              onClick: handleAttachClick,
+              disabled: false,
+              "aria-label": t2("action.attachFile"),
+              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(AttachIcon, { color: resolveIconColor(config), bgcolor: resolveIconBgColor(config) })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              ref: emojiButtonRef,
+              onClick: toggleEmojiPicker,
+              onMouseDown: (event) => event.preventDefault(),
+              disabled: isLoading || isMessageProcessing,
+              "aria-label": t2("action.emoji"),
+              "aria-expanded": emojiPickerOpen,
+              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                EmojiIcon,
+                {
+                  color: resolveIconColor(config),
+                  bgcolor: resolveIconBgColor(config)
+                }
+              )
+            }
+          ),
+          multiline ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+            TextareaWrapper,
+            {
+              $dynamicHeight: textareaHeight,
+              $color: config?.colors?.primary,
+              $colorBg: config?.colors?.colorInput,
+              $isFocused: isFocused,
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TextareaInput,
+                {
+                  ref: (el) => {
+                    textareaRef.current = el;
+                    activeElRef.current = el;
+                  },
+                  placeholder: placeholderText || t2("input.placeholder"),
+                  value: message,
+                  onChange: handleInputChange,
+                  onKeyDown: handleKeyDown,
+                  onPaste: handlePaste,
+                  onFocus: handleFocus,
+                  onBlur: handleBlur,
+                  disabled: isLoading || isMessageProcessing,
+                  $dynamicHeight: textareaHeight,
+                  $color: config?.colors?.primary,
+                  $colorBg: config?.colors?.colorInput
+                }
+              )
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            MessageInput,
+            {
+              ref: (el) => {
+                activeElRef.current = el;
+              },
+              $color: config?.colors?.primary,
+              $colorBg: config?.colors?.colorInput,
+              placeholder: placeholderText || t2("input.placeholder"),
+              value: message,
+              onChange: handleInputChange,
+              onKeyDown: handleKeyDown,
+              onPaste: handlePaste,
+              onFocus: handleFocus,
+              onBlur: handleBlur,
+              disabled: isLoading || isMessageProcessing,
+              style: {
+                height: inputHeight,
+                maxHeight: inputHeight || "40px"
+              }
+            }
+          )
+        ] }),
+        message || filePreviews.length > 0 || config?.disableMedia ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          config?.secondarySendButton?.enabled && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              onClick: () => handleSecondaryClick(),
+              disabled: isMessageProcessing || !message && filePreviews.length === 0,
+              "aria-label": typeof config?.secondarySendButton?.label === "string" ? config.secondarySendButton.label : t2("action.send"),
+              style: {
+                color: filePreviews.length > 0 ? "var(--ethora-color-text-on-primary, #fff)" : !message || message === "" ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-color-text-on-primary, #fff)",
+                borderRadius: "var(--ethora-radius-full, 100px)",
+                backgroundColor: filePreviews.length > 0 ? resolveIconColor(config) : !message || message === "" ? "transparent" : resolveIconColor(config),
+                ...config?.secondarySendButton.buttonStyles
+              },
+              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                SendIcon,
+                {
+                  bgcolor: resolveIconBgColor(config),
+                  color: filePreviews.length > 0 ? "var(--ethora-color-text-on-primary, #fff)" : !message || message === "" ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-color-text-on-primary, #fff)"
+                }
+              ),
+              children: config?.secondarySendButton?.label
+            }
+          ),
+          config?.secondarySendButton?.hideInputSendButton ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              onClick: () => handleSendClick(),
+              disabled: message === "" && filePreviews.length === 0 || isMessageProcessing,
+              "aria-label": t2("action.send"),
+              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                SendIcon,
+                {
+                  bgcolor: resolveIconBgColor(config),
+                  color: message === "" && filePreviews.length === 0 ? "var(--ethora-color-text-muted, #D4D4D8)" : "var(--ethora-icon-color, #0052CD)"
+                }
+              ),
+              style: {
+                borderRadius: "var(--ethora-radius-full, 100px)",
+                backgroundColor: "transparent"
+              }
+            }
+          )
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+          AudioRecorder,
+          {
+            setIsRecording,
+            isRecording,
+            handleSendClick
+          }
+        )
+      ] }),
+      multiline && showPreview && message && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            marginTop: "var(--ethora-space-2, 8px)",
+            padding: "var(--ethora-space-3, 12px)",
+            backgroundColor: "var(--ethora-color-bg-subtle, #fafafa)",
+            border: "1px solid var(--ethora-color-border, #E4E4E7)",
+            borderRadius: "var(--ethora-radius-md, 12px)",
+            color: "var(--ethora-color-text, #141414)"
+          },
+          children: (previewParser || ((text2) => parseMessageBody({ text: text2 })))(
+            message
+          )
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        HiddenFileInput,
+        {
+          ref: fileInputRef,
+          type: "file",
+          multiple: maxFiles > 1,
+          accept: config?.attachments?.accept,
+          onChange: handleFileChange
+        }
+      ),
+      filePreviews.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(FilePreviewContainer, { children: memoizedFilePreviews }),
+      attachmentNotice && /* @__PURE__ */ jsxRuntimeExports.jsx(AttachmentNotice, { role: "status", children: attachmentNotice })
+    ] });
+  };
+  const shouldForwardProp = (prop) => prop !== "animated" && prop !== "expanded" && prop !== "direction";
+  const SearchInputWrapper = gt$1.div.withConfig({ shouldForwardProp })`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "var(--ethora-color-bg-subtle, #f5f7f9)"};
+  border: 1px solid var(--ethora-color-border, #e6e8ec);
+  border-radius: var(--ethora-radius-md, 16px);
+  height: 48px;
+  padding: 0 16px;
+  /* width:100% + 16px of padding either side + a 1px border is 34px wider
+     than the space it was given, so this box always overflowed its parent -
+     visible as the search field being clipped at the right edge inside the
+     room profile's members card. Sizing the padding and border INTO the
+     100% is what the layout always meant. */
+  box-sizing: border-box;
+  transition:
+    width 0.7s ease-in-out,
+    border-color var(--ethora-motion-fast, 150ms) var(--ethora-motion-ease, ease);
+  width: 100%;
+
+  &:focus-within {
+    border-color: var(--ethora-color-primary, #0052cd);
+    outline: 2px solid var(--ethora-color-primary, #0052cd);
+    outline-offset: 1px;
+  }
+
+  ${({ animated, expanded }) => animated && ft$1`
+      width: ${expanded ? "300px" : "48px"};
+      justify-content: center;
+      cursor: pointer;
+      padding: 0 ${expanded ? "16px" : "0"};
+    `};
+`;
+  const SearchIcon = gt$1.div.withConfig({ shouldForwardProp })`
+  padding: 3.5px;
+  color: var(--ethora-color-text-muted, #999);
+  cursor: pointer;
+`;
+  const StyledInput$1 = gt$1.input.withConfig({ shouldForwardProp })`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: ${({ animated, expanded }) => animated ? expanded ? "100%" : "0px" : "100%"};
+  font-size: var(--ethora-font-size, 16px);
+  height: 48px;
+  color: var(--ethora-color-text, #000);
+  transition:
+    width 0.7s ease-in-out,
+    padding 0.7s ease-in-out;
+  opacity: ${({ animated, expanded }) => animated ? expanded ? 1 : 0 : 1};
+  z-index: 1;
+  display: ${({ animated, expanded }) => animated ? expanded ? "inherit" : "none" : "inherit"};
+
+  &::placeholder {
+    opacity: ${({ animated, expanded }) => animated && !expanded ? 0 : 1};
+    transition: opacity 0.7s ease-in-out;
+  }
+`;
+  const SearchInput$1 = ({
+    icon,
+    animated = false,
+    direction = "left",
+    colorBg,
+    ...props
+  }) => {
+    const [isExpanded, setIsExpanded] = reactExports.useState(false);
+    const [isTyping, setIsTyping] = reactExports.useState(false);
+    const inputRef = reactExports.useRef(null);
+    const handleFocus = () => {
+      setIsExpanded(true);
+    };
+    const handleBlur = () => {
+      if (!isTyping) {
+        setIsExpanded(false);
+      }
+    };
+    const handleInput = (e2) => {
+      setIsTyping(!!e2.target.value);
+    };
+    reactExports.useEffect(() => {
+      if (isExpanded && animated) {
+        const timeout2 = setTimeout(() => {
+          inputRef.current?.focus();
+        }, 250);
+        return () => clearTimeout(timeout2);
+      }
+    }, [isExpanded, animated]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      SearchInputWrapper,
+      {
+        animated,
+        direction,
+        expanded: isExpanded,
+        $colorBg: colorBg,
+        onClick: handleFocus,
+        children: [
+          icon && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            SearchIcon,
+            {
+              animated,
+              expanded: isExpanded,
+              onClick: () => inputRef.current?.focus(),
+              children: icon
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            StyledInput$1,
+            {
+              ref: inputRef,
+              onBlur: handleBlur,
+              animated,
+              expanded: isExpanded,
+              onInput: handleInput,
+              ...props
+            }
+          )
+        ]
+      }
+    );
+  };
+  const DropdownMenu = ({
+    options,
+    onClose,
+    openButton,
+    position: position2 = "right",
+    menuIcon
+  }) => {
+    const t2 = useT();
+    const [isOpen, setIsOpen] = reactExports.useState(false);
+    const containerRef = reactExports.useRef(null);
+    const menuRef = reactExports.useRef(null);
+    const buttonRef = reactExports.useRef(null);
+    const menuPosition = position2 === "right" ? { top: "60px", right: "-140px" } : { top: "60px", right: "0px" };
+    const closeMenu = reactExports.useCallback(() => {
+      setIsOpen(false);
+      onClose?.();
+    }, [onClose]);
+    const toggleMenu = (e2) => {
+      e2.preventDefault();
+      if (isOpen) {
+        closeMenu();
+      } else {
+        setIsOpen(true);
+      }
+    };
+    useModalDismiss({
+      enabled: isOpen,
+      onClose: closeMenu,
+      kind: "menu",
+      containerRef: menuRef,
+      insideRefs: [containerRef],
+      closeOnOutsidePress: true
+    });
+    const triggerA11yProps = {
+      "aria-haspopup": "menu",
+      "aria-expanded": isOpen
+    };
+    const focusItem = (index2) => {
+      const items = menuRef.current?.querySelectorAll(
+        '[role="menuitem"]'
+      );
+      if (!items || items.length === 0) return;
+      const wrapped = (index2 + items.length) % items.length;
+      items[wrapped]?.focus();
+    };
+    const handleMenuKeyDown = (e2) => {
+      if (e2.key !== "ArrowDown" && e2.key !== "ArrowUp") return;
+      e2.preventDefault();
+      const items = Array.from(
+        menuRef.current?.querySelectorAll('[role="menuitem"]') ?? []
+      );
+      const current2 = items.indexOf(document.activeElement);
+      focusItem(current2 + (e2.key === "ArrowDown" ? 1 : -1));
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$6, { ref: containerRef, children: [
+      openButton ? React.cloneElement(openButton, {
+        ref: buttonRef,
+        onClick: toggleMenu,
+        ...triggerA11yProps
+      }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button$1,
+        {
+          ref: buttonRef,
+          onClick: toggleMenu,
+          "aria-label": t2("action.moreOptions"),
+          ...triggerA11yProps,
+          children: menuIcon ?? /* @__PURE__ */ jsxRuntimeExports.jsx(BurgerMenuIcon, {})
+        }
+      ),
+      isOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Menu,
+        {
+          ref: menuRef,
+          style: menuPosition,
+          role: "menu",
+          "aria-label": t2("action.moreOptions"),
+          onKeyDown: handleMenuKeyDown,
+          children: options.map((option, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              MenuItem$1,
+              {
+                role: "menuitem",
+                tabIndex: 0,
+                onClick: () => {
+                  option.onClick();
+                  closeMenu();
+                },
+                onKeyDown: (e2) => {
+                  if (e2.key !== "Enter" && e2.key !== " ") return;
+                  e2.preventDefault();
+                  option.onClick();
+                  closeMenu();
+                },
+                children: [
+                  option.icon,
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { style: { ...option?.styles }, children: option.label })
+                ]
+              }
+            ),
+            index2 < options?.length - 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$2, {})
+          ] }, `${option.label}-${index2}`))
+        }
+      )
+    ] });
+  };
+  const Divider$2 = gt$1.div`
+  height: 1px;
+  width: 100%;
+  background-color: var(--ethora-color-border, #e6e8ec);
+`;
+  const Container$6 = gt$1.div`
+  position: relative;
+  display: inline-block;
+`;
+  const Menu = gt$1.div`
+  position: absolute;
+  background-color: var(--ethora-color-bg, #fff);
+  border-radius: var(--ethora-radius-md, 12px);
+  padding: var(--ethora-space-2, 8px);
+  min-width: 150px;
+  transform-origin: top right;
+  ${scaleInAnimation}
+  z-index: 1000;
+
+  box-shadow: var(--ethora-shadow-md, 0 4px 12px rgba(16, 24, 40, 0.1));
+`;
+  const MenuItem$1 = gt$1.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background var(--ethora-motion-fast, 150ms);
+  padding: var(--ethora-space-2, 8px);
+  border-radius: var(--ethora-radius-sm, 8px);
+  gap: 8px;
+
+  &:hover {
+    background-color: var(--ethora-color-bg-hover, #f0f2f5);
+  }
+`;
+  const Label$1 = gt$1.span`
+  margin-left: 2px;
+  font-size: var(--ethora-font-size, 14px);
+  color: var(--ethora-color-text, #141414);
+`;
+  const InputWrapper = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+`;
+  const Label = gt$1.label`
+  font-size: var(--ethora-font-size-sm, 14px);
+  color: #8c8c8c;
+  margin-bottom: 4px;
+  margin-left: 8px;
+`;
+  const StyledInput = gt$1.input`
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid ${(props) => props.$error ? "red" : "transparent"};
+  color: #141414;
+  background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "#f5f7f9"};
+  font-size: var(--ethora-font-size, 16px);
+  box-sizing: border-box;
+
+  &:focus {
+    border: 1px solid
+      ${(props) => props.$error ? "red" : props.color || "#0052CD"};
+    outline: none;
+    background-color: ${({ $colorBg }) => $colorBg ? $colorBg : "#f5f7f9"};
+  }
+`;
+  const HelperText = gt$1.span`
+  font-size: var(--ethora-font-size-xs, 12px);
+  color: ${(props) => props.$error ? "red" : "#8c8c8c"};
+  margin-top: 4px;
+  margin-left: 8px;
+  position: absolute;
+  top: 42px;
+`;
+  const InputWithLabel = ({
+    label,
+    color: color2,
+    colorBg,
+    helperText,
+    error: error2,
+    ...rest
+  }) => {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(InputWrapper, { children: [
+      label && /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { children: label }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(StyledInput, { color: color2, $colorBg: colorBg, $error: error2, ...rest }),
+      helperText && /* @__PURE__ */ jsxRuntimeExports.jsx(HelperText, { $error: error2, children: helperText })
     ] });
   };
   const slideUp = Et$1`
@@ -61694,7 +63280,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   };
   const ToastContext = reactExports.createContext(void 0);
   const ToastProvider = ({
-    children
+    children: children2
   }) => {
     const [toasts, setToasts] = reactExports.useState([]);
     const showToast = reactExports.useCallback((toast) => {
@@ -61708,7 +63294,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }, []);
     const contextValue = reactExports.useMemo(() => ({ showToast }), [showToast]);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(ToastContext.Provider, { value: contextValue, children: [
-      children,
+      children2,
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
@@ -61737,7 +63323,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     { name: "Public", id: "public" },
     { name: "Members-only", id: "group" }
   ];
-  const useAppDispatch = useDispatch;
   const useIsMobileViewport = (breakpoint = 480) => {
     const getMatches = () => typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia(`(max-width: ${breakpoint}px)`).matches;
     const [isMobile, setIsMobile] = reactExports.useState(getMatches);
@@ -62383,21 +63968,18 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     CHAT_PROFILE: "chatprofile",
     MANAGE_DATA: "managedata",
     VISIBILITY: "visibility",
-    PROFILE_SHARES: "profile_shares",
-    DOCUMENT_SHARES: "document_shares",
-    BLOCKED_USERS: "blocked_users",
-    REFERRALS: "referrals",
     FILE_PREVIEW: "file_preview"
-    // SETTINGS: 'Settings',
-    // PROFILE: 'Profile',
-    // CHAT_PROFILE: 'Chat Profile',
-    // MANAGE_DATA: 'Manage Data',
-    // VISIBILITY: 'Visiblility',
-    // PROFILE_SHARES: 'Profile Shares',
-    // DOCUMENT_SHARES: 'Document Shares',
-    // BLOCKED_USERS: 'Blocked Users',
-    // REFERRALS: 'Referrals',
   };
+  const SETTINGS_SUB_MODAL_TYPES = [
+    MODAL_TYPES.MANAGE_DATA,
+    MODAL_TYPES.VISIBILITY
+  ];
+  const DRAWER_MODAL_TYPES = [
+    MODAL_TYPES.SETTINGS,
+    MODAL_TYPES.PROFILE,
+    MODAL_TYPES.CHAT_PROFILE,
+    ...SETTINGS_SUB_MODAL_TYPES
+  ];
   const LastRoomMessageContainer = gt$1.div`
   display: flex;
   width: 80%;
@@ -62532,6 +64114,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     try {
       const parsed = new URL(url);
       parsed.searchParams.set("ft", fileToken);
+      return parsed.toString();
+    } catch {
+      return url;
+    }
+  };
+  const withoutFileToken = (url) => {
+    if (!url) return "";
+    try {
+      const parsed = new URL(url);
+      parsed.searchParams.delete("ft");
       return parsed.toString();
     } catch {
       return url;
@@ -63857,7 +65449,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   font-size: 13px;
   color: var(--ethora-color-text-secondary, #5a5f66);
 `;
-  const RetryButton = gt$1.button`
+  const RetryButton$1 = gt$1.button`
   margin-top: 4px;
   border: 1px solid var(--ethora-color-border, #e6e8ec);
   background: var(--ethora-color-bg, #fff);
@@ -63981,7 +65573,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         /* @__PURE__ */ jsxRuntimeExports.jsx(SkeletonRow, {})
       ] }) : error2 && items.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(StateContainer, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(StateTitle, { children: t2("files.error.title") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(RetryButton, { onClick: refresh, children: t2("files.action.retry") })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(RetryButton$1, { onClick: refresh, children: t2("files.action.retry") })
       ] }) : visibleItems.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(StateContainer, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FileIcon,
@@ -64263,7 +65855,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       [config?.disableProfilesInteractions]
     );
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      burgerMenu && !open && /* @__PURE__ */ jsxRuntimeExports.jsx(BurgerButton, { onClick: () => setOpen(!open), children: "☰" }),
+      burgerMenu && !open && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        BurgerButton,
+        {
+          type: "button",
+          "aria-label": t2("action.openChatList"),
+          "aria-expanded": open,
+          onClick: () => setOpen(!open),
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "aria-hidden": "true", children: "☰" })
+        }
+      ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Container$5,
         {
@@ -64338,12 +65939,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                 "aria-labelledby": "ethora-chats-tab",
                 children: [
                   !config?.chatHeaderSettings?.hide && /* @__PURE__ */ jsxRuntimeExports.jsxs(SearchContainer, { children: [
-                    !config?.disableRoomMenu && !config?.chatHeaderSettings?.disableMenu && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      DropdownMenu$1,
+                    !config?.disableRoomMenu && !config?.chatHeaderSettings?.disableMenu && // config.headerMenu hands the burger over to the host: the
+                    // built-in Profile/Settings/Logout dropdown is not rendered
+                    // at all, the same button just calls the host's handler so
+                    // it can open its own account menu or drawer.
+                    (typeof config?.headerMenu === "function" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$1,
+                      {
+                        "aria-label": t2("header.menu"),
+                        onClick: () => config.headerMenu?.(),
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(BurgerMenuIcon, {})
+                      }
+                    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      DropdownMenu,
                       {
                         options: menuOptions
                       }
-                    ),
+                    )),
                     !config?.chatHeaderSettings?.hideSearch && /* @__PURE__ */ jsxRuntimeExports.jsx(
                       SearchInput$1,
                       {
@@ -64422,6 +66034,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   };
   const RoomMenu = ({ handleLeaveClick, handleReportClick }) => {
     const t2 = useT();
+    const { config } = useChatSettingState();
     const menuOptions = reactExports.useMemo(
       () => [
         {
@@ -64444,8 +66057,20 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ],
       [handleLeaveClick, handleReportClick, t2]
     );
+    if (typeof config?.headerChatMenu === "function") {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button$1,
+        {
+          style: { padding: 8, maxHeight: "40px" },
+          "aria-label": t2("header.chatMenu"),
+          EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(MoreIcon, {}),
+          onClick: () => config.headerChatMenu?.(),
+          unstyled: true
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      DropdownMenu$1,
+      DropdownMenu,
       {
         position: "left",
         options: menuOptions,
@@ -64540,7 +66165,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ] })
     ] }) });
   };
-  var reactDomExports = requireReactDom();
   const HEX_RE = /^#?[0-9a-fA-F]{3}$|^#?[0-9a-fA-F]{6}$/;
   const isValidHex = (hex) => HEX_RE.test(hex.trim());
   const normalizeHex = (hex) => {
@@ -64641,7 +66265,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       "--ethora-font-weight-bold": String(weights.bold)
     };
   }
-  const CHAT_ROOT_CLASS = "ethora-chat-root";
   function useThemeTokenStyle(colors, typography) {
     return reactExports.useMemo(
       () => buildThemeTokens(colors, typography),
@@ -64709,6 +66332,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     if (translates?.forceType) return hostDefault;
     return readerMode || hostDefault;
   };
+  const shouldTagOutgoingTranslateSource = (translatesEnabled, translateSendEnabled) => !!translatesEnabled && translateSendEnabled !== false;
   const SwitchContainer = gt$1.div`
   width: 34px;
   height: 18px;
@@ -64902,10 +66526,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           children: /* @__PURE__ */ jsxRuntimeExports.jsx(GlobeIcon, {})
         }
       ),
-      isOpen && typeof document !== "undefined" && reactDomExports.createPortal(
+      isOpen && typeof document !== "undefined" && // The portal target is `document.body`, outside the chat root, so
+      // the modal re-declares the scoping class or it loses the chat's
+      // scrollbar and typography rules.
+      reactDomExports.createPortal(
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           LanguageModalBackground,
           {
+            className: CHAT_ROOT_CLASS,
             onClick: () => setIsOpen(false),
             style: portalTokenStyle,
             children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -64984,6 +66612,37 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         document.body
       )
     ] });
+  };
+  const HEADER_LOGO_TEST_ID = "ethora-header-logo";
+  const HeaderLogo = ({ logo, size = 32 }) => {
+    const t2 = useT();
+    if (typeof logo === "string") {
+      const src = logo.trim();
+      if (!src) return null;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "img",
+        {
+          "data-testid": HEADER_LOGO_TEST_ID,
+          src,
+          alt: t2("header.logoAlt"),
+          style: {
+            height: size,
+            maxWidth: size * 4,
+            objectFit: "contain",
+            alignSelf: "center",
+            flexShrink: 0
+          }
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "span",
+      {
+        "data-testid": HEADER_LOGO_TEST_ID,
+        style: { display: "flex", alignItems: "center", flexShrink: 0 },
+        children: logo
+      }
+    );
   };
   const HeaderBar = gt$1.div`
   display: flex;
@@ -65204,6 +66863,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(HeaderBar, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "8px", minWidth: 0 }, children: [
+          config?.headerLogo != null && /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderLogo, { logo: config.headerLogo }),
           !config?.disableRooms && handleBackClick && /* @__PURE__ */ jsxRuntimeExports.jsx(
             Button$1,
             {
@@ -65253,6 +66913,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     if (isPrivateRoom) {
                       return peerOnline ? /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderOnlineText, { children: t2("presence.online") }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: t2("presence.offline") });
                     }
+                    if (config?.disableUserCount) return "";
                     const displayCount = getDisplayCount(currentRoom);
                     if (displayCount <= 0) return "";
                     const base = t2(
@@ -65650,27 +67311,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       handleMessageEdited
     };
   };
-  const ACK_CATCHUP_DELAY_MS = 2500;
-  const hasEchoLanded = (roomJID, messageId) => {
-    const msg = store.getState().rooms.rooms?.[roomJID]?.messages?.find(
-      (m2) => m2.id === messageId || m2.xmppId === messageId
-    );
-    return Boolean(msg && msg.pending === false);
-  };
-  const scheduleAckCatchup = (client2, roomJID, messageId, onSettled) => setTimeout(() => {
-    onSettled?.();
-    if (hasEchoLanded(roomJID, messageId)) return;
-    client2.presenceInRoomStanza(roomJID, 0, 1200, true).catch(() => {
-    }).finally(() => {
-      if (hasEchoLanded(roomJID, messageId)) return;
-      client2.getHistoryStanza(roomJID, 20, void 0, void 0, {
-        source: "send_ack"
-      }).catch(() => {
-      });
-    });
-  }, ACK_CATCHUP_DELAY_MS);
   const DEFAULT_TIMEOUT_MS = 3e5;
-  const shouldTagOutgoingTranslateSource = (translatesEnabled, translateSendEnabled) => !!translatesEnabled && translateSendEnabled !== false;
   const useSendMessage = () => {
     const { config, langSource, translateSendEnabled } = useChatSettingState();
     const { client: client2 } = useXmppClient();
@@ -65852,7 +67493,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       [activeRoomJID, client2]
     );
     const sendMessage = reactExports.useCallback(
-      async (message, activeRoomJID2, isReply, isChecked, mainMessage) => {
+      async (message, activeRoomJID2, isReply, isChecked, mainMessage, mentions) => {
         if (!/\S/.test(String(message || ""))) {
           ethoraLogger.log("Cannot send empty message");
           return;
@@ -65924,7 +67565,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     id: id2,
                     isReply: isReply ? "true" : "false",
                     showInChannel: isChecked ? "true" : "false",
-                    mainMessage: mainMessage || ""
+                    mainMessage: mainMessage || "",
+                    mentions
                   }
                 })
               );
@@ -65944,9 +67586,15 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   isReply: isReply || false,
                   showInChannel: isChecked ? "true" : "false",
                   mainMessage: mainMessage || "",
-                  langSource: langSource || "en"
+                  langSource: langSource || "en",
+                  mentions
                 })
               );
+              armSendFailureWatchdog({
+                roomJID: activeRoomJID2,
+                messageId: id2,
+                body: message
+              });
               const sendOk = await sendWithActiveRoomRetry(
                 activeRoomJID2,
                 id2,
@@ -65962,7 +67610,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   isChecked || false,
                   mainMessage || "",
                   langSource || "en",
-                  id2
+                  id2,
+                  mentions
                 )
               );
               if (sendOk) {
@@ -66004,7 +67653,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     pending: true,
                     isReply: isReply ? "true" : "false",
                     showInChannel: isChecked ? "true" : "false",
-                    mainMessage: mainMessage || ""
+                    mainMessage: mainMessage || "",
+                    mentions
                   }
                 })
               );
@@ -66023,9 +67673,15 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   xmppFrom: `${activeRoomJID2}/${user.xmppUsername}`,
                   isReply: isReply || false,
                   showInChannel: isChecked ? "true" : "false",
-                  mainMessage: mainMessage || ""
+                  mainMessage: mainMessage || "",
+                  mentions
                 })
               );
+              armSendFailureWatchdog({
+                roomJID: activeRoomJID2,
+                messageId: id2,
+                body: message
+              });
               const sendOk = await sendWithActiveRoomRetry(
                 activeRoomJID2,
                 id2,
@@ -66040,7 +67696,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   isReply || false,
                   isChecked || false,
                   mainMessage || "",
-                  id2
+                  id2,
+                  mentions
                 )
               );
               if (sendOk) {
@@ -66344,8 +68001,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     );
     if (messageElement) {
       messageElement.scrollIntoView({ behavior: "smooth", block: "center" });
-      messageElement.classList.add("message-highlight");
-      setTimeout(() => messageElement.classList.remove("message-highlight"), 2e3);
+      messageElement.classList.add(MESSAGE_HIGHLIGHT_CLASS);
+      setTimeout(() => messageElement.classList.remove(MESSAGE_HIGHLIGHT_CLASS), 2e3);
     }
   };
   const useRoomInitialization = (activeRoomJID, roomsList, config, messageLength) => {
@@ -66575,8 +68232,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       } = useSendMessage();
       const { sendStartComposing, sendEndComposing } = useComposing(config);
       const sendMessage = reactExports.useCallback(
-        (message) => {
-          sendMs(message, activeRoomJID);
+        (message, mentions) => {
+          sendMs(message, activeRoomJID, void 0, void 0, void 0, mentions);
         },
         [activeRoomJID, sendMs]
       );
@@ -66681,6 +68338,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(
         ChatContainer,
         {
+          "data-ethora-drop-zone": "",
           style: {
             overflow: "auto",
             ...config?.chatRoomStyles
@@ -66805,7 +68463,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   align-items: center;
   justify-content: center;
 `;
-  const FullScreenImage = gt$1.img`
+  gt$1.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -67365,7 +69023,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ] })
     ] });
   };
-  const IMAGE_FALLBACK = "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg";
+  const IMAGE_FALLBACK$1 = "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg";
   const AttachmentTileItem = ({
     attachment
   }) => {
@@ -67392,7 +69050,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         src: attachment.locationPreview || attachment.location,
         alt: fileName,
         onError: (event) => {
-          event.target.src = IMAGE_FALLBACK;
+          event.target.src = IMAGE_FALLBACK$1;
         }
       }
     ) });
@@ -67692,22 +69350,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     EDIT: EditIcon,
     DELETE: DeleteIcon
   };
-  const PickerWithData = React.lazy(async () => {
-    const [{ default: Picker2 }, { default: data }] = await Promise.all([
-      Promise.resolve().then(() => emojiReact),
-      Promise.resolve().then(() => emojiData$1)
-    ]);
-    const Wrapped = (props) => /* @__PURE__ */ jsxRuntimeExports.jsx(Picker2, { data, ...props });
-    return { default: Wrapped };
-  });
-  const PickerShell = gt$1.div`
-  border-radius: var(--ethora-radius-md, 12px);
-  border: 1px solid var(--ethora-color-border, #e6e8ec);
-  box-shadow: var(--ethora-shadow-lg, 0 8px 24px rgba(16, 24, 40, 0.16));
-  overflow: hidden;
-  ${scaleInAnimation}
-`;
-  const LazyEmojiPicker = (props) => /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PickerShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PickerWithData, { ...props }) }) });
   const AnimatedOverlay$1 = gt$1(Overlay$1)`
   ${fadeInAnimation}
 `;
@@ -67731,6 +69373,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   }) => {
     const { roomsList, activeRoomJID } = useRoomState();
     const [showPicker, setShowPicker] = reactExports.useState(false);
+    const menuContainerRef = reactExports.useRef(null);
     useEmojiData();
     const t2 = useT();
     const config = useSelector(
@@ -67810,17 +69453,26 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       };
     }, [showPicker, contextMenu?.x, contextMenu?.y]);
+    useModalDismiss({
+      enabled: Boolean(
+        contextMenu?.visible && !config?.disableInteractions && !message.isDeleted
+      ),
+      onClose: closeMenu,
+      kind: "menu",
+      containerRef: menuContainerRef
+    });
     if (!contextMenu || config?.disableInteractions || !contextMenu.visible) return null;
     return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: !message.isDeleted && /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatedOverlay$1, { onClick: closeContextMenu, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       ContainerInteractions,
       {
+        ref: menuContainerRef,
         style: { top: contextMenu.y, left: contextMenu.x },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(ReactionContainer$1, { children: [
             fixedEmojiIds.map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReactionBadge,
               {
-                className: "apple-emoji",
+                className: APPLE_EMOJI_CLASS,
                 onClick: (e2) => handleReactionClick(id2, e2),
                 children: getEmojiById(id2)
               },
@@ -68425,23 +70077,218 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const TranslatedMessageBody = ({
     originalText,
     accentColor = "#0052CD",
-    children,
+    children: children2,
     isUser
   }) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(Wrapper, { children: [
       !isUser && /* @__PURE__ */ jsxRuntimeExports.jsx(OriginalQuote, { $accent: accentColor, children: originalText }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(TranslatedText, { children: isUser ? originalText : children })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TranslatedText, { children: isUser ? originalText : children2 })
     ] });
   };
+  async function resendMessage(message, options = {}) {
+    const client2 = requireXmppClient();
+    const state = store.getState();
+    const user = state.chatSettingStore.user;
+    const config = state.chatSettingStore.config;
+    const activeRoomJID = message.roomJid;
+    const originalId = message.originalMessageId;
+    const reuseId = options.preserveMessageId === true;
+    if (reuseId && !beginSendRetry(originalId)) {
+      return originalId;
+    }
+    if (!reuseId) {
+      try {
+        client2.deleteMessageStanza(activeRoomJID, originalId);
+      } catch (e2) {
+        console.warn("Failed to send delete stanza for original message:", e2);
+      }
+      try {
+        store.dispatch(
+          deleteRoomMessage({ roomJID: activeRoomJID, messageId: originalId })
+        );
+      } catch {
+      }
+      try {
+        store.dispatch(removeMessageFromHeapById(originalId));
+      } catch {
+      }
+    }
+    const id2 = reuseId ? originalId : `resend-text-message-${v4()}`;
+    const optimisticTimestamp = Date.now();
+    const optimisticDate = new Date(optimisticTimestamp).toISOString();
+    if (reuseId) {
+      store.dispatch(
+        setMessageSendRetrying({ roomJID: activeRoomJID, messageId: id2 })
+      );
+      const alreadyQueued = store.getState().roomHeapSlice.messageHeap.some((m2) => m2.id === id2);
+      if (!alreadyQueued) {
+        store.dispatch(
+          addMessageToHeap({
+            id: id2,
+            user: {
+              ...user,
+              id: user.xmppUsername,
+              name: user.firstName + " " + user.lastName
+            },
+            date: optimisticDate,
+            messageTimestampMs: optimisticTimestamp,
+            body: message.body,
+            roomJid: activeRoomJID,
+            xmppFrom: `${activeRoomJID}/${user.xmppUsername}`,
+            isReply: message.isReply || false,
+            showInChannel: message.showInChannel || "false",
+            mainMessage: message.mainMessage || "",
+            mentions: message.mentions
+          })
+        );
+      }
+    } else {
+      store.dispatch(
+        addRoomMessage({
+          roomJID: activeRoomJID,
+          message: {
+            id: id2,
+            user: {
+              ...user,
+              id: user.xmppUsername,
+              name: user.firstName + " " + user.lastName
+            },
+            date: optimisticDate,
+            messageTimestampMs: optimisticTimestamp,
+            body: message.body,
+            roomJid: activeRoomJID,
+            xmppFrom: `${activeRoomJID}/${user.xmppUsername}`,
+            pending: true,
+            isReply: message.isReply || false,
+            showInChannel: message.showInChannel || "false",
+            mainMessage: message.mainMessage || "",
+            mentions: message.mentions
+          }
+        })
+      );
+    }
+    const useTranslate = !!(options.respectTranslateConfig && config?.translates?.enabled);
+    if (reuseId) {
+      armSendFailureWatchdog({
+        roomJID: activeRoomJID,
+        messageId: id2,
+        body: message.body
+      });
+    }
+    try {
+      const sent = useTranslate ? client2.sendTextMessageWithTranslateTagStanza(
+        activeRoomJID,
+        user.firstName,
+        user.lastName,
+        "",
+        user.walletAddress,
+        message.body,
+        "",
+        message.isReply || false,
+        message.showInChannel === "true" || false,
+        message.mainMessage || "",
+        state.chatSettingStore.langSource || "en",
+        id2,
+        message.mentions
+      ) : client2.sendMessage(
+        activeRoomJID,
+        user.firstName,
+        user.lastName,
+        "",
+        user.walletAddress,
+        message.body,
+        "",
+        message.isReply || false,
+        message.showInChannel === "true" || false,
+        message.mainMessage || "",
+        id2,
+        message.mentions
+      );
+      if (reuseId) {
+        Promise.resolve(sent).catch(() => void 0).finally(() => endSendRetry(id2));
+      }
+      try {
+        if (config?.eventHandlers?.onMessageSent) {
+          await config.eventHandlers.onMessageSent({
+            message: message.body,
+            roomJID: activeRoomJID,
+            user,
+            messageType: "text",
+            metadata: {
+              isReply: message.isReply || false,
+              isChecked: message.showInChannel === "true" || false,
+              mainMessage: message.mainMessage || "",
+              translateEnabled: useTranslate,
+              messageId: id2,
+              originalMessageId: originalId,
+              resend: true
+            }
+          });
+        }
+      } catch (handlerError) {
+        console.error("Error in message sent handler:", handlerError);
+        throw handlerError;
+      }
+    } catch (error2) {
+      console.error("Error resending message:", error2);
+      try {
+        if (config?.eventHandlers?.onMessageFailed) {
+          config.eventHandlers.onMessageFailed({
+            message: message.body,
+            roomJID: activeRoomJID,
+            error: error2,
+            messageType: "text"
+          });
+        }
+      } catch (handlerError) {
+        console.error("Error in message failed handler:", handlerError);
+      }
+      if (reuseId) {
+        endSendRetry(id2);
+      }
+    }
+    return id2;
+  }
   const EditedLabel = gt$1.span`
   font-style: italic;
+`;
+  const FailedNotice = gt$1.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--ethora-color-danger, #d92d20);
+  font-family: var(--ethora-font-family, 'Open Sans', sans-serif);
+  font-size: var(--ethora-font-size-xs, 0.75rem);
+`;
+  const RetryButton = gt$1.button`
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+  padding: 0 8px;
+
+  &:hover:not(:disabled) {
+    opacity: 0.75;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
 `;
   const firstUrlRegex = /(https?:\/\/[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+)/;
   const Message$1 = reactExports.forwardRef(({ message, isUser, isReply }, ref) => {
     const { client: client2 } = useXmppClient();
     const t2 = useT();
-    const { user, config, langSource, translateMode } = useChatSettingState();
+    const { user, config, langSource, translateMode, translateSendEnabled } = useChatSettingState();
     const { idSet } = useMessageHeapState();
+    const usersSet = useUsersSet();
     const interactionsDisabled = Boolean(config?.disableInteractions);
     const profilesDisabled = Boolean(config?.disableProfilesInteractions);
     const effectiveTranslateMode = resolveTranslateMode(
@@ -68522,6 +70369,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       dispatch(setActiveModal(MODAL_TYPES.PROFILE));
       dispatch(setSelectedUser(user2));
     };
+    const handleMentionClick = (mention) => {
+      if (profilesDisabled || !mention?.jid) return;
+      const localKey = mention.jid.split("@")[0];
+      const enriched = usersSet?.[mention.jid] ?? usersSet?.[localKey];
+      const [firstName, ...rest] = (enriched ? `${enriched.firstName ?? ""} ${enriched.lastName ?? ""}`.trim() : mention.name).split(" ");
+      dispatch(setActiveModal(MODAL_TYPES.PROFILE));
+      dispatch(
+        setSelectedUser({
+          id: localKey,
+          firstName: enriched?.firstName || firstName || mention.name,
+          lastName: enriched?.lastName || rest.join(" "),
+          name: enriched ? `${enriched.firstName ?? ""} ${enriched.lastName ?? ""}`.trim() : mention.name,
+          userJID: mention.jid,
+          profileImage: enriched?.profileImage
+        })
+      );
+    };
     const handleReplyMessage = () => {
       dispatch(setEditAction({ isEdit: false }));
       if (!isReply && message.mainMessage) {
@@ -68589,6 +70453,32 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       );
     };
     const isPending = idSet.has(message.id) || message?.pending || false;
+    const sentLogicEnabled = !config?.disableSentLogic;
+    const isFailed = Boolean(sentLogicEnabled && isUser && message?.failed);
+    const handleRetrySend = () => {
+      if (!isFailed) return;
+      void resendMessage(
+        {
+          originalMessageId: message.id,
+          body: message.body,
+          roomJid: message.roomJid,
+          isReply: typeof message.isReply === "boolean" ? message.isReply : !!message.isReply,
+          showInChannel: message.showInChannel,
+          mainMessage: message.mainMessage
+        },
+        {
+          preserveMessageId: true,
+          // Match whatever a fresh send would do, so a retry does not silently
+          // drop the `<translate source>` tag the first attempt carried.
+          respectTranslateConfig: shouldTagOutgoingTranslateSource(
+            config?.translates?.enabled,
+            translateSendEnabled
+          )
+        }
+      ).catch((error2) => {
+        console.error("Failed to retry message send:", error2);
+      });
+    };
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         CustomMessageContainer,
@@ -68646,23 +70536,32 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                       location: message?.location,
                       message
                     }
-                  ) : /* @__PURE__ */ jsxRuntimeExports.jsx(CustomMessageText, { children: message.isDeleted && message.id !== "delimiter-new" ? /* @__PURE__ */ jsxRuntimeExports.jsx(DeletedMessage, {}) : (() => {
-                    const body = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "message-body", children: parseMessageBody({
-                      text: config?.messageTextFilter?.enabled ? config.messageTextFilter.filterFunction(
+                  ) : (
+                    // Muted while unsent so the bubble reads as "not landed yet"
+                    // without shouting - the danger tone belongs on the notice below,
+                    // which is the part carrying the action.
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CustomMessageText, { style: { opacity: isFailed ? 0.6 : 1 }, children: message.isDeleted && message.id !== "delimiter-new" ? /* @__PURE__ */ jsxRuntimeExports.jsx(DeletedMessage, {}) : (() => {
+                      const displayText = config?.messageTextFilter?.enabled ? config.messageTextFilter.filterFunction(
                         translationDisplay.displayText
-                      ) : translationDisplay.displayText
-                    }) });
-                    if (!translationDisplay.hasTranslation) return body;
-                    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      TranslatedMessageBody,
-                      {
-                        isUser,
-                        originalText: translationDisplay.originalText,
-                        accentColor: config?.colors?.primary,
-                        children: body
-                      }
-                    );
-                  })() }),
+                      ) : translationDisplay.displayText;
+                      const mentionsForDisplay = displayText === message.body ? message.mentions : void 0;
+                      const body = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "message-body", children: parseMessageBody({
+                        text: displayText,
+                        mentions: mentionsForDisplay,
+                        onMentionClick: handleMentionClick
+                      }) });
+                      if (!translationDisplay.hasTranslation) return body;
+                      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        TranslatedMessageBody,
+                        {
+                          isUser,
+                          originalText: translationDisplay.originalText,
+                          accentColor: config?.colors?.primary,
+                          children: body
+                        }
+                      );
+                    })() })
+                  ),
                   !isUser && config?.translates?.enabled && effectiveTranslateMode === "manual" && /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MessageTranslate,
                     {
@@ -68672,13 +70571,25 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(CustomMessageTimestamp, { children: [
-                    !config?.disableSentLogic && isUser && isPending && "sending...",
+                    sentLogicEnabled && isUser && isPending && !isFailed && "sending...",
                     message.isEdited && !message.isDeleted && /* @__PURE__ */ jsxRuntimeExports.jsx(EditedLabel, { children: t2("message.edited") }),
                     new Date(message.date).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit"
                     }),
-                    !config?.disableSentLogic && isUser && !isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(DoubleTick, {})
+                    sentLogicEnabled && isUser && !isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(DoubleTick, {})
+                  ] }),
+                  isFailed && /* @__PURE__ */ jsxRuntimeExports.jsxs(FailedNotice, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: t2("message.notDelivered") }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      RetryButton,
+                      {
+                        type: "button",
+                        onClick: handleRetrySend,
+                        "aria-label": t2("message.retryAriaLabel"),
+                        children: t2("message.retry")
+                      }
+                    )
                   ] }),
                   previewUrl && !message.isDeleted && /* @__PURE__ */ jsxRuntimeExports.jsx(URLPreviewCard, { url: previewUrl, isUserMessage: isUser })
                 ]
@@ -69030,27 +70941,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     [MODAL_TYPES.VISIBILITY]: reactExports.lazy(
       () => Promise.resolve().then(() => VisibilityModal$1)
     ),
-    [MODAL_TYPES.REFERRALS]: reactExports.lazy(
-      () => Promise.resolve().then(() => Referrals)
-    ),
-    [MODAL_TYPES.DOCUMENT_SHARES]: reactExports.lazy(
-      () => Promise.resolve().then(() => DocumentSharesModal$1)
-    ),
-    [MODAL_TYPES.PROFILE_SHARES]: reactExports.lazy(
-      () => Promise.resolve().then(() => ProfileShares)
-    ),
-    [MODAL_TYPES.BLOCKED_USERS]: reactExports.lazy(
-      () => Promise.resolve().then(() => BlockedUsersModal$1)
-    ),
     [MODAL_TYPES.FILE_PREVIEW]: reactExports.lazy(
       () => Promise.resolve().then(() => FilePreviewModal$1)
     )
   };
-  const Modal = ({ children, modal, setOpenModal }) => {
+  const Modal = ({ children: children2, modal, setOpenModal }) => {
     const dispatch = useDispatch();
     const handleCloseModal = () => setOpenModal();
     const handleBackButtonClick = () => dispatch(setActiveModal(MODAL_TYPES.SETTINGS));
-    const isSubSettingsModal = modal === MODAL_TYPES.MANAGE_DATA || modal === MODAL_TYPES.VISIBILITY || modal === MODAL_TYPES.REFERRALS || modal === MODAL_TYPES.DOCUMENT_SHARES || modal === MODAL_TYPES.PROFILE_SHARES || modal === MODAL_TYPES.BLOCKED_USERS;
+    const isSubSettingsModal = SETTINGS_SUB_MODAL_TYPES.includes(modal || "");
+    const isDrawerModal = DRAWER_MODAL_TYPES.includes(modal || "");
     const containerRef = reactExports.useRef(null);
     const focusTokenRef = reactExports.useRef(0);
     useModalDismiss({
@@ -69103,13 +71003,21 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const renderModalContent = () => {
       const ModalComponent = MODAL_COMPONENTS[modal];
       if (!ModalComponent) return null;
-      const handleClose = modal === MODAL_TYPES.MANAGE_DATA || modal === MODAL_TYPES.VISIBILITY || modal === MODAL_TYPES.REFERRALS || modal === MODAL_TYPES.DOCUMENT_SHARES || modal === MODAL_TYPES.PROFILE_SHARES || modal === MODAL_TYPES.BLOCKED_USERS ? handleBackButtonClick : handleCloseModal;
+      const handleClose = isSubSettingsModal ? handleBackButtonClick : handleCloseModal;
       return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: containerRef, style: { display: "contents" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModalComponent, { handleCloseModal: handleClose }) }) });
     };
-    return modal && /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalBackground, { id: "modal-background", style: { position: "absolute" }, children: [
-      renderModalContent(),
-      children
-    ] });
+    return modal && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      ModalBackground,
+      {
+        id: "modal-background",
+        $drawer: isDrawerModal,
+        style: { position: "absolute" },
+        children: [
+          renderModalContent(),
+          children2
+        ]
+      }
+    );
   };
   const ModalHeaderComponent = ({
     handleCloseModal,
@@ -69305,6 +71213,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             SendInput,
             {
               editMessage: editAction.text,
+              disableDrafts: true,
               sendMedia,
               sendMessage: editAction.isEdit ? sendEditMessage : sendMessage,
               config,
@@ -69334,7 +71243,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const ModalBox = ({
     title,
     handleCloseModal,
-    children
+    children: children2
   }) => {
     const t2 = useT();
     const containerRef = reactExports.useRef(null);
@@ -69350,7 +71259,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ModalTitle, { children: title }),
-      children
+      children2
     ] }) });
   };
   const Report = gt$1.button`
@@ -70453,30 +72362,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   }) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(BannerContainer, { children: message });
   };
-  const FallbackScreen = ({ content: content2, style }) => {
-    if (typeof content2 === "string" || typeof content2 === "number") {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          style: {
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            padding: "var(--ethora-space-6, 24px)",
-            boxSizing: "border-box",
-            color: "var(--ethora-color-text, #141414)",
-            fontSize: "var(--ethora-font-size, 16px)",
-            ...style
-          },
-          children: content2
-        }
-      );
-    }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: content2 });
-  };
   const ChatWrapper = ({
     MainComponentStyles,
     config,
@@ -71061,9 +72946,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
               behavior: "smooth",
               block: "center"
             });
-            messageElement.classList.add("message-highlight");
+            messageElement.classList.add(MESSAGE_HIGHLIGHT_CLASS);
             setTimeout(() => {
-              messageElement.classList.remove("message-highlight");
+              messageElement.classList.remove(MESSAGE_HIGHLIGHT_CLASS);
             }, 2e3);
           } else {
             setTimeout(() => {
@@ -71075,9 +72960,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   behavior: "smooth",
                   block: "center"
                 });
-                retryElement.classList.add("message-highlight");
+                retryElement.classList.add(MESSAGE_HIGHLIGHT_CLASS);
                 setTimeout(() => {
-                  retryElement.classList.remove("message-highlight");
+                  retryElement.classList.remove(MESSAGE_HIGHLIGHT_CLASS);
                 }, 2e3);
               }
             }, 500);
@@ -71377,6 +73262,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       JSON.stringify(typography?.weights ?? {})
     ]);
   }
+  const chatRootStyle = { display: "contents" };
   const NotificationEnabler = () => {
     useInAppNotifications();
     return null;
@@ -71407,7 +73293,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     ]);
     return null;
   };
-  const PushNotificationsEnabler = ({ config }) => {
+  const PushNotificationsEnabler = ({
+    config
+  }) => {
     const { requestPermission } = usePushNotifications({
       enabled: config?.pushNotifications?.enabled,
       vapidPublicKey: config?.pushNotifications?.vapidPublicKey,
@@ -71441,7 +73329,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           newArch: props.config.newArch ?? true
         };
       }, [props.config]);
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(Provider_default, { store, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PersistGate, { loading: /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}), persistor, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(ToastProvider, { children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: CHAT_ROOT_CLASS, style: chatRootStyle, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Provider_default, { store, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChatErrorBoundary, { config: memoizedConfig, scope: "chat", children: /* @__PURE__ */ jsxRuntimeExports.jsx(PersistGate, { loading: /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}), persistor, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(ToastProvider, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(NotificationEnabler, {}),
         /* @__PURE__ */ jsxRuntimeExports.jsx(ConfigEnabler, { config: memoizedConfig }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeTokens, { config: memoizedConfig }),
@@ -71459,7 +73347,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(LoginWrapper, { ...props, config: memoizedConfig })
           }
         )
-      ] }) }) });
+      ] }) }) }) }) });
     }
   );
   if (typeof window !== "undefined") {
@@ -119204,23 +121092,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     static makeHexColor(r2, g2, b2) {
       return `#${hexNumbers[r2]}${hexNumbers[g2]}${hexNumbers[b2]}`;
     }
-    static scaleMinMax(transform, minMax) {
+    static scaleMinMax(transform2, minMax) {
       let temp;
-      if (transform[0]) {
-        if (transform[0] < 0) {
+      if (transform2[0]) {
+        if (transform2[0] < 0) {
           temp = minMax[0];
           minMax[0] = minMax[2];
           minMax[2] = temp;
         }
-        minMax[0] *= transform[0];
-        minMax[2] *= transform[0];
-        if (transform[3] < 0) {
+        minMax[0] *= transform2[0];
+        minMax[2] *= transform2[0];
+        if (transform2[3] < 0) {
           temp = minMax[1];
           minMax[1] = minMax[3];
           minMax[3] = temp;
         }
-        minMax[1] *= transform[3];
-        minMax[3] *= transform[3];
+        minMax[1] *= transform2[3];
+        minMax[3] *= transform2[3];
       } else {
         temp = minMax[0];
         minMax[0] = minMax[1];
@@ -119228,25 +121116,25 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         temp = minMax[2];
         minMax[2] = minMax[3];
         minMax[3] = temp;
-        if (transform[1] < 0) {
+        if (transform2[1] < 0) {
           temp = minMax[1];
           minMax[1] = minMax[3];
           minMax[3] = temp;
         }
-        minMax[1] *= transform[1];
-        minMax[3] *= transform[1];
-        if (transform[2] < 0) {
+        minMax[1] *= transform2[1];
+        minMax[3] *= transform2[1];
+        if (transform2[2] < 0) {
           temp = minMax[0];
           minMax[0] = minMax[2];
           minMax[2] = temp;
         }
-        minMax[0] *= transform[2];
-        minMax[2] *= transform[2];
+        minMax[0] *= transform2[2];
+        minMax[2] *= transform2[2];
       }
-      minMax[0] += transform[4];
-      minMax[1] += transform[5];
-      minMax[2] += transform[4];
-      minMax[3] += transform[5];
+      minMax[0] += transform2[4];
+      minMax[1] += transform2[5];
+      minMax[2] += transform2[4];
+      minMax[3] += transform2[5];
     }
     static transform(m1, m2) {
       return [m1[0] * m2[0] + m1[2] * m2[1], m1[1] * m2[0] + m1[3] * m2[1], m1[0] * m2[2] + m1[2] * m2[3], m1[1] * m2[2] + m1[3] * m2[3], m1[0] * m2[4] + m1[2] * m2[5] + m1[4], m1[1] * m2[4] + m1[3] * m2[5] + m1[5]];
@@ -123262,9 +125150,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         savedWidth: this.width,
         savedHeight: this.height
       };
-      const children = this.#resizersDiv.children;
+      const children2 = this.#resizersDiv.children;
       if (!this.#allResizerDivs) {
-        this.#allResizerDivs = Array.from(children);
+        this.#allResizerDivs = Array.from(children2);
         const boundResizerKeydown = this.#resizerKeydown.bind(this);
         const boundResizerBlur = this.#resizerBlur.bind(this);
         const signal = this._uiManager._signal;
@@ -123285,7 +125173,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
       const first = this.#allResizerDivs[0];
       let firstPosition = 0;
-      for (const div of children) {
+      for (const div of children2) {
         if (div === first) {
           break;
         }
@@ -123303,7 +125191,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           }
         }
         let i2 = 0;
-        for (const child of children) {
+        for (const child of children2) {
           const div = this.#allResizerDivs[i2++];
           const name2 = div.getAttribute("data-resizer-name");
           child.setAttribute("data-l10n-id", AnnotationEditor._l10nResizer[name2]);
@@ -125816,44 +127704,44 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       this.x = x2;
       this.y = y2;
     }
-    updatePathMinMax(transform, x2, y2) {
-      [x2, y2] = Util.applyTransform([x2, y2], transform);
+    updatePathMinMax(transform2, x2, y2) {
+      [x2, y2] = Util.applyTransform([x2, y2], transform2);
       this.minX = Math.min(this.minX, x2);
       this.minY = Math.min(this.minY, y2);
       this.maxX = Math.max(this.maxX, x2);
       this.maxY = Math.max(this.maxY, y2);
     }
-    updateRectMinMax(transform, rect) {
-      const p1 = Util.applyTransform(rect, transform);
-      const p2 = Util.applyTransform(rect.slice(2), transform);
-      const p3 = Util.applyTransform([rect[0], rect[3]], transform);
-      const p4 = Util.applyTransform([rect[2], rect[1]], transform);
+    updateRectMinMax(transform2, rect) {
+      const p1 = Util.applyTransform(rect, transform2);
+      const p2 = Util.applyTransform(rect.slice(2), transform2);
+      const p3 = Util.applyTransform([rect[0], rect[3]], transform2);
+      const p4 = Util.applyTransform([rect[2], rect[1]], transform2);
       this.minX = Math.min(this.minX, p1[0], p2[0], p3[0], p4[0]);
       this.minY = Math.min(this.minY, p1[1], p2[1], p3[1], p4[1]);
       this.maxX = Math.max(this.maxX, p1[0], p2[0], p3[0], p4[0]);
       this.maxY = Math.max(this.maxY, p1[1], p2[1], p3[1], p4[1]);
     }
-    updateScalingPathMinMax(transform, minMax) {
-      Util.scaleMinMax(transform, minMax);
+    updateScalingPathMinMax(transform2, minMax) {
+      Util.scaleMinMax(transform2, minMax);
       this.minX = Math.min(this.minX, minMax[0]);
       this.minY = Math.min(this.minY, minMax[1]);
       this.maxX = Math.max(this.maxX, minMax[2]);
       this.maxY = Math.max(this.maxY, minMax[3]);
     }
-    updateCurvePathMinMax(transform, x0, y0, x1, y1, x2, y2, x3, y3, minMax) {
+    updateCurvePathMinMax(transform2, x0, y0, x1, y1, x2, y2, x3, y3, minMax) {
       const box = Util.bezierBoundingBox(x0, y0, x1, y1, x2, y2, x3, y3, minMax);
       if (minMax) {
         return;
       }
-      this.updateRectMinMax(transform, box);
+      this.updateRectMinMax(transform2, box);
     }
-    getPathBoundingBox(pathType = PathType.FILL, transform = null) {
+    getPathBoundingBox(pathType = PathType.FILL, transform2 = null) {
       const box = [this.minX, this.minY, this.maxX, this.maxY];
       if (pathType === PathType.STROKE) {
-        if (!transform) {
+        if (!transform2) {
           unreachable$1("Stroke bounding box must include transform.");
         }
-        const scale = Util.singularValueDecompose2dScale(transform);
+        const scale = Util.singularValueDecompose2dScale(transform2);
         const xStrokePad = scale[0] * this.lineWidth / 2;
         const yStrokePad = scale[1] * this.lineWidth / 2;
         box[0] -= xStrokePad;
@@ -125877,8 +127765,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       this.maxX = 0;
       this.maxY = 0;
     }
-    getClippedPathBoundingBox(pathType = PathType.FILL, transform = null) {
-      return Util.intersect(this.clipBox, this.getPathBoundingBox(pathType, transform));
+    getClippedPathBoundingBox(pathType = PathType.FILL, transform2 = null) {
+      return Util.intersect(this.clipBox, this.getPathBoundingBox(pathType, transform2));
     }
   }
   function putBinaryImageData(ctx, imgData) {
@@ -126001,8 +127889,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
   }
   function copyCtxState(sourceCtx, destCtx) {
-    const properties = ["strokeStyle", "fillStyle", "fillRule", "globalAlpha", "lineWidth", "lineCap", "lineJoin", "miterLimit", "globalCompositeOperation", "font", "filter"];
-    for (const property of properties) {
+    const properties2 = ["strokeStyle", "fillStyle", "fillRule", "globalAlpha", "lineWidth", "lineCap", "lineJoin", "miterLimit", "globalCompositeOperation", "font", "filter"];
+    for (const property of properties2) {
       if (sourceCtx[property] !== void 0) {
         destCtx[property] = sourceCtx[property];
       }
@@ -126035,11 +127923,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
     }
   }
-  function getImageSmoothingEnabled(transform, interpolate2) {
+  function getImageSmoothingEnabled(transform2, interpolate2) {
     if (interpolate2) {
       return true;
     }
-    const scale = Util.singularValueDecompose2dScale(transform);
+    const scale = Util.singularValueDecompose2dScale(transform2);
     scale[0] = Math.fround(scale[0]);
     scale[1] = Math.fround(scale[1]);
     const actualScale = Math.fround((globalThis.devicePixelRatio || 1) * PixelsPerInch.PDF_TO_CSS_UNITS);
@@ -126095,7 +127983,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return fallback;
     }
     beginDrawing({
-      transform,
+      transform: transform2,
       viewport,
       transparency = false,
       background = null
@@ -126116,10 +128004,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
       this.ctx.save();
       resetCtxToDefault(this.ctx);
-      if (transform) {
-        this.ctx.transform(...transform);
-        this.outputScaleX = transform[0];
-        this.outputScaleY = transform[0];
+      if (transform2) {
+        this.ctx.transform(...transform2);
+        this.outputScaleX = transform2[0];
+        this.outputScaleY = transform2[0];
       }
       this.ctx.transform(...viewport.transform);
       this.viewportScale = viewport.scale;
@@ -126718,13 +128606,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       const newPath = new Path2D();
       const invTransf = ctx.getTransform().invertSelf();
       for (const {
-        transform,
+        transform: transform2,
         x: x2,
         y: y2,
         fontSize,
         path: path2
       } of paths) {
-        newPath.addPath(path2, new DOMMatrix(transform).preMultiplySelf(invTransf).translate(x2, y2).scale(fontSize, -fontSize));
+        newPath.addPath(path2, new DOMMatrix(transform2).preMultiplySelf(invTransf).translate(x2, y2).scale(fontSize, -fontSize));
       }
       ctx.clip(newPath);
       ctx.beginPath();
@@ -126804,9 +128692,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     nextLine() {
       this.moveText(0, this.current.leading);
     }
-    #getScaledPath(path2, currentTransform, transform) {
+    #getScaledPath(path2, currentTransform, transform2) {
       const newPath = new Path2D();
-      newPath.addPath(path2, new DOMMatrix(transform).invertSelf().multiplySelf(currentTransform));
+      newPath.addPath(path2, new DOMMatrix(transform2).invertSelf().multiplySelf(currentTransform));
       return newPath;
     }
     paintChar(character2, x2, y2, patternFillTransform, patternStrokeTransform) {
@@ -127271,7 +129159,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         this.compose(dirtyBox);
       }
     }
-    beginAnnotation(id2, rect, transform, matrix, hasOwnCanvas) {
+    beginAnnotation(id2, rect, transform2, matrix, hasOwnCanvas) {
       this.#restoreInitialState();
       resetCtxToDefault(this.ctx);
       this.ctx.save();
@@ -127283,9 +129171,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         const width = rect[2] - rect[0];
         const height = rect[3] - rect[1];
         if (hasOwnCanvas && this.annotationCanvasMap) {
-          transform = transform.slice();
-          transform[4] -= rect[0];
-          transform[5] -= rect[1];
+          transform2 = transform2.slice();
+          transform2[4] -= rect[0];
+          transform2[5] -= rect[1];
           rect = rect.slice();
           rect[0] = rect[1] = 0;
           rect[2] = width;
@@ -127316,7 +129204,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       }
       this.current = new CanvasExtraState(this.ctx.canvas.width, this.ctx.canvas.height);
-      this.transform(...transform);
+      this.transform(...transform2);
       this.transform(...matrix);
     }
     endAnnotation() {
@@ -127385,7 +129273,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           data,
           width,
           height,
-          transform
+          transform: transform2
         } = image2;
         const maskCanvas = this.cachedCanvases.getCanvas("maskCanvas", width, height);
         const maskCtx = maskCanvas.context;
@@ -127397,7 +129285,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         maskCtx.fillRect(0, 0, width, height);
         maskCtx.restore();
         ctx.save();
-        ctx.transform(...transform);
+        ctx.transform(...transform2);
         ctx.scale(1, -1);
         drawImageAtIntegerCoords(ctx, maskCanvas.canvas, 0, 0, width, height, 0, -1, 1, 1);
         ctx.restore();
@@ -127530,17 +129418,17 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
     markPoint(tag) {
     }
-    markPointProps(tag, properties) {
+    markPointProps(tag, properties2) {
     }
     beginMarkedContent(tag) {
       this.markedContentStack.push({
         visible: true
       });
     }
-    beginMarkedContentProps(tag, properties) {
+    beginMarkedContentProps(tag, properties2) {
       if (tag === "OC") {
         this.markedContentStack.push({
-          visible: this.optionalContentConfig.isVisible(properties)
+          visible: this.optionalContentConfig.isVisible(properties2)
         });
       } else {
         this.markedContentStack.push({
@@ -129525,37 +131413,37 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     #layout(params) {
       const {
         div,
-        properties,
+        properties: properties2,
         ctx
       } = params;
       const {
         style
       } = div;
-      let transform = "";
+      let transform2 = "";
       if (TextLayer.#minFontSize > 1) {
-        transform = `scale(${1 / TextLayer.#minFontSize})`;
+        transform2 = `scale(${1 / TextLayer.#minFontSize})`;
       }
-      if (properties.canvasWidth !== 0 && properties.hasText) {
+      if (properties2.canvasWidth !== 0 && properties2.hasText) {
         const {
           fontFamily
         } = style;
         const {
           canvasWidth,
           fontSize
-        } = properties;
+        } = properties2;
         TextLayer.#ensureCtxFont(ctx, fontSize * this.#scale, fontFamily);
         const {
           width
         } = ctx.measureText(div.textContent);
         if (width > 0) {
-          transform = `scaleX(${canvasWidth * this.#scale / width}) ${transform}`;
+          transform2 = `scaleX(${canvasWidth * this.#scale / width}) ${transform2}`;
         }
       }
-      if (properties.angle !== 0) {
-        transform = `rotate(${properties.angle}deg) ${transform}`;
+      if (properties2.angle !== 0) {
+        transform2 = `rotate(${properties2.angle}deg) ${transform2}`;
       }
-      if (transform.length > 0) {
-        style.transform = transform;
+      if (transform2.length > 0) {
+        style.transform = transform2;
       }
     }
     static cleanup() {
@@ -130178,7 +132066,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       viewport,
       intent = "display",
       annotationMode = AnnotationMode.ENABLE,
-      transform = null,
+      transform: transform2 = null,
       background = null,
       optionalContentConfigPromise = null,
       annotationCanvasMap = null,
@@ -130244,7 +132132,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         params: {
           canvasContext,
           viewport,
-          transform,
+          transform: transform2,
           background
         },
         objs: this.objs,
@@ -131507,14 +133395,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       const {
         canvasContext,
         viewport,
-        transform,
+        transform: transform2,
         background
       } = this.params;
       this.gfx = new CanvasGraphics(canvasContext, this.commonObjs, this.objs, this.canvasFactory, this.filterFactory, {
         optionalContentConfig
       }, this.annotationCanvasMap, this.pageColors);
       this.gfx.beginDrawing({
-        transform,
+        transform: transform2,
         viewport,
         transparency,
         background
@@ -131806,8 +133694,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       const rootDiv = parameters.div;
       rootDiv.append(rootHtml);
       if (parameters.viewport) {
-        const transform = `matrix(${parameters.viewport.transform.join(",")})`;
-        rootDiv.style.transform = transform;
+        const transform2 = `matrix(${parameters.viewport.transform.join(",")})`;
+        rootDiv.style.transform = transform2;
       }
       if (isNotForRichText) {
         rootDiv.setAttribute("class", "xfaLayer xfaFont");
@@ -131874,8 +133762,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       };
     }
     static update(parameters) {
-      const transform = `matrix(${parameters.viewport.transform.join(",")})`;
-      parameters.div.style.transform = transform;
+      const transform2 = `matrix(${parameters.viewport.transform.join(",")})`;
+      parameters.div.style.transform = transform2;
       parameters.div.hidden = false;
     }
   }
@@ -134137,7 +136025,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       } = this;
       const {
-        transform,
+        transform: transform2,
         width,
         height
       } = this.#getTransform(rotation, rect);
@@ -134150,7 +136038,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       g2.setAttribute("stroke-miterlimit", 10);
       g2.setAttribute("stroke", "transparent");
       g2.setAttribute("fill", "transparent");
-      g2.setAttribute("transform", transform);
+      g2.setAttribute("transform", transform2);
       for (let i2 = 0, ii2 = inkLists.length; i2 < ii2; i2++) {
         const polyline = this.svgFactory.createElement(this.svgElementName);
         this.#polylines.push(polyline);
@@ -134182,13 +136070,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
       if (rect) {
         const {
-          transform,
+          transform: transform2,
           width,
           height
         } = this.#getTransform(this.data.rotation, rect);
         const root2 = g2.parentElement;
         root2.setAttribute("viewBox", `0 0 ${width} ${height}`);
-        g2.setAttribute("transform", transform);
+        g2.setAttribute("transform", transform2);
       }
     }
     getElementsToTriggerPopup() {
@@ -136815,11 +138703,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       this[name2] = value;
       this.updateSVGProperty(name2, value);
     }
-    updateProperties(properties) {
-      if (!properties) {
+    updateProperties(properties2) {
+      if (!properties2) {
         return;
       }
-      for (const [name2, value] of Object.entries(properties)) {
+      for (const [name2, value] of Object.entries(properties2)) {
         this.updateProperty(name2, value);
       }
     }
@@ -136926,22 +138814,22 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       }
     }
     static get defaultPropertiesToUpdate() {
-      const properties = [];
+      const properties2 = [];
       const options = this._defaultDrawingOptions;
       for (const [type, name2] of this.typesMap) {
-        properties.push([type, options[name2]]);
+        properties2.push([type, options[name2]]);
       }
-      return properties;
+      return properties2;
     }
     get propertiesToUpdate() {
-      const properties = [];
+      const properties2 = [];
       const {
         _drawingOptions
       } = this;
       for (const [type, name2] of this.constructor.typesMap) {
-        properties.push([type, _drawingOptions[name2]]);
+        properties2.push([type, _drawingOptions[name2]]);
       }
-      return properties;
+      return properties2;
     }
     _updateProperty(type, name2, value) {
       const options = this._drawingOptions;
@@ -139640,8 +141528,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       clipPathUse.classList.add("clip");
       return clipPathId;
     }
-    #updateProperties(element2, properties) {
-      for (const [key, value] of Object.entries(properties)) {
+    #updateProperties(element2, properties2) {
+      for (const [key, value] of Object.entries(properties2)) {
         if (value === null) {
           element2.removeAttribute(key);
         } else {
@@ -139649,7 +141537,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       }
     }
-    draw(properties, isPathUpdatable = false, hasClip = false) {
+    draw(properties2, isPathUpdatable = false, hasClip = false) {
       const id2 = this.#id++;
       const root2 = this.#createSVG();
       const defs = DrawLayer._svgFactory.createElement("defs");
@@ -139666,14 +141554,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       const use = DrawLayer._svgFactory.createElement("use");
       root2.append(use);
       use.setAttribute("href", `#${pathId}`);
-      this.updateProperties(root2, properties);
+      this.updateProperties(root2, properties2);
       this.#mapping.set(id2, root2);
       return {
         id: id2,
         clipPathId: `url(#${clipPathId})`
       };
     }
-    drawOutline(properties, mustRemoveSelfIntersections) {
+    drawOutline(properties2, mustRemoveSelfIntersections) {
       const id2 = this.#id++;
       const root2 = this.#createSVG();
       const defs = DrawLayer._svgFactory.createElement("defs");
@@ -139713,16 +141601,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       root2.append(use2);
       use1.classList.add("mainOutline");
       use2.classList.add("secondaryOutline");
-      this.updateProperties(root2, properties);
+      this.updateProperties(root2, properties2);
       this.#mapping.set(id2, root2);
       return id2;
     }
-    finalizeDraw(id2, properties) {
+    finalizeDraw(id2, properties2) {
       this.#toUpdate.delete(id2);
-      this.updateProperties(id2, properties);
+      this.updateProperties(id2, properties2);
     }
-    updateProperties(elementOrId, properties) {
-      if (!properties) {
+    updateProperties(elementOrId, properties2) {
+      if (!properties2) {
         return;
       }
       const {
@@ -139730,7 +141618,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         bbox,
         rootClass,
         path: path2
-      } = properties;
+      } = properties2;
       const element2 = typeof elementOrId === "number" ? this.#mapping.get(elementOrId) : elementOrId;
       if (!element2) {
         return;
@@ -139882,6 +141770,20 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     stopEvent: __webpack_exports__stopEvent,
     version: __webpack_exports__version
   }, Symbol.toStringTag, { value: "Module" }));
+  function Picker() {
+    return null;
+  }
+  const emojiReact = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+    __proto__: null,
+    default: Picker
+  }, Symbol.toStringTag, { value: "Module" }));
+  const emojiData = {};
+  const Emoji = void 0;
+  const emojiData$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+    __proto__: null,
+    Emoji,
+    default: emojiData
+  }, Symbol.toStringTag, { value: "Module" }));
   function ok$1() {
   }
   function unreachable() {
@@ -140026,7 +141928,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
   }
   function create(definition2) {
-    const properties = {};
+    const properties2 = {};
     const normals = {};
     for (const [property, value] of Object.entries(definition2.properties)) {
       const info2 = new DefinedInfo(
@@ -140038,13 +141940,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       if (definition2.mustUseProperty && definition2.mustUseProperty.includes(property)) {
         info2.mustUseProperty = true;
       }
-      properties[property] = info2;
+      properties2[property] = info2;
       normals[normalize$1(property)] = property;
       normals[normalize$1(info2.attribute)] = property;
     }
-    return new Schema(properties, normals, definition2.space);
+    return new Schema(properties2, normals, definition2.space);
   }
-  const aria = create({
+  const aria$1 = create({
     properties: {
       ariaActiveDescendant: null,
       ariaAtomic: booleanish,
@@ -141109,8 +143011,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function camelcase($0) {
     return $0.charAt(1).toUpperCase();
   }
-  const html$2 = merge([aria, html$3, xlink, xmlns, xml], "html");
-  const svg = merge([aria, svg$1, xlink, xmlns, xml], "svg");
+  const html$2 = merge([aria$1, html$3, xlink, xmlns, xml], "html");
+  const svg = merge([aria$1, svg$1, xlink, xmlns, xml], "svg");
   function stringify(values) {
     return values.join(" ").trim();
   }
@@ -141533,7 +143435,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   VFileMessage.prototype.place = void 0;
   VFileMessage.prototype.ruleId = void 0;
   VFileMessage.prototype.source = void 0;
-  const own$3 = {}.hasOwnProperty;
+  const own$4 = {}.hasOwnProperty;
   const emptyMap = /* @__PURE__ */ new Map();
   const cap = /[A-Z]/g;
   const tableElements = /* @__PURE__ */ new Set(["table", "tbody", "thead", "tfoot", "tr"]);
@@ -141589,7 +143491,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   }
   function one$1(state, node2, key) {
     if (node2.type === "element") {
-      return element$1(state, node2, key);
+      return element$2(state, node2, key);
     }
     if (node2.type === "mdxFlowExpression" || node2.type === "mdxTextExpression") {
       return mdxExpression(state, node2);
@@ -141601,13 +143503,13 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return mdxEsm(state, node2);
     }
     if (node2.type === "root") {
-      return root$2(state, node2, key);
+      return root$3(state, node2, key);
     }
     if (node2.type === "text") {
-      return text$5(state, node2);
+      return text$6(state, node2);
     }
   }
-  function element$1(state, node2, key) {
+  function element$2(state, node2, key) {
     const parentSchema = state.schema;
     let schema = parentSchema;
     if (node2.tagName.toLowerCase() === "svg" && parentSchema.space === "html") {
@@ -141617,14 +143519,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     state.ancestors.push(node2);
     const type = findComponentFromName(state, node2.tagName, false);
     const props = createElementProps(state, node2);
-    let children = createChildren(state, node2);
+    let children2 = createChildren(state, node2);
     if (tableElements.has(node2.tagName)) {
-      children = children.filter(function(child) {
+      children2 = children2.filter(function(child) {
         return typeof child === "string" ? !whitespace(child) : true;
       });
     }
     addNode(state, props, type, node2);
-    addChildren(props, children);
+    addChildren(props, children2);
     state.ancestors.pop();
     state.schema = parentSchema;
     return state.create(node2, type, props, key);
@@ -141660,19 +143562,19 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     state.ancestors.push(node2);
     const type = node2.name === null ? state.Fragment : findComponentFromName(state, node2.name, true);
     const props = createJsxElementProps(state, node2);
-    const children = createChildren(state, node2);
+    const children2 = createChildren(state, node2);
     addNode(state, props, type, node2);
-    addChildren(props, children);
+    addChildren(props, children2);
     state.ancestors.pop();
     state.schema = parentSchema;
     return state.create(node2, type, props, key);
   }
-  function root$2(state, node2, key) {
+  function root$3(state, node2, key) {
     const props = {};
     addChildren(props, createChildren(state, node2));
     return state.create(node2, state.Fragment, props, key);
   }
-  function text$5(_2, node2) {
+  function text$6(_2, node2) {
     return node2.value;
   }
   function addNode(state, props, type, node2) {
@@ -141680,9 +143582,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       props.node = node2;
     }
   }
-  function addChildren(props, children) {
-    if (children.length > 0) {
-      const value = children.length > 1 ? children : children[0];
+  function addChildren(props, children2) {
+    if (children2.length > 0) {
+      const value = children2.length > 1 ? children2 : children2[0];
       if (value) {
         props.children = value;
       }
@@ -141720,7 +143622,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     let alignValue;
     let prop;
     for (prop in node2.properties) {
-      if (prop !== "children" && own$3.call(node2.properties, prop)) {
+      if (prop !== "children" && own$4.call(node2.properties, prop)) {
         const result = createProperty(state, prop, node2.properties[prop]);
         if (result) {
           const [key, value] = result;
@@ -141782,7 +143684,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     return props;
   }
   function createChildren(state, node2) {
-    const children = [];
+    const children2 = [];
     let index2 = -1;
     const countsByName = state.passKeys ? /* @__PURE__ */ new Map() : emptyMap;
     while (++index2 < node2.children.length) {
@@ -141797,9 +143699,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }
       }
       const result = one$1(state, child, key);
-      if (result !== void 0) children.push(result);
+      if (result !== void 0) children2.push(result);
     }
-    return children;
+    return children2;
   }
   function createProperty(state, prop, value) {
     const info2 = find(state.schema, prop);
@@ -141870,7 +143772,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         /** @type {string | number} */
         result.value
       );
-      return own$3.call(state.components, name2) ? state.components[name2] : name2;
+      return own$4.call(state.components, name2) ? state.components[name2] : name2;
     }
     if (state.evaluater) {
       return state.evaluater.evaluateExpression(result);
@@ -141895,7 +143797,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const cssCasing = {};
     let from2;
     for (from2 in domCasing) {
-      if (own$3.call(domCasing, from2)) {
+      if (own$4.call(domCasing, from2)) {
         cssCasing[transformStyleToCssCasing(from2)] = domCasing[from2];
       }
     }
@@ -141967,11 +143869,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function node(value) {
     return Boolean(value && typeof value === "object");
   }
-  const element = document.createElement("i");
+  const element$1 = document.createElement("i");
   function decodeNamedCharacterReference(value) {
     const characterReference2 = "&" + value + ";";
-    element.innerHTML = characterReference2;
-    const character2 = element.textContent;
+    element$1.innerHTML = characterReference2;
+    const character2 = element$1.textContent;
     if (
       // @ts-expect-error: TypeScript is wrong that `textContent` on elements can
       // yield `null`.
@@ -145299,7 +147201,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     resolveAll: createResolver()
   };
   const string$1 = initializeFactory("string");
-  const text$4 = initializeFactory("text");
+  const text$5 = initializeFactory("text");
   function initializeFactory(field) {
     return {
       resolveAll: createResolver(field === "text" ? resolveAllLineSuffixes : void 0),
@@ -145470,7 +147372,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     [38]: characterReference,
     [92]: characterEscape
   };
-  const text$3 = {
+  const text$4 = {
     [-5]: lineEnding,
     [-4]: lineEnding,
     [-3]: lineEnding,
@@ -145503,7 +147405,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     flowInitial,
     insideSpan,
     string,
-    text: text$3
+    text: text$4
   }, Symbol.toStringTag, { value: "Module" }));
   function createTokenizer(parser, initialize, from2) {
     let point2 = {
@@ -145833,7 +147735,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       flow: create2(flow$1),
       lazy: {},
       string: create2(string$1),
-      text: create2(text$4)
+      text: create2(text$5)
     };
     return parser;
     function create2(initial) {
@@ -145941,7 +147843,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
     return decodeNamedCharacterReference($2) || $0;
   }
-  const own$2 = {}.hasOwnProperty;
+  const own$3 = {}.hasOwnProperty;
   function fromMarkdown(value, encoding, options) {
     if (typeof encoding !== "string") {
       options = encoding;
@@ -146081,7 +147983,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       index2 = -1;
       while (++index2 < events2.length) {
         const handler = config[events2[index2][0]];
-        if (own$2.call(handler, events2[index2][1].type)) {
+        if (own$3.call(handler, events2[index2][1].type)) {
           handler[events2[index2][1].type].call(Object.assign({
             sliceSerialize: events2[index2][2].sliceSerialize
           }, context), events2[index2][1]);
@@ -146412,8 +148314,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       const node2 = this.stack[this.stack.length - 1];
       this.data.inReference = true;
       if (node2.type === "link") {
-        const children = fragment.children;
-        node2.children = children;
+        const children2 = fragment.children;
+        node2.children = children2;
       } else {
         node2.alt = value;
       }
@@ -146604,7 +148506,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function extension(combined, extension2) {
     let key;
     for (key in extension2) {
-      if (own$2.call(extension2, key)) {
+      if (own$3.call(extension2, key)) {
         switch (key) {
           case "canContainEols": {
             const right = extension2[key];
@@ -146680,15 +148582,15 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   }
   function code$2(state, node2) {
     const value = node2.value ? node2.value + "\n" : "";
-    const properties = {};
+    const properties2 = {};
     const language = node2.lang ? node2.lang.split(/\s+/) : [];
     if (language.length > 0) {
-      properties.className = ["language-" + language[0]];
+      properties2.className = ["language-" + language[0]];
     }
     let result = {
       type: "element",
       tagName: "code",
-      properties,
+      properties: properties2,
       children: [{ type: "text", value }]
     };
     if (node2.meta) {
@@ -146807,23 +148709,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     if (!definition2) {
       return revert(state, node2);
     }
-    const properties = { src: normalizeUri(definition2.url || ""), alt: node2.alt };
+    const properties2 = { src: normalizeUri(definition2.url || ""), alt: node2.alt };
     if (definition2.title !== null && definition2.title !== void 0) {
-      properties.title = definition2.title;
+      properties2.title = definition2.title;
     }
-    const result = { type: "element", tagName: "img", properties, children: [] };
+    const result = { type: "element", tagName: "img", properties: properties2, children: [] };
     state.patch(node2, result);
     return state.applyData(node2, result);
   }
   function image$1(state, node2) {
-    const properties = { src: normalizeUri(node2.url) };
+    const properties2 = { src: normalizeUri(node2.url) };
     if (node2.alt !== null && node2.alt !== void 0) {
-      properties.alt = node2.alt;
+      properties2.alt = node2.alt;
     }
     if (node2.title !== null && node2.title !== void 0) {
-      properties.title = node2.title;
+      properties2.title = node2.title;
     }
-    const result = { type: "element", tagName: "img", properties, children: [] };
+    const result = { type: "element", tagName: "img", properties: properties2, children: [] };
     state.patch(node2, result);
     return state.applyData(node2, result);
   }
@@ -146845,28 +148747,28 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     if (!definition2) {
       return revert(state, node2);
     }
-    const properties = { href: normalizeUri(definition2.url || "") };
+    const properties2 = { href: normalizeUri(definition2.url || "") };
     if (definition2.title !== null && definition2.title !== void 0) {
-      properties.title = definition2.title;
+      properties2.title = definition2.title;
     }
     const result = {
       type: "element",
       tagName: "a",
-      properties,
+      properties: properties2,
       children: state.all(node2)
     };
     state.patch(node2, result);
     return state.applyData(node2, result);
   }
   function link$1(state, node2) {
-    const properties = { href: normalizeUri(node2.url) };
+    const properties2 = { href: normalizeUri(node2.url) };
     if (node2.title !== null && node2.title !== void 0) {
-      properties.title = node2.title;
+      properties2.title = node2.title;
     }
     const result = {
       type: "element",
       tagName: "a",
-      properties,
+      properties: properties2,
       children: state.all(node2)
     };
     state.patch(node2, result);
@@ -146875,8 +148777,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function listItem$1(state, node2, parent) {
     const results = state.all(node2);
     const loose = parent ? listLoose(parent) : listItemLoose(node2);
-    const properties = {};
-    const children = [];
+    const properties2 = {};
+    const children2 = [];
     if (typeof node2.checked === "boolean") {
       const head = results[0];
       let paragraph2;
@@ -146895,25 +148797,25 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         properties: { type: "checkbox", checked: node2.checked, disabled: true },
         children: []
       });
-      properties.className = ["task-list-item"];
+      properties2.className = ["task-list-item"];
     }
     let index2 = -1;
     while (++index2 < results.length) {
       const child = results[index2];
       if (loose || index2 !== 0 || child.type !== "element" || child.tagName !== "p") {
-        children.push({ type: "text", value: "\n" });
+        children2.push({ type: "text", value: "\n" });
       }
       if (child.type === "element" && child.tagName === "p" && !loose) {
-        children.push(...child.children);
+        children2.push(...child.children);
       } else {
-        children.push(child);
+        children2.push(child);
       }
     }
     const tail = results[results.length - 1];
     if (tail && (loose || tail.type !== "element" || tail.tagName !== "p")) {
-      children.push({ type: "text", value: "\n" });
+      children2.push({ type: "text", value: "\n" });
     }
-    const result = { type: "element", tagName: "li", properties, children };
+    const result = { type: "element", tagName: "li", properties: properties2, children: children2 };
     state.patch(node2, result);
     return state.applyData(node2, result);
   }
@@ -146921,10 +148823,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     let loose = false;
     if (node2.type === "list") {
       loose = node2.spread || false;
-      const children = node2.children;
+      const children2 = node2.children;
       let index2 = -1;
-      while (!loose && ++index2 < children.length) {
-        loose = listItemLoose(children[index2]);
+      while (!loose && ++index2 < children2.length) {
+        loose = listItemLoose(children2[index2]);
       }
     }
     return loose;
@@ -146934,23 +148836,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     return spread2 === null || spread2 === void 0 ? node2.children.length > 1 : spread2;
   }
   function list$1(state, node2) {
-    const properties = {};
+    const properties2 = {};
     const results = state.all(node2);
     let index2 = -1;
     if (typeof node2.start === "number" && node2.start !== 1) {
-      properties.start = node2.start;
+      properties2.start = node2.start;
     }
     while (++index2 < results.length) {
       const child = results[index2];
       if (child.type === "element" && child.tagName === "li" && child.properties && Array.isArray(child.properties.className) && child.properties.className.includes("task-list-item")) {
-        properties.className = ["contains-task-list"];
+        properties2.className = ["contains-task-list"];
         break;
       }
     }
     const result = {
       type: "element",
       tagName: node2.ordered ? "ol" : "ul",
-      properties,
+      properties: properties2,
       children: state.wrap(results, true)
     };
     state.patch(node2, result);
@@ -146966,7 +148868,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     state.patch(node2, result);
     return state.applyData(node2, result);
   }
-  function root$1(state, node2) {
+  function root$2(state, node2) {
     const result = { type: "root", children: state.wrap(state.all(node2)) };
     state.patch(node2, result);
     return state.applyData(node2, result);
@@ -147026,12 +148928,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const cells = [];
     while (++cellIndex < length2) {
       const cell = node2.children[cellIndex];
-      const properties = {};
+      const properties2 = {};
       const alignValue = align ? align[cellIndex] : void 0;
       if (alignValue) {
-        properties.align = alignValue;
+        properties2.align = alignValue;
       }
-      let result2 = { type: "element", tagName, properties, children: [] };
+      let result2 = { type: "element", tagName, properties: properties2, children: [] };
       if (cell) {
         result2.children = state.all(cell);
         state.patch(cell, result2);
@@ -147097,7 +148999,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
     return endIndex > startIndex ? value.slice(startIndex, endIndex) : "";
   }
-  function text$2(state, node2) {
+  function text$3(state, node2) {
     const result = { type: "text", value: trimLines(String(node2.value)) };
     state.patch(node2, result);
     return state.applyData(node2, result);
@@ -147130,12 +149032,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     list: list$1,
     paragraph: paragraph$1,
     // @ts-expect-error: root is different, but hard to type.
-    root: root$1,
+    root: root$2,
     strong: strong$1,
     table,
     tableCell,
     tableRow,
-    text: text$2,
+    text: text$3,
     thematicBreak: thematicBreak$1,
     toml: ignore,
     yaml: ignore,
@@ -147397,9 +149299,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         if (backReferences.length > 0) {
           backReferences.push({ type: "text", value: " " });
         }
-        let children = typeof footnoteBackContent === "string" ? footnoteBackContent : footnoteBackContent(referenceIndex, rereferenceIndex);
-        if (typeof children === "string") {
-          children = { type: "text", value: children };
+        let children2 = typeof footnoteBackContent === "string" ? footnoteBackContent : footnoteBackContent(referenceIndex, rereferenceIndex);
+        if (typeof children2 === "string") {
+          children2 = { type: "text", value: children2 };
         }
         backReferences.push({
           type: "element",
@@ -147410,7 +149312,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             ariaLabel: typeof footnoteBackLabel === "string" ? footnoteBackLabel : footnoteBackLabel(referenceIndex, rereferenceIndex),
             className: ["data-footnote-backref"]
           },
-          children: Array.isArray(children) ? children : [children]
+          children: Array.isArray(children2) ? children2 : [children2]
         });
       }
       const tail = content2[content2.length - 1];
@@ -147657,7 +149559,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return visitor(node2, index2, parent);
     }
   }
-  const own$1 = {}.hasOwnProperty;
+  const own$2 = {}.hasOwnProperty;
   const emptyOptions$1 = {};
   function createState(tree, options) {
     const settings = options || emptyOptions$1;
@@ -147675,7 +149577,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       handlers: handlers$1,
       one: one2,
       options: settings,
-      patch,
+      patch: patch$1,
       wrap: wrap$1
     };
     visit(tree, function(node2) {
@@ -147691,12 +149593,12 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     function one2(node2, parent) {
       const type = node2.type;
       const handle2 = state.handlers[type];
-      if (own$1.call(state.handlers, type) && handle2) {
+      if (own$2.call(state.handlers, type) && handle2) {
         return handle2(state, node2, parent);
       }
       if (state.options.passThrough && state.options.passThrough.includes(type)) {
         if ("children" in node2) {
-          const { children, ...shallow } = node2;
+          const { children: children2, ...shallow } = node2;
           const result = structuredClone$1(shallow);
           result.children = state.all(node2);
           return result;
@@ -147736,7 +149638,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return values;
     }
   }
-  function patch(from2, to2) {
+  function patch$1(from2, to2) {
     if (from2.position) to2.position = position$1(from2);
   }
   function applyData(from2, to2) {
@@ -147749,8 +149651,8 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         if (result.type === "element") {
           result.tagName = hName;
         } else {
-          const children = "children" in result ? result.children : [result];
-          result = { type: "element", tagName: hName, properties: {}, children };
+          const children2 = "children" in result ? result.children : [result];
+          result = { type: "element", tagName: hName, properties: {}, children: children2 };
         }
       }
       if (result.type === "element" && hProperties) {
@@ -147764,7 +149666,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   }
   function defaultUnknownHandler(state, node2) {
     const data = node2.data || {};
-    const result = "value" in node2 && !(own$1.call(data, "hProperties") || own$1.call(data, "hChildren")) ? { type: "text", value: node2.value } : {
+    const result = "value" in node2 && !(own$2.call(data, "hProperties") || own$2.call(data, "hChildren")) ? { type: "text", value: node2.value } : {
       type: "element",
       tagName: "div",
       properties: {},
@@ -148754,7 +150656,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       return apply;
     }
   );
-  const own = {}.hasOwnProperty;
+  const own$1 = {}.hasOwnProperty;
   class Processor extends CallableInstance {
     /**
      * Create a processor.
@@ -148861,7 +150763,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           this.namespace[key] = value;
           return this;
         }
-        return own.call(this.namespace, key) && this.namespace[key] || void 0;
+        return own$1.call(this.namespace, key) && this.namespace[key] || void 0;
       }
       if (key) {
         assertUnfrozen("data", this.frozen);
@@ -149383,7 +151285,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const changelog = "https://github.com/remarkjs/react-markdown/blob/main/changelog.md";
   const emptyPlugins = [];
   const emptyRemarkRehypeOptions = { allowDangerousHtml: true };
-  const safeProtocol = /^(https?|ircs?|mailto|xmpp)$/i;
+  const safeProtocol$1 = /^(https?|ircs?|mailto|xmpp)$/i;
   const deprecations = [
     { from: "astPlugins", id: "remove-buggy-html-in-markdown-parser" },
     { from: "allowDangerousHtml", id: "remove-buggy-html-in-markdown-parser" },
@@ -149431,10 +151333,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     return processor;
   }
   function createFile(options) {
-    const children = options.children || "";
+    const children2 = options.children || "";
     const file = new VFile();
-    if (typeof children === "string") {
-      file.value = children;
+    if (typeof children2 === "string") {
+      file.value = children2;
     }
     return file;
   }
@@ -149453,7 +151355,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         );
       }
     }
-    visit(tree, transform);
+    visit(tree, transform2);
     return toJsxRuntime(tree, {
       Fragment: jsxRuntimeExports.Fragment,
       components,
@@ -149463,7 +151365,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       passKeys: true,
       passNode: true
     });
-    function transform(node2, index2, parent) {
+    function transform2(node2, index2, parent) {
       if (node2.type === "raw" && parent && typeof index2 === "number") {
         if (skipHtml) {
           parent.children.splice(index2, 1);
@@ -149509,7 +151411,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       // If there is no protocol, it’s relative.
       colon === -1 || // If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
       slash !== -1 && colon > slash || questionMark !== -1 && colon > questionMark || numberSign !== -1 && colon > numberSign || // It is a protocol, it should be allowed.
-      safeProtocol.test(value.slice(0, colon))
+      safeProtocol$1.test(value.slice(0, colon))
     ) {
       return value;
     }
@@ -150830,7 +152732,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       "textDirective"
     ])
   );
-  function root(node2, _2, state, info2) {
+  function root$1(node2, _2, state, info2) {
     const hasPhrasing = node2.children.some(function(d2) {
       return phrasing(d2);
     });
@@ -150884,7 +152786,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function strongPeek(_2, _1, state) {
     return state.options.strong || "*";
   }
-  function text$1(node2, _2, state, info2) {
+  function text$2(node2, _2, state, info2) {
     return state.safe(node2.value, info2);
   }
   function checkRuleRepetition(state) {
@@ -150917,9 +152819,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     list,
     listItem,
     paragraph,
-    root,
+    root: root$1,
     strong,
-    text: text$1,
+    text: text$2,
     thematicBreak
   };
   function gfmTableFromMarkdown() {
@@ -151043,23 +152945,23 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       });
     }
     function handleTableAsData(node2, state, info2) {
-      const children = node2.children;
+      const children2 = node2.children;
       let index2 = -1;
       const result = [];
       const subexit = state.enter("table");
-      while (++index2 < children.length) {
-        result[index2] = handleTableRowAsData(children[index2], state, info2);
+      while (++index2 < children2.length) {
+        result[index2] = handleTableRowAsData(children2[index2], state, info2);
       }
       subexit();
       return result;
     }
     function handleTableRowAsData(node2, state, info2) {
-      const children = node2.children;
+      const children2 = node2.children;
       let index2 = -1;
       const result = [];
       const subexit = state.enter("tableRow");
-      while (++index2 < children.length) {
-        result[index2] = handleTableCell(children[index2], node2, state, info2);
+      while (++index2 < children2.length) {
+        result[index2] = handleTableCell(children2[index2], node2, state, info2);
       }
       subexit();
       return result;
@@ -151198,27 +153100,27 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     tokenize: tokenizeEmailAutolink,
     previous: previousEmail
   };
-  const text = {};
+  const text$1 = {};
   function gfmAutolinkLiteral() {
     return {
-      text
+      text: text$1
     };
   }
   let code = 48;
   while (code < 123) {
-    text[code] = emailAutolink;
+    text$1[code] = emailAutolink;
     code++;
     if (code === 58) code = 65;
     else if (code === 91) code = 97;
   }
-  text[43] = emailAutolink;
-  text[45] = emailAutolink;
-  text[46] = emailAutolink;
-  text[95] = emailAutolink;
-  text[72] = [emailAutolink, protocolAutolink];
-  text[104] = [emailAutolink, protocolAutolink];
-  text[87] = [emailAutolink, wwwAutolink];
-  text[119] = [emailAutolink, wwwAutolink];
+  text$1[43] = emailAutolink;
+  text$1[45] = emailAutolink;
+  text$1[46] = emailAutolink;
+  text$1[95] = emailAutolink;
+  text$1[72] = [emailAutolink, protocolAutolink];
+  text$1[104] = [emailAutolink, protocolAutolink];
+  text$1[87] = [emailAutolink, wwwAutolink];
+  text$1[119] = [emailAutolink, wwwAutolink];
   function tokenizeEmailAutolink(effects, ok2, nok) {
     const self2 = this;
     let dot;
@@ -152452,7 +154354,627 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   function rehypeRawStub() {
     return (tree) => tree;
   }
-  const MarkdownBody = ({ text: text2 }) => {
+  const aria = ["ariaDescribedBy", "ariaLabel", "ariaLabelledBy"];
+  const defaultSchema = {
+    ancestors: {
+      tbody: ["table"],
+      td: ["table"],
+      th: ["table"],
+      thead: ["table"],
+      tfoot: ["table"],
+      tr: ["table"]
+    },
+    attributes: {
+      a: [
+        ...aria,
+        // Note: these 3 are used by GFM footnotes, they do work on all links.
+        "dataFootnoteBackref",
+        "dataFootnoteRef",
+        ["className", "data-footnote-backref"],
+        "href"
+      ],
+      blockquote: ["cite"],
+      // Note: this class is not normally allowed by GH, when manually writing
+      // `code` as HTML in markdown, they adds it some other way.
+      // We can’t do that, so we have to allow it.
+      code: [["className", /^language-./]],
+      del: ["cite"],
+      div: ["itemScope", "itemType"],
+      dl: [...aria],
+      // Note: this is used by GFM footnotes.
+      h2: [["className", "sr-only"]],
+      img: [...aria, "longDesc", "src"],
+      // Note: `input` is not normally allowed by GH, when manually writing
+      // it in markdown, they add it from tasklists some other way.
+      // We can’t do that, so we have to allow it.
+      input: [
+        ["disabled", true],
+        ["type", "checkbox"]
+      ],
+      ins: ["cite"],
+      // Note: this class is not normally allowed by GH, when manually writing
+      // `li` as HTML in markdown, they adds it some other way.
+      // We can’t do that, so we have to allow it.
+      li: [["className", "task-list-item"]],
+      // Note: this class is not normally allowed by GH, when manually writing
+      // `ol` as HTML in markdown, they adds it some other way.
+      // We can’t do that, so we have to allow it.
+      ol: [...aria, ["className", "contains-task-list"]],
+      q: ["cite"],
+      section: ["dataFootnotes", ["className", "footnotes"]],
+      source: ["srcSet"],
+      summary: [...aria],
+      table: [...aria],
+      // Note: this class is not normally allowed by GH, when manually writing
+      // `ol` as HTML in markdown, they adds it some other way.
+      // We can’t do that, so we have to allow it.
+      ul: [...aria, ["className", "contains-task-list"]],
+      "*": [
+        "abbr",
+        "accept",
+        "acceptCharset",
+        "accessKey",
+        "action",
+        "align",
+        "alt",
+        "axis",
+        "border",
+        "cellPadding",
+        "cellSpacing",
+        "char",
+        "charOff",
+        "charSet",
+        "checked",
+        "clear",
+        "colSpan",
+        "color",
+        "cols",
+        "compact",
+        "coords",
+        "dateTime",
+        "dir",
+        // Note: `disabled` is technically allowed on all elements by GH.
+        // But it is useless on everything except `input`.
+        // Because `input`s are normally not allowed, but we allow them for
+        // checkboxes due to tasklists, we allow `disabled` only there.
+        "encType",
+        "frame",
+        "hSpace",
+        "headers",
+        "height",
+        "hrefLang",
+        "htmlFor",
+        "id",
+        "isMap",
+        "itemProp",
+        "label",
+        "lang",
+        "maxLength",
+        "media",
+        "method",
+        "multiple",
+        "name",
+        "noHref",
+        "noShade",
+        "noWrap",
+        "open",
+        "prompt",
+        "readOnly",
+        "rev",
+        "rowSpan",
+        "rows",
+        "rules",
+        "scope",
+        "selected",
+        "shape",
+        "size",
+        "span",
+        "start",
+        "summary",
+        "tabIndex",
+        "title",
+        "useMap",
+        "vAlign",
+        "value",
+        "width"
+      ]
+    },
+    clobber: ["ariaDescribedBy", "ariaLabelledBy", "id", "name"],
+    clobberPrefix: "user-content-",
+    protocols: {
+      cite: ["http", "https"],
+      href: ["http", "https", "irc", "ircs", "mailto", "xmpp"],
+      longDesc: ["http", "https"],
+      src: ["http", "https"]
+    },
+    required: {
+      input: { disabled: true, type: "checkbox" }
+    },
+    strip: ["script"],
+    tagNames: [
+      "a",
+      "b",
+      "blockquote",
+      "br",
+      "code",
+      "dd",
+      "del",
+      "details",
+      "div",
+      "dl",
+      "dt",
+      "em",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "hr",
+      "i",
+      "img",
+      // Note: `input` is not normally allowed by GH, when manually writing
+      // it in markdown, they add it from tasklists some other way.
+      // We can’t do that, so we have to allow it.
+      "input",
+      "ins",
+      "kbd",
+      "li",
+      "ol",
+      "p",
+      "picture",
+      "pre",
+      "q",
+      "rp",
+      "rt",
+      "ruby",
+      "s",
+      "samp",
+      "section",
+      "source",
+      "span",
+      "strike",
+      "strong",
+      "sub",
+      "summary",
+      "sup",
+      "table",
+      "tbody",
+      "td",
+      "tfoot",
+      "th",
+      "thead",
+      "tr",
+      "tt",
+      "ul",
+      "var"
+    ]
+  };
+  const own = {}.hasOwnProperty;
+  function sanitize(node2, options) {
+    let result = { type: "root", children: [] };
+    const state = {
+      schema: options ? { ...defaultSchema, ...options } : defaultSchema,
+      stack: []
+    };
+    const replace2 = transform(state, node2);
+    if (replace2) {
+      if (Array.isArray(replace2)) {
+        if (replace2.length === 1) {
+          result = replace2[0];
+        } else {
+          result.children = replace2;
+        }
+      } else {
+        result = replace2;
+      }
+    }
+    return result;
+  }
+  function transform(state, node2) {
+    if (node2 && typeof node2 === "object") {
+      const unsafe = (
+        /** @type {Record<string, Readonly<unknown>>} */
+        node2
+      );
+      const type = typeof unsafe.type === "string" ? unsafe.type : "";
+      switch (type) {
+        case "comment": {
+          return comment(state, unsafe);
+        }
+        case "doctype": {
+          return doctype(state, unsafe);
+        }
+        case "element": {
+          return element(state, unsafe);
+        }
+        case "root": {
+          return root(state, unsafe);
+        }
+        case "text": {
+          return text(state, unsafe);
+        }
+      }
+    }
+  }
+  function comment(state, unsafe) {
+    if (state.schema.allowComments) {
+      const result = typeof unsafe.value === "string" ? unsafe.value : "";
+      const index2 = result.indexOf("-->");
+      const value = index2 < 0 ? result : result.slice(0, index2);
+      const node2 = { type: "comment", value };
+      patch(node2, unsafe);
+      return node2;
+    }
+  }
+  function doctype(state, unsafe) {
+    if (state.schema.allowDoctypes) {
+      const node2 = { type: "doctype" };
+      patch(node2, unsafe);
+      return node2;
+    }
+  }
+  function element(state, unsafe) {
+    const name2 = typeof unsafe.tagName === "string" ? unsafe.tagName : "";
+    state.stack.push(name2);
+    const content2 = (
+      /** @type {Array<ElementContent>} */
+      children(state, unsafe.children)
+    );
+    const properties_ = properties(state, unsafe.properties);
+    state.stack.pop();
+    let safeElement = false;
+    if (name2 && name2 !== "*" && (!state.schema.tagNames || state.schema.tagNames.includes(name2))) {
+      safeElement = true;
+      if (state.schema.ancestors && own.call(state.schema.ancestors, name2)) {
+        const ancestors = state.schema.ancestors[name2];
+        let index2 = -1;
+        safeElement = false;
+        while (++index2 < ancestors.length) {
+          if (state.stack.includes(ancestors[index2])) {
+            safeElement = true;
+          }
+        }
+      }
+    }
+    if (!safeElement) {
+      return state.schema.strip && !state.schema.strip.includes(name2) ? content2 : void 0;
+    }
+    const node2 = {
+      type: "element",
+      tagName: name2,
+      properties: properties_,
+      children: content2
+    };
+    patch(node2, unsafe);
+    return node2;
+  }
+  function root(state, unsafe) {
+    const content2 = (
+      /** @type {Array<RootContent>} */
+      children(state, unsafe.children)
+    );
+    const node2 = { type: "root", children: content2 };
+    patch(node2, unsafe);
+    return node2;
+  }
+  function text(_2, unsafe) {
+    const value = typeof unsafe.value === "string" ? unsafe.value : "";
+    const node2 = { type: "text", value };
+    patch(node2, unsafe);
+    return node2;
+  }
+  function children(state, children2) {
+    const results = [];
+    if (Array.isArray(children2)) {
+      const childrenUnknown = (
+        /** @type {Array<Readonly<unknown>>} */
+        children2
+      );
+      let index2 = -1;
+      while (++index2 < childrenUnknown.length) {
+        const value = transform(state, childrenUnknown[index2]);
+        if (value) {
+          if (Array.isArray(value)) {
+            results.push(...value);
+          } else {
+            results.push(value);
+          }
+        }
+      }
+    }
+    return results;
+  }
+  function properties(state, properties2) {
+    const tagName = state.stack[state.stack.length - 1];
+    const attributes = state.schema.attributes;
+    const required = state.schema.required;
+    const specific = attributes && own.call(attributes, tagName) ? attributes[tagName] : void 0;
+    const defaults2 = attributes && own.call(attributes, "*") ? attributes["*"] : void 0;
+    const properties_ = (
+      /** @type {Readonly<Record<string, Readonly<unknown>>>} */
+      properties2 && typeof properties2 === "object" ? properties2 : {}
+    );
+    const result = {};
+    let key;
+    for (key in properties_) {
+      if (own.call(properties_, key)) {
+        const unsafe = properties_[key];
+        let safe = propertyValue(
+          state,
+          findDefinition(specific, key),
+          key,
+          unsafe
+        );
+        if (safe === null || safe === void 0) {
+          safe = propertyValue(state, findDefinition(defaults2, key), key, unsafe);
+        }
+        if (safe !== null && safe !== void 0) {
+          result[key] = safe;
+        }
+      }
+    }
+    if (required && own.call(required, tagName)) {
+      const properties3 = required[tagName];
+      for (key in properties3) {
+        if (own.call(properties3, key) && !own.call(result, key)) {
+          result[key] = properties3[key];
+        }
+      }
+    }
+    return result;
+  }
+  function propertyValue(state, definition2, key, value) {
+    return definition2 ? Array.isArray(value) ? propertyValueMany(state, definition2, key, value) : propertyValuePrimitive(state, definition2, key, value) : void 0;
+  }
+  function propertyValueMany(state, definition2, key, values) {
+    let index2 = -1;
+    const result = [];
+    while (++index2 < values.length) {
+      const value = propertyValuePrimitive(state, definition2, key, values[index2]);
+      if (typeof value === "number" || typeof value === "string") {
+        result.push(value);
+      }
+    }
+    return result;
+  }
+  function propertyValuePrimitive(state, definition2, key, value) {
+    if (typeof value !== "boolean" && typeof value !== "number" && typeof value !== "string") {
+      return;
+    }
+    if (!safeProtocol(state, key, value)) {
+      return;
+    }
+    if (typeof definition2 === "object" && definition2.length > 1) {
+      let ok2 = false;
+      let index2 = 0;
+      while (++index2 < definition2.length) {
+        const allowed = definition2[index2];
+        if (allowed && typeof allowed === "object" && "flags" in allowed) {
+          if (allowed.test(String(value))) {
+            ok2 = true;
+            break;
+          }
+        } else if (allowed === value) {
+          ok2 = true;
+          break;
+        }
+      }
+      if (!ok2) return;
+    }
+    return state.schema.clobber && state.schema.clobberPrefix && state.schema.clobber.includes(key) ? state.schema.clobberPrefix + value : value;
+  }
+  function safeProtocol(state, key, value) {
+    const protocols = state.schema.protocols && own.call(state.schema.protocols, key) ? state.schema.protocols[key] : void 0;
+    if (!protocols || protocols.length === 0) {
+      return true;
+    }
+    const url = String(value);
+    const colon = url.indexOf(":");
+    const questionMark = url.indexOf("?");
+    const numberSign = url.indexOf("#");
+    const slash = url.indexOf("/");
+    if (colon < 0 || // If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
+    slash > -1 && colon > slash || questionMark > -1 && colon > questionMark || numberSign > -1 && colon > numberSign) {
+      return true;
+    }
+    let index2 = -1;
+    while (++index2 < protocols.length) {
+      const protocol = protocols[index2];
+      if (colon === protocol.length && url.slice(0, protocol.length) === protocol) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function patch(node2, unsafe) {
+    const cleanPosition = position$1(
+      // @ts-expect-error: looks like a node.
+      unsafe
+    );
+    if (unsafe.data) {
+      node2.data = structuredClone$1(unsafe.data);
+    }
+    if (cleanPosition) node2.position = cleanPosition;
+  }
+  function findDefinition(definitions, key) {
+    let dataDefault;
+    let index2 = -1;
+    if (definitions) {
+      while (++index2 < definitions.length) {
+        const entry = definitions[index2];
+        const name2 = typeof entry === "string" ? entry : entry[0];
+        if (name2 === key) {
+          return entry;
+        }
+        if (name2 === "data*") dataDefault = entry;
+      }
+    }
+    if (key.length > 4 && key.slice(0, 4).toLowerCase() === "data") {
+      return dataDefault;
+    }
+  }
+  function rehypeSanitize(options) {
+    return function(tree) {
+      const result = (
+        /** @type {Root} */
+        sanitize(tree, options)
+      );
+      return result;
+    };
+  }
+  const globalAttributes = [
+    "align",
+    "alt",
+    "checked",
+    "colSpan",
+    "dir",
+    "headers",
+    "height",
+    "id",
+    "lang",
+    "rowSpan",
+    "scope",
+    "span",
+    "start",
+    "title",
+    "value",
+    "width"
+  ];
+  const tagNames = [
+    // block
+    "blockquote",
+    "div",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "hr",
+    "p",
+    "pre",
+    "section",
+    // lists (incl. gfm task lists)
+    "dd",
+    "dl",
+    "dt",
+    "input",
+    "li",
+    "ol",
+    "ul",
+    // tables (gfm)
+    "table",
+    "tbody",
+    "td",
+    "tfoot",
+    "th",
+    "thead",
+    "tr",
+    // inline
+    "a",
+    "b",
+    "br",
+    "code",
+    "del",
+    "em",
+    "i",
+    "img",
+    "ins",
+    "kbd",
+    "q",
+    "s",
+    "samp",
+    "span",
+    "strike",
+    "strong",
+    "sub",
+    "sup",
+    "var",
+    // collapsible sections, used by some bots
+    "details",
+    "summary"
+  ];
+  const markdownSanitizeSchema = {
+    ...defaultSchema,
+    // Keep the default's table-ancestor rules so a stray `<td>` outside a
+    // table cannot be used to break the surrounding layout.
+    ancestors: defaultSchema.ancestors,
+    // `mention` is our own tag, spliced into the body by
+    // helpers/mentions.ts and rendered by MarkdownBody's `mention`
+    // override. It has to survive sanitisation or every @-mention
+    // degrades to plain text.
+    tagNames: [...tagNames, "mention"],
+    attributes: {
+      "*": globalAttributes,
+      // Only the two attributes MarkdownBody's `mention` renderer reads.
+      // Both are written through escapeAttr in helpers/mentions.ts.
+      mention: ["dataJid", "dataName"],
+      // Links: href only, and only over the protocols listed below.
+      // `target`/`rel` are set by our own `a` renderer, not by the author.
+      a: [
+        "href",
+        "ariaDescribedBy",
+        "ariaLabel",
+        "ariaLabelledBy",
+        "dataFootnoteRef",
+        "dataFootnoteBackref",
+        ["className", "data-footnote-backref"]
+      ],
+      // The only `className` that reaches application logic: the code
+      // renderer reads `language-*` to decide inline vs. fenced block.
+      code: [["className", /^language-[\w+-]*$/]],
+      img: ["src", "ariaDescribedBy", "ariaLabel", "ariaLabelledBy"],
+      // gfm task lists render a disabled checkbox; `required` below pins
+      // it so `<input type="text">`-style injections cannot slip through.
+      input: [
+        ["type", "checkbox"],
+        ["disabled", true]
+      ],
+      li: [["className", "task-list-item"]],
+      ol: [
+        ["className", "contains-task-list"],
+        "ariaDescribedBy",
+        "ariaLabel",
+        "ariaLabelledBy"
+      ],
+      ul: [
+        ["className", "contains-task-list"],
+        "ariaDescribedBy",
+        "ariaLabel",
+        "ariaLabelledBy"
+      ],
+      section: ["dataFootnotes", ["className", "footnotes"]],
+      table: ["ariaDescribedBy", "ariaLabel", "ariaLabelledBy"],
+      blockquote: ["cite"],
+      del: ["cite"],
+      ins: ["cite"],
+      q: ["cite"]
+    },
+    required: {
+      input: { type: "checkbox", disabled: true }
+    },
+    /**
+     * URL schemes. `javascript:`, `data:` and `vbscript:` are absent, so a
+     * link or image using them loses the attribute entirely.
+     */
+    protocols: {
+      href: ["http", "https", "mailto", "xmpp"],
+      cite: ["http", "https"],
+      src: ["http", "https"]
+    },
+    /**
+     * Elements removed together with their contents. Unlisted disallowed
+     * elements are only unwrapped, which would leak script/style source
+     * into the message as visible text.
+     */
+    strip: ["script", "style", "iframe", "object", "embed", "template"],
+    // Prefix author-controlled `id`/`name` so a message cannot clobber
+    // ids the host page relies on.
+    clobber: defaultSchema.clobber,
+    clobberPrefix: defaultSchema.clobberPrefix
+  };
+  const MarkdownBody = ({ text: text2, onMentionClick }) => {
     if (!text2) return null;
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
@@ -152467,9 +154989,9 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           Markdown,
           {
             remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypeRawStub],
+            rehypePlugins: [rehypeRawStub, [rehypeSanitize, markdownSanitizeSchema]],
             components: {
-              a: ({ href, children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              a: ({ href, children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "a",
                 {
                   href,
@@ -152479,10 +155001,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     color: "var(--ethora-color-primary, #0a66c2)",
                     textDecoration: "none"
                   },
-                  children
+                  children: children2
                 }
               ),
-              code: ({ node: node2, className, children, ...props }) => {
+              code: ({ node: node2, className, children: children2, ...props }) => {
                 const isInline = !className;
                 if (isInline) {
                   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -152496,7 +155018,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                         fontFamily: "monospace",
                         fontSize: "0.9em"
                       },
-                      children
+                      children: children2
                     }
                   );
                 }
@@ -152512,11 +155034,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                       fontSize: "14px",
                       lineHeight: "1.45"
                     },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { className, ...props, children })
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { className, ...props, children: children2 })
                   }
                 );
               },
-              table: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { overflowX: "auto", margin: "16px 0" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              table: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { overflowX: "auto", margin: "16px 0" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "table",
                 {
                   style: {
@@ -152526,10 +155048,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     fontSize: "14px",
                     border: "1px solid var(--ethora-color-border, #d0d7de)"
                   },
-                  children
+                  children: children2
                 }
               ) }),
-              th: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              th: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "th",
                 {
                   style: {
@@ -152539,10 +155061,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     textAlign: "left",
                     fontWeight: 600
                   },
-                  children
+                  children: children2
                 }
               ),
-              td: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              td: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "td",
                 {
                   style: {
@@ -152550,14 +155072,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     padding: "12px 16px",
                     verticalAlign: "top"
                   },
-                  children
+                  children: children2
                 }
               ),
-              ul: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { style: { paddingLeft: "24px", margin: "12px 0" }, children }),
-              ol: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { style: { paddingLeft: "24px", margin: "12px 0" }, children }),
-              li: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { style: { marginBottom: "6px", lineHeight: "1.5" }, children }),
-              p: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "12px 0", lineHeight: "1.6" }, children }),
-              h1: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              ul: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { style: { paddingLeft: "24px", margin: "12px 0" }, children: children2 }),
+              ol: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { style: { paddingLeft: "24px", margin: "12px 0" }, children: children2 }),
+              li: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { style: { marginBottom: "6px", lineHeight: "1.5" }, children: children2 }),
+              p: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "12px 0", lineHeight: "1.6" }, children: children2 }),
+              h1: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "h1",
                 {
                   style: {
@@ -152566,10 +155088,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     marginTop: "24px",
                     marginBottom: "16px"
                   },
-                  children
+                  children: children2
                 }
               ),
-              h2: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              h2: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "h2",
                 {
                   style: {
@@ -152578,10 +155100,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     marginTop: "20px",
                     marginBottom: "14px"
                   },
-                  children
+                  children: children2
                 }
               ),
-              h3: ({ children }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              h3: ({ children: children2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "h3",
                 {
                   style: {
@@ -152590,7 +155112,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     marginTop: "16px",
                     marginBottom: "12px"
                   },
-                  children
+                  children: children2
                 }
               ),
               hr: () => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -152602,7 +155124,38 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                     borderTop: "1px solid var(--ethora-color-border, #e1e4e8)"
                   }
                 }
-              )
+              ),
+              // Custom tag injected by spliceMentionMarkup (helpers/mentions.ts)
+              // for each @-mention span. Falls back to plain, non-interactive
+              // text if the jid is missing/malformed (e.g. an old message with
+              // corrupt mentions data) rather than rendering a broken clickable
+              // element.
+              mention: ({ node: node2, children: children2, ...props }) => {
+                const jid2 = props?.["data-jid"];
+                if (!jid2) return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: children2 });
+                const name2 = props?.["data-name"] || "";
+                const handleClick = () => onMentionClick?.({ jid: jid2, name: name2 });
+                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    role: onMentionClick ? "button" : void 0,
+                    tabIndex: onMentionClick ? 0 : void 0,
+                    onClick: onMentionClick ? handleClick : void 0,
+                    onKeyDown: onMentionClick ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        handleClick();
+                      }
+                    } : void 0,
+                    style: {
+                      color: "var(--ethora-color-primary, #0052cd)",
+                      fontWeight: 600,
+                      cursor: onMentionClick ? "pointer" : "default"
+                    },
+                    children: children2
+                  }
+                );
+              }
             },
             children: text2
           }
@@ -152613,13 +155166,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   const MarkdownBody$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: MarkdownBody
-  }, Symbol.toStringTag, { value: "Module" }));
-  const emojiData = {};
-  const Emoji = void 0;
-  const emojiData$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    Emoji,
-    default: emojiData
   }, Symbol.toStringTag, { value: "Module" }));
   function t(t2, e2, i2, s2) {
     return new (i2 || (i2 = Promise))(function(n2, r2) {
@@ -153577,91 +156123,314 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     __proto__: null,
     default: u
   }, Symbol.toStringTag, { value: "Module" }));
-  function Picker() {
-    return null;
+  const DRAWER_BREAKPOINT_PX = 767;
+  const DRAWER_BREAKPOINT = `${DRAWER_BREAKPOINT_PX}px`;
+  const DrawerPanel = gt$1.div`
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: var(--ethora-color-bg, #fff);
+  overflow: hidden;
+  ${slideInRightAnimation}
+
+  @media (min-width: 768px) {
+    width: 400px;
+    max-width: 100%;
+    border-left: 1px solid var(--ethora-color-border, #e6e8ec);
+    box-shadow: var(--ethora-shadow-lg, 0 12px 32px rgba(16, 24, 40, 0.14));
   }
-  const emojiReact = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    default: Picker
-  }, Symbol.toStringTag, { value: "Module" }));
+`;
+  const DrawerHeader = gt$1.header`
+  display: flex;
+  align-items: center;
+  gap: var(--ethora-space-2, 8px);
+  flex: 0 0 auto;
+  padding: var(--ethora-space-2, 8px) var(--ethora-space-3, 12px);
+  border-bottom: 1px solid var(--ethora-color-border, #e6e8ec);
+  background-color: var(--ethora-color-bg, #fff);
+`;
+  const DrawerTitle = gt$1.h2`
+  flex: 1 1 auto;
+  margin: 0;
+  min-width: 0;
+  font-size: var(--ethora-font-size-lg, 18px);
+  font-weight: var(--ethora-font-weight-semibold, 600);
+  color: var(--ethora-color-text, #141414);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+  const DrawerHeaderActions = gt$1.div`
+  display: flex;
+  align-items: center;
+  gap: var(--ethora-space-1, 4px);
+  flex: 0 0 auto;
+`;
+  const DrawerBody = gt$1.div`
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ethora-space-6, 24px);
+  padding: var(--ethora-space-5, 20px) var(--ethora-space-4, 16px)
+    var(--ethora-space-6, 24px);
+
+  @media (max-width: ${DRAWER_BREAKPOINT}) {
+    padding-left: var(--ethora-space-4, 16px);
+    padding-right: var(--ethora-space-4, 16px);
+  }
+`;
+  const DrawerSection = gt$1.section`
+  display: flex;
+  flex-direction: column;
+  gap: var(--ethora-space-2, 8px);
+`;
+  const DrawerSectionTitle = gt$1.h3`
+  margin: 0;
+  padding: 0 var(--ethora-space-1, 4px);
+  font-size: var(--ethora-font-size-xs, 12px);
+  font-weight: var(--ethora-font-weight-semibold, 600);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ethora-color-text-muted, #8c8c8c);
+`;
+  const DrawerCard = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--ethora-color-border, #e6e8ec);
+  border-radius: var(--ethora-radius-md, 12px);
+  background-color: var(--ethora-color-bg, #fff);
+  overflow: hidden;
+`;
+  const DrawerCardBody = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--ethora-space-1, 4px);
+  padding: var(--ethora-space-3, 12px) var(--ethora-space-4, 16px);
+`;
+  const SectionHeaderRow = gt$1.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ethora-space-2, 8px);
+`;
+  const ShowMoreButton = gt$1.button`
+  border: none;
+  background: transparent;
+  padding: var(--ethora-space-2, 8px) 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--ethora-font-size-xs, 13px);
+  font-weight: var(--ethora-font-weight-medium, 500);
+  color: var(--ethora-color-primary, #0052cd);
+  align-self: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ethora-color-primary, #0052cd);
+    outline-offset: 2px;
+    border-radius: var(--ethora-radius-sm, 8px);
+  }
+`;
+  const DrawerRowDivider = gt$1.div`
+  height: 1px;
+  margin: 0 var(--ethora-space-4, 16px);
+  background-color: var(--ethora-color-border, #e6e8ec);
+`;
+  const DrawerLabel = gt$1.div`
+  font-size: var(--ethora-font-size-sm, 14px);
+  font-weight: var(--ethora-font-weight-medium, 500);
+  color: var(--ethora-color-text, #141414);
+  text-align: start;
+`;
+  const DrawerHint = gt$1.div`
+  font-size: var(--ethora-font-size-xs, 12px);
+  font-weight: var(--ethora-font-weight-regular, 400);
+  color: var(--ethora-color-text-muted, #8c8c8c);
+  text-align: start;
+  line-height: 1.4;
+`;
+  const DrawerNavRowButton = gt$1.button`
+  display: flex;
+  align-items: center;
+  gap: var(--ethora-space-3, 12px);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--ethora-space-3, 12px) var(--ethora-space-4, 16px);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: start;
+  font: inherit;
+  color: inherit;
+  transition: background-color var(--ethora-motion-fast, 150ms);
+
+  &:hover {
+    background-color: var(--ethora-color-bg-hover, #f0f2f5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ethora-color-primary, #0052cd);
+    outline-offset: -2px;
+  }
+`;
+  const DrawerNavRowText = gt$1.span`
+  display: flex;
+  flex-direction: column;
+  gap: var(--ethora-space-1, 4px);
+  flex: 1 1 auto;
+  min-width: 0;
+`;
+  const DrawerChevron = gt$1.span`
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--ethora-color-text-muted, #8c8c8c);
+`;
+  const ChevronRight = () => /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "16", height: "16", viewBox: "0 0 16 16", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "path",
+    {
+      d: "M6 3.5L10.5 8L6 12.5",
+      stroke: "currentColor",
+      strokeWidth: "1.75",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ) });
+  const DrawerNavRow = ({
+    label,
+    hint,
+    onClick
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerNavRowButton, { type: "button", onClick, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerNavRowText, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerLabel, { children: label }),
+      hint && /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: hint })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerChevron, { "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, {}) })
+  ] });
+  const SideDrawer = ({
+    title,
+    onClose,
+    headerActions,
+    backLabel,
+    children: children2
+  }) => {
+    const t2 = useT();
+    const titleId = reactExports.useId();
+    const containerRef = reactExports.useRef(null);
+    useModalDismiss({ onClose, containerRef });
+    const isFullScreen = useIsMobileViewport(DRAWER_BREAKPOINT_PX);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      DrawerPanel,
+      {
+        ref: containerRef,
+        role: "dialog",
+        "aria-modal": isFullScreen ? true : void 0,
+        "aria-labelledby": titleId,
+        "data-testid": "side-drawer",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerHeader, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$1,
+              {
+                EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(BackIcon, {}),
+                onClick: onClose,
+                "aria-label": backLabel ?? t2("action.close")
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerTitle, { id: titleId, children: title }),
+            headerActions && /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHeaderActions, { children: headerActions })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerBody, { children: children2 })
+        ]
+      }
+    );
+  };
   const UserSettingsModal = ({
     handleCloseModal
   }) => {
     const t2 = useT();
-    const options = reactExports.useMemo(
+    const dispatch = useDispatch();
+    const handleClick = reactExports.useCallback(
+      (key) => {
+        dispatch(setActiveModal(key));
+      },
+      [dispatch]
+    );
+    const sections = reactExports.useMemo(
       () => [
-        { value: t2("settings.manageData.title"), key: MODAL_TYPES.MANAGE_DATA },
-        { value: t2("settings.visibility.title"), key: MODAL_TYPES.VISIBILITY }
-        // { value: t('settings.profileShares.title'), key: MODAL_TYPES.PROFILE_SHARES },
-        // { value: t('settings.documentShares.title'), key: MODAL_TYPES.DOCUMENT_SHARES },
-        // { value: t('settings.blockedUsers.title'), key: MODAL_TYPES.BLOCKED_USERS },
-        // { value: t('settings.referrals.title'), key: MODAL_TYPES.REFERRALS },
+        {
+          title: t2("settings.section.privacy"),
+          rows: [
+            {
+              key: MODAL_TYPES.MANAGE_DATA,
+              label: t2("settings.manageData.title"),
+              hint: t2("settings.manageData.rowHint")
+            },
+            {
+              key: MODAL_TYPES.VISIBILITY,
+              label: t2("settings.visibility.title"),
+              hint: t2("settings.visibility.rowHint")
+            }
+          ]
+        }
       ],
       [t2]
     );
-    const dispatch = useDispatch();
-    const handleClick = reactExports.useCallback((key) => {
-      dispatch(setActiveModal(key));
-    }, []);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.menu.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        CenterContainer,
-        {
-          style: {
-            boxSizing: "border-box"
-          },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            BorderedContainer,
-            {
-              style: {
-                padding: "16px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                boxSizing: "border-box"
-              },
-              children: options.map((option, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  Button$1,
-                  {
-                    variant: "default",
-                    style: {
-                      minHeight: "48px",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "2px",
-                      alignItems: "start",
-                      textAlign: "center",
-                      width: "100%",
-                      justifyContent: "center",
-                      borderRadius: "0px"
-                    },
-                    onClick: () => handleClick(option.key),
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: option.value }),
-                      [2, 3, 4].includes(index2) && /* @__PURE__ */ jsxRuntimeExports.jsx(LabelData, { children: "0" })
-                    ]
-                  }
-                ),
-                index2 < 5 && /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$2, {})
-              ] }))
-            }
-          )
-        }
-      )
-    ] });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(SideDrawer, { title: t2("settings.menu.title"), onClose: handleCloseModal, children: sections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: section.title }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: section.rows.map((row, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+        index2 > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerRowDivider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          DrawerNavRow,
+          {
+            label: row.label,
+            hint: row.hint,
+            onClick: () => handleClick(row.key)
+          }
+        )
+      ] }, row.key)) })
+    ] }, section.title)) });
   };
   const UserSettingsModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: UserSettingsModal
   }, Symbol.toStringTag, { value: "Module" }));
+  const ProfileHero = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ethora-space-3, 12px);
+  padding: var(--ethora-space-2, 8px) 0 var(--ethora-space-1, 4px);
+  text-align: center;
+`;
+  const ProfileHeroName = gt$1.div`
+  font-size: var(--ethora-font-size-lg, 18px);
+  font-weight: var(--ethora-font-weight-semibold, 600);
+  color: var(--ethora-color-text, #141414);
+  overflow-wrap: anywhere;
+`;
+  const ProfileHeroSubtitle = gt$1.div`
+  font-size: var(--ethora-font-size-sm, 14px);
+  font-weight: var(--ethora-font-weight-regular, 400);
+  color: var(--ethora-color-text-muted, #8c8c8c);
+`;
+  const ProfileActions = gt$1.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--ethora-space-2, 8px);
+  width: 100%;
+`;
   const base64ToFile = (base64String, fileName) => {
     const byteString = atob(base64String.split(",")[1]);
     const arrayBuffer = new ArrayBuffer(byteString.length);
@@ -153891,7 +156660,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     color: var(--ethora-color-text-muted, #8c8c8c);
   }
 `;
-  const DropdownItem$1 = gt$1.div`
+  const DropdownItem = gt$1.div`
   padding: 12px 16px;
   cursor: pointer;
   font-size: var(--ethora-font-size-sm, 14px);
@@ -153927,21 +156696,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const filteredOptions = options.filter(
       (option) => option.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    const handleOutsideClick = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    reactExports.useEffect(() => {
-      if (isOpen) {
-        document.addEventListener("mousedown", handleOutsideClick);
-      } else {
-        document.removeEventListener("mousedown", handleOutsideClick);
-      }
-      return () => {
-        document.removeEventListener("mousedown", handleOutsideClick);
-      };
-    }, [isOpen]);
+    const closeDropdown = reactExports.useCallback(() => setIsOpen(false), []);
+    useModalDismiss({
+      enabled: isOpen,
+      onClose: closeDropdown,
+      kind: "menu",
+      insideRefs: [wrapperRef],
+      closeOnOutsidePress: true
+    });
     const handleBoxKeyDown = (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
@@ -153985,7 +156747,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
           }
         ),
         filteredOptions.length > 0 ? filteredOptions.map((option) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          DropdownItem$1,
+          DropdownItem,
           {
             onClick: () => handleSelect(option),
             onKeyDown: (e2) => handleItemKeyDown(e2, option),
@@ -153996,7 +156758,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             children: option.name
           },
           option.id
-        )) : /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownItem$1, { children: t2("select.noOptions") })
+        )) : /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownItem, { children: t2("select.noOptions") })
       ] })
     ] });
   };
@@ -154206,51 +156968,54 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         return LANGUAGE_OPTIONS.find((lang) => lang.id === langSource);
       else return void 0;
     };
+    const headerActions = !selectedUser ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: EditClick, "aria-label": t2("action.editProfile"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(EditIcon, { color: "var(--ethora-color-text-muted, #8C8C8C)" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        DropdownMenu,
+        {
+          options: menuOptions,
+          position: "left",
+          menuIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(MoreIcon, {})
+        }
+      )
+    ] }) : void 0;
+    const showActions = selectedUser && selectedUser.xmppUsername !== user.xmppUsername && !config?.disableProfilesInteractions;
     const DefaultBody = reactExports.useMemo(
       () => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          ModalHeaderComponent,
-          {
-            handleCloseModal: handleBackClick,
-            headerTitle: t2("modal.profile.title"),
-            rightMenu: !selectedUser && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: EditClick, "aria-label": t2("action.editProfile"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(EditIcon, { color: "var(--ethora-color-text-muted, #8C8C8C)" }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                DropdownMenu$1,
-                {
-                  options: menuOptions,
-                  position: "left",
-                  menuIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(MoreIcon, {})
-                }
-              )
-            ] })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(CenterContainer, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(ProfileHero, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             ProfileImagePlaceholder,
             {
               icon: modalUser?.profileImage ?? null,
               name: modalUser?.name ?? modalUser?.firstName,
-              size: 120
+              size: 96
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(UserInfo, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(UserName, { children: modalUser?.name ? `${modalUser?.name}` : `${modalUser?.firstName} ${modalUser?.lastName}` }) }),
-          !selectedUser && config?.translates?.enabled && /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Select,
-            {
-              options: LANGUAGE_OPTIONS,
-              placeholder: t2("language.select"),
-              onSelect: handleSelect,
-              accentColor: config?.colors?.primary,
-              selectedValue: findLanguage()
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: t2("modal.profile.about") }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(LabelData, { children: modalUser?.description && modalUser?.description?.length > 4 ? modalUser.description : t2("modal.profile.noDescription") })
-          ] }),
-          selectedUser && selectedUser.xmppUsername !== user.xmppUsername && !config?.disableProfilesInteractions && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ProfileHeroName, { children: modalUser?.name ? `${modalUser?.name}` : `${modalUser?.firstName} ${modalUser?.lastName}` })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.profile.about") }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCardBody, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: modalUser?.description && modalUser?.description?.length > 4 ? modalUser.description : t2("modal.profile.noDescription") }) }) })
+        ] }),
+        !selectedUser && config?.translates?.enabled && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.profile.preferences") }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("modal.profile.languageHint") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Select,
+              {
+                options: LANGUAGE_OPTIONS,
+                placeholder: t2("language.select"),
+                onSelect: handleSelect,
+                accentColor: config?.colors?.primary,
+                selectedValue: findLanguage()
+              }
+            )
+          ] }) })
+        ] }),
+        showActions && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.profile.actions") }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(ProfileActions, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               ActionButton,
               {
@@ -154284,7 +157049,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
               ActionButton,
               {
                 onClick: () => handleCopyClick(selectedUser.id),
-                variant: "filled",
+                variant: "outlined",
                 children: t2("action.copyUserId")
               }
             )
@@ -154299,8 +157064,10 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         handleCall,
         handlePrivateMessage,
         selectedUser,
+        showActions,
         user,
         config,
+        langSource,
         t2
       ]
     );
@@ -154315,7 +157082,15 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ),
       [modalUser]
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(ModalContainerFullScreen, { children: !isEditing ? DefaultBody : EditingBody });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      SideDrawer,
+      {
+        title: t2("modal.profile.title"),
+        onClose: handleBackClick,
+        headerActions: !isEditing ? headerActions : void 0,
+        children: !isEditing ? DefaultBody : EditingBody
+      }
+    );
   };
   const UserProfileModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
@@ -156782,7 +159557,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                             justifyContent: "center"
                           },
                           children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$2, { style: { fontSize: "16px", fontWeight: 600 }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$3, { style: { fontSize: "16px", fontWeight: 600 }, children: [
                               firstName,
                               " ",
                               lastName
@@ -156808,7 +159583,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
                   }
                 ),
                 showMenu && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  DropdownMenu$1,
+                  DropdownMenu,
                   {
                     options: menuOptions,
                     openButton: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -156826,7 +159601,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
               ]
             }
           ),
-          !isLast && /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$2, {})
+          !isLast && /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$3, {})
         ]
       }
     );
@@ -156990,14 +159765,6 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     const menuOptions = reactExports.useMemo(
       () => (userId) => [
         {
-          label: t2("action.appointAsAdmin"),
-          icon: null,
-          onClick: () => {
-            dispatch(setActiveModal(MODAL_TYPES.PROFILE));
-            ethoraLogger.log("Profile clicked");
-          }
-        },
-        {
           label: t2("action.delete"),
           icon: null,
           onClick: (e2) => {
@@ -157012,213 +159779,188 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       dispatch(setActiveModal());
       return null;
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { style: { position: "relative" }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("modal.chatProfile.title"),
-          rightMenu: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            activeRoom?.type === "public" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$1,
+    const memberCountLabel = (() => {
+      const displayCount = Array.isArray(activeRoom.members) && activeRoom.members.length > 0 ? activeRoom.members.length : typeof activeRoom.usersCnt === "number" && activeRoom.usersCnt > 0 ? activeRoom.usersCnt : 0;
+      return displayCount === 1 ? t2("modal.chatProfile.memberCountSingular", { count: displayCount }) : t2("modal.chatProfile.memberCountPlural", { count: displayCount });
+    })();
+    const showDescription = !config?.disableChatInfo?.disableDescription;
+    const showType = !config?.disableChatInfo?.disableType;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      SideDrawer,
+      {
+        title: t2("modal.chatProfile.title"),
+        onClose: handleCloseModal,
+        headerActions: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          activeRoom?.type === "public" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(QrIcon, {}),
+              onClick: () => setVisible(true),
+              "aria-label": t2("action.showQr")
+            }
+          ),
+          activeRoom.role === "moderator" && activeRoom.type !== "private" && !config?.disableChatInfo?.disableChatHeaderMenu && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DropdownMenu,
+            {
+              position: "left",
+              options: chatMenuOptions,
+              openButton: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$1,
+                {
+                  style: { padding: 8, maxHeight: "40px" },
+                  EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(MoreIcon, {}),
+                  unstyled: true,
+                  "aria-label": t2("action.moreOptions")
+                }
+              )
+            }
+          )
+        ] }),
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(ProfileHero, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              ProfileImagePlaceholder,
               {
-                EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(QrIcon, {}),
-                onClick: () => setVisible(true),
-                "aria-label": t2("action.showQr")
+                name: activeRoom.name,
+                icon: appendFileToken(activeRoom.icon, fileToken),
+                upload: {
+                  onUpload,
+                  active: activeRoom?.role !== "participant" ? true : false
+                },
+                remove: { enabled: true, onRemoveClick },
+                role: activeRoom?.role,
+                size: 96
               }
             ),
-            activeRoom.role === "moderator" && activeRoom.type !== "private" && !config?.disableChatInfo?.disableChatHeaderMenu && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              DropdownMenu$1,
-              {
-                position: "left",
-                options: chatMenuOptions,
-                openButton: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Button$1,
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ProfileHeroName, { children: activeRoom.name }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ProfileHeroSubtitle, { children: memberCountLabel })
+            ] })
+          ] }),
+          activeRoom.role === "moderator" && activeRoom.type === "group" && /* @__PURE__ */ jsxRuntimeExports.jsx(SelectUsersModal, {}),
+          (showDescription || showType) && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.chatProfile.aboutSection") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCard, { children: [
+              showDescription && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("modal.chatProfile.description") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerLabel, { children: activeRoom?.description || t2("modal.profile.noDescription") })
+              ] }),
+              showDescription && showType && /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerRowDivider, {}),
+              showType && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("modal.chatProfile.chatType") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerLabel, { children: activeRoom.type })
+              ] })
+            ] })
+          ] }),
+          !config?.disableChatInfo?.hideMembers && /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.chatProfile.membersSection") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+              enrichedMembers.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                SearchInput$1,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SearchIcon$1, { height: "20px" }),
+                  value: memberQuery,
+                  onChange: handleMemberQueryChange,
+                  placeholder: t2("modal.chatProfile.searchMembers"),
+                  "aria-label": t2("modal.chatProfile.searchMembers")
+                }
+              ),
+              loading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                visibleMembers.map((user, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  ChatProfileMemberRow$1,
                   {
-                    style: { padding: 8, maxHeight: "40px" },
-                    EndIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(MoreIcon, {}),
-                    unstyled: true,
-                    "aria-label": t2("action.moreOptions")
-                  }
-                )
-              }
-            )
-          ] })
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CenterContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          ProfileImagePlaceholder,
-          {
-            name: activeRoom.name,
-            icon: appendFileToken(activeRoom.icon, fileToken),
-            upload: {
-              onUpload,
-              active: activeRoom?.role !== "participant" ? true : false
-            },
-            remove: { enabled: true, onRemoveClick },
-            role: activeRoom?.role,
-            size: 128
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(UserInfo, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(UserName, { children: activeRoom.name }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(UserStatus, { children: (() => {
-            const displayCount = Array.isArray(activeRoom.members) && activeRoom.members.length > 0 ? activeRoom.members.length : typeof activeRoom.usersCnt === "number" && activeRoom.usersCnt > 0 ? activeRoom.usersCnt : 0;
-            return displayCount === 1 ? t2("modal.chatProfile.memberCountSingular", { count: displayCount }) : t2("modal.chatProfile.memberCountPlural", { count: displayCount });
-          })() })
-        ] }),
-        activeRoom.role === "moderator" && activeRoom.type === "group" && /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectUsersModal, {}) }),
-        !config?.disableChatInfo?.disableDescription && /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(LabelData, { children: t2("modal.chatProfile.description") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: activeRoom?.description })
-        ] }),
-        !config?.disableChatInfo?.disableType && /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(LabelData, { children: t2("modal.chatProfile.chatType") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: activeRoom.type })
-        ] }),
-        !config?.disableChatInfo?.hideMembers && /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { style: { padding: "8px 16px" }, children: [
-          enrichedMembers.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "4px 0 12px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            SearchInput$1,
-            {
-              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SearchIcon$1, { height: "20px" }),
-              value: memberQuery,
-              onChange: handleMemberQueryChange,
-              placeholder: t2("modal.chatProfile.searchMembers"),
-              "aria-label": t2("modal.chatProfile.searchMembers")
-            }
-          ) }),
-          loading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            visibleMembers.map((user, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ChatProfileMemberRow$1,
-              {
-                member: user,
-                isLast: index2 === visibleMembers.length - 1 && !hasMoreMembers,
-                disableClick: !!config?.disableChatInfo?.disableMembers,
-                online: onlineUsersSet.has(user.xmppUsername),
-                showMenu: stateUser.xmppUsername !== user.xmppUsername && activeRoom.role === "moderator" && activeRoom.type !== "private",
-                menuOptions: menuOptions(user.xmppUsername),
-                moreOptionsLabel: t2("action.moreOptions"),
-                onAvatarClick: handleUserAvatarClick
-              },
-              user.xmppUsername
-            )),
-            hasMoreMembers && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                style: {
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "12px 0",
-                  cursor: "pointer"
-                },
-                onClick: () => setVisibleMemberCount(
-                  (count) => count + MEMBER_RENDER_WINDOW_STEP
-                ),
-                onKeyDown: (e2) => {
-                  if (e2.key === "Enter" || e2.key === " ") {
-                    e2.preventDefault();
-                    setVisibleMemberCount(
+                    member: user,
+                    isLast: index2 === visibleMembers.length - 1 && !hasMoreMembers,
+                    disableClick: !!config?.disableChatInfo?.disableMembers,
+                    online: onlineUsersSet.has(user.xmppUsername),
+                    showMenu: stateUser.xmppUsername !== user.xmppUsername && activeRoom.role === "moderator" && activeRoom.type !== "private",
+                    menuOptions: menuOptions(user.xmppUsername),
+                    moreOptionsLabel: t2("action.moreOptions"),
+                    onAvatarClick: handleUserAvatarClick
+                  },
+                  user.xmppUsername
+                )),
+                hasMoreMembers && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  ShowMoreButton,
+                  {
+                    type: "button",
+                    onClick: () => setVisibleMemberCount(
                       (count) => count + MEMBER_RENDER_WINDOW_STEP
-                    );
-                  }
-                },
-                role: "button",
-                tabIndex: 0,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Label$2,
-                  {
-                    style: {
-                      color: "var(--ethora-color-primary, #0052CD)",
-                      fontSize: "13px"
-                    },
+                    ),
                     children: t2("modal.chatProfile.membersShowMore", {
                       count: filteredMembers.length - visibleMemberCount
                     })
                   }
                 )
-              }
-            )
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { style: { padding: "8px 16px" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                cursor: "pointer"
-              },
-              onClick: () => setFilesExpanded((prev2) => !prev2),
-              onKeyDown: (e2) => {
-                if (e2.key === "Enter" || e2.key === " ") {
-                  e2.preventDefault();
-                  setFilesExpanded((prev2) => !prev2);
+              ] })
+            ] }) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(SectionHeaderRow, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("modal.chatProfile.filesTitle") }),
+              roomFiles.length > 6 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ShowMoreButton,
+                {
+                  type: "button",
+                  onClick: () => setFilesExpanded((prev2) => !prev2),
+                  "aria-expanded": filesExpanded,
+                  children: filesExpanded ? t2("modal.chatProfile.filesShowLess") : t2("modal.chatProfile.filesShowAll")
                 }
-              },
-              role: "button",
-              tabIndex: 0,
-              "aria-expanded": filesExpanded,
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(LabelData, { children: t2("modal.chatProfile.filesTitle") }),
-                roomFiles.length > 6 && /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { style: { color: "var(--ethora-color-primary, #0052CD)", fontSize: "13px" }, children: t2("modal.chatProfile.filesShowAll") })
-              ]
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCardBody, { children: filesLoading && roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}) : filesError && roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("files.error.title") }) : roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("modal.chatProfile.filesEmpty") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              FilesList,
+              {
+                items: visibleRoomFiles,
+                fileToken,
+                onPreview: handleFilePreview,
+                onDownload: handleFileDownload,
+                onDelete: handleFileDelete,
+                compact: true
+              }
+            ) }) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            OperationalModal,
+            {
+              isVisible: visible,
+              setVisible,
+              chatJid: activeRoom.jid
             }
           ),
-          filesLoading && roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}) : filesError && roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: t2("files.error.title") }) : roomFiles.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { children: t2("modal.chatProfile.filesEmpty") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            FilesList,
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DeleteChatModal,
             {
-              items: visibleRoomFiles,
-              fileToken,
-              onPreview: handleFilePreview,
-              onDownload: handleFileDownload,
-              onDelete: handleFileDelete,
-              compact: true
+              isModalOpen,
+              setIsModalOpen
             }
           )
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        OperationalModal,
-        {
-          isVisible: visible,
-          setVisible,
-          chatJid: activeRoom.jid
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        DeleteChatModal,
-        {
-          isModalOpen,
-          setIsModalOpen
-        }
-      )
-    ] });
+        ]
+      }
+    );
   };
   const ChatProfileModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: ChatProfileModal
   }, Symbol.toStringTag, { value: "Module" }));
-  const SharedSettingsCenterContainer = gt$1(CenterContainer)`
+  gt$1(CenterContainer)`
   display: flex;
   box-sizing: border-box;
   align-items: flex-start;
   gap: 32px;
 `;
-  const SharedSettingsColumnContainer = gt$1.div`
+  gt$1.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 `;
-  const SharedSettingsSectionContainer = gt$1.div`
+  gt$1.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
-  const SharedSettingsStyledLabel = gt$1(Label$2)`
+  gt$1(Label$3)`
   font-weight: 600;
   text-align: start;
   flex-wrap: wrap;
@@ -157230,7 +159972,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   align-items: center;
   gap: 4px;
 `;
-  const SharedSettingsLabelData = gt$1(Label$2)`
+  gt$1(Label$3)`
   font-size: 12px;
   text-align: start;
   color: var(--ethora-color-text-muted, #8c8c8c);
@@ -157262,18 +160004,14 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   display: flex;
   text-align: start;
 `;
-  gt$1.div`
-  background-color: '#F3F6FC';
-  display: flex;
-  gap: 8px;
-  border-radius: 8px;
-  padding: 8px;
-`;
   const ManageDataModal = ({
     handleCloseModal
   }) => {
     const { config } = useSelector((state) => state.chatSettingStore);
     const t2 = useT();
+    const { showToast } = useToast();
+    const [isConfirmingDelete, setIsConfirmingDelete] = reactExports.useState(false);
+    const [isDeleting, setIsDeleting] = reactExports.useState(false);
     const handleDownloadClick = async () => {
       const exportedData = await getExportMyData();
       const binaryData = exportedData.data;
@@ -157288,63 +160026,93 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       document.body.removeChild(a2);
       URL.revokeObjectURL(url);
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
+    const handleConfirmDelete = reactExports.useCallback(async () => {
+      if (isDeleting) return;
+      setIsDeleting(true);
+      try {
+        await deleteMe();
+        setIsConfirmingDelete(false);
+        await logoutService.performLogout();
+      } catch (error2) {
+        ethoraLogger.error("Failed to delete account", error2);
+        showToast({
+          id: Date.now().toString(),
+          title: t2("toast.error"),
+          message: t2("settings.manageData.deleteFailed"),
+          type: "error",
+          duration: 4e3
+        });
+        setIsDeleting(false);
+      }
+    }, [isDeleting, showToast, t2]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        SideDrawer,
         {
-          handleCloseModal,
-          headerTitle: t2("settings.manageData.title")
+          title: t2("settings.manageData.title"),
+          onClose: handleCloseModal,
+          backLabel: t2("action.back"),
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("settings.manageData.section.export") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.manageData.downloadDescription") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  SharedSettingsStyledButton,
+                  {
+                    borderColor: config?.colors?.primary || "var(--ethora-color-primary, #0052CD)",
+                    onClick: handleDownloadClick,
+                    style: { marginTop: "var(--ethora-space-2, 8px)" },
+                    children: t2("settings.manageData.downloadLabel")
+                  }
+                )
+              ] }) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("settings.manageData.deleteLabel") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerCardBody, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.manageData.deleteDescription") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  SharedSettingsInfoPanel,
+                  {
+                    bgColor: config?.colors?.secondary || "var(--ethora-color-primary-soft, #E7EDF9)",
+                    style: { marginTop: "var(--ethora-space-2, 8px)" },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(InfoIcon, { color: resolveIconColor(config) }) }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsInfoText, { children: t2("settings.manageData.deleteDisclosure") })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  SharedSettingsStyledButton,
+                  {
+                    borderColor: "var(--ethora-color-danger, #D92D20)",
+                    style: {
+                      color: "var(--ethora-color-danger, #D92D20)",
+                      marginTop: "var(--ethora-space-2, 8px)"
+                    },
+                    onClick: () => setIsConfirmingDelete(true),
+                    children: t2("action.deleteMyAccount")
+                  }
+                )
+              ] }) })
+            ] })
+          ]
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsCenterContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsSectionContainer, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.manageData.downloadLabel") }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              LabelData,
-              {
-                style: {
-                  fontSize: "12px",
-                  textAlign: "start"
-                },
-                children: t2("settings.manageData.downloadDescription")
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            SharedSettingsStyledButton,
-            {
-              borderColor: config?.colors?.primary || "var(--ethora-color-primary, #0052CD)",
-              onClick: handleDownloadClick,
-              children: t2("settings.manageData.downloadLabel")
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsSectionContainer, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.manageData.deleteLabel") }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.manageData.deleteDescription") })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            SharedSettingsInfoPanel,
-            {
-              bgColor: config?.colors?.secondary || "var(--ethora-color-primary-soft, #F3F6FC)",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(InfoIcon, { color: resolveIconColor(config) }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsInfoText, { children: t2("settings.manageData.deleteDisclosure") })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            SharedSettingsStyledButton,
-            {
-              borderColor: "var(--ethora-color-danger, #D92D20)",
-              style: { color: "var(--ethora-color-danger, #D92D20)" },
-              children: t2("action.deleteMyAccount")
-            }
-          )
-        ] })
-      ] })
+      isConfirmingDelete && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ModalWrapper,
+        {
+          title: t2("settings.manageData.deleteConfirmTitle"),
+          description: t2("settings.manageData.deleteConfirmDescription"),
+          buttonText: isDeleting ? t2("settings.manageData.deleting") : t2("action.deleteMyAccount"),
+          backgroundColorButton: "var(--ethora-color-danger, #D92D20)",
+          handleClick: handleConfirmDelete,
+          handleCloseModal: () => {
+            if (!isDeleting) setIsConfirmingDelete(false);
+          }
+        }
+      )
     ] });
   };
   const ManageDataModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -157418,329 +160186,87 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         }).catch(() => showNotification(t2("toast.error"), "error"));
       }
     }, [isAssetsOpen]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.visibility.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsCenterContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.visibility.profileLabel") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioGroup, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RadioInput,
-                {
-                  $radioColor: config?.colors?.primary,
-                  type: "radio",
-                  checked: isProfileOpen === true,
-                  onChange: () => setIsProfileOpen(true)
-                }
-              ),
-              t2("settings.visibility.open")
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.visibility.openDescription") }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RadioInput,
-                {
-                  $radioColor: config?.colors?.primary,
-                  type: "radio",
-                  checked: isProfileOpen === false,
-                  onChange: () => setIsProfileOpen(false)
-                }
-              ),
-              t2("settings.visibility.restricted")
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.visibility.restrictedDescription") })
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.visibility.documentsLabel") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioGroup, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RadioInput,
-                {
-                  $radioColor: config?.colors?.primary,
-                  type: "radio",
-                  checked: isAssetsOpen === true,
-                  onChange: () => setIsAssetsOpen(true)
-                }
-              ),
-              t2("settings.visibility.full")
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.visibility.fullDescription") }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RadioInput,
-                {
-                  $radioColor: config?.colors?.primary,
-                  type: "radio",
-                  checked: isAssetsOpen === false,
-                  onChange: () => setIsAssetsOpen(false)
-                }
-              ),
-              t2("settings.visibility.individual")
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.visibility.individualDescription") })
-          ] })
-        ] })
-      ] }),
-      notification && /* @__PURE__ */ jsxRuntimeExports.jsx(Notification$1, { type: notification.type, children: notification.message })
-    ] });
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      SideDrawer,
+      {
+        title: t2("settings.visibility.title"),
+        onClose: handleCloseModal,
+        backLabel: t2("action.back"),
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("settings.visibility.profileLabel") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCardBody, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioGroup, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  RadioInput,
+                  {
+                    $radioColor: config?.colors?.primary,
+                    type: "radio",
+                    name: "ethora-profile-visibility",
+                    checked: isProfileOpen === true,
+                    onChange: () => setIsProfileOpen(true)
+                  }
+                ),
+                t2("settings.visibility.open")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.visibility.openDescription") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  RadioInput,
+                  {
+                    $radioColor: config?.colors?.primary,
+                    type: "radio",
+                    name: "ethora-profile-visibility",
+                    checked: isProfileOpen === false,
+                    onChange: () => setIsProfileOpen(false)
+                  }
+                ),
+                t2("settings.visibility.restricted")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.visibility.restrictedDescription") })
+            ] }) }) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(DrawerSection, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerSectionTitle, { children: t2("settings.visibility.documentsLabel") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCard, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerCardBody, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioGroup, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  RadioInput,
+                  {
+                    $radioColor: config?.colors?.primary,
+                    type: "radio",
+                    name: "ethora-documents-visibility",
+                    checked: isAssetsOpen === true,
+                    onChange: () => setIsAssetsOpen(true)
+                  }
+                ),
+                t2("settings.visibility.full")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.visibility.fullDescription") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(RadioLabel, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  RadioInput,
+                  {
+                    $radioColor: config?.colors?.primary,
+                    type: "radio",
+                    name: "ethora-documents-visibility",
+                    checked: isAssetsOpen === false,
+                    onChange: () => setIsAssetsOpen(false)
+                  }
+                ),
+                t2("settings.visibility.individual")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHint, { children: t2("settings.visibility.individualDescription") })
+            ] }) }) })
+          ] }),
+          notification && /* @__PURE__ */ jsxRuntimeExports.jsx(Notification$1, { type: notification.type, children: notification.message })
+        ]
+      }
+    );
   };
   const VisibilityModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: VisibilityModal
-  }, Symbol.toStringTag, { value: "Module" }));
-  const ReferralsModal = ({
-    handleCloseModal
-  }) => {
-    const { config } = useSelector((state) => state.chatSettingStore);
-    const t2 = useT();
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.referrals.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CenterContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ReferalsIcon, {}),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsStyledLabel, { style: { display: "block" }, children: [
-          t2("settings.referrals.giftPart1"),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SendCoinIcon, { style: { width: "24px", height: "24px" } }),
-          t2("settings.referrals.giftPart2"),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SendCoinIcon, { style: { width: "24px", height: "24px" } }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "." }),
-          t2("settings.referrals.giftPart3")
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { style: { width: "100%" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.referrals.yourCode") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            StyledInput$2,
-            {
-              color: config?.colors?.primary,
-              $colorBg: config?.colors?.colorInput,
-              placeholder: t2("settings.referrals.yourCode")
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsColumnContainer, { style: { width: "100%" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.referrals.enterReferralCode") }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            StyledInput$2,
-            {
-              color: config?.colors?.primary,
-              $colorBg: config?.colors?.colorInput,
-              placeholder: t2("field.referralCode")
-            }
-          )
-        ] })
-      ] })
-    ] });
-  };
-  const Referrals = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    default: ReferralsModal
-  }, Symbol.toStringTag, { value: "Module" }));
-  const DropdownContainer = gt$1.div`
-  position: relative;
-  display: inline-block;
-`;
-  const DropdownButton = gt$1.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: var(--ethora-radius-sm, 8px);
-
-  &:focus-visible {
-    outline: 2px solid var(--ethora-color-primary, #0052cd);
-    outline-offset: 2px;
-  }
-`;
-  const DropdownIcon = gt$1.span`
-  margin-left: 5px;
-`;
-  const DropdownList = gt$1.ul`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-  list-style-type: none;
-  padding: var(--ethora-space-1, 4px) 0;
-  margin: 0;
-  background-color: var(--ethora-color-bg, #fff);
-  border: 1px solid var(--ethora-color-border, #e6e8ec);
-  border-radius: var(--ethora-radius-sm, 8px);
-  box-shadow: var(--ethora-shadow-md, 0 4px 12px rgba(16, 24, 40, 0.1));
-`;
-  const DropdownItem = gt$1.li`
-  padding: var(--ethora-space-2, 8px) var(--ethora-space-3, 12px);
-  cursor: pointer;
-  font-size: var(--ethora-font-size-sm, 14px);
-  color: var(--ethora-color-text, #141414);
-
-  &:hover {
-    background-color: var(--ethora-color-bg-hover, #f0f2f5);
-  }
-`;
-  const DropdownMenu = ({
-    sortFunction,
-    icon,
-    values
-  }) => {
-    const [isOpen, setIsOpen] = reactExports.useState(false);
-    const handleItemClick = (value) => {
-      sortFunction(value);
-      setIsOpen(false);
-    };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(DropdownContainer, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownButton, { onClick: () => setIsOpen(!isOpen), children: icon && /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownIcon, { children: icon }) }),
-      isOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownList, { children: values.map((value) => /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownItem, { onClick: () => handleItemClick(value), children: value }, value)) })
-    ] });
-  };
-  const DocumentSharesModal = ({
-    handleCloseModal
-  }) => {
-    const { config } = useSelector((state) => state.chatSettingStore);
-    const t2 = useT();
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.documentShares.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CenterContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsColumnContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsSectionContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.documentShares.currentShares") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.documentShares.description") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedContainer, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                padding: "8px",
-                width: "100%",
-                justifyContent: "space-between",
-                alignItems: "center"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: t2("settings.shares.listOfShares") }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "row" }, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    SearchInput$1,
-                    {
-                      animated: true,
-                      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SearchIcon$1, {}),
-                      direction: "right",
-                      colorBg: config?.colors?.colorInput
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    DropdownMenu,
-                    {
-                      sortFunction: function(value) {
-                        throw new Error("Function not implemented.");
-                      },
-                      icon: "",
-                      values: [t2("sort.name"), t2("sort.surname")]
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Button$1,
-                    {
-                      variant: "filled",
-                      StartIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusIcon, {}),
-                      style: { width: "100%" },
-                      children: t2("action.addNewShare")
-                    }
-                  )
-                ] })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            SharedSettingsInfoPanel,
-            {
-              bgColor: config?.colors?.secondary || "var(--ethora-color-bg-subtle, #F5F7FA)",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsInfoText, { children: t2("settings.documentShares.emptyState") })
-            }
-          )
-        ] })
-      ] }) }) })
-    ] });
-  };
-  const DocumentSharesModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    default: DocumentSharesModal
-  }, Symbol.toStringTag, { value: "Module" }));
-  const ProfileSharesModal = ({
-    handleCloseModal
-  }) => {
-    const { config } = useSelector((state) => state.chatSettingStore);
-    const t2 = useT();
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.profileShares.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CenterContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsSectionContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.profileShares.currentShares") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.profileShares.description") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          SharedSettingsInfoPanel,
-          {
-            bgColor: config?.colors?.secondary || "var(--ethora-color-bg-subtle, #F5F7FA)",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsInfoText, { children: t2("settings.documentShares.emptyState") })
-          }
-        ) })
-      ] }) })
-    ] });
-  };
-  const ProfileShares = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    default: ProfileSharesModal
-  }, Symbol.toStringTag, { value: "Module" }));
-  const BlockedUsersModal = ({
-    handleCloseModal
-  }) => {
-    const { config } = useSelector((state) => state.chatSettingStore);
-    const t2 = useT();
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ModalHeaderComponent,
-        {
-          handleCloseModal,
-          headerTitle: t2("settings.blockedUsers.title")
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(SharedSettingsSectionContainer, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsStyledLabel, { children: t2("settings.blockedUsers.label") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsLabelData, { children: t2("settings.blockedUsers.description") }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedContainer, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          SharedSettingsInfoPanel,
-          {
-            bgColor: config?.colors?.secondary || "var(--ethora-color-bg-subtle, #F5F7FA)",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SharedSettingsInfoText, { children: t2("settings.blockedUsers.emptyState") })
-          }
-        ) })
-      ] })
-    ] });
-  };
-  const BlockedUsersModal$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    default: BlockedUsersModal
   }, Symbol.toStringTag, { value: "Module" }));
   function g(n2, t2) {
     let o2;
@@ -157979,23 +160505,507 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       ] })
     ] });
   };
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 6;
+  const DOUBLE_TAP_SCALE = 2.5;
+  const SWIPE_THRESHOLD = 50;
+  const DOUBLE_TAP_MS = 300;
+  const DOUBLE_TAP_SLOP = 24;
+  const WHEEL_SENSITIVITY = 16e-4;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const Viewport = gt$1.div`
+  position: relative;
+  /* An explicit height, not flex growth alone: the parent lays its children
+     out in a row and centres them, so the viewport would otherwise be sized
+     by its content, and the image's own max-height of 100% would resolve
+     against that auto height and never fit anything. */
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* A zoomed image is dragged, not selected, and a two-finger gesture is a
+     pinch rather than a page scroll. */
+  touch-action: none;
+  user-select: none;
+  background-color: var(--ethora-color-bg, #fff);
+`;
+  const ZoomableImage = gt$1.img`
+  /* Same box the single-file view always used: fill the stage and let
+     object-fit do the letterboxing, so what the viewer sees at scale 1 is
+     unchanged. It is also what makes the pan clamp exact, since the painted
+     content box is then derived from the natural aspect ratio alone. */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center center;
+  will-change: transform;
+  cursor: ${({ $grabbing, $pannable }) => $grabbing ? "grabbing" : $pannable ? "grab" : "zoom-in"};
+  transition: ${({ $animate }) => $animate ? `transform ${MOTION_BASE} ${MOTION_EASE}` : "none"};
+  ${reducedMotion}
+`;
+  const ImageLightbox = React.forwardRef(
+    ({ src, alt, onSwipeLeft, onSwipeRight, onError, onScaleChange }, ref) => {
+      const viewportRef = reactExports.useRef(null);
+      const imageRef = reactExports.useRef(null);
+      const [scale, setScale] = reactExports.useState(MIN_SCALE);
+      const [offset, setOffset] = reactExports.useState({ x: 0, y: 0 });
+      const [animate, setAnimate] = reactExports.useState(false);
+      const [dragging, setDragging] = reactExports.useState(false);
+      const stateRef = reactExports.useRef({ scale: MIN_SCALE, offset: { x: 0, y: 0 } });
+      stateRef.current = { scale, offset };
+      const mouseDragRef = reactExports.useRef(null);
+      const touchRef = reactExports.useRef(null);
+      const lastTapRef = reactExports.useRef(
+        null
+      );
+      const maxOffsetFor = reactExports.useCallback((nextScale) => {
+        const viewport = viewportRef.current;
+        const image2 = imageRef.current;
+        if (!viewport) return { x: 0, y: 0 };
+        const vw = viewport.clientWidth;
+        const vh = viewport.clientHeight;
+        const nw = image2?.naturalWidth || 0;
+        const nh = image2?.naturalHeight || 0;
+        let fittedWidth = vw;
+        let fittedHeight = vh;
+        if (nw > 0 && nh > 0 && vw > 0 && vh > 0) {
+          const fit = Math.min(vw / nw, vh / nh);
+          fittedWidth = nw * fit;
+          fittedHeight = nh * fit;
+        }
+        return {
+          x: Math.max(0, (fittedWidth * nextScale - vw) / 2),
+          y: Math.max(0, (fittedHeight * nextScale - vh) / 2)
+        };
+      }, []);
+      const applyTransform = reactExports.useCallback(
+        (nextScale, nextOffset, withAnimation) => {
+          const clampedScale = clamp(nextScale, MIN_SCALE, MAX_SCALE);
+          const bounds = maxOffsetFor(clampedScale);
+          setAnimate(withAnimation);
+          setScale(clampedScale);
+          setOffset({
+            x: clamp(nextOffset.x, -bounds.x, bounds.x),
+            y: clamp(nextOffset.y, -bounds.y, bounds.y)
+          });
+        },
+        [maxOffsetFor]
+      );
+      const zoomAround = reactExports.useCallback(
+        (nextScale, cx, cy, withAnimation) => {
+          const current2 = stateRef.current;
+          const clamped = clamp(nextScale, MIN_SCALE, MAX_SCALE);
+          const ratio = clamped / current2.scale;
+          applyTransform(
+            clamped,
+            {
+              x: cx - (cx - current2.offset.x) * ratio,
+              y: cy - (cy - current2.offset.y) * ratio
+            },
+            withAnimation
+          );
+        },
+        [applyTransform]
+      );
+      const reset = reactExports.useCallback(() => {
+        applyTransform(MIN_SCALE, { x: 0, y: 0 }, true);
+      }, [applyTransform]);
+      const zoomByStep = reactExports.useCallback(
+        (factor) => {
+          zoomAround(stateRef.current.scale * factor, 0, 0, true);
+        },
+        [zoomAround]
+      );
+      React.useImperativeHandle(
+        ref,
+        () => ({
+          zoomIn: () => zoomByStep(1.5),
+          zoomOut: () => zoomByStep(1 / 1.5),
+          reset
+        }),
+        [zoomByStep, reset]
+      );
+      reactExports.useEffect(() => {
+        setAnimate(false);
+        setScale(MIN_SCALE);
+        setOffset({ x: 0, y: 0 });
+      }, [src]);
+      reactExports.useEffect(() => {
+        onScaleChange?.(scale);
+      }, [scale, onScaleChange]);
+      reactExports.useEffect(() => {
+        const viewport = viewportRef.current;
+        if (!viewport) return void 0;
+        const onWheel = (event) => {
+          event.preventDefault();
+          const rect = viewport.getBoundingClientRect();
+          const cx = event.clientX - rect.left - rect.width / 2;
+          const cy = event.clientY - rect.top - rect.height / 2;
+          const factor = Math.exp(-event.deltaY * WHEEL_SENSITIVITY);
+          zoomAround(stateRef.current.scale * factor, cx, cy, false);
+        };
+        viewport.addEventListener("wheel", onWheel, { passive: false });
+        return () => viewport.removeEventListener("wheel", onWheel);
+      }, [zoomAround]);
+      const toggleZoomAt = reactExports.useCallback(
+        (clientX, clientY) => {
+          const viewport = viewportRef.current;
+          if (!viewport) return;
+          if (stateRef.current.scale > MIN_SCALE) {
+            reset();
+            return;
+          }
+          const rect = viewport.getBoundingClientRect();
+          zoomAround(
+            DOUBLE_TAP_SCALE,
+            clientX - rect.left - rect.width / 2,
+            clientY - rect.top - rect.height / 2,
+            true
+          );
+        },
+        [reset, zoomAround]
+      );
+      const onMouseDown = reactExports.useCallback((event) => {
+        if (event.button !== 0) return;
+        if (stateRef.current.scale <= MIN_SCALE) return;
+        event.preventDefault();
+        mouseDragRef.current = { x: event.clientX, y: event.clientY };
+        setDragging(true);
+      }, []);
+      reactExports.useEffect(() => {
+        if (!dragging || typeof window === "undefined") return void 0;
+        const onMove = (event) => {
+          const start = mouseDragRef.current;
+          if (!start) return;
+          const current2 = stateRef.current;
+          applyTransform(
+            current2.scale,
+            {
+              x: current2.offset.x + (event.clientX - start.x),
+              y: current2.offset.y + (event.clientY - start.y)
+            },
+            false
+          );
+          mouseDragRef.current = { x: event.clientX, y: event.clientY };
+        };
+        const onUp = () => {
+          mouseDragRef.current = null;
+          setDragging(false);
+        };
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+        return () => {
+          window.removeEventListener("mousemove", onMove);
+          window.removeEventListener("mouseup", onUp);
+        };
+      }, [dragging, applyTransform]);
+      const onTouchStart = reactExports.useCallback((event) => {
+        if (event.touches.length === 2) {
+          const [a2, b2] = [event.touches[0], event.touches[1]];
+          touchRef.current = {
+            startX: 0,
+            startY: 0,
+            lastX: 0,
+            lastY: 0,
+            pinchDistance: Math.hypot(
+              a2.clientX - b2.clientX,
+              a2.clientY - b2.clientY
+            ),
+            pinchScale: stateRef.current.scale,
+            panning: false,
+            moved: false
+          };
+          return;
+        }
+        const touch = event.touches[0];
+        if (!touch) return;
+        touchRef.current = {
+          startX: touch.clientX,
+          startY: touch.clientY,
+          lastX: touch.clientX,
+          lastY: touch.clientY,
+          pinchDistance: 0,
+          pinchScale: stateRef.current.scale,
+          panning: stateRef.current.scale > MIN_SCALE,
+          moved: false
+        };
+      }, []);
+      const onTouchMove = reactExports.useCallback(
+        (event) => {
+          const gesture = touchRef.current;
+          if (!gesture) return;
+          if (event.touches.length === 2 && gesture.pinchDistance > 0) {
+            const [a2, b2] = [event.touches[0], event.touches[1]];
+            const distance = Math.hypot(
+              a2.clientX - b2.clientX,
+              a2.clientY - b2.clientY
+            );
+            const viewport = viewportRef.current;
+            if (!viewport || distance <= 0) return;
+            const rect = viewport.getBoundingClientRect();
+            const cx = (a2.clientX + b2.clientX) / 2 - rect.left - rect.width / 2;
+            const cy = (a2.clientY + b2.clientY) / 2 - rect.top - rect.height / 2;
+            gesture.moved = true;
+            zoomAround(
+              gesture.pinchScale * distance / gesture.pinchDistance,
+              cx,
+              cy,
+              false
+            );
+            return;
+          }
+          const touch = event.touches[0];
+          if (!touch) return;
+          if (Math.abs(touch.clientX - gesture.startX) > 6 || Math.abs(touch.clientY - gesture.startY) > 6) {
+            gesture.moved = true;
+          }
+          if (gesture.panning) {
+            const current2 = stateRef.current;
+            applyTransform(
+              current2.scale,
+              {
+                x: current2.offset.x + (touch.clientX - gesture.lastX),
+                y: current2.offset.y + (touch.clientY - gesture.lastY)
+              },
+              false
+            );
+          }
+          gesture.lastX = touch.clientX;
+          gesture.lastY = touch.clientY;
+        },
+        [applyTransform, zoomAround]
+      );
+      const onTouchEnd = reactExports.useCallback(
+        (event) => {
+          const gesture = touchRef.current;
+          if (!gesture) return;
+          if (event.touches.length > 0) return;
+          touchRef.current = null;
+          if (!gesture.moved && gesture.pinchDistance === 0) {
+            const now = Date.now();
+            const previous2 = lastTapRef.current;
+            if (previous2 && now - previous2.time < DOUBLE_TAP_MS && Math.abs(previous2.x - gesture.startX) < DOUBLE_TAP_SLOP && Math.abs(previous2.y - gesture.startY) < DOUBLE_TAP_SLOP) {
+              lastTapRef.current = null;
+              toggleZoomAt(gesture.startX, gesture.startY);
+              return;
+            }
+            lastTapRef.current = {
+              time: now,
+              x: gesture.startX,
+              y: gesture.startY
+            };
+            return;
+          }
+          if (gesture.panning || gesture.pinchDistance > 0) return;
+          if (stateRef.current.scale > MIN_SCALE) return;
+          const dx = gesture.lastX - gesture.startX;
+          const dy = gesture.lastY - gesture.startY;
+          if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) {
+            return;
+          }
+          if (dx < 0) {
+            onSwipeLeft?.();
+          } else {
+            onSwipeRight?.();
+          }
+        },
+        [onSwipeLeft, onSwipeRight, toggleZoomAt]
+      );
+      const onDoubleClick = reactExports.useCallback(
+        (event) => {
+          toggleZoomAt(event.clientX, event.clientY);
+        },
+        [toggleZoomAt]
+      );
+      const transform2 = reactExports.useMemo(
+        () => `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+        [offset.x, offset.y, scale]
+      );
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Viewport,
+        {
+          ref: viewportRef,
+          "data-testid": "image-lightbox-viewport",
+          onMouseDown,
+          onDoubleClick,
+          onTouchStart,
+          onTouchMove,
+          onTouchEnd,
+          onTouchCancel: onTouchEnd,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            ZoomableImage,
+            {
+              ref: imageRef,
+              "data-testid": "image-lightbox-image",
+              src,
+              alt,
+              draggable: false,
+              onError,
+              $grabbing: dragging,
+              $pannable: scale > MIN_SCALE,
+              $animate: animate,
+              style: { transform: transform2 }
+            }
+          )
+        }
+      );
+    }
+  );
+  ImageLightbox.displayName = "ImageLightbox";
+  const collectRoomImages = (messages) => {
+    if (!Array.isArray(messages)) return [];
+    const images = [];
+    messages.forEach((message, messageIndex) => {
+      if (!message || message.isDeleted) return;
+      if (message.id === "delimiter-new") return;
+      getMessageAttachments(message).forEach((attachment, slot) => {
+        if (!attachment.location) return;
+        const fileName = getAttachmentName(attachment);
+        if (getFileKind(attachment.mimetype, fileName) !== "image") return;
+        images.push({
+          key: `${message.id ?? messageIndex}:${slot}`,
+          fileName,
+          fileURL: attachment.location,
+          mimetype: attachment.mimetype || ""
+        });
+      });
+    });
+    return images;
+  };
+  const findGalleryIndex = (images, activeFile) => {
+    if (!activeFile?.fileURL) return -1;
+    const target = withoutFileToken(activeFile.fileURL);
+    return images.findIndex(
+      (image2) => withoutFileToken(image2.fileURL) === target
+    );
+  };
+  const IMAGE_FALLBACK = "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg";
+  const Stage = gt$1.div`
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+  const NavButton = gt$1(Button$1)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ethora-radius-full, 999px);
+  background-color: var(--ethora-color-bg, #fff);
+  box-shadow: var(--ethora-shadow-md, 0 4px 12px rgba(16, 24, 40, 0.1));
+  z-index: 2;
+`;
+  const PreviousButton = gt$1(NavButton)`
+  left: 8px;
+`;
+  const NextButton = gt$1(NavButton)`
+  right: 8px;
+`;
+  const HeaderControls = gt$1.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+  const ZoomControls = gt$1.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+  const PositionLabel = gt$1.span`
+  font-size: var(--ethora-font-size-sm, 14px);
+  color: var(--ethora-color-text-secondary, #5a5f66);
+  white-space: nowrap;
+  padding: 0 4px;
+`;
   const FilePreviewModal = ({
     handleCloseModal
   }) => {
     const dispatch = useDispatch();
     const t2 = useT();
-    const { activeFile } = useSelector(
+    const { activeFile: openedFile } = useSelector(
       (state) => state.chatSettingStore
+    );
+    const activeFile = reactExports.useMemo(
+      () => openedFile ?? { fileName: "", fileURL: "", mimetype: "" },
+      [openedFile]
     );
     const fileToken = useSelector(
       (state) => state.chatSettingStore.user?.fileToken || ""
     );
+    const roomMessages = useSelector(
+      (state) => getActiveRoom(state)?.messages
+    );
+    const lightboxRef = reactExports.useRef(null);
+    const [scale, setScale] = reactExports.useState(MIN_SCALE);
+    const kind = getFileKind(activeFile?.mimetype, activeFile?.fileName);
+    const gallery = reactExports.useMemo(() => collectRoomImages(roomMessages), [roomMessages]);
+    const index2 = reactExports.useMemo(
+      () => kind === "image" ? findGalleryIndex(gallery, activeFile) : -1,
+      [gallery, activeFile, kind]
+    );
+    const hasGallery = index2 >= 0 && gallery.length > 1;
+    const hasPrevious = hasGallery && index2 > 0;
+    const hasNext = hasGallery && index2 < gallery.length - 1;
+    const goTo = reactExports.useCallback(
+      (nextIndex) => {
+        const target = gallery[nextIndex];
+        if (!target) return;
+        dispatch(
+          setActiveFile({
+            fileName: target.fileName,
+            fileURL: target.fileURL,
+            mimetype: target.mimetype
+          })
+        );
+      },
+      [dispatch, gallery]
+    );
+    const goPrevious = reactExports.useCallback(() => {
+      if (hasPrevious) goTo(index2 - 1);
+    }, [goTo, hasPrevious, index2]);
+    const goNext = reactExports.useCallback(() => {
+      if (hasNext) goTo(index2 + 1);
+    }, [goTo, hasNext, index2]);
+    reactExports.useEffect(() => {
+      if (!hasGallery || typeof document === "undefined") return void 0;
+      const onKeyDown = (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        if (event.defaultPrevented) return;
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        const target = event.target;
+        const tag = target?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target?.isContentEditable) {
+          return;
+        }
+        event.preventDefault();
+        if (event.key === "ArrowLeft") {
+          goPrevious();
+        } else {
+          goNext();
+        }
+      };
+      document.addEventListener("keydown", onKeyDown);
+      return () => document.removeEventListener("keydown", onKeyDown);
+    }, [hasGallery, goPrevious, goNext]);
     const saveClick = () => {
       fetch(withFileToken(activeFile.fileURL), {
         method: "GET",
         headers: {}
       }).then((response) => {
-        const kind = getFileKind(activeFile.mimetype, activeFile.fileName);
         const hasOwnExtension = !!getFileExtension(activeFile.fileName);
         const fallbackExtension = kind === "image" ? "png" : kind === "video" ? "mp4" : "bin";
         const downloadName = hasOwnExtension ? activeFile.fileName : `MEDIA-ETHORA.${fallbackExtension}`;
@@ -158020,19 +161030,24 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       dispatch(setActiveFile(void 0));
       handleCloseModal?.();
     };
+    const imageAlt = activeFile?.fileName || t2("modal.filePreview.imageAlt");
     const getMediaComponent = reactExports.useMemo(() => {
-      switch (getFileKind(activeFile.mimetype, activeFile.fileName)) {
+      switch (kind) {
         case "image":
           return /* @__PURE__ */ jsxRuntimeExports.jsx(
-            FullScreenImage,
+            ImageLightbox,
             {
-              src: appendFileToken(activeFile.fileURL, fileToken) || "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg",
-              alt: activeFile.fileName,
+              ref: lightboxRef,
+              src: appendFileToken(activeFile.fileURL, fileToken) || IMAGE_FALLBACK,
+              alt: imageAlt,
+              onScaleChange: setScale,
+              onSwipeLeft: goNext,
+              onSwipeRight: goPrevious,
               onError: (e2) => {
                 if (isSecureFileUrl(activeFile.fileURL)) {
                   requestFileTokenRecovery();
                 }
-                e2.target.src = "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg";
+                e2.target.src = IMAGE_FALLBACK;
               }
             }
           );
@@ -158076,14 +161091,49 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
             }
           );
       }
-    }, [activeFile, fileToken, t2]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { children: [
+    }, [activeFile, fileToken, imageAlt, kind, goNext, goPrevious, t2]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(ModalContainerFullScreen, { "aria-label": t2("modal.filePreview.title"), children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         ModalHeaderComponent,
         {
           handleCloseModal: closeModal,
           headerTitle: t2("modal.filePreview.title"),
-          rightMenu: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: saveClick, "aria-label": t2("action.save"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveIcon, {}) }) })
+          rightMenu: /* @__PURE__ */ jsxRuntimeExports.jsxs(HeaderControls, { children: [
+            hasGallery && /* @__PURE__ */ jsxRuntimeExports.jsx(PositionLabel, { "data-testid": "lightbox-position", "aria-live": "polite", children: t2("modal.filePreview.position", {
+              current: index2 + 1,
+              total: gallery.length
+            }) }),
+            kind === "image" && /* @__PURE__ */ jsxRuntimeExports.jsxs(ZoomControls, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$1,
+                {
+                  onClick: () => lightboxRef.current?.zoomOut(),
+                  disabled: scale <= MIN_SCALE,
+                  "aria-label": t2("modal.filePreview.zoomOut"),
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomOutIcon, {})
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$1,
+                {
+                  onClick: () => lightboxRef.current?.zoomIn(),
+                  disabled: scale >= MAX_SCALE,
+                  "aria-label": t2("modal.filePreview.zoomIn"),
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomInIcon, {})
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$1,
+                {
+                  onClick: () => lightboxRef.current?.reset(),
+                  disabled: scale <= MIN_SCALE,
+                  "aria-label": t2("modal.filePreview.resetZoom"),
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZoomResetIcon, {})
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: saveClick, "aria-label": t2("action.save"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveIcon, {}) })
+          ] })
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -158091,13 +161141,35 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
         {
           style: {
             display: "flex",
+            flex: "1 1 auto",
             height: "100%",
+            minHeight: 0,
             justifyContent: "center",
             overflow: "hidden",
             padding: "16px",
             width: "90%"
           },
-          children: getMediaComponent
+          children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Stage, { children: [
+            hasGallery && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              PreviousButton,
+              {
+                onClick: goPrevious,
+                disabled: !hasPrevious,
+                "aria-label": t2("modal.filePreview.previousImage"),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeftIcon, {})
+              }
+            ),
+            getMediaComponent,
+            hasGallery && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              NextButton,
+              {
+                onClick: goNext,
+                disabled: !hasNext,
+                "aria-label": t2("modal.filePreview.nextImage"),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRightIcon, {})
+              }
+            )
+          ] })
         }
       )
     ] });
